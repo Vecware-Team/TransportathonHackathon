@@ -25,6 +25,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.Dom
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "Core.Packages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{84829B17-D777-486D-8CD8-73271F39C404}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.API", "Core.Packages\Core.API\Core.API.csproj", "{CBCD93B1-AF21-4BBA-969A-4348CFC31364}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "Core.Packages\Core.Security\Core.Security.csproj", "{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +67,14 @@ Global
 		{84829B17-D777-486D-8CD8-73271F39C404}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{84829B17-D777-486D-8CD8-73271F39C404}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{84829B17-D777-486D-8CD8-73271F39C404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCD93B1-AF21-4BBA-969A-4348CFC31364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCD93B1-AF21-4BBA-969A-4348CFC31364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCD93B1-AF21-4BBA-969A-4348CFC31364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCD93B1-AF21-4BBA-969A-4348CFC31364}.Release|Any CPU.Build.0 = Release|Any CPU
+		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +89,8 @@ Global
 		{356C3FA9-E8B3-47AA-935C-A47374762BD7} = {380DBA74-954A-4B83-820E-638CF7BD4020}
 		{B1A1F34D-93E4-489E-9F6B-70B90082F911} = {380DBA74-954A-4B83-820E-638CF7BD4020}
 		{84829B17-D777-486D-8CD8-73271F39C404} = {CB460561-8806-4036-9293-ECB96E24E350}
+		{CBCD93B1-AF21-4BBA-969A-4348CFC31364} = {CB460561-8806-4036-9293-ECB96E24E350}
+		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC} = {CB460561-8806-4036-9293-ECB96E24E350}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {413EC07D-0827-4E34-9113-5043D48380C1}
