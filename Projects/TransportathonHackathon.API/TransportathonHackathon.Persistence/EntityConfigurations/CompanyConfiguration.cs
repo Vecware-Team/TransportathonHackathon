@@ -12,6 +12,8 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
 
             builder.Property(e => e.CompanyName).HasColumnName("CompanyName").IsRequired();
 
+            builder.HasOne(e => e.AppUser);
+
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);
             builder.Ignore(e => e.DeletedDate);

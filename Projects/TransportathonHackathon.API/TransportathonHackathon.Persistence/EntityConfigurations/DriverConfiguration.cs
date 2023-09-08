@@ -10,15 +10,13 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
         {
             builder.ToTable("Drivers").HasKey(e => e.AppUserId);
             builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
-        }
-    }
+            
+            builder.HasOne(e => e.AppUser);
+            builder.HasOne(e => e.DriverLicense);
 
-    public class CarrierConfiguration : IEntityTypeConfiguration<Carrier>
-    {
-        public void Configure(EntityTypeBuilder<Carrier> builder)
-        {
-            builder.ToTable("Carriers").HasKey(e => e.AppUserId);
-            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
+            builder.Ignore(e => e.CreatedDate);
+            builder.Ignore(e => e.UpdatedDate);
+            builder.Ignore(e => e.DeletedDate);
         }
     }
 }

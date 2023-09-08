@@ -4,14 +4,12 @@ using TransportathonHackathon.Domain.Entities;
 
 namespace TransportathonHackathon.Persistence.EntityConfigurations
 {
-    public class CustomerConfiguration : IEntityTypeConfiguration<Customer>
+    public class CarrierConfiguration : IEntityTypeConfiguration<Carrier>
     {
-        public void Configure(EntityTypeBuilder<Customer> builder)
+        public void Configure(EntityTypeBuilder<Carrier> builder)
         {
-            builder.ToTable("Customers").HasKey(e => e.AppUserId);
-
-            builder.Property(e => e.FirstName).HasColumnName("FirstName").IsRequired();
-            builder.Property(e => e.LastName).HasColumnName("LastName").IsRequired();
+            builder.ToTable("Carriers").HasKey(e => e.AppUserId);
+            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
 
             builder.HasOne(e => e.AppUser);
 

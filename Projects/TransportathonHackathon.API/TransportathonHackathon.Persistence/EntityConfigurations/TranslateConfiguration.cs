@@ -8,11 +8,13 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Translate> builder)
         {
-            builder.ToTable("Translates").HasNoKey();
+            builder.ToTable("Translates").HasKey(e=>e.Key);
 
             builder.Property(e => e.LanguageId).HasColumnName("LanguageId").IsRequired();
             builder.Property(e => e.Key).HasColumnName("Key").IsRequired();
             builder.Property(e => e.Value).HasColumnName("Value").IsRequired();
+
+            builder.HasOne(e => e.Language);
 
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);

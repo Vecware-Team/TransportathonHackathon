@@ -12,8 +12,8 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230908153805_driverupdate")]
-    partial class driverupdate
+    [Migration("20230908213804_Mig_1")]
+    partial class Mig_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,6 +24,20 @@ namespace TransportathonHackathon.Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Carrier", b =>
+                {
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("IsOnTransitNow")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsOnTransitNow");
+
+                    b.HasKey("AppUserId");
+
+                    b.ToTable("Carriers", (string)null);
+                });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
                 {
@@ -82,19 +96,20 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.DriverLicense", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("DriverId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnName("DriverId");
 
                     b.Property<string>("Classes")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Classes");
 
-                    b.Property<Guid>("DriverId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("DriverId");
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -114,10 +129,10 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("LicenseGetDate");
 
-                    b.HasKey("Id");
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
 
-                    b.HasIndex("DriverId")
-                        .IsUnique();
+                    b.HasKey("DriverId");
 
                     b.ToTable("DriverLicenses", (string)null);
                 });
@@ -328,6 +343,74 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Code");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("GloballyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("GloballyName");
+
+                    b.Property<string>("LocallyName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("LocallyName");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Languages", (string)null);
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Translate", b =>
+                {
+                    b.Property<string>("Key")
+                        .HasColumnType("nvarchar(450)")
+                        .HasColumnName("Key");
+
+                    b.Property<Guid>("LanguageId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("LanguageId");
+
+                    b.Property<string>("Value")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Value");
+
+                    b.HasKey("Key");
+
+                    b.HasIndex("LanguageId");
+
+                    b.ToTable("Translates", (string)null);
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Carrier", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
+                        .WithOne("Carrier")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Carrier", "AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
@@ -423,22 +506,36 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Translate", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Language", "Language")
+                        .WithMany("Translates")
+                        .HasForeignKey("LanguageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Language");
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
                 {
-                    b.Navigation("DriverLicense")
-                        .IsRequired();
+                    b.Navigation("DriverLicense");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
                 {
-                    b.Navigation("Company")
-                        .IsRequired();
+                    b.Navigation("Carrier");
 
-                    b.Navigation("Customer")
-                        .IsRequired();
+                    b.Navigation("Company");
 
-                    b.Navigation("Driver")
-                        .IsRequired();
+                    b.Navigation("Customer");
+
+                    b.Navigation("Driver");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>
+                {
+                    b.Navigation("Translates");
                 });
 #pragma warning restore 612, 618
         }

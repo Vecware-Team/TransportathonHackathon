@@ -27,18 +27,9 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsOnTransitNow")
                         .HasColumnType("bit")
                         .HasColumnName("IsOnTransitNow");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AppUserId");
 
@@ -91,18 +82,9 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<bool>("IsOnTransitNow")
                         .HasColumnType("bit")
                         .HasColumnName("IsOnTransitNow");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2");
 
                     b.HasKey("AppUserId");
 
@@ -111,10 +93,9 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.DriverLicense", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
+                    b.Property<Guid>("DriverId")
                         .HasColumnType("uniqueidentifier")
-                        .HasColumnName("Id");
+                        .HasColumnName("DriverId");
 
                     b.Property<string>("Classes")
                         .IsRequired()
@@ -126,10 +107,6 @@ namespace TransportathonHackathon.Persistence.Migrations
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid>("DriverId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("DriverId");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -152,10 +129,7 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
-
-                    b.HasIndex("DriverId")
-                        .IsUnique();
+                    b.HasKey("DriverId");
 
                     b.ToTable("DriverLicenses", (string)null);
                 });
@@ -404,8 +378,7 @@ namespace TransportathonHackathon.Persistence.Migrations
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Translate", b =>
                 {
                     b.Property<string>("Key")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
+                        .HasColumnType("nvarchar(450)")
                         .HasColumnName("Key");
 
                     b.Property<Guid>("LanguageId")
@@ -416,6 +389,8 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("Value");
+
+                    b.HasKey("Key");
 
                     b.HasIndex("LanguageId");
 
@@ -531,7 +506,7 @@ namespace TransportathonHackathon.Persistence.Migrations
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Translate", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Language", "Language")
-                        .WithMany()
+                        .WithMany("Translates")
                         .HasForeignKey("LanguageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -541,8 +516,7 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
                 {
-                    b.Navigation("DriverLicense")
-                        .IsRequired();
+                    b.Navigation("DriverLicense");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
@@ -554,6 +528,11 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Driver");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>
+                {
+                    b.Navigation("Translates");
                 });
 #pragma warning restore 612, 618
         }

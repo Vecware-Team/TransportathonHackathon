@@ -26,40 +26,6 @@ namespace TransportathonHackathon.Persistence.Contexts
         {
             base.OnModelCreating(builder);
 
-            builder.Entity<AppUser>()
-            .HasOne(e => e.Company)
-            .WithOne(e => e.AppUser)
-            .HasForeignKey<Company>(e => e.AppUserId);
-
-            builder.Entity<AppUser>()
-            .HasOne(e => e.Customer)
-            .WithOne(e => e.AppUser)
-            .HasForeignKey<Customer>(e => e.AppUserId);
-
-            builder.Entity<AppUser>()
-            .HasOne(e => e.Driver)
-            .WithOne(e => e.AppUser)
-            .HasForeignKey<Driver>(e => e.AppUserId);
-
-            builder.Entity<AppUser>()
-           .HasOne(e => e.Carrier)
-           .WithOne(e => e.AppUser)
-           .HasForeignKey<Carrier>(e => e.AppUserId);
-
-            builder.Entity<Driver>()
-            .HasOne(e => e.DriverLicense)
-            .WithOne(e => e.Driver)
-            .HasForeignKey<DriverLicense>(e => e.DriverId);
-
-            //builder.Entity<Language>()
-            //.HasMany(l => l.Translates)
-            //.WithOne(t => t.Language);
-
-            //builder.Entity<Translate>()
-            //.HasOne(l => l.Language)
-            //.WithMany(t => t.Translates).HasForeignKey(l => l.LanguageId);
-
-
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }
     }

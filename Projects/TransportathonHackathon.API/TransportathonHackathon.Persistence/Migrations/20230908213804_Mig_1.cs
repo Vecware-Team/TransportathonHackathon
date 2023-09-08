@@ -54,6 +54,23 @@ namespace TransportathonHackathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Languages",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Code = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    GloballyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LocallyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Languages", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -160,11 +177,31 @@ namespace TransportathonHackathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Carriers",
+                columns: table => new
+                {
+                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsOnTransitNow = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Carriers", x => x.AppUserId);
+                    table.ForeignKey(
+                        name: "FK_Carriers_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Companies",
                 columns: table => new
                 {
                     AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CompanyName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    DriverCount = table.Column<int>(type: "int", nullable: false),
+                    CompletedJobsCount = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -193,6 +230,68 @@ namespace TransportathonHackathon.Persistence.Migrations
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Drivers",
+                columns: table => new
+                {
+                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsOnTransitNow = table.Column<bool>(type: "bit", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Drivers", x => x.AppUserId);
+                    table.ForeignKey(
+                        name: "FK_Drivers_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Translates",
+                columns: table => new
+                {
+                    Key = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    LanguageId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Value = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Translates", x => x.Key);
+                    table.ForeignKey(
+                        name: "FK_Translates_Languages_LanguageId",
+                        column: x => x.LanguageId,
+                        principalTable: "Languages",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DriverLicenses",
+                columns: table => new
+                {
+                    DriverId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    LastName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Classes = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    IsNew = table.Column<bool>(type: "bit", nullable: false),
+                    LicenseGetDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DriverLicenses", x => x.DriverId);
+                    table.ForeignKey(
+                        name: "FK_DriverLicenses_Drivers_DriverId",
+                        column: x => x.DriverId,
+                        principalTable: "Drivers",
+                        principalColumn: "AppUserId",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -234,6 +333,11 @@ namespace TransportathonHackathon.Persistence.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Translates_LanguageId",
+                table: "Translates",
+                column: "LanguageId");
         }
 
         /// <inheritdoc />
@@ -255,13 +359,28 @@ namespace TransportathonHackathon.Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Carriers");
+
+            migrationBuilder.DropTable(
                 name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
+                name: "DriverLicenses");
+
+            migrationBuilder.DropTable(
+                name: "Translates");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Drivers");
+
+            migrationBuilder.DropTable(
+                name: "Languages");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
