@@ -12,7 +12,7 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230908122002_Mig_1")]
+    [Migration("20230908130800_Mig_1")]
     partial class Mig_1
     {
         /// <inheritdoc />
@@ -27,45 +27,23 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CompanyName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("CompanyName");
 
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedDate");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletedDate");
-
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("UpdatedDate");
-
-                    b.HasKey("UserId");
+                    b.HasKey("AppUserId");
 
                     b.ToTable("Companies", (string)null);
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Customer", b =>
                 {
-                    b.Property<Guid>("UserId")
-                        .HasColumnType("uniqueidentifier")
-                        .HasColumnName("UserId");
-
-                    b.Property<DateTime>("CreatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("CreatedDate");
-
-                    b.Property<DateTime?>("DeletedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("DeletedDate");
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
@@ -77,11 +55,7 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("nvarchar(max)")
                         .HasColumnName("LastName");
 
-                    b.Property<DateTime?>("UpdatedDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("UpdatedDate");
-
-                    b.HasKey("UserId");
+                    b.HasKey("AppUserId");
 
                     b.ToTable("Customers", (string)null);
                 });
@@ -147,18 +121,12 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<Guid?>("CompanyUserId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<Guid?>("CustomerUserId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime?>("DeletedDate")
                         .HasColumnType("datetime2");
@@ -207,10 +175,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CompanyUserId");
-
-                    b.HasIndex("CustomerUserId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -305,8 +269,8 @@ namespace TransportathonHackathon.Persistence.Migrations
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Company")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Company", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -316,8 +280,8 @@ namespace TransportathonHackathon.Persistence.Migrations
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Customer", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
-                        .WithMany()
-                        .HasForeignKey("UserId")
+                        .WithOne("Customer")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Customer", "AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -331,17 +295,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
-                {
-                    b.HasOne("TransportathonHackathon.Domain.Entities.Company", null)
-                        .WithMany()
-                        .HasForeignKey("CompanyUserId");
-
-                    b.HasOne("TransportathonHackathon.Domain.Entities.Customer", null)
-                        .WithMany()
-                        .HasForeignKey("CustomerUserId");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserClaim", b =>
@@ -383,6 +336,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
+                {
+                    b.Navigation("Company")
+                        .IsRequired();
+
+                    b.Navigation("Customer")
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

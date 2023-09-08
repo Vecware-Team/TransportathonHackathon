@@ -8,16 +8,13 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Company> builder)
         {
-            builder.ToTable("Companies").HasKey(e => e.UserId);
+            builder.ToTable("Companies").HasKey(e => e.AppUserId);
 
-            builder.Property(e => e.UserId).HasColumnName("UserId").IsRequired();
             builder.Property(e => e.CompanyName).HasColumnName("CompanyName").IsRequired();
 
-            builder.Property(e => e.CreatedDate).HasColumnName("CreatedDate").IsRequired();
-            builder.Property(e => e.UpdatedDate).HasColumnName("UpdatedDate");
-            builder.Property(e => e.DeletedDate).HasColumnName("DeletedDate");
-
-            builder.HasOne(e => e.AppUser);
+            builder.Ignore(e => e.CreatedDate);
+            builder.Ignore(e => e.UpdatedDate);
+            builder.Ignore(e => e.DeletedDate);
         }
     }
 }

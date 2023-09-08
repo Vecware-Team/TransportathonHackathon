@@ -19,8 +19,16 @@ namespace TransportathonHackathon.Persistence.Contexts
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
-            builder.Entity<AppUser>().HasOne<Customer>();
-            builder.Entity<AppUser>().HasOne<Company>();
+
+            builder.Entity<AppUser>()
+            .HasOne(e => e.Company)
+            .WithOne(e => e.AppUser)
+            .HasForeignKey<Company>(e => e.AppUserId);
+
+            builder.Entity<AppUser>()
+            .HasOne(e => e.Customer)
+            .WithOne(e => e.AppUser)
+            .HasForeignKey<Customer>(e => e.AppUserId);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

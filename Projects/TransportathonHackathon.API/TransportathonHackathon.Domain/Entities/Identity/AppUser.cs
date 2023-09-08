@@ -8,5 +8,8 @@ namespace TransportathonHackathon.Domain.Entities.Identity
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
+
+        public virtual Company Company { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }
