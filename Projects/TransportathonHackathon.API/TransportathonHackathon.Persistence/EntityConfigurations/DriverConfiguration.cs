@@ -12,4 +12,13 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
         }
     }
+
+    public class CarrierConfiguration : IEntityTypeConfiguration<Carrier>
+    {
+        public void Configure(EntityTypeBuilder<Carrier> builder)
+        {
+            builder.ToTable("Carriers").HasKey(e => e.AppUserId);
+            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
+        }
+    }
 }

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
-import { ListResponseModel } from '../../models/responseModels/ListResponseModel';
-import { ResponseModel } from '../../models/responseModels/responseModel';
+import { ListResponseModel } from '../../../models/responseModels/ListResponseModel';
+import { ResponseModel } from '../../../models/responseModels/responseModel';
 
 export interface ServiceRepositoryLocal<T> {
   add(entity: T): ResponseModel;

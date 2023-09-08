@@ -1,6 +1,6 @@
-import { ItemResponseModel } from '../models/responseModels/ItemResponseModel';
-import { ListResponseModel } from '../models/responseModels/ListResponseModel';
-import { ResponseModel } from '../models/responseModels/responseModel';
+import { ItemResponseModel } from '../../models/responseModels/ItemResponseModel';
+import { ListResponseModel } from '../../models/responseModels/ListResponseModel';
+import { ResponseModel } from '../../models/responseModels/responseModel';
 import { DbServiceRepository } from './db.service.repository';
 
 export class DbServiceRepositoryBase<T> implements DbServiceRepository<T> {

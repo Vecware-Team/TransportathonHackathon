@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TransportathonHackathon.Domain.Entities
 {
@@ -8,6 +9,7 @@ namespace TransportathonHackathon.Domain.Entities
         public string GloballyName { get; set; }
         public string LocallyName { get; set; }
 
+        [NotMapped]
         public virtual ICollection<Translate> Translates { get; set; }
 
     }

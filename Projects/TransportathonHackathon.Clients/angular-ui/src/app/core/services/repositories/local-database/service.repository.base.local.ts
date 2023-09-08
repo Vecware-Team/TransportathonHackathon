@@ -1,12 +1,12 @@
-import { DbServiceRepositoryBase } from '../../database/db.service.repository.base';
 import { ServiceRepositoryLocal } from './service.repository.local';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { ItemResponseModel } from '../../models/responseModels/ItemResponseModel';
-import { ListResponseModel } from '../../models/responseModels/ListResponseModel';
-import { ResponseModel } from '../../models/responseModels/responseModel';
+import { ItemResponseModel } from '../../../models/responseModels/ItemResponseModel';
+import { ListResponseModel } from '../../../models/responseModels/ListResponseModel';
+import { ResponseModel } from '../../../models/responseModels/responseModel';
 import { ServiceRepository } from '../service.repository';
+import { DbServiceRepositoryBase } from 'src/app/core/database/local/db.service.repository.base';
 
 export class ServiceRepositoryLocalBase<T>
   implements ServiceRepositoryLocal<T>

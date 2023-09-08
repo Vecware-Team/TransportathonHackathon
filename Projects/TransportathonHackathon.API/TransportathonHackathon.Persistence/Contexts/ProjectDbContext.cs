@@ -17,8 +17,10 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Company> Companies { get; set; }
         public DbSet<Driver> Drivers { get; set; }
         public DbSet<DriverLicense> DriverLicenses { get; set; }
+        public DbSet<Carrier> Carriers { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Translate> Translates { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -39,18 +41,23 @@ namespace TransportathonHackathon.Persistence.Contexts
             .WithOne(e => e.AppUser)
             .HasForeignKey<Driver>(e => e.AppUserId);
 
+            builder.Entity<AppUser>()
+           .HasOne(e => e.Carrier)
+           .WithOne(e => e.AppUser)
+           .HasForeignKey<Carrier>(e => e.AppUserId);
+
             builder.Entity<Driver>()
             .HasOne(e => e.DriverLicense)
             .WithOne(e => e.Driver)
             .HasForeignKey<DriverLicense>(e => e.DriverId);
 
-            builder.Entity<Language>()
-            .HasMany(l => l.Translates)
-            .WithOne(t => t.Language);
+            //builder.Entity<Language>()
+            //.HasMany(l => l.Translates)
+            //.WithOne(t => t.Language);
 
-            builder.Entity<Translate>()
-            .HasOne(l => l.Language)
-            .WithMany(t => t.Translates).HasForeignKey(l => l.LanguageId);
+            //builder.Entity<Translate>()
+            //.HasOne(l => l.Language)
+            //.WithMany(t => t.Translates).HasForeignKey(l => l.LanguageId);
 
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
