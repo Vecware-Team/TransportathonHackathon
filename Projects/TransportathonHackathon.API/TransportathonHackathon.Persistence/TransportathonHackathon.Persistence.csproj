@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TransportathonHackathon.Application\TransportathonHackathon.Application.csproj" />
     <ProjectReference Include="..\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj" />
   </ItemGroup>
 
