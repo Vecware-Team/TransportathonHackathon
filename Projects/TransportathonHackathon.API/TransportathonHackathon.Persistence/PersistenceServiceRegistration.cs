@@ -1,7 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Persistence.Contexts;
+using TransportathonHackathon.Persistence.Repositories;
 
 namespace TransportathonHackathon.Persistence
 {
@@ -13,6 +15,11 @@ namespace TransportathonHackathon.Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
             });
+
+            services.AddScoped<ICompanyRepository, CompanyRepository>();
+            services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IDriverRepository, DriverRepository>();
+            services.AddScoped<IDriverLicenseRepository, DriverLicenseRepository>();
 
             return services;
         }
