@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 
@@ -18,7 +19,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Queries.GetById
 
         public async Task<GetByIdCompanyResponse> Handle(GetByIdCompanyQuery request, CancellationToken cancellationToken)
         {
-            Company? company = await _companyRepository.GetAsync(e=>e.AppUserId == request.Id);
+            Company? company = await _companyRepository.GetAsync(e=>e.AppUserId == request.AppUserId, include: e=>e.Include(e=>e.AppUser));
             if (company is null)
                 throw new Exception();
 

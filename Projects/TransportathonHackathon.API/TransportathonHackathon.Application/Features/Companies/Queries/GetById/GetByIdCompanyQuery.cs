@@ -4,6 +4,6 @@ namespace TransportathonHackathon.Application.Features.Companies.Queries.GetById
 {
     public class GetByIdCompanyQuery : IRequest<GetByIdCompanyResponse>
     {
-        public Guid Id { get; set; }
+        public Guid AppUserId { get; set; }
     }
 }

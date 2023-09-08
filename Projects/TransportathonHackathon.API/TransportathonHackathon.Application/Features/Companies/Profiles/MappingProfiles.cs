@@ -14,21 +14,47 @@ namespace TransportathonHackathon.Application.Features.Companies.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Company, CreateCompanyCommand>().ReverseMap();
-            CreateMap<Company, CreatedCompanyResponse>().ReverseMap();
+            CreateMap<Company, CreateCompanyCommand>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
+
+            CreateMap<Company, CreatedCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
 
             CreateMap<Company, DeleteCompanyCommand>().ReverseMap();
-            CreateMap<Company, DeletedCompanyResponse>().ReverseMap();
+            CreateMap<Company, DeletedCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
 
-            CreateMap<Company, UpdateCompanyCommand>().ReverseMap();
-            CreateMap<Company, UpdatedCompanyResponse>().ReverseMap();
+            CreateMap<Company, UpdateCompanyCommand>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
+            CreateMap<Company, UpdatedCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
 
-            CreateMap<Company, GetByIdCompanyResponse>().ReverseMap();
+            CreateMap<Company, GetByIdCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
 
-            CreateMap<Company, GetByEmailCompanyResponse>().ReverseMap();
+            CreateMap<Company, GetByEmailCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
 
-            CreateMap<Company, GetListCompanyResponse>().ReverseMap();
-            CreateMap<IPaginate<Company>, IPaginate<GetListCompanyResponse>>().ReverseMap();
+            CreateMap<Company, GetListCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
+
+            CreateMap<Paginate<Company>, Paginate<GetListCompanyResponse>>().ReverseMap();
         }
     }
 }

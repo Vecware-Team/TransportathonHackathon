@@ -4,6 +4,6 @@ namespace TransportathonHackathon.Application.Features.Companies.Commands.Delete
 {
     public class DeleteCompanyCommand : IRequest<DeletedCompanyResponse>
     {
-        public Guid Id { get; set; }
+        public Guid AppUserId { get; set; }
     }
 }
