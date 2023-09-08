@@ -1,0 +1,15 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Çeviriyi Sil</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+    </div>
+    <div class="modal-body">
+        <h5><span class="badge bg-primary">{{translate.key}}</span></h5>
+        Bu çeviriyi silmek istediğinizden emin misiniz?
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+            (click)="close()">{{'cancel' | translate}}</button>
+        <button type="button" class="btn btn-danger" (click)="delete()">{{'delete' | translate}}</button>
+    </div>
+</div>

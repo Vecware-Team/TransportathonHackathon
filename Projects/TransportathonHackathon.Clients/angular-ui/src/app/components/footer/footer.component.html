@@ -1,0 +1,88 @@
+<footer class="">
+    <div class="bd-footer py-5 bg-light">
+        <!-- bg-light -->
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-lg-3 mb-3">
+                    <ul class="list-unstyled small">
+                        <!-- text-muted -->
+                        <a class="d-inline-flex align-items-center mb-2 link-dark text-decoration-none" href="/"
+                            aria-label="Bootstrap">
+
+                            <!-- <i class="icon-logo me-2" style="font-size: 32px;"></i> -->
+                            <a class="navbar-brand text-white me-2" routerLink="/">
+                                <img src="assets/images/logo.webp" height="35" class="d-inline-block align-text-top">
+                            </a>
+                            <span class="fs-5">Temel Mimari</span>
+                        </a>
+                        <li class="mb-2">
+                            Bu çalışma Fatih Dağ tarafından yazılım topluluğuna önemli bir katkıda bulunmak amacıyla hazırlanmıştır.
+                        </li>
+                        <li class="mb-2">
+                            Sürüm 1.0.0
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-2 offset-lg-1 mb-3">
+                    <h5>{{"links" | translate}}</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a class="link-dark link" routerLink="/">Anasayfa</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="link-dark link" routerLink="/products">Ürünler</a>
+                        </li>
+                        <li class="mb-2">
+                            <a class="link-dark link" routerLink="/admin">Admin</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-1 mb-3">
+                    <h5>{{"social" | translate}}</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a class="link-dark link" [href]="getSocialLink('instagram')" rel=”nofollow” target=”_blank”>İnstagram</a></li>
+                        <li class="mb-2"><a class="link-dark link" [href]="getSocialLink('facebook')" rel=”nofollow” target=”_blank”>Facebook</a></li>
+
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-3 mb-3">
+                    <h5>{{"contact" | translate}}</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2">
+                            <a class="link-dark unlink">dagbfatih@hotmail.com</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-6 col-lg-1 mb-3">
+                    <h5>{{"aboutUs" | translate}}</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a class="link-dark link"
+                                routerLink="/about-us">{{"whoAreWe" | translate}}</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <div class="col-md-4 d-flex align-items-center">
+                    <span class="text-muted">2023 Projesi © Hakları Saklıdır.</span>
+                </div>
+
+                <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+                    <li class="me-3">
+                        <a class="text-muted" [href]="getSocialLink('instagram')" rel=”nofollow” target=”_blank”>
+                            <fa-icon [icon]="faInstagram" style="font-size: 24px;"></fa-icon>
+                        </a>
+                    </li>
+                    <li class="me-3">
+                        <a class="text-muted" [href]="getSocialLink('facebook')" rel=”nofollow” target=”_blank”>
+                            <fa-icon [icon]="faFacebook" style="font-size: 24px;"></fa-icon>
+                        </a>
+                    </li>
+                    <li class="text-muted py-1">
+                        Designed by <a href="mailto: dagbfatih@hotmail.com" rel=”nofollow” target=”_blank”>Dagbfatih.</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>

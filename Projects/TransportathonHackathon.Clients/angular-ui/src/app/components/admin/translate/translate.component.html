@@ -1,0 +1,85 @@
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Çeviriler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+
+        <!-- Filters -->
+        <div class="me-4">
+            <form [formGroup]="filterForm" (ngSubmit)="filter()">
+                <div class="row g-3">
+                    <div class="col">
+                        <div class="search-filter" style="width: 320px;">
+                            <fa-icon [icon]="faSearch" class="fa-icon-search"></fa-icon>
+                            <input type="text" class="form-control filter-input search-filter-input"
+                                formControlName="filterText" [placeholder]="('searchOnTranslates' | translate) +'...'">
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="language-filter" style="width: 200px;">
+                            <select class="form-select filter-input" formControlName="languageFilter"
+                                (change)="filter()">
+                                <option selected [value]="0">{{'filterByLanguages' | translate}}...</option>
+                                <option *ngFor="let language of languages" [value]="+language.id!">
+                                    {{language.languageName}}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <!-- Add Button -->
+        <div class="me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getAll(); getAllLanguages();">
+                </fa-icon>
+            </button>
+            <button type="button" class="btn btn-outline-secondary" (click)="openAddForm()">Ekle</button>
+            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Export</button> -->
+        </div>
+        <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button> -->
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Id</th>
+            <th scope="col">Key</th>
+            <th scope="col">Language</th>
+            <th scope="col" style="width: 10%;">Value</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+         <tr *ngFor="let translate of translates | translateSearchFilter:filterText:languageFilter; let i = index;"> <!--  -->
+            <th scope="row">{{i+1}}</th>
+            <td>{{translate.id}}</td>
+            <td>{{translate.key}}</td>
+            <td>{{getNameByLanguageId(translate.languageId)}}</td>
+            <td style="width: 10%;">
+                <span class="d-inline-block text-truncate" style="max-width: 300px;">
+                    {{translate.value}}
+                </span>
+            </td>
+            <td class="text-end">
+                <button class="btn shadow-none me-2" (click)="openUpdateForm(translate)">
+                    <fa-icon [icon]="faEdit" size="1x" class="fa-icon-edit me-2"></fa-icon>
+                </button>
+                <button class="btn shadow-none" (click)="openDeleteForm(translate)">
+                    <fa-icon [icon]="faTrash" size="1x" class="fa-icon-trash me-2"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

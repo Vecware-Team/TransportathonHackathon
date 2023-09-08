@@ -1,0 +1,14 @@
+<div class="modal-header">
+    <h5 class="modal-title">Fotoğrafı Sil</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <h5><img *ngIf="pp" width="100" height="100" [src]="baseUrl + pp.path"></h5>
+    <p>Bu fotoğrafı silmek istediğinizden emin misiniz?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" (click)="close()">
+        {{'cancel' | translate}}
+    </button>
+    <button type="button" class="btn btn-danger" (click)="delete()">{{'delete' | translate}}</button>
+</div>

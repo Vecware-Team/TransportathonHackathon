@@ -1,0 +1,76 @@
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Kullanıcılar</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getAllUsers();">
+                </fa-icon>
+            </button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Soy İsim</th>
+            <th scope="col">Email</th>
+            <th scope="col">Durum</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+        <tr *ngFor="let user of users">
+            <th scope="row">{{user.id}}</th>
+            <td>{{user.firstName}}</td>
+            <td>{{user.lastName}}</td>
+            <td>{{user.email}}</td>
+            <td>
+                <button class="btn shadow-none">
+                    <fa-icon *ngIf="user.status" [icon]="faDotCircle" size="1x" class="fa fa-icon-dot text-success">
+                    </fa-icon>
+                    <fa-icon *ngIf="!user.status" [icon]="faDotCircle" size="1x" class="fa fa-icon-dot text-danger">
+                    </fa-icon>
+                </button>
+            </td>
+            <td class="text-end">
+                <!-- <button class="btn shadow-none me-2" (click)="openEditUserModal(user)">
+                    <fa-icon [icon]="faCog" size="1x" class="fa fa-icon-cog"></fa-icon>
+                </button> -->
+                <button class="btn shadow-none" (click)="openEditClaimsModal(user)">
+                    <fa-icon [icon]="faClipboardCheck" size="1x" class="fa fa-icon-clipboard"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+
+
+<!-- <ng-template #usereditmodal let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title" id="modal-basic-title">Edit User Settings</h4>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    </div>
+
+    <div class="modal-body">
+        
+    </div>
+
+    <div class="modal-footer">
+        <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Ok</button>
+    </div>
+
+</ng-template> -->

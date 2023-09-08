@@ -1,0 +1,12 @@
+.my-navbar-nav .nav-link.active {
+  font-weight: 600;
+  color: #000000;
+}
+
+.my-navbar-nav .nav-link {
+  color: rgba(63, 63, 63, 0.85);
+}
+
+.my-navbar-nav .nav-link:hover {
+  color: rgb(0, 0, 0);
+}

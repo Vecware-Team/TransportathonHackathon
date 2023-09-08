@@ -1,0 +1,61 @@
+<nav class="navbar sticky-top navbar-expand-md bg-light bd-navbar shadow-lg second-navbar">
+  <div class="container-xxl bd-gutter flex-wrap flex-lg-nowrap d-flex justify-content-between">
+
+    <div class="navbar-header">
+      <a class="navbar-brand text-white d-none d-lg-block" routerLink="/" (click)="callCollapseEvent();">
+        <img src="assets/images/logo.webp" height="35" class="d-inline-block align-text-top">
+      </a>
+      <a class="navbar-brand text-white d-lg-none me-0" routerLink="/" (click)="callCollapseEvent();">
+        <img src="assets/images/logo.webp" height="35" class="d-inline-block align-text-top">
+      </a>
+    </div>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav my-navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom nav-link-collapse" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/products">Products</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/translates">Translates</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link nav-link-custom nav-link-collapse" *ngIf="isAuthenticated()" routerLink="/admin">Admin</a>
+        </li>
+      </ul>
+
+
+      <!-- User Name -->
+      <li class="nav-item dropdown dropdown-menu-end ms-2" *ngIf="isSignedIn()">
+
+        <a class="nav-link d-block link-dark text-decoration-none dropdown-toggle" role="button" id="dropdownUser"
+          data-bs-toggle="dropdown" aria-expanded="false">
+          <img *ngIf="profilePicture" [src]="baseUrl + profilePicture.path" alt="mdo" class="rounded-circle" width="32" height="32">
+          {{user.firstName + ' ' + user.lastName}}
+        </a>
+
+        <ul class="dropdown-menu text-small dropdown-menu-light" aria-labelledby="dropdownUser">
+          <li><a class="dropdown-item" routerLink="/admin">{{"admin" | translate}}</a></li>
+          <li><a class="dropdown-item" routerLink="/profile">{{"profile" | translate}}</a></li>
+          <li><a class="dropdown-item disabled">{{'settings' | translate}}</a></li>
+          <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li><a class="dropdown-item" (click)="signOut()">{{'signOut'|translate}}</a></li>
+        </ul>
+
+      </li>
+
+      <form *ngIf="!isSignedIn()" class="d-flex" role="search">
+        <button class="btn btn-outline-success" type="submit" routerLink="/login">Login</button>
+        <button class="btn btn-outline-success" type="submit" routerLink="/register">Register</button>
+      </form>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,93 @@
+<body class="text-center">
+
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="registerForm">
+            <img class="mb-4" src="assets/images/logo.png" alt="" width="72">
+            <h1 class="h3 mb-3 fw-normal">Lütfen Kayıt Olun</h1>
+
+            <!-- FirstName -->
+            <div class="form-floating mb-2">
+                <input type="text" formControlName="firstName" class="form-control" id="firstName"
+                    
+                    placeholder="firstName">
+                <label for="firstName">{{'firstName' | translate}}</label>
+
+                <!-- <div *ngIf="getControls.firstName.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.firstName.errors.required">Title is required</div>
+                </div>
+                <div *ngIf="getControls.firstName.valid" class="valid-feedback">
+                    <div *ngIf="getControls.firstName.valid">Looks Good</div>
+                </div> -->
+            </div>
+
+            <!-- LastName -->
+            <div class="form-floating mb-2">
+                <input type="text" formControlName="lastName" class="form-control" id="lastName"
+                    
+                    placeholder="lastName">
+                <label for="lastName">{{'lastName' | translate}}</label>
+
+                <!-- <div *ngIf="getControls.lastName.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.lastName.errors.required">Title is required</div>
+                </div>
+                <div *ngIf="getControls.lastName.valid" class="valid-feedback">
+                    <div *ngIf="getControls.lastName.valid">Looks Good</div>
+                </div> -->
+            </div>
+
+            <!-- Email -->
+            <div class="form-floating mb-2">
+                <input type="email" formControlName="email" class="form-control" id="email"
+                    
+                    placeholder="name@example.com">
+                <label for="email">{{'email' | translate}}</label>
+
+                <!-- <div *ngIf="getControls.email.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.email.errors.required">Title is required</div>
+                </div>
+                <div *ngIf="getControls.email.valid" class="valid-feedback">
+                    <div *ngIf="getControls.email.valid">Looks Good</div>
+                </div> -->
+            </div>
+
+            <!-- Password -->
+            <div class="form-floating mb-2">
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    
+                    placeholder="password">
+                <label for="password">{{'password' | translate}}</label>
+
+                <!-- <div *ngIf="getControls.password.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.password.errors.required">Title is required</div>
+                </div>
+                <div *ngIf="getControls.password.valid" class="valid-feedback">
+                    <div *ngIf="getControls.password.valid">Looks Good</div>
+                </div> -->
+            </div>
+
+            <!-- ConfirmPassword -->
+            <div class="form-floating">
+                <input type="password" formControlName="confirmPassword" class="form-control" id="confirmPassword"
+                    
+                    placeholder="confirmPassword">
+                <label for="confirmPassword">{{'confirmPassword' | translate}}</label>
+
+                <!-- <div *ngIf="getControls.confirmPassword.errors" class="invalid-feedback">
+                    <div *ngIf="getControls.confirmPassword.errors.required">Title is required</div>
+                </div>
+                <div *ngIf="getControls.confirmPassword.valid" class="valid-feedback">
+                    <div *ngIf="getControls.confirmPassword.valid">Looks Good</div>
+                </div> -->
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" value="remember-me"> Beni Hatırla
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit" (click)="register()">Kayıt Ol</button>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+        </form>
+    </main>
+
+</body>

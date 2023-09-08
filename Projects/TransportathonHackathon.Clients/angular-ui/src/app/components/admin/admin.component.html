@@ -1,0 +1,87 @@
+<body>
+
+    <div class="container-fluid my-gutter my-md-4 my-layout">
+        <aside class="my-sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 link-dark text-decoration-none">
+                    <fa-icon [icon]="faGauge" size="2x" class="me-2"></fa-icon>
+                    <span class="fs-4">{{projectName}}</span>
+                </a>
+                <hr>
+                <ul class="nav my-navbar-nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a (click)="navigate('/admin/manage-users', 'manage-users')" class="nav-link link-dark"
+                            routerLinkActive="active" routerLink="/admin/manage-users">
+                            <fa-icon [icon]="faUsersCog" size="1x" class="fa me-2"></fa-icon>
+                            Kullanıcılar
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigate('/admin/manage-claims', 'manage-claims')" routerLinkActive="active"
+                            routerLink="/admin/manage-claims" class="nav-link link-dark">
+                            <fa-icon [icon]="faClipboardList" size="1x" class="fa me-2"></fa-icon>
+                            Yetkiler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigate('/admin/manage-translates', 'manage-translates')" routerLinkActive="active"
+                            routerLink="/admin/manage-translates" class="nav-link link-dark">
+                            <fa-icon [icon]="faLanguage" size="1x" class="fa me-2"></fa-icon>
+                            Çeviriler
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a (click)="navigate('/admin/manage-languages', 'manage-languages')" routerLinkActive="active"
+                            routerLink="/admin/manage-languages" class="nav-link link-dark">
+                            <fa-icon [icon]="faGlobe" size="1x" class="fa me-2"></fa-icon>
+                            Diller
+                        </a>
+                    </li>                   
+                    <!-- <li class="mb-1">
+                        <button class="btn btn-toggle d-inline-flex align-items-center rounded border-0 collapsed"
+                            data-bs-toggle="collapse" data-bs-target="#home-collapse" aria-expanded="true">
+                            <fa-icon [icon]="faLandmark" size="1x" class="fa me-2"></fa-icon>
+                            Kullanıcılar
+                        </button>
+                        <div class="collapse show" id="home-collapse">
+                            <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                                <li>
+                                    <a (click)="navigate('/admin/manage-artifacts', 'manage-artifacts')"
+                                        routerLinkActive="active" routerLink="/admin/manage-artifacts"
+                                        class="nav-link link-dark d-inline-flex text-decoration-none rounded">
+                                        Yetkiler
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li> -->
+                </ul>
+            </div>
+
+
+
+            <!-- <div class="d-flex flex-column flex-shrink-0 sidebar-footer p-3" style="width: 280px;">
+                <hr>
+                <div class="dropdown">
+                    <a href="#" class="d-flex align-items-center text-dark text-decoration-none dropdown-toggle"
+                        id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+                        <strong>{{getUserInfo().firstName + ' ' + getUserInfo().lastName}}</strong>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                        <li><a class="dropdown-item disabled">Settings</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" (click)="signOut()">Sign out</a></li>
+                    </ul>
+                </div>
+            </div> -->
+        </aside>
+
+        <main class="my-main order-1 px-3">
+            <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+        </main>
+    </div>
+
+
+</body>

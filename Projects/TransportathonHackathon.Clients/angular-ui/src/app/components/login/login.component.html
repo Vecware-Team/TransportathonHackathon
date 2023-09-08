@@ -1,0 +1,30 @@
+<body class="text-center">
+
+    <main class="form-signin w-100 m-auto">
+        <form [formGroup]="loginForm">
+            <img class="mb-4" src="assets/images/logo.png" alt="" width="72">
+            <h1 class="h3 mb-3 fw-normal">Lütfen Giriş Yapın</h1>
+
+            <div class="form-floating">
+                <input type="email" formControlName="email" class="form-control" id="email"
+                    placeholder="name@example.com">
+                <label for="email">{{'email' | translate}}</label>
+            </div>
+            <div class="form-floating">
+                <input type="password" formControlName="password" class="form-control" id="password"
+                    placeholder="Password">
+                <label for="password">{{"password" | translate}}</label>
+            </div>
+
+            <div class="checkbox mb-3">
+                <label>
+                    <input type="checkbox" formControlName="rememberMe" value="remember-me"> Beni Hatırla
+                </label>
+            </div>
+            <button class="w-100 btn btn-lg btn-success" type="submit" (click)="login()">Giriş Yap</button>
+            <p class="mt-2 mb-3 text-muted">Üye Değil misin? <a routerLink="/register">Üye ol</a></p>
+            <p class="mt-5 mb-3 text-muted">&copy; 2017–2022</p>
+        </form>
+    </main>
+
+</body>

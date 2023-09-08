@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h5 class="modal-title">Kullanıcıyı Yetkilendir</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="userClaimAddForm">
+        <!-- <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="name" class="form-control" id="name" placeholder="name">
+                <label for="name">Claim Name</label>
+              </div>  
+        </div> -->
+        <div class="mb-3">
+            <div class="form-floating">
+                <select class="form-select" formControlName="operationClaimId" id="operationClaimId" aria-label="Floating label select example">
+                    <option *ngFor="let operationClaim of operationClaims" [value]="operationClaim.id">
+                        {{operationClaim.name}}
+                    </option>
+                </select>
+                <label for="operationClaimId">Kullanıcıya vermek istediğiniz yetkiyi seçin</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{"cancel" | translate}}</button>
+    <button type="button" class="btn btn-primary" (click)="add()">{{"add" | translate}}</button>
+</div>

@@ -1,0 +1,52 @@
+<div class="modal-header">
+    <h4 class="modal-title">Kullanıcı Yetkileri</h4>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+
+<div class="modal-body">
+    <div
+        class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+        <h5>{{user.firstName + ' ' + user.lastName}}</h5>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <div class="me-2">
+                <button class="btn shadow-none me-2">
+                    <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh"
+                        (click)="getClaimsByUser()"></fa-icon>
+                </button>
+                <button type="button" class="btn btn-sm btn-outline-dark"
+                    (click)="openAddModal(user)">Yetkilendir</button>
+            </div>
+        </div>
+    </div>
+    <table class="table">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Username</th>
+                <th scope="col">Claim</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="dataLoaded" class="table-group-divider">
+            <tr *ngFor="let userClaim of userOperationClaims; let i = index;">
+                <th scope="row">{{i}}</th>
+                <td>{{userClaim.user.firstName}}</td>
+                <td>{{userClaim.operationClaim.name}}</td>
+                <td class="text-end">
+                    <button class="btn shadow-none" (click)="openDeleteModal(userClaim)">
+                        <fa-icon [icon]="faTrash" size="1x" class="fa fa-icon-trash"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+        <div class="spinner-border" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+</div>

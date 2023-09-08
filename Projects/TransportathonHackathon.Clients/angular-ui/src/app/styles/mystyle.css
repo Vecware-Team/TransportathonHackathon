@@ -1,0 +1,34 @@
+a:focus,
+a:active {
+  outline: none;
+  -moz-outline-style: none;
+}
+
+/* search button */
+.search-filter {
+  position: relative;
+}
+
+.search-filter .fa-icon-search {
+  position: absolute;
+  top: 7px;
+  left: 14px;
+  color: #9ca3af;
+}
+
+.search-filter-input {
+  text-indent: 33px;
+}
+
+.filter-input {
+  border-radius: 10px;
+}
+
+.filter-input:focus {
+  border-color: black;
+  box-shadow: none;
+}
+
+:root {
+  --app-nav-active-color: rgba(3, 154, 255, 0.685);
+}

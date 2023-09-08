@@ -1,0 +1,24 @@
+<div class="modal-header">
+    <h5 class="modal-title">Dil Ekle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="languageAddForm">
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="languageName" class="form-control" id="languageName" placeholder="languageName">
+                <label for="languageName">Language Name</label>
+              </div>  
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="email" formControlName="code" class="form-control" id="code" placeholder="code">
+                <label for="code">Code</label>
+              </div>  
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+    <button type="button" class="btn btn-primary" (click)="add()">Ekle</button>
+</div>

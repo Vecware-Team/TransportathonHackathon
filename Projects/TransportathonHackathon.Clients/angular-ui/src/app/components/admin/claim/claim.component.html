@@ -1,0 +1,47 @@
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Yetkiler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getAllClaims();">
+                </fa-icon>
+            </button>
+            <button type="button" class="btn btn-outline-secondary" (click)="openAddForm()">Ekle</button>
+            <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Export</button> -->
+        </div>
+        <!-- <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button> -->
+    </div>
+</div>
+
+<table class="table">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Yetki Adı</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+        <tr *ngFor="let operationClaim of operationClaims">
+            <th scope="row">{{operationClaim.id}}</th>
+            <td>{{operationClaim.name}}</td>
+            <td class="text-end">
+                <button class="btn shadow-none me-3" (click)="openUpdateForm(operationClaim)">
+                    <fa-icon [icon]="faEdit" size="1x" class="fa-icon-edit me-2"></fa-icon>
+                </button>
+                <button class="btn shadow-none" (click)="openDeleteForm(operationClaim)">
+                    <fa-icon [icon]="faTrash" size="1x" class="fa-icon-trash me-2"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center mt-5">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
