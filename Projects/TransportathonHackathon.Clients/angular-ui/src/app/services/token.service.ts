@@ -103,10 +103,8 @@ export class TokenService {
           Object.keys(token).filter((t) => t.endsWith('nameidentifier'))[0]
         ],
         email: token.email,
-        firstName:
-          token[Object.keys(token).filter((t) => t.endsWith('name'))[0]],
-        lastName:
-          token[Object.keys(token).filter((t) => t.endsWith('lastname'))[0]],
+        userName:
+          token[Object.keys(token).filter((t) => t.endsWith('userName'))[0]],
         status: Boolean(token.status),
       };
 

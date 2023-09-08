@@ -38,7 +38,7 @@ export class NaviComponent implements OnInit {
   }
 
   getUserFromToken() {
-    this.user = this.authService.getUser();
+    // this.user = this.authService.getUser();
   }
 
   runCollapseScript() {
@@ -71,14 +71,14 @@ export class NaviComponent implements OnInit {
   }
 
   signOut() {
-    this.authService.signOut();
+    // this.authService.signOut();
     sessionStorage.removeItem('adminCurrentPage');
     this.toastrService.info('Going to homepage...', 'Logged Out');
     this.router.navigate(['']);
   }
 
   isSignedIn() {
-    return this.authService.isSignedIn();
+    // return this.authService.isSignedIn();
   }
 
   isAuthenticated() {

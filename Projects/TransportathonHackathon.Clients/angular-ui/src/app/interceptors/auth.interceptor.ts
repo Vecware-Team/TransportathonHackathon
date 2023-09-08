@@ -10,7 +10,7 @@ import {
 import { TokenService } from '../services/token.service';
 import { RefreshTokenService } from '../services/refresh-token.service';
 import { SettingsService } from '../services/settings.service';
-import { AuthService } from '../services/auth.service';
+// import { AuthService } from '../services/auth.service';
 import { ErrorService } from '../services/error.service';
 import { environment } from '../../environments/environment';
 import { catchError, filter, switchMap, take } from 'rxjs/operators';
@@ -26,7 +26,7 @@ export class AuthInterceptor implements HttpInterceptor {
     private tokenService: TokenService,
     private refreshTokenService: RefreshTokenService,
     private settingsService: SettingsService,
-    private authService: AuthService,
+    // private authService: AuthService,
     private errorService: ErrorService
   ) {}
 

@@ -36,7 +36,7 @@
         <a class="nav-link d-block link-dark text-decoration-none dropdown-toggle" role="button" id="dropdownUser"
           data-bs-toggle="dropdown" aria-expanded="false">
           <img *ngIf="profilePicture" [src]="baseUrl + profilePicture.path" alt="mdo" class="rounded-circle" width="32" height="32">
-          {{user.firstName + ' ' + user.lastName}}
+          {{user.userName}}
         </a>
 
         <ul class="dropdown-menu text-small dropdown-menu-light" aria-labelledby="dropdownUser">
@@ -52,7 +52,7 @@
 
       </li>
 
-      <form *ngIf="!isSignedIn()" class="d-flex" role="search">
+      <form *ngIf="true" class="d-flex" role="search">
         <button class="btn btn-outline-success" type="submit" routerLink="/login">Login</button>
         <button class="btn btn-outline-success" type="submit" routerLink="/register">Register</button>
       </form>

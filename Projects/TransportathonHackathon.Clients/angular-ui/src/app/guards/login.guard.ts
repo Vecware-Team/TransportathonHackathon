@@ -1,4 +1,3 @@
-import { AuthService } from './../services/auth.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -9,6 +8,7 @@ import {
 } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
+import { AuthService } from '../services/auth.service';
 
 @Injectable({
   providedIn: 'root',

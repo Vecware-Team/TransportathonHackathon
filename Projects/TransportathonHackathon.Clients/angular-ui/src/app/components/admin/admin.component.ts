@@ -16,9 +16,6 @@ import {
   faUsersCog,
 } from '@fortawesome/free-solid-svg-icons';
 import { AuthService } from 'src/app/services/auth.service';
-import { UserComponent } from './user/user.component';
-import { ClaimComponent } from './claim/claim.component';
-import { UserClaimComponent } from './user-claim/user-claim.component';
 import { TranslateComponent } from './translate/translate.component';
 import { LanguageComponent } from './language/language.component';
 import { environment } from 'src/environments/environment';
@@ -101,7 +98,7 @@ export class AdminComponent implements OnInit {
   }
 
   signOut() {
-    this.authService.signOut();
+    // this.authService.signOut();
     sessionStorage.removeItem('adminCurrentPage');
     this.toastrService.info('Going to homepage...', 'Logged Out');
     this.router.navigate(['']);
@@ -111,15 +108,6 @@ export class AdminComponent implements OnInit {
     this.activatedRoute.params.subscribe((param) => {
       this.currentMainPage = param['currentPage'];
       switch (param['currentPage']) {
-        case 'manage-users':
-          this.currentComponent = UserComponent;
-          break;
-        case 'manage-claims':
-          this.currentComponent = ClaimComponent;
-          break;
-        case 'manage-user-claims':
-          this.currentComponent = UserClaimComponent;
-          break;
         case 'manage-translates':
           this.currentComponent = TranslateComponent;
           break;
@@ -127,7 +115,7 @@ export class AdminComponent implements OnInit {
           this.currentComponent = LanguageComponent;
           break;
         default:
-          this.currentComponent = UserComponent;
+          this.currentComponent = LanguageComponent;
           break;
       }
     });

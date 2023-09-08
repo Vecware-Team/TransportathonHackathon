@@ -7,27 +7,31 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core.Packages", "Core.Packa
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{4A418AA2-F684-4AAA-BC12-E5EC2F19F088}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Persistence", "Core.Packages\Core.Persistence\Core.Persistence.csproj", "{1D6ED116-3F4F-48B6-BF56-5FD82CCFB77B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Persistence", "Core.Packages\Core.Persistence\Core.Persistence.csproj", "{1D6ED116-3F4F-48B6-BF56-5FD82CCFB77B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Application", "Core.Packages\Core.Application\Core.Application.csproj", "{27B942D7-60C3-4421-A92B-2EFBA6CE9C2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Application", "Core.Packages\Core.Application\Core.Application.csproj", "{27B942D7-60C3-4421-A92B-2EFBA6CE9C2D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransportathonHackathon.API", "TransportathonHackathon.API", "{380DBA74-954A-4B83-820E-638CF7BD4020}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.WebAPI", "Projects\TransportathonHackathon.API\TransportathonHackathon.WebAPI\TransportathonHackathon.WebAPI.csproj", "{DC9E7703-53E8-4336-9951-F9B4913137C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonHackathon.WebAPI", "Projects\TransportathonHackathon.API\TransportathonHackathon.WebAPI\TransportathonHackathon.WebAPI.csproj", "{DC9E7703-53E8-4336-9951-F9B4913137C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.Persistence", "Projects\TransportathonHackathon.API\TransportathonHackathon.Persistence\TransportathonHackathon.Persistence.csproj", "{ABCB0ED4-5289-4AE6-B02D-E1E75B0D0930}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonHackathon.Persistence", "Projects\TransportathonHackathon.API\TransportathonHackathon.Persistence\TransportathonHackathon.Persistence.csproj", "{ABCB0ED4-5289-4AE6-B02D-E1E75B0D0930}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.Application", "Projects\TransportathonHackathon.API\TransportathonHackathon.Application\TransportathonHackathon.Application.csproj", "{B14F5197-6616-434E-B6D6-FF045132BDC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonHackathon.Application", "Projects\TransportathonHackathon.API\TransportathonHackathon.Application\TransportathonHackathon.Application.csproj", "{B14F5197-6616-434E-B6D6-FF045132BDC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.Infrastructure", "Projects\TransportathonHackathon.API\TransportathonHackathon.Infrastructure\TransportathonHackathon.Infrastructure.csproj", "{356C3FA9-E8B3-47AA-935C-A47374762BD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonHackathon.Infrastructure", "Projects\TransportathonHackathon.API\TransportathonHackathon.Infrastructure\TransportathonHackathon.Infrastructure.csproj", "{356C3FA9-E8B3-47AA-935C-A47374762BD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TransportathonHackathon.Domain", "Projects\TransportathonHackathon.API\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj", "{B1A1F34D-93E4-489E-9F6B-70B90082F911}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TransportathonHackathon.Domain", "Projects\TransportathonHackathon.API\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj", "{B1A1F34D-93E4-489E-9F6B-70B90082F911}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.CrossCuttingConcerns", "Core.Packages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{84829B17-D777-486D-8CD8-73271F39C404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.CrossCuttingConcerns", "Core.Packages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj", "{84829B17-D777-486D-8CD8-73271F39C404}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.API", "Core.Packages\Core.API\Core.API.csproj", "{CBCD93B1-AF21-4BBA-969A-4348CFC31364}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.API", "Core.Packages\Core.API\Core.API.csproj", "{CBCD93B1-AF21-4BBA-969A-4348CFC31364}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Security", "Core.Packages\Core.Security\Core.Security.csproj", "{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Core.Security", "Core.Packages\Core.Security\Core.Security.csproj", "{96D41F3E-E9F5-43CA-83EB-D8FB915661AC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TransportathonHackathon.Clients", "TransportathonHackathon.Clients", "{667115E7-BB43-4AAD-983B-A9678B115C56}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "angular-ui", "angular-ui", "{ECE2ADA3-60C0-47E0-A23B-F72BD05FD407}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -91,6 +95,8 @@ Global
 		{84829B17-D777-486D-8CD8-73271F39C404} = {CB460561-8806-4036-9293-ECB96E24E350}
 		{CBCD93B1-AF21-4BBA-969A-4348CFC31364} = {CB460561-8806-4036-9293-ECB96E24E350}
 		{96D41F3E-E9F5-43CA-83EB-D8FB915661AC} = {CB460561-8806-4036-9293-ECB96E24E350}
+		{667115E7-BB43-4AAD-983B-A9678B115C56} = {4A418AA2-F684-4AAA-BC12-E5EC2F19F088}
+		{ECE2ADA3-60C0-47E0-A23B-F72BD05FD407} = {667115E7-BB43-4AAD-983B-A9678B115C56}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {413EC07D-0827-4E34-9113-5043D48380C1}

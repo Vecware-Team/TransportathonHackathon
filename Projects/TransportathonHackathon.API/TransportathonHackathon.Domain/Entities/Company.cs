@@ -6,9 +6,11 @@ namespace TransportathonHackathon.Domain.Entities
 {
     public class Company : Entity
     {
-        [Key]
         public Guid AppUserId { get; set; }
         public string CompanyName { get; set; }
+        public int DriverCount { get; set; }
+        public int CompletedJobsCount { get; set; }
+
         public virtual AppUser AppUser { get; set; }
     }
 }
