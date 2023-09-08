@@ -7,6 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="12.0.1" />
+    <PackageReference Include="MediatR" Version="12.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core.Packages\Core.Application\Core.Application.csproj" />
     <ProjectReference Include="..\..\..\Core.Packages\Core.Persistence\Core.Persistence.csproj" />
     <ProjectReference Include="..\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj" />
   </ItemGroup>
