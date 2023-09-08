@@ -15,6 +15,8 @@ namespace TransportathonHackathon.Persistence.Contexts
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Company> Companies { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<DriverLicense> DriverLicenses { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -29,6 +31,16 @@ namespace TransportathonHackathon.Persistence.Contexts
             .HasOne(e => e.Customer)
             .WithOne(e => e.AppUser)
             .HasForeignKey<Customer>(e => e.AppUserId);
+
+            builder.Entity<AppUser>()
+            .HasOne(e => e.Driver)
+            .WithOne(e => e.AppUser)
+            .HasForeignKey<Driver>(e => e.AppUserId);
+
+            builder.Entity<Driver>()
+            .HasOne(e => e.DriverLicense)
+            .WithOne(e => e.Driver)
+            .HasForeignKey<DriverLicense>(e => e.DriverId);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
         }

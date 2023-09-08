@@ -17,4 +17,17 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Ignore(e => e.DeletedDate);
         }
     }
+
+    public class DriverConfiguration : IEntityTypeConfiguration<Driver>
+    {
+        public void Configure(EntityTypeBuilder<Driver> builder)
+        {
+            builder.ToTable("Drivers").HasKey(e => e.AppUserId);
+            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
+
+            builder.Ignore(e => e.CreatedDate);
+            builder.Ignore(e => e.UpdatedDate);
+            builder.Ignore(e => e.DeletedDate);
+        }
+    }
 }
