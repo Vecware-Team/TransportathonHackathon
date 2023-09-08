@@ -25,7 +25,7 @@ namespace TransportathonHackathon.Persistence.Migrations
                         name: "FK_Drivers_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id",
+                        principalColumn: "Id", 
                         onDelete: ReferentialAction.Cascade);
                 });
 
