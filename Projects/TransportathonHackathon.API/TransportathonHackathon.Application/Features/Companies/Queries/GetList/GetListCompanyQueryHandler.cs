@@ -23,7 +23,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Queries.GetList
             IPaginate<Company> companies = await _companyRepository.GetListPagedAsync(
                 index: request.PageRequest.Index,
                 size: request.PageRequest.Size,
-                include:e=>e.Include(e=>e.AppUser),
+                include: e => e.Include(e => e.AppUser),
                 cancellationToken: cancellationToken
             );
 

@@ -37,7 +37,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Commands.Update
 
             await _companyRepository.SaveChangesAsync();
 
-            UpdatedCompanyResponse response = _mapper.Map<UpdatedCompanyResponse>(companyToUpdate);
+            UpdatedCompanyResponse response = _mapper.Map<UpdatedCompanyResponse>(company);
             return response;
         }
     }

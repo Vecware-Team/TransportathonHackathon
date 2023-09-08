@@ -19,12 +19,12 @@ namespace TransportathonHackathon.Application.Features.Companies.Queries.GetById
 
         public async Task<GetByIdCompanyResponse> Handle(GetByIdCompanyQuery request, CancellationToken cancellationToken)
         {
-            Company? company = await _companyRepository.GetAsync(e=>e.AppUserId == request.AppUserId, include: e=>e.Include(e=>e.AppUser));
+            Company? company = await _companyRepository.GetAsync(e => e.AppUserId == request.AppUserId, include: e => e.Include(e => e.AppUser));
             if (company is null)
                 throw new Exception();
 
             GetByIdCompanyResponse response = _mapper.Map<GetByIdCompanyResponse>(company);
-            return response;    
+            return response;
         }
     }
 }
