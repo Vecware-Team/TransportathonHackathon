@@ -17,6 +17,11 @@ namespace TransportathonHackathon.Persistence
                 options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
             });
 
+            services.AddDbContext<IdentityDbContext>(options =>
+            {
+                options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
+            });
+
             services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ProjectDbContext>();
 
             services.AddScoped<ICompanyRepository, CompanyRepository>();

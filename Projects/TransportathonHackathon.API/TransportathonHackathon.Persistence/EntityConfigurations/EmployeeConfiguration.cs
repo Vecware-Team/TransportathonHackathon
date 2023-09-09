@@ -4,14 +4,18 @@ using TransportathonHackathon.Domain.Entities;
 
 namespace TransportathonHackathon.Persistence.EntityConfigurations
 {
-    public class DriverConfiguration : IEntityTypeConfiguration<Driver>
+    public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
-        public void Configure(EntityTypeBuilder<Driver> builder)
+        public void Configure(EntityTypeBuilder<Employee> builder)
         {
-            builder.ToTable("Drivers").HasKey(e => e.EmployeeId);
-            
+            builder.ToTable("Employees").HasKey(e => e.AppUserId);
+
+            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
+
+            builder.HasOne(e => e.Carrier);
+            builder.HasOne(e => e.Driver);
             builder.HasOne(e => e.AppUser);
-            builder.HasOne(e => e.DriverLicense);
+
 
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);

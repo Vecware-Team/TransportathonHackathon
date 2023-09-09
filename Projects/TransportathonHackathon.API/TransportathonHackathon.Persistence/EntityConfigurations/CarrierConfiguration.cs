@@ -8,10 +8,10 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Carrier> builder)
         {
-            builder.ToTable("Carriers").HasKey(e => e.AppUserId);
-            builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
+            builder.ToTable("Carriers").HasKey(e => e.EmployeeId);
 
             builder.HasOne(e => e.AppUser);
+            builder.HasOne(e => e.Employee);
 
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);

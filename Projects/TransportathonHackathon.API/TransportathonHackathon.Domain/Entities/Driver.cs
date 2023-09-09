@@ -5,10 +5,10 @@ namespace TransportathonHackathon.Domain.Entities
 {
     public class Driver : Entity
     {
-        public Guid AppUserId { get; set; }
-        public bool IsOnTransitNow { get; set; }
+        public Guid EmployeeId { get; set; }
 
         public virtual DriverLicense? DriverLicense { get; set; }
         public virtual AppUser AppUser { get; set; }
+        public virtual Employee Employee { get; set; }
     }
 }
