@@ -12,8 +12,8 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230909091230_edited2")]
-    partial class edited2
+    [Migration("20230909223936_InitialMigration")]
+    partial class InitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -27,14 +27,10 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Carrier", b =>
                 {
-                    b.Property<Guid>("AppUserId")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsOnTransitNow")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsOnTransitNow");
-
-                    b.HasKey("AppUserId");
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("Carriers", (string)null);
                 });
@@ -82,14 +78,10 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
                 {
-                    b.Property<Guid>("AppUserId")
+                    b.Property<Guid>("EmployeeId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<bool>("IsOnTransitNow")
-                        .HasColumnType("bit")
-                        .HasColumnName("IsOnTransitNow");
-
-                    b.HasKey("AppUserId");
+                    b.HasKey("EmployeeId");
 
                     b.ToTable("Drivers", (string)null);
                 });
@@ -135,6 +127,26 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasKey("DriverId");
 
                     b.ToTable("DriverLicenses", (string)null);
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Employee", b =>
+                {
+                    b.Property<Guid>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyId");
+
+                    b.Property<bool>("IsOnTransitNow")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsOnTransitNow");
+
+                    b.HasKey("AppUserId");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppRole", b =>
@@ -402,13 +414,13 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Carrier", b =>
                 {
-                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Employee", "Employee")
                         .WithOne("Carrier")
-                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Carrier", "AppUserId")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Carrier", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
@@ -435,13 +447,13 @@ namespace TransportathonHackathon.Persistence.Migrations
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
                 {
-                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Employee", "Employee")
                         .WithOne("Driver")
-                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Driver", "AppUserId")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Driver", "EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("AppUser");
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.DriverLicense", b =>
@@ -453,6 +465,25 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Driver");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Employee", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "AppUser")
+                        .WithOne("Employee")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Employee", "AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppRoleClaim", b =>
@@ -517,20 +548,31 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Navigation("Language");
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
+                {
+                    b.Navigation("Employees");
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
                 {
                     b.Navigation("DriverLicense");
                 });
 
-            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("Carrier");
 
+                    b.Navigation("Driver");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUser", b =>
+                {
                     b.Navigation("Company");
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Driver");
+                    b.Navigation("Employee")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>

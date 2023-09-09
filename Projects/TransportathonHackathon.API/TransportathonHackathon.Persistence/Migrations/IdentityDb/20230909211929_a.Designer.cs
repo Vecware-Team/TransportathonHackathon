@@ -11,7 +11,7 @@ using TransportathonHackathon.Persistence.Contexts;
 
 namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
 {
-    [DbContext(typeof(CustomIdentityDbContext))]
+    [DbContext(typeof(ProjectDbContext))]
     [Migration("20230909211929_a")]
     partial class a
     {

@@ -10,7 +10,7 @@ using TransportathonHackathon.Persistence.Contexts;
 
 namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
 {
-    [DbContext(typeof(CustomIdentityDbContext))]
+    [DbContext(typeof(ProjectDbContext))]
     partial class IdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

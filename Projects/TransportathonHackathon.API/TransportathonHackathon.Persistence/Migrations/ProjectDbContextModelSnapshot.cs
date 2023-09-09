@@ -131,11 +131,16 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid>("CompanyId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("IsOnTransitNow")
                         .HasColumnType("bit")
                         .HasColumnName("IsOnTransitNow");
 
                     b.HasKey("AppUserId");
+
+                    b.HasIndex("CompanyId");
 
                     b.ToTable("Employees", (string)null);
                 });
@@ -466,7 +471,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.SetNull)
+                        .IsRequired();
+
                     b.Navigation("AppUser");
+
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppRoleClaim", b =>
@@ -529,6 +542,11 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Language");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
+                {
+                    b.Navigation("Employees");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Driver", b =>
