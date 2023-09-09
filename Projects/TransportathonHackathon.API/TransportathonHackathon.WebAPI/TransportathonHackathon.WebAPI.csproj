@@ -20,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core.Packages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
     <ProjectReference Include="..\TransportathonHackathon.Persistence\TransportathonHackathon.Persistence.csproj" />
   </ItemGroup>
 
