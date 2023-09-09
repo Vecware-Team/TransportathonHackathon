@@ -18,4 +18,35 @@
     <ProjectReference Include="..\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Features\DriverLicenses\Commands\" />
+    <Folder Include="Features\DriverLicenses\Dtos\" />
+    <Folder Include="Features\DriverLicenses\Models\" />
+    <Folder Include="Features\DriverLicenses\MappingProfiles\" />
+    <Folder Include="Features\DriverLicenses\Rules\" />
+    <Folder Include="Features\DriverLicenses\Queries\" />
+    <Folder Include="Features\DriverLicenses\Validators\" />
+    <Folder Include="Features\Drivers\Commands\" />
+    <Folder Include="Features\Drivers\Dtos\" />
+    <Folder Include="Features\Drivers\MappingProfiles\" />
+    <Folder Include="Features\Drivers\Models\" />
+    <Folder Include="Features\Drivers\Validators\" />
+    <Folder Include="Features\Drivers\Queries\" />
+    <Folder Include="Features\Drivers\Rules\" />
+    <Folder Include="Features\Languages\Commands\" />
+    <Folder Include="Features\Languages\Dtos\" />
+    <Folder Include="Features\Languages\MappingProfiles\" />
+    <Folder Include="Features\Languages\Models\" />
+    <Folder Include="Features\Languages\Queries\" />
+    <Folder Include="Features\Languages\Rules\" />
+    <Folder Include="Features\Languages\Validators\" />
+    <Folder Include="Features\Translates\Commands\" />
+    <Folder Include="Features\Translates\Dtos\" />
+    <Folder Include="Features\Translates\MappingProfiles\" />
+    <Folder Include="Features\Translates\Models\" />
+    <Folder Include="Features\Translates\Queries\" />
+    <Folder Include="Features\Translates\Rules\" />
+    <Folder Include="Features\Translates\Validators\" />
+  </ItemGroup>
+
 </Project>
