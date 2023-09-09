@@ -8,10 +8,10 @@ using TransportathonHackathon.Persistence.Contexts;
 
 #nullable disable
 
-namespace TransportathonHackathon.Persistence.Migrations
+namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
 {
-    [DbContext(typeof(ProjectDbContext))]
-    partial class ProjectDbContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(CustomIdentityDbContext))]
+    partial class IdentityDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

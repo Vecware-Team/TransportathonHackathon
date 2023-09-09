@@ -13,9 +13,11 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
 
             builder.HasOne(e => e.Customer);
 
-            builder.HasOne(e => e.Driver);
+            builder.HasOne(e => e.Employee);
 
-            builder.HasOne(e => e.Carrier);
+            //builder.HasOne(e => e.Driver);
+
+            //builder.HasOne(e => e.Carrier);
         }
     }
 }

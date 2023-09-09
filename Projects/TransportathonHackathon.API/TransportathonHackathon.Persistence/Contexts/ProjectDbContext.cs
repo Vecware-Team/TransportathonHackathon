@@ -20,6 +20,7 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Carrier> Carriers { get; set; }
         public DbSet<Language> Languages { get; set; }
         public DbSet<Translate> Translates { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

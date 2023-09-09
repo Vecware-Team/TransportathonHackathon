@@ -13,8 +13,8 @@ namespace TransportathonHackathon.Domain.Entities
         public Guid AppUserId { get; set; }
         public bool IsOnTransitNow { get; set; }
 
-        public virtual Carrier Carrier { get; set; }
-        public virtual Driver Driver { get; set; }
+        public virtual Carrier? Carrier { get; set; }
+        public virtual Driver? Driver { get; set; }
         public virtual AppUser AppUser { get; set; }
 
     }

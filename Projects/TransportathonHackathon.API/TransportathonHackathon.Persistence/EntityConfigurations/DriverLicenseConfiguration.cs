@@ -9,6 +9,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<DriverLicense> builder)
         {
             builder.ToTable("DriverLicenses").HasKey(e => e.DriverId);
+
             builder.Property(e => e.IsNew).HasColumnName("IsNew").IsRequired();
             builder.Property(e => e.LicenseGetDate).HasColumnName("LicenseGetDate").IsRequired();
             builder.Property(e => e.DriverId).HasColumnName("DriverId").IsRequired();
