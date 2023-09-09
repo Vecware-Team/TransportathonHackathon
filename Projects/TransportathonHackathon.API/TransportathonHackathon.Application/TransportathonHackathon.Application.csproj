@@ -33,11 +33,9 @@
     <Folder Include="Features\Drivers\Validators\" />
     <Folder Include="Features\Drivers\Queries\" />
     <Folder Include="Features\Drivers\Rules\" />
-    <Folder Include="Features\Languages\Commands\" />
     <Folder Include="Features\Languages\Dtos\" />
-    <Folder Include="Features\Languages\MappingProfiles\" />
     <Folder Include="Features\Languages\Models\" />
-    <Folder Include="Features\Languages\Queries\" />
+    <Folder Include="Features\Languages\Queries\GetByCode\" />
     <Folder Include="Features\Languages\Rules\" />
     <Folder Include="Features\Languages\Validators\" />
     <Folder Include="Features\Translates\Commands\" />

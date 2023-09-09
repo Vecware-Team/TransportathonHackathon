@@ -17,10 +17,10 @@ namespace TransportathonHackathon.Persistence
                 options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
             });
 
-            services.AddDbContext<IdentityDbContext>(options =>
-            {
-                options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
-            });
+            //services.AddDbContext<IdentityDbContext>(options =>
+            //{
+            //    options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
+            //});
 
             services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ProjectDbContext>();
 
@@ -28,6 +28,7 @@ namespace TransportathonHackathon.Persistence
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IDriverLicenseRepository, DriverLicenseRepository>();
+            services.AddScoped<ILanguageRepository, LanguageRepository>();
 
             return services;
         }

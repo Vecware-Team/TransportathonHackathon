@@ -9,8 +9,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
         public void Configure(EntityTypeBuilder<Driver> builder)
         {
             builder.ToTable("Drivers").HasKey(e => e.EmployeeId);
-            
-            builder.HasOne(e => e.AppUser);
+
             builder.HasOne(e => e.DriverLicense);
 
             builder.Ignore(e => e.CreatedDate);

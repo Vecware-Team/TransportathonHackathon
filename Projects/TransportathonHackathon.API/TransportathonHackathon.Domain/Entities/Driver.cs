@@ -8,7 +8,6 @@ namespace TransportathonHackathon.Domain.Entities
         public Guid EmployeeId { get; set; }
 
         public virtual DriverLicense? DriverLicense { get; set; }
-        public virtual AppUser AppUser { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }

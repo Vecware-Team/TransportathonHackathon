@@ -6,7 +6,7 @@ using TransportathonHackathon.Domain.Entities.Identity;
 
 namespace TransportathonHackathon.Persistence.Contexts
 {
-    public class ProjectDbContext : DbContext
+    public class ProjectDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
     {
         public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options)
         {
