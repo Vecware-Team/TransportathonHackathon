@@ -24,6 +24,7 @@ namespace TransportathonHackathon.Persistence
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IDriverLicenseRepository, DriverLicenseRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
             return services;
         }

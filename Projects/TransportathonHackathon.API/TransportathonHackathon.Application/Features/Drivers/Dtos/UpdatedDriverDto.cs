@@ -1,6 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.Employees.Dtos
+﻿namespace TransportathonHackathon.Application.Features.Drivers.Dtos
 {
-    public class UpdatedDriverEmployeeDto
+    public class UpdatedDriverDto
     {
         public Guid EmployeeId { get; set; }
         public bool IsTransitNow { get; set; }

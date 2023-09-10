@@ -1,5 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
+using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
+using TransportathonHackathon.Application.Features.Drivers.Rules;
 
 namespace TransportathonHackathon.Application
 {
@@ -12,6 +15,10 @@ namespace TransportathonHackathon.Application
             {
                 options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
             });
+
+            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionScopeBehavior<,>));
+
+            services.AddScoped<DriverBusinessRules>();
 
             return services;
         }

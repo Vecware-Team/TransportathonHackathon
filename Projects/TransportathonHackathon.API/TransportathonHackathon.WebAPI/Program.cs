@@ -27,7 +27,7 @@ ServiceTool.SetSetviceProvider(app.Services);
 
 // Configure the HTTP request pipeline.
 
-app.ConfigureCustomExceptionMiddleware();
+//app.ConfigureCustomExceptionMiddleware();
 
 if (app.Environment.IsDevelopment())
 {
