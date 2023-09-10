@@ -1,5 +1,4 @@
 ﻿using Core.Persistence.Entities;
-using TransportathonHackathon.Domain.Entities.Identity;
 
 namespace TransportathonHackathon.Domain.Entities
 {

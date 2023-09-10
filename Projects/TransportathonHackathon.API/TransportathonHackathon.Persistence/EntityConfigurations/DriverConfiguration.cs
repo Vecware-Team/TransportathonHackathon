@@ -14,6 +14,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
 
             builder.ToTable("Drivers").HasKey(e => e.EmployeeId);
 
+            builder.HasOne(e => e.Employee);
             builder.HasOne(e => e.DriverLicense);
 
             builder.Ignore(e => e.CreatedDate);
