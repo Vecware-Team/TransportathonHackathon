@@ -7,6 +7,36 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Languages\Dtos\**" />
+    <Compile Remove="Features\Languages\Models\**" />
+    <Compile Remove="Features\Languages\Rules\**" />
+    <Compile Remove="Features\Languages\Validators\**" />
+    <Compile Remove="Features\Translates\Dtos\**" />
+    <Compile Remove="Features\Translates\MappingProfiles\**" />
+    <Compile Remove="Features\Translates\Models\**" />
+    <Compile Remove="Features\Translates\Rules\**" />
+    <Compile Remove="Features\Translates\Validators\**" />
+    <EmbeddedResource Remove="Features\Languages\Dtos\**" />
+    <EmbeddedResource Remove="Features\Languages\Models\**" />
+    <EmbeddedResource Remove="Features\Languages\Rules\**" />
+    <EmbeddedResource Remove="Features\Languages\Validators\**" />
+    <EmbeddedResource Remove="Features\Translates\Dtos\**" />
+    <EmbeddedResource Remove="Features\Translates\MappingProfiles\**" />
+    <EmbeddedResource Remove="Features\Translates\Models\**" />
+    <EmbeddedResource Remove="Features\Translates\Rules\**" />
+    <EmbeddedResource Remove="Features\Translates\Validators\**" />
+    <None Remove="Features\Languages\Dtos\**" />
+    <None Remove="Features\Languages\Models\**" />
+    <None Remove="Features\Languages\Rules\**" />
+    <None Remove="Features\Languages\Validators\**" />
+    <None Remove="Features\Translates\Dtos\**" />
+    <None Remove="Features\Translates\MappingProfiles\**" />
+    <None Remove="Features\Translates\Models\**" />
+    <None Remove="Features\Translates\Rules\**" />
+    <None Remove="Features\Translates\Validators\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="12.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
     <PackageReference Include="MediatR" Version="12.1.1" />
@@ -41,18 +71,6 @@
     <Folder Include="Features\Employees\Queries\" />
     <Folder Include="Features\Employees\Rules\" />
     <Folder Include="Features\Employees\Validators\" />
-    <Folder Include="Features\Languages\Dtos\" />
-    <Folder Include="Features\Languages\Models\" />
-    <Folder Include="Features\Languages\Queries\GetByCode\" />
-    <Folder Include="Features\Languages\Rules\" />
-    <Folder Include="Features\Languages\Validators\" />
-    <Folder Include="Features\Translates\Commands\" />
-    <Folder Include="Features\Translates\Dtos\" />
-    <Folder Include="Features\Translates\MappingProfiles\" />
-    <Folder Include="Features\Translates\Models\" />
-    <Folder Include="Features\Translates\Queries\" />
-    <Folder Include="Features\Translates\Rules\" />
-    <Folder Include="Features\Translates\Validators\" />
   </ItemGroup>
 
 </Project>
