@@ -29,10 +29,10 @@ namespace TransportathonHackathon.Application.Features.Drivers.MappingProfiles
             CreateMap<Employee, UpdateDriverCommand>().ReverseMap();
             CreateMap<Employee, UpdatedDriverResponse>().ReverseMap();
 
-            CreateMap<Paginate<GetListDriverResponse>, IPaginate<Employee>>()
-                .ForMember(e=>e.Items.Select(e=>e.Driver).ToList(), opt=>opt.MapFrom(d=>d.Items)).ReverseMap();
+            //CreateMap<Paginate<GetListDriverResponse>, IPaginate<Employee>>()
+            //    .ForMember(e=>e.Items.Select(e=>e.Driver).ToList(), opt=>opt.MapFrom(d=>d.Items)).ReverseMap();
 
-            
+            CreateMap<Paginate<GetListDriverResponse>, IPaginate<Employee>>().ReverseMap();
 
         }
     }

@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\Employees\**" />
     <Compile Remove="Features\Languages\Dtos\**" />
     <Compile Remove="Features\Languages\Models\**" />
     <Compile Remove="Features\Languages\Rules\**" />
@@ -16,6 +17,7 @@
     <Compile Remove="Features\Translates\Models\**" />
     <Compile Remove="Features\Translates\Rules\**" />
     <Compile Remove="Features\Translates\Validators\**" />
+    <EmbeddedResource Remove="Features\Employees\**" />
     <EmbeddedResource Remove="Features\Languages\Dtos\**" />
     <EmbeddedResource Remove="Features\Languages\Models\**" />
     <EmbeddedResource Remove="Features\Languages\Rules\**" />
@@ -25,6 +27,7 @@
     <EmbeddedResource Remove="Features\Translates\Models\**" />
     <EmbeddedResource Remove="Features\Translates\Rules\**" />
     <EmbeddedResource Remove="Features\Translates\Validators\**" />
+    <None Remove="Features\Employees\**" />
     <None Remove="Features\Languages\Dtos\**" />
     <None Remove="Features\Languages\Models\**" />
     <None Remove="Features\Languages\Rules\**" />
@@ -58,6 +61,7 @@
     <Folder Include="Features\DriverLicenses\Validators\" />
     <Folder Include="Features\Drivers\Commands\UpgradeUserToDriver\" />
     <Folder Include="Features\Drivers\Models\" />
+    <Folder Include="Features\Drivers\Responses\" />
     <Folder Include="Features\Drivers\Validators\" />
     <Folder Include="Features\Languages\Dtos\" />
     <Folder Include="Features\Languages\Models\" />
@@ -71,16 +75,6 @@
     <Folder Include="Features\Translates\Queries\" />
     <Folder Include="Features\Translates\Rules\" />
     <Folder Include="Features\Translates\Validators\" />
-    <Folder Include="Features\Drivers\Queries\" />
-    <Folder Include="Features\Employees\Commands\CreateDriver\" />
-    <Folder Include="Features\Employees\Commands\DeleteDriver\" />
-    <Folder Include="Features\Employees\Commands\UpdateDriver\" />
-    <Folder Include="Features\Employees\Dtos\" />
-    <Folder Include="Features\Employees\MappingProfiles\" />
-    <Folder Include="Features\Employees\Models\" />
-    <Folder Include="Features\Employees\Queries\" />
-    <Folder Include="Features\Employees\Rules\" />
-    <Folder Include="Features\Employees\Validators\" />
   </ItemGroup>
 
 </Project>

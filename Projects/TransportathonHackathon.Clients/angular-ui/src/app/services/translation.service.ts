@@ -3,9 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Translate } from '../models/entities/translate';
 import { TranslateLoader } from '@ngx-translate/core';
-import { ListResponseModel } from '../core/models/responseModels/ListResponseModel';
 import { HttpClient } from '@angular/common/http';
-import { ResponseModel } from '../core/models/responseModels/responseModel';
 import { ServiceRepositoryBase } from '../core/services/repositories/service.repository.base';
 
 export let allTranslates: Map<string, string> = new Map<string, string>();
@@ -22,13 +20,6 @@ export class TranslationApiService
 
   constructor(protected override httpClient: HttpClient) {
     super('translates', httpClient);
-  }
-
-  addMultiple(translates: Translate[]): Observable<ResponseModel> {
-    return this.httpClient.post<ResponseModel>(
-      this.apiUrl + 'addmultiple',
-      translates
-    );
   }
 
   getAllByLanguage(

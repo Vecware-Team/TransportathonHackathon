@@ -33,7 +33,6 @@ namespace TransportathonHackathon.Application.Features.Drivers.Queries.GetList
                 );
 
             Paginate<GetListDriverResponse> result = _mapper.Map<Paginate<GetListDriverResponse>>(driverEmployees);
-
             return result;
         }
     }
