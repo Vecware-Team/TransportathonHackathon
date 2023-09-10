@@ -19,12 +19,15 @@ namespace TransportathonHackathon.Persistence
 
             services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ProjectDbContext>();
 
+            services.AddScoped<ICarrierRepository, CarrierRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IDriverLicenseRepository, DriverLicenseRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ITranslateRepository, TranslateRepository>();
+
 
             return services;
         }
