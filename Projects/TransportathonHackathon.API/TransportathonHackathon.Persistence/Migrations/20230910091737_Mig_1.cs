@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
+namespace TransportathonHackathon.Persistence.Migrations
 {
     /// <inheritdoc />
-    public partial class a : Migration
+    public partial class Mig_1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -216,24 +216,6 @@ namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Employees",
-                columns: table => new
-                {
-                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    IsOnTransitNow = table.Column<bool>(type: "bit", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Employees", x => x.AppUserId);
-                    table.ForeignKey(
-                        name: "FK_Employees_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AspNetUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Translates",
                 columns: table => new
                 {
@@ -250,6 +232,31 @@ namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
                         principalTable: "Languages",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    AppUserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsOnTransitNow = table.Column<bool>(type: "bit", nullable: false),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.AppUserId);
+                    table.ForeignKey(
+                        name: "FK_Employees_AspNetUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Employees_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "AppUserId",
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -351,6 +358,11 @@ namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Employees_CompanyId",
+                table: "Employees",
+                column: "CompanyId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Translates_LanguageId",
                 table: "Translates",
                 column: "LanguageId");
@@ -378,9 +390,6 @@ namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
                 name: "Carriers");
 
             migrationBuilder.DropTable(
-                name: "Companies");
-
-            migrationBuilder.DropTable(
                 name: "Customers");
 
             migrationBuilder.DropTable(
@@ -400,6 +409,9 @@ namespace TransportathonHackathon.Persistence.Migrations.IdentityDb
 
             migrationBuilder.DropTable(
                 name: "Employees");
+
+            migrationBuilder.DropTable(
+                name: "Companies");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

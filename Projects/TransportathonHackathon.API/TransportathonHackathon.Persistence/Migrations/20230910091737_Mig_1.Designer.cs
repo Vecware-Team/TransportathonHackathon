@@ -12,8 +12,8 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230909223936_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230910091737_Mig_1")]
+    partial class Mig_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -571,8 +571,7 @@ namespace TransportathonHackathon.Persistence.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Employee")
-                        .IsRequired();
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>

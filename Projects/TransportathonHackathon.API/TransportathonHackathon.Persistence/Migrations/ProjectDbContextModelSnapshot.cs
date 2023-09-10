@@ -568,8 +568,7 @@ namespace TransportathonHackathon.Persistence.Migrations
 
                     b.Navigation("Customer");
 
-                    b.Navigation("Employee")
-                        .IsRequired();
+                    b.Navigation("Employee");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>

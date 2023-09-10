@@ -11,6 +11,6 @@ namespace TransportathonHackathon.Domain.Entities.Identity
 
         public virtual Company? Company { get; set; }
         public virtual Customer? Customer { get; set; }
-        public virtual Employee Employee { get; set; }
+        public virtual Employee? Employee { get; set; }
     }
 }
