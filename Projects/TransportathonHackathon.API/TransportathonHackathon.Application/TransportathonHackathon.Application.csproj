@@ -71,6 +71,16 @@
     <Folder Include="Features\Translates\Queries\" />
     <Folder Include="Features\Translates\Rules\" />
     <Folder Include="Features\Translates\Validators\" />
+    <Folder Include="Features\Drivers\Queries\" />
+    <Folder Include="Features\Employees\Commands\CreateDriver\" />
+    <Folder Include="Features\Employees\Commands\DeleteDriver\" />
+    <Folder Include="Features\Employees\Commands\UpdateDriver\" />
+    <Folder Include="Features\Employees\Dtos\" />
+    <Folder Include="Features\Employees\MappingProfiles\" />
+    <Folder Include="Features\Employees\Models\" />
+    <Folder Include="Features\Employees\Queries\" />
+    <Folder Include="Features\Employees\Rules\" />
+    <Folder Include="Features\Employees\Validators\" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProfilePicture } from 'src/app/models/entities/profilePicture';
-import { User } from 'src/app/models/entities/user';
+import { User } from 'src/app/models/entities/appRole';
 import { ProfilePictureService } from 'src/app/services/profile-picture.service';
 import { TokenService } from 'src/app/services/token.service';
 import { environment } from 'src/environments/environment';

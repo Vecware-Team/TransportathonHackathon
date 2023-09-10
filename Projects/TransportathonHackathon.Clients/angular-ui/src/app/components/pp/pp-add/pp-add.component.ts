@@ -6,7 +6,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { NgxFileDropEntry } from 'ngx-file-drop';
 import { ToastrService } from 'ngx-toastr';
 import { ProfilePicture } from 'src/app/models/entities/profilePicture';
-import { User } from 'src/app/models/entities/user';
+import { User } from 'src/app/models/entities/appRole';
 import { ErrorService } from 'src/app/services/error.service';
 import { ProfilePictureService } from 'src/app/services/profile-picture.service';
 import { TokenService } from 'src/app/services/token.service';

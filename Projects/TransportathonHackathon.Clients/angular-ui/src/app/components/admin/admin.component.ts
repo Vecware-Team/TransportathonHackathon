@@ -1,4 +1,4 @@
-import { User } from './../../models/entities/user';
+import { User } from '../../models/entities/appRole';
 import { TokenService } from 'src/app/services/token.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router, ActivatedRoute, NavigationStart } from '@angular/router';

@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { ProfilePicture } from 'src/app/models/entities/profilePicture';
-import { User } from 'src/app/models/entities/user';
+import { User } from 'src/app/models/entities/appRole';
 import { AuthService } from 'src/app/services/auth.service';
 import { ProfilePictureService } from 'src/app/services/profile-picture.service';
 import { environment } from 'src/environments/environment';

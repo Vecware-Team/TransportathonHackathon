@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { storageTypes } from '../constants/storageTypes';
-import { User } from '../models/entities/user';
+import { User } from '../models/entities/appRole';
 import { LocalStorageService } from './local-storage.service';
 
 @Injectable({

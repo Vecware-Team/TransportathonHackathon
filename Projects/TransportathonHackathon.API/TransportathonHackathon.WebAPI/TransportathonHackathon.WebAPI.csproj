@@ -22,6 +22,8 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core.Packages\Core.API\Core.API.csproj" />
     <ProjectReference Include="..\..\..\Core.Packages\Core.CrossCuttingConcerns\Core.CrossCuttingConcerns.csproj" />
+    <ProjectReference Include="..\TransportathonHackathon.Application\TransportathonHackathon.Application.csproj" />
+    <ProjectReference Include="..\TransportathonHackathon.Domain\TransportathonHackathon.Domain.csproj" />
     <ProjectReference Include="..\TransportathonHackathon.Persistence\TransportathonHackathon.Persistence.csproj" />
   </ItemGroup>
 
