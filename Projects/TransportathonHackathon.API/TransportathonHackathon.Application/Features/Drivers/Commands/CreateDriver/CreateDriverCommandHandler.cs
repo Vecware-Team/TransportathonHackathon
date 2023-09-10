@@ -18,14 +18,12 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
 {
     public class CreateDriverCommandHandler : IRequestHandler<CreateDriverCommand, CreatedDriverDto>, ITransactionalRequest
     {
-        private readonly IEmployeeRepository _repository;
         private readonly UserManager<AppUser> _userManager;
         private readonly DriverBusinessRules _rules;
         private readonly IMapper _mapper;
 
-        public CreateDriverCommandHandler(IEmployeeRepository repository, UserManager<AppUser> userManager, DriverBusinessRules rules, IMapper mapper)
+        public CreateDriverCommandHandler(UserManager<AppUser> userManager, DriverBusinessRules rules, IMapper mapper)
         {
-            _repository = repository;
             _userManager = userManager;
             _rules = rules;
             _mapper = mapper;
@@ -33,17 +31,22 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
 
         public async Task<CreatedDriverDto> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
         {
-            //Driver mappedDriver = _mapper.Map<Driver>(request);
-            //mappedDriver.Employee = new Employee
-            //{
-            //    IsOnTransitNow = false,
-            //};
+            Employee driverEmployee = new Employee
+            {
+                IsOnTransitNow = false,
+                Driver = new Driver(),
+                CompanyId = request.CompanyId,
+                Age = request.Age,
+                FirstName = request.FirstName,
+                LastName = request.LastName,
+            };
 
             IdentityResult result = await _userManager.CreateAsync(new AppUser()
             {
                 UserName = request.UserName,
                 Email = request.Email,
                 CreatedDate = DateTime.UtcNow,
+                Employee = driverEmployee,
             }, request.Password);
 
             if (!result.Succeeded)
@@ -51,18 +54,7 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
 
             AppUser addedUser = await _userManager.FindByEmailAsync(request.Email)!;
 
-            Employee createdDriverEmployee = await _repository.AddAsync(new Employee
-            {
-                AppUserId = addedUser.Id,
-                IsOnTransitNow = false,
-                Driver = new Driver(),
-                CompanyId = request.CompanyId,
-                Age = request.Age,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-            });
-
-            CreatedDriverDto mappedDriverDto = _mapper.Map<CreatedDriverDto>(createdDriverEmployee.Driver);
+            CreatedDriverDto mappedDriverDto = _mapper.Map<CreatedDriverDto>(addedUser.Employee);
             return mappedDriverDto;
         }
     }
