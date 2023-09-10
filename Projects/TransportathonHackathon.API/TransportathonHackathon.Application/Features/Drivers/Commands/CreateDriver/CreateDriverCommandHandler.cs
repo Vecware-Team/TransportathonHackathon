@@ -16,7 +16,7 @@ using TransportathonHackathon.Domain.Entities.Identity;
 
 namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver
 {
-    public class CreateDriverCommandHandler : IRequestHandler<CreateDriverCommand, CreatedDriverDto>, ITransactionalRequest
+    public class CreateDriverCommandHandler : IRequestHandler<CreateDriverCommand, CreatedDriverResponse>, ITransactionalRequest
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly DriverBusinessRules _rules;
@@ -29,7 +29,7 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
             _mapper = mapper;
         }
 
-        public async Task<CreatedDriverDto> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
+        public async Task<CreatedDriverResponse> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
         {
             Employee driverEmployee = new Employee
             {
@@ -54,7 +54,7 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
 
             AppUser addedUser = await _userManager.FindByEmailAsync(request.Email)!;
 
-            CreatedDriverDto mappedDriverDto = _mapper.Map<CreatedDriverDto>(addedUser.Employee);
+            CreatedDriverResponse mappedDriverDto = _mapper.Map<CreatedDriverResponse>(addedUser.Employee);
             return mappedDriverDto;
         }
     }
