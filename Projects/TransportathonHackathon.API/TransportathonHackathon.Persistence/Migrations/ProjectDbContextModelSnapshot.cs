@@ -132,7 +132,8 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyId");
 
                     b.Property<bool>("IsOnTransitNow")
                         .HasColumnType("bit")
@@ -474,7 +475,7 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasOne("TransportathonHackathon.Domain.Entities.Company", "Company")
                         .WithMany("Employees")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");

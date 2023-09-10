@@ -12,7 +12,7 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230909233002_new")]
+    [Migration("20230910090707_new")]
     partial class @new
     {
         /// <inheritdoc />
@@ -135,7 +135,8 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CompanyId")
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("CompanyId");
 
                     b.Property<bool>("IsOnTransitNow")
                         .HasColumnType("bit")
@@ -477,7 +478,7 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasOne("TransportathonHackathon.Domain.Entities.Company", "Company")
                         .WithMany("Employees")
                         .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("AppUser");

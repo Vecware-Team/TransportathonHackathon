@@ -16,17 +16,16 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
                     .WithOne(c => c.Employee)
                     .HasForeignKey<Driver>(c => c.EmployeeId);
 
-            builder.HasOne(e => e.Company)
-                    .WithMany(c => c.Employees);
+            //builder.HasOne(e => e.Company)
+            //        .WithMany(c => c.Employees).OnDelete(DeleteBehavior.SetNull);
 
             builder.ToTable("Employees").HasKey(e => e.AppUserId);
             builder.Property(e => e.IsOnTransitNow).HasColumnName("IsOnTransitNow").IsRequired();
-            //builder.Property(e => e.CompanyId).HasColumnName("CompanyId").IsRequired();
+            builder.Property(e => e.CompanyId).HasColumnName("CompanyId").IsRequired();
 
             builder.HasOne(e => e.Carrier);
             builder.HasOne(e => e.Driver);
             builder.HasOne(e => e.AppUser);
-            builder.HasOne(e => e.Company);
 
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);

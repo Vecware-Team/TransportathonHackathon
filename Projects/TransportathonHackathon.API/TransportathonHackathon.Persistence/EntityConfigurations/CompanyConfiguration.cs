@@ -8,9 +8,8 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Company> builder)
         {
-            builder.HasMany(e => e.Employees)
-                    .WithOne(c => c.Company)
-                    .OnDelete(DeleteBehavior.SetNull);
+            //builder.HasMany(e => e.Employees);
+                    
 
             builder.ToTable("Companies").HasKey(e => e.AppUserId);
 
