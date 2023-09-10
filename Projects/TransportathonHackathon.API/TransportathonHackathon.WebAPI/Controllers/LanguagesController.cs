@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Languages.Commands.Create;
 using TransportathonHackathon.Application.Features.Languages.Commands.Delete;
 using TransportathonHackathon.Application.Features.Languages.Commands.Update;
+using TransportathonHackathon.Application.Features.Languages.Queries.GetByCode;
 using TransportathonHackathon.Application.Features.Languages.Queries.GetById;
 using TransportathonHackathon.Application.Features.Languages.Queries.GetList;
 
@@ -38,6 +39,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> UpdateLanguage([FromBody] UpdateLanguageCommand command)
         {
             UpdatedLanguageResponse response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet("[Action]/{Code}")]
+        public async Task<IActionResult> GetByCodeLanguage([FromRoute] GetByCodeLanguageQuery command)
+        {
+            GetByCodeLanguageResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 

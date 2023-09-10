@@ -2,7 +2,7 @@
 
 namespace TransportathonHackathon.Domain.Entities
 {
-    public class Translate : Entity
+    public class Translate : Entity<Guid>
     {
         public Guid LanguageId { get; set; }
         public string Key { get; set; }

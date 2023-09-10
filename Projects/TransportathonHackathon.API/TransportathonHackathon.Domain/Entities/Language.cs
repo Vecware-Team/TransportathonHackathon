@@ -1,4 +1,5 @@
 ﻿using Core.Persistence.Entities;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace TransportathonHackathon.Domain.Entities
 {
