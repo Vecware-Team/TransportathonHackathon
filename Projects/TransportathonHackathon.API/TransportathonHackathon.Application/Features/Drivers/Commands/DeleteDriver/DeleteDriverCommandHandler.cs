@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransportathonHackathon.Application.Features.Companies.Commands.Delete;
-using TransportathonHackathon.Application.Features.Drivers.Dtos;
+using System.Threading;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
@@ -18,13 +13,13 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.DeleteDr
 {
     public class DeleteDriverCommandHandler : IRequestHandler<DeleteDriverCommand, DeletedDriverResponse>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IDriverRepository _driverRepository;
         private readonly UserManager<AppUser> _userManager;
         private readonly DriverBusinessRules _businessRules;
         private readonly IMapper _mapper;
-        public DeleteDriverCommandHandler(IEmployeeRepository employeeRepository, DriverBusinessRules businessRules, IMapper mapper, UserManager<AppUser> userManager)
+        public DeleteDriverCommandHandler(IDriverRepository driverRepository, DriverBusinessRules businessRules, IMapper mapper, UserManager<AppUser> userManager)
         {
-            _employeeRepository = employeeRepository;
+            _driverRepository = driverRepository;
             _businessRules = businessRules;
             _mapper = mapper;
             _userManager = userManager;
@@ -32,20 +27,21 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.DeleteDr
 
         public async Task<DeletedDriverResponse> Handle(DeleteDriverCommand request, CancellationToken cancellationToken)
         {
-            Employee? employee = await _employeeRepository.GetAsync(e => e.AppUserId == request.EmployeeId, include: e => e.Include(e => e.AppUser));
+            Driver? driver = await _driverRepository.GetAsync(e => e.EmployeeId == request.EmployeeId, include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser));
+            if (driver is null)
+                throw new NotFoundException("Driver not found");
 
-            AppUser user = new AppUser()
-            {
-                UserName = employee.AppUser.UserName,
-                Email = employee.AppUser.Email,
-            };
+            Employee employee = _mapper.Map<Employee>(driver.Employee);
+            AppUser appUser = _mapper.Map<AppUser>(employee.AppUser);
 
             IdentityResult result = await _userManager.DeleteAsync(employee.AppUser);
             if (!result.Succeeded)
-                throw new Exception();
+                throw new BusinessException(result.Errors.Select(e => e.Description).ToString());
 
-            employee.AppUser = user;
-            DeletedDriverResponse response = _mapper.Map<DeletedDriverResponse>(employee);
+            employee.AppUser = appUser;
+            driver.Employee = employee;
+
+            DeletedDriverResponse response = _mapper.Map<DeletedDriverResponse>(driver);
             return response;
         }
     }

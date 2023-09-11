@@ -1,14 +1,9 @@
 ﻿using AutoMapper;
 using Core.Application.Pipelines.Transaction;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransportathonHackathon.Application.Features.Companies.Commands.Create;
-using TransportathonHackathon.Application.Features.Drivers.Dtos;
+using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
@@ -20,42 +15,47 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly DriverBusinessRules _rules;
+        private readonly IDriverRepository _driverRepository;
         private readonly IMapper _mapper;
 
-        public CreateDriverCommandHandler(UserManager<AppUser> userManager, DriverBusinessRules rules, IMapper mapper)
+
+        public CreateDriverCommandHandler(UserManager<AppUser> userManager, DriverBusinessRules rules, IMapper mapper, IDriverRepository driverRepository)
         {
             _userManager = userManager;
             _rules = rules;
             _mapper = mapper;
+            _driverRepository = driverRepository;
         }
 
         public async Task<CreatedDriverResponse> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
         {
-            Employee driverEmployee = new Employee
-            {
-                IsOnTransitNow = false,
-                Driver = new Driver(),
-                CompanyId = request.CompanyId,
-                Age = request.Age,
-                FirstName = request.FirstName,
-                LastName = request.LastName,
-            };
+            Driver driver = _mapper.Map<Driver>(request);
 
             IdentityResult result = await _userManager.CreateAsync(new AppUser()
             {
                 UserName = request.UserName,
                 Email = request.Email,
                 CreatedDate = DateTime.UtcNow,
-                Employee = driverEmployee,
+                Employee = new Employee()
+                {
+                    FirstName = request.FirstName,
+                    LastName = request.LastName,
+                    Age = request.Age,
+                    IsOnTransitNow = false,
+                    CreatedDate = DateTime.UtcNow,
+                    CompanyId = request.CompanyId,
+                    Driver = driver,
+                },
             }, request.Password);
 
             if (!result.Succeeded)
-                throw new Exception(result.Errors.ToString());
+                throw new BusinessException(result.Errors.ToString());
 
-            AppUser addedUser = await _userManager.FindByEmailAsync(request.Email)!;
+            AppUser appuser = await _userManager.FindByEmailAsync(request.Email);
+            driver = await _driverRepository.GetAsync(e => e.EmployeeId == appuser.Id, include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser));
 
-            CreatedDriverResponse mappedDriverDto = _mapper.Map<CreatedDriverResponse>(addedUser.Employee);
-            return mappedDriverDto;
+            CreatedDriverResponse response = _mapper.Map<CreatedDriverResponse>(driver);
+            return response;
         }
     }
 }

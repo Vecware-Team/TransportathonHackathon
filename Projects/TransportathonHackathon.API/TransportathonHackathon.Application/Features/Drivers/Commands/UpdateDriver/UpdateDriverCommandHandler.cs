@@ -1,13 +1,7 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using TransportathonHackathon.Application.Features.Companies.Commands.Update;
-using TransportathonHackathon.Application.Features.Drivers.Dtos;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
@@ -16,41 +10,46 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDr
 {
     public class UpdateDriverCommandHandler : IRequestHandler<UpdateDriverCommand, UpdatedDriverResponse>
     {
-        private readonly IEmployeeRepository _employeeRepository;
+        private readonly IDriverRepository _driverRepository;
         private readonly IMapper _mapper;
         private readonly DriverBusinessRules _driverBusinessRules;
 
-        public UpdateDriverCommandHandler(IEmployeeRepository employeeRepository, IMapper mapper, DriverBusinessRules driverBusinessRules)
+        public UpdateDriverCommandHandler(IDriverRepository driverRepository, IMapper mapper, DriverBusinessRules driverBusinessRules)
         {
-            _employeeRepository = employeeRepository;
+            _driverRepository = driverRepository;
             _mapper = mapper;
             _driverBusinessRules = driverBusinessRules;
         }
 
         public async Task<UpdatedDriverResponse> Handle(UpdateDriverCommand request, CancellationToken cancellationToken)
         {
-            Employee employeeToUpdate = _mapper.Map<Employee>(request);
-
-            Employee? employee = await _employeeRepository.GetAsync(
-                d => d.AppUserId == request.EmployeeId,
-                include: e => e.Include(e => e.AppUser),
+            Driver? driver = await _driverRepository.GetAsync(
+                e => e.EmployeeId == request.EmployeeId,
+                include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser),
                 cancellationToken: cancellationToken
             );
 
-            if (employee is null)
-                throw new Exception();
+            if (driver is null)
+                throw new NotFoundException("Driver not found");
 
-            employee.FirstName = employeeToUpdate.FirstName;
-            employee.LastName = employeeToUpdate.LastName;
-            employee.Age = employeeToUpdate.Age;
-            employee.CompanyId = employeeToUpdate.CompanyId;
-            employee.IsOnTransitNow = employeeToUpdate.IsOnTransitNow;
+            driver.Employee.FirstName = request.FirstName;
+            driver.Employee.LastName = request.LastName;
+            driver.Employee.Age = request.Age;
+            driver.Employee.CompanyId = request.CompanyId;
+            driver.UpdatedDate = DateTime.UtcNow;
+            driver.Employee.AppUser.Email = request.Email;
+            driver.Employee.AppUser.UserName = request.UserName;
+            driver.Employee.UpdatedDate = DateTime.UtcNow;
+            driver.Employee.AppUser.UpdatedDate = DateTime.Now;
 
-            employee.AppUser.UpdatedDate = DateTime.UtcNow;
+            await _driverRepository.SaveChangesAsync();
 
-            await _employeeRepository.SaveChangesAsync();
-
-            UpdatedDriverResponse response = _mapper.Map<UpdatedDriverResponse>(employee);
+            driver = await _driverRepository.GetAsync(
+                e => e.EmployeeId == request.EmployeeId,
+                include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser),
+                cancellationToken: cancellationToken
+            );
+            UpdatedDriverResponse response = _mapper.Map<UpdatedDriverResponse>(driver);
             return response;
         }
     }

@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TransportathonHackathon.Application.Repositories;
@@ -17,7 +18,7 @@ namespace TransportathonHackathon.Persistence
                 options.UseSqlServer(configuration.GetConnectionString(isDevelopment ? "MsSqlDevelopment" : "MsSqlProduction"));
             });
 
-            services.AddIdentityCore<AppUser>().AddEntityFrameworkStores<ProjectDbContext>();
+            services.AddIdentityCore<AppUser>().AddRoles<AppRole>().AddEntityFrameworkStores<ProjectDbContext>();
 
             services.AddScoped<ICarrierRepository, CarrierRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();

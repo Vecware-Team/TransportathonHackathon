@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Features\DriverLicenses\Dtos\**" />
+    <Compile Remove="Features\DriverLicenses\Models\**" />
+    <Compile Remove="Features\DriverLicenses\Rules\**" />
+    <Compile Remove="Features\DriverLicenses\Validators\**" />
+    <Compile Remove="Features\Drivers\Commands\UpgradeUserToDriver\**" />
+    <Compile Remove="Features\Drivers\Models\**" />
+    <Compile Remove="Features\Drivers\Responses\**" />
+    <Compile Remove="Features\Drivers\Validators\**" />
     <Compile Remove="Features\Employees\**" />
     <Compile Remove="Features\Languages\Dtos\**" />
     <Compile Remove="Features\Languages\Models\**" />
@@ -17,6 +25,14 @@
     <Compile Remove="Features\Translates\Models\**" />
     <Compile Remove="Features\Translates\Rules\**" />
     <Compile Remove="Features\Translates\Validators\**" />
+    <EmbeddedResource Remove="Features\DriverLicenses\Dtos\**" />
+    <EmbeddedResource Remove="Features\DriverLicenses\Models\**" />
+    <EmbeddedResource Remove="Features\DriverLicenses\Rules\**" />
+    <EmbeddedResource Remove="Features\DriverLicenses\Validators\**" />
+    <EmbeddedResource Remove="Features\Drivers\Commands\UpgradeUserToDriver\**" />
+    <EmbeddedResource Remove="Features\Drivers\Models\**" />
+    <EmbeddedResource Remove="Features\Drivers\Responses\**" />
+    <EmbeddedResource Remove="Features\Drivers\Validators\**" />
     <EmbeddedResource Remove="Features\Employees\**" />
     <EmbeddedResource Remove="Features\Languages\Dtos\**" />
     <EmbeddedResource Remove="Features\Languages\Models\**" />
@@ -27,6 +43,14 @@
     <EmbeddedResource Remove="Features\Translates\Models\**" />
     <EmbeddedResource Remove="Features\Translates\Rules\**" />
     <EmbeddedResource Remove="Features\Translates\Validators\**" />
+    <None Remove="Features\DriverLicenses\Dtos\**" />
+    <None Remove="Features\DriverLicenses\Models\**" />
+    <None Remove="Features\DriverLicenses\Rules\**" />
+    <None Remove="Features\DriverLicenses\Validators\**" />
+    <None Remove="Features\Drivers\Commands\UpgradeUserToDriver\**" />
+    <None Remove="Features\Drivers\Models\**" />
+    <None Remove="Features\Drivers\Responses\**" />
+    <None Remove="Features\Drivers\Validators\**" />
     <None Remove="Features\Employees\**" />
     <None Remove="Features\Languages\Dtos\**" />
     <None Remove="Features\Languages\Models\**" />
@@ -52,29 +76,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\DriverLicenses\Commands\" />
-    <Folder Include="Features\DriverLicenses\Dtos\" />
-    <Folder Include="Features\DriverLicenses\Models\" />
-    <Folder Include="Features\DriverLicenses\MappingProfiles\" />
-    <Folder Include="Features\DriverLicenses\Rules\" />
-    <Folder Include="Features\DriverLicenses\Queries\" />
-    <Folder Include="Features\DriverLicenses\Validators\" />
-    <Folder Include="Features\Drivers\Commands\UpgradeUserToDriver\" />
-    <Folder Include="Features\Drivers\Models\" />
-    <Folder Include="Features\Drivers\Responses\" />
-    <Folder Include="Features\Drivers\Validators\" />
-    <Folder Include="Features\Languages\Dtos\" />
-    <Folder Include="Features\Languages\Models\" />
+    <Folder Include="Features\DriverLicenses\Commands\Delete\" />
+    <Folder Include="Features\DriverLicenses\Commands\Update\" />
+    <Folder Include="Features\DriverLicenses\Queries\GetList\" />
+    <Folder Include="Features\DriverLicenses\Queries\GetById\" />
     <Folder Include="Features\Languages\Queries\GetByCode\" />
-    <Folder Include="Features\Languages\Rules\" />
-    <Folder Include="Features\Languages\Validators\" />
     <Folder Include="Features\Translates\Commands\" />
-    <Folder Include="Features\Translates\Dtos\" />
-    <Folder Include="Features\Translates\MappingProfiles\" />
-    <Folder Include="Features\Translates\Models\" />
     <Folder Include="Features\Translates\Queries\" />
-    <Folder Include="Features\Translates\Rules\" />
-    <Folder Include="Features\Translates\Validators\" />
   </ItemGroup>
 
 </Project>

@@ -1,8 +1,8 @@
 ﻿using MediatR;
 
-namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver
+namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
-    public class CreateDriverCommand : IRequest<CreatedDriverResponse>
+    public class CreateCarrierCommand : IRequest<CreatedCarrierResponse>
     {
         public string Email { get; set; }
         public string UserName { get; set; }

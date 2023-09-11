@@ -1,6 +1,8 @@
-﻿namespace TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDriver
+﻿using TransportathonHackathon.Domain.Entities;
+
+namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
-    public class UpdatedDriverResponse
+    public class CreatedCarrierResponse
     {
         public Guid EmployeeId { get; set; }
         public Guid CompanyId { get; set; }
