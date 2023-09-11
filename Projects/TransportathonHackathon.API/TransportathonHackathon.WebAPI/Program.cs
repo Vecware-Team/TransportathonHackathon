@@ -24,6 +24,8 @@ builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();
 
 builder.Services.AddExceptionHandlers(ServiceLifetime.Scoped);
 
+builder.Services.AddDistributedMemoryCache();
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers();

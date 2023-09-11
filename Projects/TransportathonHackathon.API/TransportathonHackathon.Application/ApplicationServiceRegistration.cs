@@ -1,5 +1,8 @@
-﻿using Core.Application.Pipelines.Transaction;
-using MediatR;
+﻿using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Caching;
+using Core.Application.Pipelines.Logging;
+using Core.Application.Pipelines.Transaction;
+using Core.Application.Pipelines.Validation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
@@ -11,12 +14,17 @@ namespace TransportathonHackathon.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly());
-            services.AddMediatR(options =>
+            services.AddMediatR(configuration =>
             {
-                options.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
-            });
+                configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
 
-            services.AddTransient(typeof(IPipelineBehavior<,>), typeof(TransactionScopeBehavior<,>));
+                configuration.AddOpenBehavior(typeof(AuthorizationBehavior<,>));
+                configuration.AddOpenBehavior(typeof(LoggingBehavior<,>));
+                configuration.AddOpenBehavior(typeof(TransactionScopeBehavior<,>));
+                configuration.AddOpenBehavior(typeof(RequestValidationBehavior<,>));
+                configuration.AddOpenBehavior(typeof(CachingBehavior<,>));
+                configuration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
+            });
 
             services.AddScoped<DriverBusinessRules>();
 
