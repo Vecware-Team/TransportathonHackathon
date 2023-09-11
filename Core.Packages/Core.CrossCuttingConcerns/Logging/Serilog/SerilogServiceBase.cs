@@ -1,4 +1,4 @@
-﻿
+﻿using Serilog;
 
 namespace Core.CrossCuttingConcerns.Logging.Serilog
 {
