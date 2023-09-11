@@ -1,5 +1,7 @@
 using Core.CrossCuttingConcerns.Exceptions.Extensions;
 using Core.CrossCuttingConcerns.IoC;
+using Core.CrossCuttingConcerns.Logging;
+using Core.CrossCuttingConcerns.Logging.Serilog.Loggers;
 using Core.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -17,6 +19,7 @@ builder.Host.UseDefaultServiceProvider(options => { });
 builder.Services.AddPersistenceServices(builder.Configuration, builder.Environment.IsDevelopment());
 builder.Services.AddApplicationServices();
 
+builder.Services.RegisterLogger(ServiceLifetime.Scoped, typeof(FileLogger), typeof(MsSqlLogger));
 builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();
 
 builder.Services.AddExceptionHandlers(ServiceLifetime.Scoped);
