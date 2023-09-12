@@ -1,28 +1,23 @@
-import { Router, Scroll } from '@angular/router';
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import * as $ from 'jquery';
 import { SettingsService } from './services/settings.service';
-import { delay, filter } from 'rxjs/operators';
+import { Router, Scroll } from '@angular/router';
 import { ViewportScroller } from '@angular/common';
-import { TranslateService } from '@ngx-translate/core';
-import * as $ from "jquery";
+import { delay, filter } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
 })
-export class AppComponent implements OnInit {
-  title = 'my-project';
+export class AppComponent {
+  title = 'angular-ui';
 
   constructor(
     private settingsService: SettingsService,
     private router: Router,
     private viewportScroller: ViewportScroller,
-    protected translateService: TranslateService
-  ) {
-    translateService.setDefaultLang('tr-TR');
-    translateService.use('tr-TR');
-  }
+  ) {}
 
   ngOnInit(): void {
     this.actvateScrollPositionRestoration();

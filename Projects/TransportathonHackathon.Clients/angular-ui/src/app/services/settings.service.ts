@@ -1,4 +1,3 @@
-import { LanguageService } from './language.service';
 import { Injectable } from '@angular/core';
 import { Language } from '../models/entities/language';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -10,7 +9,6 @@ export class SettingsService {
   defaultLanguageCode: string = 'tr-TR';
 
   constructor(
-    private languageService: LanguageService,
     private router: ActivatedRoute
   ) {}
 
