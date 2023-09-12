@@ -30,7 +30,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
             transportRequest.CountryTo = request.CountryTo;
             transportRequest.CityFrom = request.CityFrom;
             transportRequest.CityTo = request.CityTo;
-            transportRequest.IsOfficce = request.IsOfficce;
+            transportRequest.IsOffice = request.IsOfficce;
             transportRequest.PlaceSize = request.PlaceSize;
             transportRequest.StartDate = request.StartDate;
             transportRequest.FinishDate = request.FinishDate;
