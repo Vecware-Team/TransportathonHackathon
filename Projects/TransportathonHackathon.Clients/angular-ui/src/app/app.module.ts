@@ -1,24 +1,21 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import {
-  HTTP_INTERCEPTORS,
-  HttpClient,
-  HttpClientModule,
-} from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ScrollService } from './services/scroll.service';
-import { SettingsService } from './services/settings.service';
-import { LocationStrategy, PathLocationStrategy } from '@angular/common';
-import { NaviComponent } from './components/navi/navi.component';
-import { FooterComponent } from './components/footer/footer.component';
+import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslationService } from './services/translation.service';
-import { ToastrModule } from 'ngx-toastr';
+import { HttpClient } from '@angular/common/http';
+import { NaviComponent } from './components/navi/navi.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
-  declarations: [AppComponent, NaviComponent, FooterComponent],
+  declarations: [
+    AppComponent,
+    NaviComponent,
+    FooterComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -31,7 +28,7 @@ import { ToastrModule } from 'ngx-toastr';
       },
     }),
   ],
-  providers: [{ provide: LocationStrategy, useClass: PathLocationStrategy }],
-  bootstrap: [AppComponent],
+  providers: [],
+  bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
