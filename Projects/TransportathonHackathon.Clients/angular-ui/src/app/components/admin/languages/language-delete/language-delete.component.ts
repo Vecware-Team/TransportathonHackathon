@@ -14,7 +14,6 @@ import { LanguageService } from 'src/app/services/language.service';
   styleUrls: ['./language-delete.component.css'],
 })
 export class LanguageDeleteComponent {
-  languageAddForm: FormGroup;
   language: GetListLanguageResponse;
 
   constructor(

@@ -35,7 +35,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateLanguage([FromBody] UpdateLanguageCommand command)
         {
             UpdatedLanguageResponse response = await _mediator.Send(command);

@@ -63,7 +63,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetListTranslate([FromQuery] GetListTranslateQuery command)
         {
             IList<GetListTranslateResponse> response = await _mediator.Send(command);

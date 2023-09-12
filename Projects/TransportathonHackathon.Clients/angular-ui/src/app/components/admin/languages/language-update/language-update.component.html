@@ -1,1 +1,30 @@
-<p>language-update works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Güncelle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="languageUpdateForm" form>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="code" class="form-control" id="code" placeholder="Language Code">
+                <label for="code">Language Code</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="globallyName" class="form-control" id="globallyName" placeholder="Language Globally Name">
+                <label for="globallyName">Language Globally Name</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="locallyName" class="form-control" id="locallyName" placeholder="Language Locally Name<">
+                <label for="locallyName">Language Locally Name</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+    <button type="button" class="btn btn-primary" (click)="updateLanguage()">Güncelle</button>
+</div>
