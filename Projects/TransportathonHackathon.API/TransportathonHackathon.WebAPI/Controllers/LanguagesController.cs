@@ -56,7 +56,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetListLanguage([FromQuery] GetListLanguageQuery command)
         {
             List<GetListLanguageResponse> response = await _mediator.Send(command);
