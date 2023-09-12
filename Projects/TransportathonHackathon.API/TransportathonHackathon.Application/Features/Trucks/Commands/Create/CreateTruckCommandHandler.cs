@@ -32,12 +32,11 @@ namespace TransportathonHackathon.Application.Features.Trucks.Commands.Create
 
             truck = await _truckRepository.GetAsync(
                 e => e.VehicleId == vehicle.Id,
-                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver)
+                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee)
             );
 
             CreatedTruckResponse response = _mapper.Map<CreatedTruckResponse>(truck);
             return response;
         }
     }
-
 }

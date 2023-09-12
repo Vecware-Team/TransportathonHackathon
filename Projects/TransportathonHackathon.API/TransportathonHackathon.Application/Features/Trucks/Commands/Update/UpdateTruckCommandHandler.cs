@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Trucks.Commands.Update
         {
             Truck? truck = await _truckRepository.GetAsync(
                 e => e.VehicleId == request.VehicleId,
-                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver)
+                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee)
             );
             if (truck is null)
                 throw new NotFoundException("Truck not found");
@@ -39,7 +39,7 @@ namespace TransportathonHackathon.Application.Features.Trucks.Commands.Update
             await _truckRepository.SaveChangesAsync();
             truck = await _truckRepository.GetAsync(
                e => e.VehicleId == request.VehicleId,
-               include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver)
+               include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee)
            );
 
             UpdatedTruckResponse response = _mapper.Map<UpdatedTruckResponse>(truck);
