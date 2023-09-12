@@ -29,6 +29,11 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [adminGuard, loginGuard],
   },
+  {
+    path: 'admin/:currentPage',
+    component: AdminComponent,
+    canActivate: [adminGuard, loginGuard],
+  },
 ];
 
 @NgModule({

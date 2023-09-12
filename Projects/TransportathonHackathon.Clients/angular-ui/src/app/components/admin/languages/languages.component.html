@@ -8,9 +8,8 @@
                 </fa-icon>
             </button>
         </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
-            <span data-feather="calendar" class="align-text-bottom"></span>
-            This week
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openCreateLanguageModal()">
+            Create
         </button>
     </div>
 </div>
@@ -24,6 +23,7 @@
             <th scope="col">GloballyName</th>
             <th scope="col">LocallyName</th>
             <th scope="col">Translate Count</th>
+            <th></th>
         </tr>
     </thead>
     <tbody *ngIf="dataLoaded" class="table-group-divider">
@@ -34,11 +34,14 @@
             <td>{{language.globallyName}}</td>
             <td>{{language.locallyName}}</td>
             <td>{{language.translates.length}}</td>
-            <!-- <td class="text-end">
-                <button class="btn shadow-none" (click)="openEditClaimsModal(user)">
-                    <fa-icon [icon]="faClipboardCheck" size="1x" class="fa fa-icon-clipboard"></fa-icon>
+            <td class="text-end">
+                <button class="btn btn-outline-primary shadow-none me-2" (click)="openUpdateLanguageModal(language)">
+                    <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>
                 </button>
-            </td> -->
+                <button class="btn btn-outline-danger shadow-none" (click)="openDeleteLanguageModal(language)">
+                    <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
+                </button>
+            </td>
         </tr>
     </tbody>
 </table>

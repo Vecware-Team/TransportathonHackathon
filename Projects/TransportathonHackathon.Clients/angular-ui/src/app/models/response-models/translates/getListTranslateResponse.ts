@@ -1,6 +1,6 @@
 import { Language } from '../../domain-models/language';
 
-export interface UpdatedTranslateResponse {
+export interface GetListTranslateResponse {
   id: string;
   languageId: string;
   key: string;

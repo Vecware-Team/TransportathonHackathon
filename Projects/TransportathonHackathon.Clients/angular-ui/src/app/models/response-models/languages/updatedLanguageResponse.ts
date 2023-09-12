@@ -1,4 +1,4 @@
-import { Translate } from '../../translate';
+import { Translate } from "../../domain-models/translate";
 
 export interface UpdatedLanguageResponse {
   id: string;

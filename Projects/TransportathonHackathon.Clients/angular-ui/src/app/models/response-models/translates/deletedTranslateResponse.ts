@@ -1,4 +1,4 @@
-import { Language } from '../../language';
+import { Language } from "../../domain-models/language";
 
 
 export interface DeletedTranslateResponse {

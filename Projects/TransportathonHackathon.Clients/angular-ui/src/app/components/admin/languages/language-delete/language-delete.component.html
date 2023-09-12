@@ -1,0 +1,17 @@
+<div class="modal-header">
+    <h5 class="modal-title">Sil</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="alert alert-secondary" role="alert">
+        <h5>{{language.globallyName}}</h5>
+        <h6>
+            {{language.locallyName}}
+        </h6>
+    </div>
+    <p>Bu dili silmek istediğinizden emin misiniz?</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+    <button type="button" class="btn btn-danger" (click)="deleteLanguage()">Sil</button>
+</div>

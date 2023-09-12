@@ -20,7 +20,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateLanguage([FromBody] CreateLanguageCommand command)
         {
 
@@ -28,8 +28,8 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpDelete]
-        public async Task<IActionResult> DeleteLanguage([FromQuery] DeleteLanguageCommand command)
+        [HttpDelete("delete")]
+        public async Task<IActionResult> DeleteLanguage([FromBody] DeleteLanguageCommand command)
         {
             DeletedLanguageResponse response = await _mediator.Send(command);
             return Ok(response);

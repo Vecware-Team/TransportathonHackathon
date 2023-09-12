@@ -20,7 +20,16 @@ import { TranslatesComponent } from './components/admin/translates/translates.co
 import { UsersComponent } from './components/admin/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpClientModule } from '@angular/common/http';
-import * as $ from "jquery";
+import * as $ from 'jquery';
+import { TranslateDeleteComponent } from './components/admin/translates/translate-delete/translate-delete.component';
+import { LanguageDeleteComponent } from './components/admin/languages/language-delete/language-delete.component';
+import { LanguageUpdateComponent } from './components/admin/languages/language-update/language-update.component';
+import { LanguageCreateComponent } from './components/admin/languages/language-create/language-create.component';
+import { TranslateCreateComponent } from './components/admin/translates/translate-create/translate-create.component';
+import { TranslateUpdateComponent } from './components/admin/translates/translate-update/translate-update.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -35,13 +44,22 @@ import * as $ from "jquery";
     LanguagesComponent,
     TranslatesComponent,
     UsersComponent,
+    LanguageDeleteComponent,
+    LanguageUpdateComponent,
+    LanguageCreateComponent,
+    TranslateCreateComponent,
+    TranslateUpdateComponent,
+    TranslateDeleteComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ToastrModule.forRoot({ positionClass: 'top-right' }),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right', }),
     FontAwesomeModule,
+    ReactiveFormsModule,
+    NgbModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
