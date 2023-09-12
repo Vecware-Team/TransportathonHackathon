@@ -21,7 +21,7 @@ namespace TransportathonHackathon.Application.Features.Cars.Queries.GetList
         public async Task<Paginate<GetListCarResponse>> Handle(GetListCarQuery request, CancellationToken cancellationToken)
         {
             IPaginate<Car> cars = await _carRepository.GetListPagedAsync(
-                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver),
+                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee),
                 size: request.PageRequest.Size,
                 index: request.PageRequest.Index
             );
