@@ -30,7 +30,7 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Create
             }, request.Password);
 
             if (!result.Succeeded)
-                throw new Exception(result.Errors.ToString());
+                throw new Exception();
 
             CreatedCustomerResponse response = _mapper.Map<CreatedCustomerResponse>(customer);
             return response;
