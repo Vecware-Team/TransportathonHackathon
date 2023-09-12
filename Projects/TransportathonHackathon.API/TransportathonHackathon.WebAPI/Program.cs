@@ -30,6 +30,8 @@ builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllers();
 
+builder.Services.AddCors();
+
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
     TokenOptions tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -76,6 +78,8 @@ var app = builder.Build();
 ServiceTool.SetSetviceProvider(app.Services);
 
 // Configure the HTTP request pipeline.
+
+app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod());
 
 app.ConfigureCustomExceptionMiddleware();
 

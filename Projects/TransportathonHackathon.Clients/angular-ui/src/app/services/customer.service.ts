@@ -6,6 +6,7 @@ import { CreatedCustomerResponse } from '../models/response-models/customers/cre
 import { CreateCustomerRequest } from '../models/request-models/customers/createCustomerRequest';
 import { Paginate } from '../core/models/pagination/paginate';
 import { GetListCustomerResponse } from '../models/response-models/customers/getListCustomerResponse';
+import { PageRequest } from '../core/requests/pageRequest';
 
 @Injectable({
   providedIn: 'root',
@@ -23,7 +24,9 @@ export class CustomerService {
     );
   }
 
-  getList(): Observable<Paginate<GetListCustomerResponse>> {
+  getList(
+    pageRequest: PageRequest
+  ): Observable<Paginate<GetListCustomerResponse>> {
     return this.httpClient.get<Paginate<GetListCustomerResponse>>(
       this.apiUrl + 'getlist'
     );

@@ -12,23 +12,24 @@ import { CustomerService } from 'src/app/services/customer.service';
 export class CustomersComponent implements OnInit {
   faRedoAlt = faRedoAlt;
   dataLoaded = false;
-  customers: Paginate<GetListCustomerResponse>;
+  customers: Paginate<GetListCustomerResponse> = {} as Paginate<GetListCustomerResponse>;
 
   constructor(private customerService: CustomerService) {}
   ngOnInit(): void {
     this.getList();
   }
 
-getPageCounts():number[]{
-  return Array.from(Array(this.customers.count).keys())
-}
+  getPageCounts(): number[] {
+    return Array.from(Array(this.customers.count).keys());
+  }
 
   getList() {
-    let a=Array.from(Array(this.customers.count).keys())
     this.dataLoaded = false;
-    this.customerService.getList().subscribe((response) => {
-      this.customers = response;
-      this.dataLoaded = true;
-    });
+    this.customerService
+      .getList({ index: 0, size: 10 })
+      .subscribe((response) => {
+        this.customers = response;
+        this.dataLoaded = true;
+      });
   }
 }
