@@ -27,7 +27,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");
 
-            GetByIdTransportRequestResponse response = _mapper.Map<GetByIdTransportRequestResponse>(request);
+            GetByIdTransportRequestResponse response = _mapper.Map<GetByIdTransportRequestResponse>(transportRequest);
             return response;
         }
     }
