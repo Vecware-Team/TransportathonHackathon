@@ -76,8 +76,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Features\Cars\Commands\" />
-    <Folder Include="Features\Cars\Queries\" />
     <Folder Include="Features\DriverLicenses\Commands\Delete\" />
     <Folder Include="Features\DriverLicenses\Commands\Update\" />
     <Folder Include="Features\DriverLicenses\Queries\GetList\" />
