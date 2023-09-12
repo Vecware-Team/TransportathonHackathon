@@ -30,6 +30,11 @@ import { TranslateUpdateComponent } from './components/admin/translates/translat
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RegisterComponent } from './components/register/register.component';
+import { RegisterCarrierComponent } from './components/register/register-carrier/register-carrier.component';
+import { RegisterCompanyComponent } from './components/register/register-company/register-company.component';
+import { RegisterCustomerComponent } from './components/register/register-customer/register-customer.component';
+import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
 
 @NgModule({
   declarations: [
@@ -50,6 +55,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     TranslateCreateComponent,
     TranslateUpdateComponent,
     TranslateDeleteComponent,
+    RegisterComponent,
+    RegisterCarrierComponent,
+    RegisterCompanyComponent,
+    RegisterCustomerComponent,
+    RegisterDriverComponent,
   ],
   imports: [
     BrowserModule,

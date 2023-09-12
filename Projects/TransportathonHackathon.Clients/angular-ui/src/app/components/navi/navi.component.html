@@ -11,19 +11,36 @@
                   <a class="nav-link nav-link-custom nav-link-collapse" aria-current="page" routerLink="/">Home</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/products">Companies</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/translates">Transportations</a>
+                  <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/transportations">Transportations</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/admin">Admin</a>
                 </li>
               </ul>
-            <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+
+              <!-- <li class="nav-item dropdown dropdown-menu-end ms-2">
+
+                <a class="nav-link d-block link-dark text-decoration-none dropdown-toggle" role="button" id="dropdownUser"
+                  data-bs-toggle="dropdown" aria-expanded="false">
+                  <img  alt="mdo" class="rounded-circle" width="32" height="32">
+                  {{"fatih dağ"}}
+                </a>
+        
+                <ul class="dropdown-menu text-small dropdown-menu-light" aria-labelledby="dropdownUser">
+                  <li><a class="dropdown-item" routerLink="/admin">{{"admin" | translate}}</a></li>
+                  <li><a class="dropdown-item" routerLink="/profile">{{"profile" | translate}}</a></li>
+                  <li><a class="dropdown-item disabled">{{'settings' | translate}}</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                </ul>
+        
+              </li> -->
+        
+              <form  class="d-flex" role="search">
+                <button class="btn btn-outline-success me-2" type="submit" routerLink="/login">Login</button>
+                <button class="btn btn-outline-success" type="submit" routerLink="/register">Register</button>
+              </form>
         </div>
     </div>
 </nav>

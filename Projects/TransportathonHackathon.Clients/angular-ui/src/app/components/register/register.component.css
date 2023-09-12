@@ -1,0 +1,12 @@
+.container {
+  margin-top: 5%;
+}
+
+.card-select {
+  box-shadow: 0 10px 20px 0 rgba(26, 44, 57, 0.14);
+  transition: all 0.2s ease;
+}
+
+.card-select:hover {
+  transform: scale(1.05);
+}
