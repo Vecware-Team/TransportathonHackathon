@@ -21,7 +21,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("create")]
+        [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateTranslateCommand command)
         {
             CreatedTranslateResponse response = await _mediator.Send(command);
