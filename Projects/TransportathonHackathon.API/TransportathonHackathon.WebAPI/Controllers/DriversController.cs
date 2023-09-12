@@ -9,40 +9,40 @@ using TransportathonHackathon.Application.Features.Drivers.Queries.GetList;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class DriversController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> CreateDriver([FromBody] CreateDriverCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateDriverCommand command)
         {
             CreatedDriverResponse result = await Mediator.Send(command);
             return Ok(result);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteDriver([FromQuery] DeleteDriverCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteDriverCommand command)
         {
             DeletedDriverResponse result = await Mediator.Send(command);
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateDriver([FromBody] UpdateDriverCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateDriverCommand command)
         {
             UpdatedDriverResponse result = await Mediator.Send(command);
             return Ok(result);
         }
 
         [HttpGet("{EmployeeId}")]
-        public async Task<IActionResult> GetByIdDriver([FromRoute] GetByIdDriverQuery command)
+        public async Task<IActionResult> GetById([FromRoute] GetByIdDriverQuery command)
         {
             GetByIdDriverResponse result = await Mediator.Send(command);
             return Ok(result);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetListDriver([FromQuery] GetListDriverQuery command)
+        public async Task<IActionResult> GetList([FromQuery] GetListDriverQuery command)
         {
             Paginate<GetListDriverResponse> result = await Mediator.Send(command);
             return Ok(result);
