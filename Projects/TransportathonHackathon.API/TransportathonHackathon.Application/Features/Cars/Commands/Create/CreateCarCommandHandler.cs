@@ -31,8 +31,8 @@ namespace TransportathonHackathon.Application.Features.Cars.Commands.Create
             });
 
             car = await _carRepository.GetAsync(
-                e => e.VehicleId == vehicle.Id, 
-                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver)
+                e => e.VehicleId == vehicle.Id,
+                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee)
             );
 
             CreatedCarResponse response = _mapper.Map<CreatedCarResponse>(car);

@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Cars.Queries.GetById
         {
             Car? car = await _carRepository.GetAsync(
                 e => e.VehicleId == request.VehicleId,
-                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver)
+                include: e => e.Include(e => e.Vehicle).Include(e => e.Vehicle.Company).Include(e => e.Vehicle.Driver).Include(e => e.Vehicle.Driver.Employee)
             );
             if (car is null)
                 throw new NotFoundException("Car not found");

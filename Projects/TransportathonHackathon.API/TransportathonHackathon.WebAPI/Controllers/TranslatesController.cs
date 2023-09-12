@@ -10,7 +10,7 @@ using TransportathonHackathon.Application.Features.Translates.Queries.GetList;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class TranslatesController : ControllerBase
     {
@@ -22,42 +22,42 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTranslate([FromBody] CreateTranslateCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTranslateCommand command)
         {
             CreatedTranslateResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteTranslate([FromQuery] DeleteTranslateCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTranslateCommand command)
         {
             DeletedTranslateResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> UpdateTranslate([FromBody] UpdateTranslateCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateTranslateCommand command)
         {
             UpdatedTranslateResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("{Id}")]
-        public async Task<IActionResult> GetByIdTranslate([FromRoute] GetByIdTranslateQuery command)
+        public async Task<IActionResult> GetById([FromRoute] GetByIdTranslateQuery command)
         {
             GetByIdTranslateResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpGet("[action]/{Key}")]
-        public async Task<IActionResult> GetByKeyTranslate([FromRoute] GetByKeyTranslateQuery command)
+        [HttpGet("{Key}")]
+        public async Task<IActionResult> GetByKey([FromRoute] GetByKeyTranslateQuery command)
         {
             IList<GetByKeyTranslateResponse> response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpGet("[action]/{LanguageCode}")]
-        public async Task<IActionResult> GetByLanguageCodeTranslate([FromRoute] GetByLanguageCodeTranslateQuery command)
+        [HttpGet("{LanguageCode}")]
+        public async Task<IActionResult> GetByLanguageCode([FromRoute] GetByLanguageCodeTranslateQuery command)
         {
             IList<GetByLanguageCodeTranslateResponse> response = await _mediator.Send(command);
             return Ok(response);
@@ -65,6 +65,8 @@ namespace TransportathonHackathon.WebAPI.Controllers
 
         [HttpGet("getlist")]
         public async Task<IActionResult> GetListTranslate([FromQuery] GetListTranslateQuery command)
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetListTranslateQuery command)
         {
             IList<GetListTranslateResponse> response = await _mediator.Send(command);
             return Ok(response);

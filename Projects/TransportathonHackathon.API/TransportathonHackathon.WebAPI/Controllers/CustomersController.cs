@@ -9,7 +9,7 @@ using TransportathonHackathon.Application.Features.Customers.Queries.GetList;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CustomersController : ControllerBase
     {
@@ -20,36 +20,36 @@ namespace TransportathonHackathon.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost("create")]
-        public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerCommand command)
+        [HttpPost]
+        public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
         {
             CreatedCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpDelete("delete")]
-        public async Task<IActionResult> DeleteCustomer([FromQuery] DeleteCustomerCommand command)
+        [HttpDelete]
+        public async Task<IActionResult> Delete([FromQuery] DeleteCustomerCommand command)
         {
             DeletedCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpPut("update")]
-        public async Task<IActionResult> UpdateCustomer([FromBody] UpdateCustomerCommand command)
+        [HttpPut]
+        public async Task<IActionResult> Update([FromBody] UpdateCustomerCommand command)
         {
             UpdatedCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("{AppUserId}")]
-        public async Task<IActionResult> GetListCustomer([FromRoute] GetByIdCustomerQuery command)
+        public async Task<IActionResult> GetById([FromRoute] GetByIdCustomerQuery command)
         {
             GetByIdCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpGet("getlist")]
-        public async Task<IActionResult> GetListCustomer([FromQuery] GetListCustomerQuery command)
+        [HttpGet]
+        public async Task<IActionResult> GetList([FromQuery] GetListCustomerQuery command)
         {
             IPaginate<GetListCustomerResponse> response = await _mediator.Send(command);
             return Ok(response);

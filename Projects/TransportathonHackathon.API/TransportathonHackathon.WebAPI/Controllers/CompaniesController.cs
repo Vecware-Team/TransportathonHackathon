@@ -10,7 +10,7 @@ using TransportathonHackathon.Application.Features.Companies.Queries.GetList;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class CompaniesController : ControllerBase
     {
@@ -22,42 +22,42 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCompany([FromBody] CreateCompanyCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCompanyCommand command)
         {
             CreatedCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> DeleteCompany([FromQuery] DeleteCompanyCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCompanyCommand command)
         {
             DeletedCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
         
         [HttpPut]
-        public async Task<IActionResult> UpdateCompany([FromBody] UpdateCompanyCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateCompanyCommand command)
         {
             UpdatedCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("{AppUserId}")]
-        public async Task<IActionResult> GetByIdCompany([FromRoute] GetByIdCompanyQuery command)
+        public async Task<IActionResult> GetById([FromRoute] GetByIdCompanyQuery command)
         {
             GetByIdCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("GetByEmail")]
-        public async Task<IActionResult> GetByEmailCompany([FromQuery] GetByEmailCompanyQuery command)
+        public async Task<IActionResult> GetByEmail([FromQuery] GetByEmailCompanyQuery command)
         {
             GetByEmailCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetListCompany([FromQuery] GetListCompanyQuery command)
+        public async Task<IActionResult> GetList([FromQuery] GetListCompanyQuery command)
         {
             IPaginate<GetListCompanyResponse> response = await _mediator.Send(command);
             return Ok(response);
