@@ -10,7 +10,9 @@ namespace TransportathonHackathon.Domain.Entities
         public int DriverCount { get; set; }
         public int CompletedJobsCount { get; set; }
 
-        public virtual ICollection<Employee>? Employees { get; set; }
         public virtual AppUser AppUser { get; set; }
+        public virtual ICollection<Employee>? Employees { get; set; }
+        public virtual ICollection<TransportRequest>? TransportRequests { get; set; }
+        public virtual ICollection<Vehicle>? Vehicles { get; set; }
     }
 }

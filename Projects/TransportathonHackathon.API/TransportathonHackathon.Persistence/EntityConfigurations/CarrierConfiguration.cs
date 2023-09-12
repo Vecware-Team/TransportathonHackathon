@@ -10,6 +10,8 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
         {
             builder.ToTable("Carriers").HasKey(e => e.EmployeeId);
 
+            builder.Property(e => e.EmployeeId).HasColumnName("EmployeeId").IsRequired();
+
             builder.HasOne(e => e.Employee);
 
             builder.Ignore(e => e.CreatedDate);

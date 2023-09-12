@@ -20,15 +20,19 @@ namespace TransportathonHackathon.Persistence
 
             services.AddIdentityCore<AppUser>().AddRoles<AppRole>().AddEntityFrameworkStores<ProjectDbContext>();
 
-            services.AddScoped<ICarrierRepository, CarrierRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<ICustomerRepository, CustomerRepository>();
+            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<ICarrierRepository, CarrierRepository>();
             services.AddScoped<IDriverRepository, DriverRepository>();
             services.AddScoped<IDriverLicenseRepository, DriverLicenseRepository>();
             services.AddScoped<ILanguageRepository, LanguageRepository>();
-            services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<ITranslateRepository, TranslateRepository>();
-
+            services.AddScoped<ITransportRequestRepository, TransportRequestRepository>();
+            services.AddScoped<IVehicleRepository, VehicleRepository>();
+            services.AddScoped<ICarRepository, CarRepository>();
+            services.AddScoped<ITruckRepository, TruckRepository>();
+            services.AddScoped<IPickupTruckRepository, PickupTruckRepository>();
 
             return services;
         }

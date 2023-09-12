@@ -14,6 +14,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Property(e => e.LastName).HasColumnName("LastName").IsRequired();
 
             builder.HasOne(e => e.AppUser);
+            builder.HasMany(e => e.TransportRequests);
 
             builder.Ignore(e => e.CreatedDate);
             builder.Ignore(e => e.UpdatedDate);

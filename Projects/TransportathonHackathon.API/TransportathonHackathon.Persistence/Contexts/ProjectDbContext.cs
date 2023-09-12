@@ -23,6 +23,11 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Language> Languages { get; set; }
         public DbSet<Translate> Translates { get; set; }
         public DbSet<Employee> Employees { get; set; }
+        public DbSet<TransportRequest> TransportRequests { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Car> Cars { get; set; }
+        public DbSet<Truck> Trucks { get; set; }
+        public DbSet<PickupTruck> PickupTrucks { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

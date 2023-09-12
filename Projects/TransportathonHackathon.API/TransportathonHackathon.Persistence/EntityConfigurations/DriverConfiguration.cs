@@ -8,11 +8,9 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
     {
         public void Configure(EntityTypeBuilder<Driver> builder)
         {
-            builder.HasOne(e => e.DriverLicense)
-                    .WithOne(c => c.Driver)
-                    .HasForeignKey<DriverLicense>(c => c.DriverId);
-
             builder.ToTable("Drivers").HasKey(e => e.EmployeeId);
+
+            builder.Property(e => e.EmployeeId).HasColumnName("EmployeeId").IsRequired();
 
             builder.HasOne(e => e.Employee);
             builder.HasOne(e => e.DriverLicense);

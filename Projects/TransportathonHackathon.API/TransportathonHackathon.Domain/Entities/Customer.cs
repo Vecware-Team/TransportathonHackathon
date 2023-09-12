@@ -10,5 +10,6 @@ namespace TransportathonHackathon.Domain.Entities
         public string LastName { get; set; }
 
         public virtual AppUser AppUser { get; set; }
+        public virtual ICollection<TransportRequest>? TransportRequests { get; set; }
     }
 }
