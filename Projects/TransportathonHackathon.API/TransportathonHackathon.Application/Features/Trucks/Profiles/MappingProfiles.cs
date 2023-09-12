@@ -13,29 +13,39 @@ namespace TransportathonHackathon.Application.Features.Trucks.Profiles
     {
         public MappingProfiles()
         {
-            CreateMap<Truck, CreateTruckCommand>();
+            CreateMap<Truck, CreateTruckCommand>().ReverseMap();
             CreateMap<Truck, CreatedTruckResponse>()
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
+                .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap(); ;
 
             CreateMap<Truck, DeletedTruckResponse>()
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
+                .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap(); ;
 
             CreateMap<Truck, UpdateTruckCommand>().ReverseMap();
             CreateMap<Truck, UpdatedTruckResponse>()
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
+                .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();
 
             CreateMap<Truck, GetByIdTruckResponse>()
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
+                .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();
 
             CreateMap<Truck, GetListTruckResponse>()
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
+                .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();

@@ -25,7 +25,7 @@ namespace TransportathonHackathon.Application.Features.Translates.Commands.Delet
                 throw new NotFoundException("Translate not found");
 
             Language language = _mapper.Map<Language>(translate.Language);
-            await _translateRepository.DeleteAsync(translate);
+            await _translateRepository.DeleteAsync(translate, true);
 
             translate.Language = language;
             language.Translates = null;

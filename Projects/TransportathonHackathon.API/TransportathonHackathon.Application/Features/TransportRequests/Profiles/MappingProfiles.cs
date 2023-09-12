@@ -15,7 +15,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Profile
     {
         public MappingProfiles()
         {
-            CreateMap<TransportRequest, CreateTransportRequestCommand>();
+            CreateMap<TransportRequest, CreateTransportRequestCommand>().ReverseMap();
             CreateMap<TransportRequest, CreatedTransportRequestResponse>()
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
                 .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
