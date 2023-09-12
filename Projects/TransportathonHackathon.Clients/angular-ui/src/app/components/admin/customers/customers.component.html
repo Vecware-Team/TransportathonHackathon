@@ -1,1 +1,64 @@
-<p>customers works!</p>
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Müşteriler</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getList();">
+                </fa-icon>
+            </button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+            <span data-feather="calendar" class="align-text-bottom"></span>
+            This week
+        </button>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">AppUserId</th>
+            <th scope="col">UserName</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Email</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+        <tr *ngFor="let customer of customers.items; let i = index;">
+            <th scope="row">{{i + 1}}</th>
+            <th>{{customer.appUserId}}</th>
+            <td>{{customer.userName}}</td>
+            <td>{{customer.firstName}}</td>
+            <td>{{customer.lastName}}</td>
+            <td>{{customer.email}}</td>
+            <!-- <td class="text-end">
+                <button class="btn shadow-none" (click)="openEditClaimsModal(user)">
+                    <fa-icon [icon]="faClipboardCheck" size="1x" class="fa fa-icon-clipboard"></fa-icon>
+                </button>
+            </td> -->
+        </tr>
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul class="pagination">
+        <li class="page-item" [ngClass]="{'disabled': !customers.hasPrevious}">
+            <a class="page-link" href="#" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        <li *ngFor="let page of getPageCounts()" class="page-item"><a class="page-link" href="#">{{page}}</a></li>
+        <li class="page-item">
+            <a class="page-link" href="#" aria-label="Next" [ngClass]="{'disabled': !customers.hasNext}">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

@@ -19,6 +19,8 @@ import { LanguagesComponent } from './components/admin/languages/languages.compo
 import { TranslatesComponent } from './components/admin/translates/translates.component';
 import { UsersComponent } from './components/admin/users/users.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { HttpClientModule } from '@angular/common/http';
+import * as $ from "jquery";
 
 @NgModule({
   declarations: [
@@ -26,7 +28,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     NaviComponent,
     FooterComponent,
     AdminComponent,
-
     CustomersComponent,
     CompaniesComponent,
     VehiclesComponent,
@@ -38,6 +39,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     ToastrModule.forRoot({ positionClass: 'top-right' }),
     FontAwesomeModule,
     TranslateModule.forRoot({
