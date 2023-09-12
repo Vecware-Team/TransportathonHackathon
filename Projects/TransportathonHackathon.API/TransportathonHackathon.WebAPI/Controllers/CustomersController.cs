@@ -20,21 +20,21 @@ namespace TransportathonHackathon.WebAPI.Controllers
             _mediator = mediator;
         }
 
-        [HttpPost]
+        [HttpPost("create")]
         public async Task<IActionResult> CreateCustomer([FromBody] CreateCustomerCommand command)
         {
             CreatedCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpDelete]
+        [HttpDelete("delete")]
         public async Task<IActionResult> DeleteCustomer([FromQuery] DeleteCustomerCommand command)
         {
             DeletedCustomerResponse response = await _mediator.Send(command);
             return Ok(response);
         }
 
-        [HttpPut]
+        [HttpPut("update")]
         public async Task<IActionResult> UpdateCustomer([FromBody] UpdateCustomerCommand command)
         {
             UpdatedCustomerResponse response = await _mediator.Send(command);
@@ -48,7 +48,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet("getlist")]
         public async Task<IActionResult> GetListCustomer([FromQuery] GetListCustomerQuery command)
         {
             IPaginate<GetListCustomerResponse> response = await _mediator.Send(command);

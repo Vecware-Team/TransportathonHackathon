@@ -1,4 +1,4 @@
-import { BaseEntity } from '../core/models/entity';
+import { BaseEntity } from '../../core/models/entity';
 import { DriverLicense } from './driverLicense';
 import { Employee } from './employee';
 

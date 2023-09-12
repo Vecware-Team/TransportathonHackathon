@@ -1,4 +1,4 @@
-import { BaseEntity } from '../core/models/entity';
+import { BaseEntity } from '../../core/models/entity';
 import { Driver } from './driver';
 
 export interface DriverLicense extends BaseEntity {

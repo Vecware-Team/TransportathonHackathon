@@ -1,4 +1,4 @@
-import { Entity } from "../core/models/entity";
+import { Entity } from "../../core/models/entity";
 
 export interface AppRoleClaim extends Entity<string> {
   roleId: string;

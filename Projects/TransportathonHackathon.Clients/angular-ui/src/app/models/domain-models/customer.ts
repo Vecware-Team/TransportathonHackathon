@@ -1,4 +1,4 @@
-import { BaseEntity } from '../core/models/entity';
+import { BaseEntity } from '../../core/models/entity';
 import { AppUser } from "./appUser";
 
 export interface Customer extends BaseEntity {

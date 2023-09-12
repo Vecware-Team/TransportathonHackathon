@@ -2,7 +2,7 @@ import { Carrier } from "./carrier";
 import { Driver } from "./driver";
 import { Company } from "./company";
 import { AppUser } from "./appUser";
-import { BaseEntity } from '../core/models/entity';
+import { BaseEntity } from '../../core/models/entity';
 
 export interface Employee extends BaseEntity{
     appUserId: string;

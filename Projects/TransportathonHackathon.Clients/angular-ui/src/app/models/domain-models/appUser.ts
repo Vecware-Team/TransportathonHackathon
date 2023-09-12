@@ -1,4 +1,4 @@
-import { Entity } from "../core/models/entity";
+import { Entity } from "../../core/models/entity";
 
 export interface AppUser extends Entity<string> {
   userName: string | null;

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { AppUser } from '../models/appUser';
+import { AppUser } from '../models/domain-models/appUser';
 
 @Injectable({
   providedIn: 'root',

@@ -1,4 +1,4 @@
-import { BaseEntity, Entity } from '../core/models/entity';
+import { BaseEntity, Entity } from '../../core/models/entity';
 import { Translate } from './translate';
 
 export interface Language extends Entity<string> {
