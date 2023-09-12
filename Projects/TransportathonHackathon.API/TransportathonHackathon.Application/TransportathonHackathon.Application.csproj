@@ -87,7 +87,6 @@
     <Folder Include="Features\PickupTrucks\Queries\" />
     <Folder Include="Features\Translates\Commands\" />
     <Folder Include="Features\Translates\Queries\" />
-    <Folder Include="Features\TransportRequests\Queries\" />
     <Folder Include="Features\Trucks\Commands\" />
     <Folder Include="Features\Trucks\Queries\" />
   </ItemGroup>

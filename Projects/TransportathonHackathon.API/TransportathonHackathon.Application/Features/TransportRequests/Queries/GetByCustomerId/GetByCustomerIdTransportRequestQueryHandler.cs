@@ -6,7 +6,7 @@ using TransportathonHackathon.Domain.Entities;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCustomerId
 {
-    public class GetByCustomerIdTransportRequestQueryHandler : IRequestHandler<GetByCustomerIdTransportRequestQuery, List<GetByCustomerIdTransportRequestResponse>
+    public class GetByCustomerIdTransportRequestQueryHandler : IRequestHandler<GetByCustomerIdTransportRequestQuery, List<GetByCustomerIdTransportRequestResponse>>
     {
         private readonly ITransportRequestRepository _transportRequestRepository;
         private readonly IMapper _mapper;
