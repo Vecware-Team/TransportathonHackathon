@@ -81,8 +81,6 @@
     <Folder Include="Features\DriverLicenses\Queries\GetList\" />
     <Folder Include="Features\DriverLicenses\Queries\GetById\" />
     <Folder Include="Features\Languages\Queries\GetByCode\" />
-    <Folder Include="Features\PickupTrucks\Commands\" />
-    <Folder Include="Features\PickupTrucks\Queries\" />
     <Folder Include="Features\Translates\Commands\" />
     <Folder Include="Features\Translates\Queries\" />
   </ItemGroup>
