@@ -22,7 +22,7 @@ export class TranslationService implements TranslateLoader {
 
   getTranslation(code: string): Observable<any> {
     return this.httpClient.get<GetJsonTranslateResponse>(
-      this.apiUrl + 'getallbycode?code=' + code
+      this.apiUrl + 'GetByLanguageCodeAsString/' + code
     );
   }
 
@@ -58,9 +58,9 @@ export class TranslationService implements TranslateLoader {
     );
   }
 
-  getListByCode(): Observable<GetListByCodeTranslateResponse[]> {
+  getListByCode(code: string): Observable<GetListByCodeTranslateResponse[]> {
     return this.httpClient.get<GetListByCodeTranslateResponse[]>(
-      this.apiUrl + 'GetByLanguageCodeTranslate'
+      this.apiUrl + 'GetByLanguageCode/' + code
     );
   }
 }

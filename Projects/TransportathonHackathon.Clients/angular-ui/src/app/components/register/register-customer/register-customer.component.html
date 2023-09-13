@@ -1,29 +1,32 @@
 <body class="d-flex align-items-center py-4 bg-body-tertiary" style="height: 95vh;">
     <main class="form-signin w-100 m-auto">
-        <form>
+        <form [formGroup]="registerForm">
             <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="57">
             <h1 class="h3 mb-3 fw-normal">Lütfen kayıt olun</h1>
 
             <div class="form-floating">
-                <input type="text" class="form-control" id="username" placeholder="Username">
-                <label for="username">User name</label>
+                <input type="text" formControlName="userName" class="form-control" id="userName"
+                    placeholder="user Name">
+                <label for="userName">User name</label>
             </div>
             <div class="form-floating">
-                <input type="text" class="form-control" id="firstName" placeholder="John">
+                <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="John">
                 <label for="firstName">First name</label>
             </div>
             <div class="form-floating mb-3">
-                <input type="text" class="form-control" id="lastNmae" placeholder="Doe">
+                <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Doe">
                 <label for="lastName">Last name</label>
             </div>
 
             <div class="form-floating">
-                <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                <input type="email" formControlName="email" class="form-control" id="email"
+                    placeholder="name@example.com">
                 <label for="email">Email address</label>
             </div>
             <div class="form-floating">
-                <input type="password" class="form-control" id="password" placeholder="Password">
-                <label for="password">Password</label>
+                <input type="password" formControlName="password" class=" form-control" id="password"
+                    placeholder="Password">
+                <label for="password">{{"password" | translate}}</label>
             </div>
 
             <div class="form-check text-start my-3">
@@ -32,7 +35,7 @@
                     Remember me
                 </label>
             </div>
-            <button class="btn btn-custom w-100 py-2" type="submit">Sign in</button>
+            <button type="button" class="btn btn-custom w-100 py-2" (click)="register()">Sign in</button>
             <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
         </form>
     </main>

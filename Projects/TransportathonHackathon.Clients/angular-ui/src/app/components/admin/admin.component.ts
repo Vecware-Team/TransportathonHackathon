@@ -97,7 +97,7 @@ export class AdminComponent implements OnInit {
           this.currentComponent = LanguagesComponent;
           break;
         default:
-          this.currentComponent = UsersComponent;
+          this.currentComponent = CustomersComponent;
           break;
       }
     });
