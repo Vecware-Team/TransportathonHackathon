@@ -13,8 +13,6 @@ import { AdminComponent } from './components/admin/admin.component';
 
 import { CustomersComponent } from './components/admin/customers/customers.component';
 import { CompaniesComponent } from './components/admin/companies/companies.component';
-import { VehiclesComponent } from './components/admin/vehicles/vehicles.component';
-import { EmployeesComponent } from './components/admin/employees/employees.component';
 import { LanguagesComponent } from './components/admin/languages/languages.component';
 import { TranslatesComponent } from './components/admin/translates/translates.component';
 import { UsersComponent } from './components/admin/users/users.component';
@@ -36,6 +34,24 @@ import { RegisterCompanyComponent } from './components/register/register-company
 import { RegisterCustomerComponent } from './components/register/register-customer/register-customer.component';
 import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
+import { CompanyDetailsComponent } from './components/company-details/company-details.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { CompanyManagementPanelComponent } from './components/company-management/company-management-panel.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+import { TruckAddComponent } from './components/company-management/vehicles/trucks/truck-add/truck-add.component';
+
+import { PickupTruckAddComponent } from './components/company-management/vehicles/pickup-trucks/pickup-truck-add/pickup-truck-add.component';
+
+import { VehiclesComponent } from './components/company-management/vehicles/vehicles.component';
+import { TruckUpdateComponent } from './components/company-management/vehicles/trucks/truck-update/truck-update.component';
+import { TruckDeleteComponent } from './components/company-management/vehicles/trucks/truck-delete/truck-delete.component';
+import { PickupTruckDeleteComponent } from './components/company-management/vehicles/pickup-trucks/pickup-truck-delete/pickup-truck-delete.component';
+import { PickupTruckUpdateComponent } from './components/company-management/vehicles/pickup-trucks/pickup-truck-update/pickup-truck-update.component';
+import { CarAddComponent } from './components/company-management/vehicles/cars/car-add/car-add.component';
+import { CarDeleteComponent } from './components/company-management/vehicles/cars/car-delete/car-delete.component';
+import { CarUpdateComponent } from './components/company-management/vehicles/cars/car-update/car-update.component';
+import { EmployeesComponent } from './components/company-management/employees/employees.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +77,20 @@ import { ErrorInterceptor } from './interceptors/error.interceptor';
     RegisterCompanyComponent,
     RegisterCustomerComponent,
     RegisterDriverComponent,
+    CompanyDetailsComponent,
+    CustomerDetailsComponent,
+    CompanyManagementPanelComponent,
+    CompanyListComponent,
+    TruckAddComponent,
+    TruckDeleteComponent,
+    TruckUpdateComponent,
+    PickupTruckAddComponent,
+    PickupTruckDeleteComponent,
+    PickupTruckUpdateComponent,
+    CarAddComponent,
+    CarDeleteComponent,
+    CarUpdateComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

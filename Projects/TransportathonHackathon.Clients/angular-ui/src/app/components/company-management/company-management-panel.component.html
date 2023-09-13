@@ -1,0 +1,49 @@
+<body>
+
+    <div class="container-fluid my-gutter my-md-4 my-layout">
+        <aside class="my-sidebar">
+            <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+                <a href="/" class="d-flex align-items-center mb-3 mb-md-0 link-dark text-decoration-none">
+                    <fa-icon [icon]="faGauge" size="2x" class="me-2"></fa-icon>
+                    <span class="fs-4">{{company.companyName}}</span>
+                </a>
+                <hr>
+                <ul class="nav my-navbar-nav nav-pills flex-column mb-auto">
+                    <li class="nav-item">
+                        <a (click)="navigate('/company/panel/manage-transport-requests', 'manage-transport-requests')"
+                            class="nav-link link-dark" routerLinkActive="active"
+                            routerLink="/company/panel/manage-transport-requests">
+                            <fa-icon [icon]="faTruckFast" size="1x" class="fa me-2"></fa-icon>
+                            Nakliyat Talepleri
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a (click)="navigate('/company/panel/manage-employees', 'manage-employees')"
+                            class="nav-link link-dark" routerLinkActive="active"
+                            routerLink="/company/panel/manage-employees">
+                            <fa-icon [icon]="faBriefcase" size="1x" class="fa me-2"></fa-icon>
+                            Çalışanlar
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a (click)="navigate('/company/panel/manage-vehicles', 'manage-vehicles')"
+                            class="nav-link link-dark" routerLinkActive="active"
+                            routerLink="/company/panel/manage-vehicles">
+                            <fa-icon [icon]="faTruck" size="1x" class="fa me-2"></fa-icon>
+                            Araçlar
+                        </a>
+                    </li>
+
+                </ul>
+            </div>
+        </aside>
+
+        <main class="my-main order-1 px-3">
+            <ng-container *ngComponentOutlet="currentComponent"></ng-container>
+        </main>
+    </div>
+
+
+</body>

@@ -7,6 +7,7 @@ import { Observable } from 'rxjs';
 import { AccessToken } from '../models/domain-models/accessToken';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { LoginDto } from '../models/dtos/loginDto';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +47,10 @@ export class AuthService {
       this.apiUrl + 'registerDriver',
       registerModel
     );
+  }
+
+  login(loginModel: LoginDto): Observable<AccessToken> {
+    return this.httpClient.post<AccessToken>(this.apiUrl + 'login', loginModel);
   }
 
   signOut() {

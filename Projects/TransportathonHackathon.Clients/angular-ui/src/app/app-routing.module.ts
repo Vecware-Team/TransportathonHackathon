@@ -9,6 +9,11 @@ import { RegisterCustomerComponent } from './components/register/register-custom
 import { RegisterCompanyComponent } from './components/register/register-company/register-company.component';
 import { RegisterCarrierComponent } from './components/register/register-carrier/register-carrier.component';
 import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
+import { CompanyDetailsComponent } from './components/company-details/company-details.component';
+import { CompanyListComponent } from './components/company-list/company-list.component';
+import { LoginComponent } from './components/login/login.component';
+import { CompanyManagementPanelComponent } from './components/company-management/company-management-panel.component';
+import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -22,6 +27,26 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: AdminComponent,
+  },
+  {
+    path: 'companies',
+    component: CompanyListComponent,
+  },
+  {
+    path: 'companies/company/details/:companyId',
+    component: CompanyDetailsComponent,
+  },
+  {
+    path: 'company/panel/:currentPage',
+    component: CompanyManagementPanelComponent,
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+  },
+  {
+    path: 'profile',
+    component: CustomerDetailsComponent,
   },
   {
     path: 'register',
