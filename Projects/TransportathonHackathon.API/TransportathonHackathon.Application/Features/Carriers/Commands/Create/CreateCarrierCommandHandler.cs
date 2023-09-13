@@ -3,9 +3,11 @@ using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Features.Carriers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
+using TransportathonHackathon.Application.Extensions;
 
 namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
@@ -14,16 +16,19 @@ namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
         private readonly ICarrierRepository _carrierRepository;
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
+        private readonly CarrierBusinessRules _rules;
 
-        public CreateCarrierCommandHandler(UserManager<AppUser> userManager, IMapper mapper, ICarrierRepository carrierRepository)
+        public CreateCarrierCommandHandler(UserManager<AppUser> userManager, IMapper mapper, ICarrierRepository carrierRepository, CarrierBusinessRules rules)
         {
             _userManager = userManager;
             _mapper = mapper;
             _carrierRepository = carrierRepository;
+            _rules = rules;
         }
 
         public async Task<CreatedCarrierResponse> Handle(CreateCarrierCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CheckIfUserEmailorUserNameDuplicatedWhenInserting(request.Email, request.UserName);
             Carrier carrier = _mapper.Map<Carrier>(request);
 
             IdentityResult result = await _userManager.CreateAsync(new AppUser()

@@ -1,6 +1,8 @@
-﻿namespace TransportathonHackathon.Application.Features.Drivers.Rules
+﻿using Core.Application.Rules;
+
+namespace TransportathonHackathon.Application.Features.Drivers.Rules
 {
-    public class DriverBusinessRules
+    public class DriverBusinessRules : BaseBusinessRules
     {
     }
 }
