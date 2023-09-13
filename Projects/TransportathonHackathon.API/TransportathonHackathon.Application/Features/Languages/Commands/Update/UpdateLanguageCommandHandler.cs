@@ -31,7 +31,6 @@ namespace TransportathonHackathon.Application.Features.Languages.Commands.Update
             if (language is null)
                 throw new NotFoundException("Language not found");
 
-            language.Translates?.ToList().ForEach(e => e.Language = null);
 
             language.Code = languageToUpdate.Code;
             language.LocallyName = languageToUpdate.LocallyName;
@@ -40,6 +39,7 @@ namespace TransportathonHackathon.Application.Features.Languages.Commands.Update
 
             await _languageRepository.SaveChangesAsync();
 
+            language.Translates?.ToList().ForEach(e => e.Language = null);
             UpdatedLanguageResponse response = _mapper.Map<UpdatedLanguageResponse>(language);
             return response;
         }
