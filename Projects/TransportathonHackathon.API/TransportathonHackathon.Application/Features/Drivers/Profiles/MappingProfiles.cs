@@ -8,6 +8,7 @@ using TransportathonHackathon.Application.Features.Carriers.Queries.GetList;
 using TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver;
 using TransportathonHackathon.Application.Features.Drivers.Commands.DeleteDriver;
 using TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDriver;
+using TransportathonHackathon.Application.Features.Drivers.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetList;
 using TransportathonHackathon.Domain.Entities;
@@ -76,7 +77,18 @@ namespace TransportathonHackathon.Application.Features.Drivers.Profiles
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Employee.Company.CompanyName))
                 .ReverseMap();
 
-            CreateMap<Paginate<Driver>, Paginate<GetListDriverResponse>>();
+            CreateMap<Paginate<Driver>, Paginate<GetListDriverResponse>>().ReverseMap();
+
+            CreateMap<Driver, GetByCompanyIdDriverResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.Employee.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.Employee.AppUser.UserName))
+                .ForMember(destinationMember: e => e.FirstName, memberOptions: opt => opt.MapFrom(e => e.Employee.FirstName))
+                .ForMember(destinationMember: e => e.LastName, memberOptions: opt => opt.MapFrom(e => e.Employee.LastName))
+                .ForMember(destinationMember: e => e.IsOnTransitNow, memberOptions: opt => opt.MapFrom(e => e.Employee.IsOnTransitNow))
+                .ForMember(destinationMember: e => e.Age, memberOptions: opt => opt.MapFrom(e => e.Employee.Age))
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Employee.Company.AppUserId))
+                .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Employee.Company.CompanyName))
+                .ReverseMap();
         }
     }
 }

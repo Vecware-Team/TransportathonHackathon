@@ -1,6 +1,4 @@
-﻿using TransportathonHackathon.Domain.Entities;
-
-namespace TransportathonHackathon.Application.Features.Drivers.Queries.GetById
+﻿namespace TransportathonHackathon.Application.Features.Drivers.Queries.GetById
 {
     public class GetByIdDriverResponse
     {

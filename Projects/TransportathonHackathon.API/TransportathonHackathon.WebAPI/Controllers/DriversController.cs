@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver;
 using TransportathonHackathon.Application.Features.Drivers.Commands.DeleteDriver;
 using TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDriver;
+using TransportathonHackathon.Application.Features.Drivers.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetList;
 
@@ -39,6 +40,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         {
             GetByIdDriverResponse result = await Mediator.Send(command);
             return Ok(result);
+        }
+
+        [HttpGet("{CompanyId}")]
+        public async Task<IActionResult> GetByCompanyId([FromRoute] GetByCompanyIdDriverQuery command)
+        {
+            IList<GetByCompanyIdDriverResponse> response = await Mediator.Send(command);
+            return Ok(response);
         }
 
         [HttpGet]

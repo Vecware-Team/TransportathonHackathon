@@ -1,6 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.Carriers.Queries.GetById
+﻿namespace TransportathonHackathon.Application.Features.Carriers.Queries.GetByCompanyId
 {
-    public class GetByIdCarrierResponse
+    public class GetByCompanyIdCarrierResponse
     {
         public Guid EmployeeId { get; set; }
         public Guid CompanyId { get; set; }

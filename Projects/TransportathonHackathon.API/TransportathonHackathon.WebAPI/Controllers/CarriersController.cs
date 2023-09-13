@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Carriers.Commands.Create;
 using TransportathonHackathon.Application.Features.Carriers.Commands.Delete;
 using TransportathonHackathon.Application.Features.Carriers.Commands.Update;
+using TransportathonHackathon.Application.Features.Carriers.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Carriers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Carriers.Queries.GetList;
 
@@ -38,6 +39,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetById([FromRoute] GetByIdCarrierQuery command)
         {
             GetByIdCarrierResponse response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet("{CompanyId}")]
+        public async Task<IActionResult> GetByCompanyId([FromRoute] GetByCompanyIdCarrierQuery command)
+        {
+            IList<GetByCompanyIdCarrierResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
 
