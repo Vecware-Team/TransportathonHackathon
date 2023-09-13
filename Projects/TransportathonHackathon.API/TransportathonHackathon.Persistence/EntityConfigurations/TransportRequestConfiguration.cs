@@ -24,6 +24,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
 
             builder.HasOne(e => e.Customer);
             builder.HasOne(e => e.Company);
+            builder.HasOne(e => e.Comment);
         }
     }
 }

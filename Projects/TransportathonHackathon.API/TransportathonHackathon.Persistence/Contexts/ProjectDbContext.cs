@@ -28,6 +28,7 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Car> Cars { get; set; }
         public DbSet<Truck> Trucks { get; set; }
         public DbSet<PickupTruck> PickupTrucks { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder builder)

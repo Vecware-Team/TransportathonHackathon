@@ -1,4 +1,6 @@
-﻿using Core.Persistence.Pagination;
+﻿using Core.Application.Requests;
+using Core.Persistence.Dynamic;
+using Core.Persistence.Pagination;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Companies.Commands.Create;
@@ -7,6 +9,7 @@ using TransportathonHackathon.Application.Features.Companies.Commands.Update;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetByEmail;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetById;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetList;
+using TransportathonHackathon.Application.Features.Companies.Queries.GetListDynamic;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -34,7 +37,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             DeletedCompanyResponse response = await _mediator.Send(command);
             return Ok(response);
         }
-        
+
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateCompanyCommand command)
         {
@@ -60,6 +63,14 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] GetListCompanyQuery command)
         {
             IPaginate<GetListCompanyResponse> response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> GetListDynamic([FromBody] DynamicQuery dynamicQuery, [FromQuery] PageRequest pageRequest)
+        {
+            GetListDynamicCompanyQuery command = new() { DynamicQuery = dynamicQuery, PageRequest = pageRequest };
+            IPaginate<GetListDynamicCompanyResponse> response = await _mediator.Send(command);
             return Ok(response);
         }
     }

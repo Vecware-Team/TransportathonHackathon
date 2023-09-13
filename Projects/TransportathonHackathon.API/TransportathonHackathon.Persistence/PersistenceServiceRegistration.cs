@@ -33,6 +33,7 @@ namespace TransportathonHackathon.Persistence
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ITruckRepository, TruckRepository>();
             services.AddScoped<IPickupTruckRepository, PickupTruckRepository>();
+            services.AddScoped<ICommentRepository, CommentRepository>();
 
             return services;
         }

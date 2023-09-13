@@ -17,5 +17,6 @@ namespace TransportathonHackathon.Domain.Entities
 
         public virtual Customer Customer { get; set; }
         public virtual Company Company { get; set; }
+        public virtual Comment? Comment { get; set; }
     }
 }

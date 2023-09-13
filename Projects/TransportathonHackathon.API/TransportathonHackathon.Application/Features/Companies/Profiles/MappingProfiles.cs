@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.Companies.Commands.Update;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetByEmail;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetById;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetList;
+using TransportathonHackathon.Application.Features.Companies.Queries.GetListDynamic;
 using TransportathonHackathon.Domain.Entities;
 
 namespace TransportathonHackathon.Application.Features.Companies.Profiles
@@ -51,6 +52,13 @@ namespace TransportathonHackathon.Application.Features.Companies.Profiles
                 .ReverseMap();
 
             CreateMap<Paginate<Company>, Paginate<GetListCompanyResponse>>().ReverseMap();
+
+            CreateMap<Company, GetListDynamicCompanyResponse>()
+                .ForMember(destinationMember: e => e.Email, memberOptions: opt => opt.MapFrom(e => e.AppUser.Email))
+                .ForMember(destinationMember: e => e.UserName, memberOptions: opt => opt.MapFrom(e => e.AppUser.UserName))
+                .ReverseMap();
+
+            CreateMap<Paginate<Company>, Paginate<GetListDynamicCompanyResponse>>().ReverseMap();
         }
     }
 }
