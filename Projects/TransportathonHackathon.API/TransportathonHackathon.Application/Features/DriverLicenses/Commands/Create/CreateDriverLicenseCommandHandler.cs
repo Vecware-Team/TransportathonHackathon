@@ -25,6 +25,7 @@ namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.C
 
             driverLicense = await _driverLicenseRepository.GetAsync(e => e.DriverId == driverLicense.DriverId, include: e => e.Include(e => e.Driver));
 
+            driverLicense.Driver.DriverLicense = null;
             CreatedDriverLicenseResponse response = _mapper.Map<CreatedDriverLicenseResponse>(driverLicense);
             return response;
         }

@@ -1,8 +1,8 @@
 ﻿using TransportathonHackathon.Domain.Entities;
 
-namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Create
+namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Delete
 {
-    public class CreatedDriverLicenseResponse
+    public class DeletedDriverLicenseResponse
     {
         public Guid DriverId { get; set; }
         public string FirstName { get; set; }

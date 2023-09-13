@@ -1,8 +1,8 @@
-﻿using TransportathonHackathon.Domain.Entities;
+﻿using MediatR;
 
-namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Create
+namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Update
 {
-    public class CreatedDriverLicenseResponse
+    public class UpdateDriverLicenseCommand : IRequest<UpdatedDriverLicenseResponse>
     {
         public Guid DriverId { get; set; }
         public string FirstName { get; set; }
@@ -10,7 +10,5 @@ namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.C
         public string Classes { get; set; }
         public bool IsNew { get; set; }
         public DateTime LicenseGetDate { get; set; }
-
-        public Driver Driver { get; set; }
     }
 }
