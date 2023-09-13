@@ -82,7 +82,6 @@
     <Folder Include="Features\DriverLicenses\Queries\GetById\" />
     <Folder Include="Features\Languages\Queries\GetByCode\" />
     <Folder Include="Features\Translates\Commands\" />
-    <Folder Include="Features\Translates\Queries\" />
   </ItemGroup>
 
 </Project>
