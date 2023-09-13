@@ -15,7 +15,6 @@
     <Compile Remove="Features\Drivers\Models\**" />
     <Compile Remove="Features\Drivers\Responses\**" />
     <Compile Remove="Features\Drivers\Validators\**" />
-    <Compile Remove="Features\Employees\**" />
     <Compile Remove="Features\Languages\Dtos\**" />
     <Compile Remove="Features\Languages\Models\**" />
     <Compile Remove="Features\Languages\Rules\**" />
@@ -33,7 +32,6 @@
     <EmbeddedResource Remove="Features\Drivers\Models\**" />
     <EmbeddedResource Remove="Features\Drivers\Responses\**" />
     <EmbeddedResource Remove="Features\Drivers\Validators\**" />
-    <EmbeddedResource Remove="Features\Employees\**" />
     <EmbeddedResource Remove="Features\Languages\Dtos\**" />
     <EmbeddedResource Remove="Features\Languages\Models\**" />
     <EmbeddedResource Remove="Features\Languages\Rules\**" />
@@ -51,7 +49,6 @@
     <None Remove="Features\Drivers\Models\**" />
     <None Remove="Features\Drivers\Responses\**" />
     <None Remove="Features\Drivers\Validators\**" />
-    <None Remove="Features\Employees\**" />
     <None Remove="Features\Languages\Dtos\**" />
     <None Remove="Features\Languages\Models\**" />
     <None Remove="Features\Languages\Rules\**" />
