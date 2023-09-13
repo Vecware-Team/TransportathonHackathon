@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.Translates.Commands.Update;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetById;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetByKey;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetByLanguageCode;
+using TransportathonHackathon.Application.Features.Translates.Queries.GetByLanguageCodeAsString;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetList;
 
 namespace TransportathonHackathon.WebAPI.Controllers
@@ -60,6 +61,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetByLanguageCode([FromRoute] GetByLanguageCodeTranslateQuery command)
         {
             IList<GetByLanguageCodeTranslateResponse> response = await _mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet("{LanguageCode}")]
+        public async Task<IActionResult> GetByLanguageCodeAsString([FromRoute] GetByLanguageCodeAsStringQuery command)
+        {
+            string response = await _mediator.Send(command);
             return Ok(response);
         }
 
