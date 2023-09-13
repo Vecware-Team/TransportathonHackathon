@@ -28,7 +28,7 @@
     </thead>
     <tbody *ngIf="dataLoaded" class="table-group-divider">
         <tr *ngFor="let customer of customers.items; let i = index;">
-            <th scope="row">{{i + 1}}</th>
+            <th scope="row">{{ (index * size) + i + 1}}</th>
             <th>{{customer.appUserId}}</th>
             <td>{{customer.userName}}</td>
             <td>{{customer.firstName}}</td>
@@ -44,13 +44,14 @@
 </table>
 <nav aria-label="Page navigation example">
     <ul class="pagination">
-        <li class="page-item" [ngClass]="{'disabled': !customers.hasPrevious}">
+        <li class="page-item" [ngClass]="{'disabled': !customers.hasPrevious}" (click)="getPreviousPage()">
             <a class="page-link" href="#" aria-label="Previous">
                 <span aria-hidden="true">&laquo;</span>
             </a>
         </li>
-        <li *ngFor="let page of getPageCounts()" class="page-item"><a class="page-link" href="#">{{page}}</a></li>
-        <li class="page-item">
+        <li *ngFor="let page of getPageCounts()" class="page-item"><a class="page-link" href="#"
+                (click)="getPage(page)">{{page}}</a></li>
+        <li class="page-item" (click)="getNextPage()">
             <a class="page-link" href="#" aria-label="Next" [ngClass]="{'disabled': !customers.hasNext}">
                 <span aria-hidden="true">&raquo;</span>
             </a>

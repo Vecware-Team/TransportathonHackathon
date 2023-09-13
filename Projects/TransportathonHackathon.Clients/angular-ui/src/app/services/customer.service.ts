@@ -13,7 +13,7 @@ import { PageRequest } from '../core/requests/pageRequest';
 })
 export class CustomerService {
   apiUrl = environment.apiUrl + 'customers/';
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   create(
     customerModel: CreateCustomerRequest
@@ -28,7 +28,7 @@ export class CustomerService {
     pageRequest: PageRequest
   ): Observable<Paginate<GetListCustomerResponse>> {
     return this.httpClient.get<Paginate<GetListCustomerResponse>>(
-      this.apiUrl + 'getlist'
+      this.apiUrl + 'getlist?pagerequest.size=' + pageRequest.size + "&pagerequest.index=" + pageRequest.index
     );
   }
 }

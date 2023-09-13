@@ -13,23 +13,58 @@ export class CustomersComponent implements OnInit {
   faRedoAlt = faRedoAlt;
   dataLoaded = false;
   customers: Paginate<GetListCustomerResponse> = {} as Paginate<GetListCustomerResponse>;
+  index = 0;
+  size = 10;
 
-  constructor(private customerService: CustomerService) {}
+  constructor(private customerService: CustomerService) { }
   ngOnInit(): void {
     this.getList();
   }
 
   getPageCounts(): number[] {
-    return Array.from(Array(this.customers.count).keys());
+    let array: number[] = [];
+
+    for (let index = 0; index < this.customers.pages; index++) {
+      array.push(index + 1);
+    }
+    return array;
   }
 
   getList() {
     this.dataLoaded = false;
     this.customerService
-      .getList({ index: 0, size: 10 })
+      .getList({ index: this.index, size: this.size })
       .subscribe((response) => {
         this.customers = response;
+        console.log(this.customers);
+
         this.dataLoaded = true;
       });
+  }
+
+  getPage(page: number) {
+    if (page > 0 || page <= this.customers.pages) {
+
+      this.index = page - 1;
+      this.getList();
+    }
+  }
+
+  getPreviousPage() {
+    if (this.customers.hasPrevious) {
+      this.index = this.index - 1;
+      this.getList();
+    }
+  }
+
+  getNextPage() {
+    if (this.customers.hasNext) {
+      this.index = this.index + 1;
+      this.getList();
+    }
+  }
+
+  changeSize(size: number) {
+    this.size = size
   }
 }
