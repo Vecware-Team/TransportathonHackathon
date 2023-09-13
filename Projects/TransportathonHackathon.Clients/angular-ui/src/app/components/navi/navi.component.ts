@@ -11,7 +11,7 @@ import { TokenService } from 'src/app/services/token.service';
 })
 export class NaviComponent implements OnInit {
   tokenUser: TokenUserDto;
-
+  projectName = 'Transportathon';
   constructor(private router: Router, private tokenService: TokenService) {}
 
   ngOnInit(): void {

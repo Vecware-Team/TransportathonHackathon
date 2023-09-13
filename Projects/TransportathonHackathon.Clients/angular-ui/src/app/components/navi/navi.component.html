@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/">Navbar</a>
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-fluid flex-wrap flex-md-nowrap">
+    <a class="navbar-brand" routerLink="/">{{projectName}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
       aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -21,28 +21,38 @@
         </li>
       </ul>
 
-      <li *ngIf="isLogged()" class="nav-item dropdown dropdown-menu-end ms-2">
-
-        <a class="nav-link d-block link-dark text-decoration-none dropdown-toggle" role="button" id="dropdownUser"
-          data-bs-toggle="dropdown" aria-expanded="false">
-          <!-- <img class="rounded-circle" width="32" height="32"> -->
+      <li *ngIf="isLogged()" class="nav-item dropdown">
+        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {{tokenUser.userName}}
-        </a>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
 
-        <ul class="dropdown-menu text-small dropdown-menu-light" aria-labelledby="dropdownUser">
-          <li><a class="dropdown-item" routerLink="/admin">{{"adminPanel" | translate}}</a></li>
-          <li><a *ngIf="tokenUser.userType === 'Company'" class="dropdown-item"
-              routerLink="/company/panel">{{"companyPanel" | translate}}</a>
+          <li>
+            <a *ngIf="tokenUser.userType === 'Company'" class="dropdown-item" routerLink="/company/panel">
+              {{"companyPanel" | translate}}
+            </a>
           </li>
-          <li><a *ngIf="tokenUser.userType === 'Customer'" class="dropdown-item" routerLink="/profile">{{"profile" |
-              translate}}</a></li>
-          <li><a class="dropdown-item">{{'settings' | translate}}</a></li>
+          <li>
+            <a *ngIf="tokenUser.userType === 'Customer'" class="dropdown-item"
+              routerLink="/customer/details/{{tokenUser.id}}">
+              {{"profile" |translate}}
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item">
+              {{'settings' | translate}}
+            </a>
+          </li>
           <li>
             <hr class="dropdown-divider">
           </li>
-          <li><a class="dropdown-item" (click)="signOut()">{{'signOut' | translate}}</a></li>
-        </ul>
+          <li>
+            <a class="dropdown-item" (click)="signOut()">
+              {{'signOut' | translate}}
+            </a>
+          </li>
 
+        </ul>
       </li>
 
       <form *ngIf="!isLogged()" class="d-flex" role="search">

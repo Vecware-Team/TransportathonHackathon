@@ -81,10 +81,6 @@ export class AdminComponent implements OnInit {
     });
   }
 
-  getUserInfo(): AppUser {
-    return this.tokenService.getUserWithJWT() as AppUser;
-  }
-
   signOut() {
     this.authService.signOut();
     sessionStorage.removeItem('adminCurrentPage');

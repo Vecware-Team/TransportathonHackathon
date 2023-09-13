@@ -52,6 +52,11 @@ import { CarDeleteComponent } from './components/company-management/vehicles/car
 import { CarUpdateComponent } from './components/company-management/vehicles/cars/car-update/car-update.component';
 import { EmployeesComponent } from './components/company-management/employees/employees.component';
 import { LoginComponent } from './components/login/login.component';
+import { TransportRequestsComponent } from './components/company-management/transport-requests/transport-requests.component';
+import { HireCarrierComponent } from './components/company-management/employees/hire-carrier/hire-carrier.component';
+import { HireDriverComponent } from './components/company-management/employees/hire-driver/hire-driver.component';
+import { HireOutDriverComponent } from './components/company-management/employees/hire-out-driver/hire-out-driver.component';
+import { HireOutCarrierComponent } from './components/company-management/employees/hire-out-carrier/hire-out-carrier.component';
 
 @NgModule({
   declarations: [
@@ -91,6 +96,11 @@ import { LoginComponent } from './components/login/login.component';
     CarDeleteComponent,
     CarUpdateComponent,
     LoginComponent,
+    TransportRequestsComponent,
+    HireCarrierComponent,
+    HireDriverComponent,
+    HireOutDriverComponent,
+    HireOutCarrierComponent,
   ],
   imports: [
     BrowserModule,

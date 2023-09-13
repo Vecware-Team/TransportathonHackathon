@@ -5,10 +5,11 @@
             <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 link-dark text-decoration-none">
                     <fa-icon [icon]="faGauge" size="2x" class="me-2"></fa-icon>
-                    <span class="fs-4">{{company.companyName}}</span>
+                    <span *ngIf="company" class="fs-4">{{company.companyName}}</span>
                 </a>
                 <hr>
                 <ul class="nav my-navbar-nav nav-pills flex-column mb-auto">
+                    
                     <li class="nav-item">
                         <a (click)="navigate('/company/panel/manage-transport-requests', 'manage-transport-requests')"
                             class="nav-link link-dark" routerLinkActive="active"

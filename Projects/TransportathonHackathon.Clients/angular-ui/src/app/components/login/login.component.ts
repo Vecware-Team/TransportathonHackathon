@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { LoginDto } from 'src/app/models/dtos/loginDto';
@@ -19,7 +20,8 @@ export class LoginComponent {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private translateService: TranslateService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -38,16 +40,16 @@ export class LoginComponent {
       this.toastrService.error('My form invalid', 'Form Error');
     }
 
-    let loginModel: LoginDto = Object.assign(
-      {},
-      this.loginForm.value
-    );
+    let loginModel: LoginDto = Object.assign({}, this.loginForm.value);
     this.authService.login(loginModel).subscribe((response) => {
       this.tokenService.setToken(response.token);
       this.toastrService.success(
         'Successfully logged in',
         this.translateService.instant('successful')
       );
+      this.router.navigate(['/']).finally(() => {
+        location.reload();
+      });
     });
   }
 }

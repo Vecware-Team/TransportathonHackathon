@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { StorageService } from './storage.service';
+import { TokenUserDto } from '../models/dtos/tokenUserDto';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ export class TokenService {
   private jwtHelperService: JwtHelperService = new JwtHelperService();
   private tokenString: string = 'token';
 
-  constructor(private storageService: StorageService) { }
+  constructor(private storageService: StorageService) {}
 
   decodeToken(token: string) {
     return this.jwtHelperService.decodeToken(token);
@@ -34,41 +35,39 @@ export class TokenService {
   }
 
   getTokenExpirationDate(): Date | null {
-    if (this.getToken() == null)
-      return null;
+    if (this.getToken() == null) return null;
 
     return this.jwtHelperService.getTokenExpirationDate(this.getToken()!);
   }
 
   getUserRolesWithJWT(): string[] | null {
-    if (this.getToken() == null)
-      return null;
+    if (this.getToken() == null) return null;
 
     let token = this.decodeToken(this.getToken()!);
     let roles = token[Object.keys(token).filter((r) => r.endsWith('/role'))[0]];
 
-    if (Array.isArray(roles))
-      return roles;
+    if (Array.isArray(roles)) return roles;
 
     let array = [];
     array.push(roles);
     return array;
   }
 
-  getUserWithJWT(): object | null {
-    if (this.getToken() == null)
-      return null;
+  getUserWithJWT(): TokenUserDto | null {
+    if (this.getToken() == null) return null;
 
     let token = this.jwtHelperService.decodeToken(this.getToken()!);
 
     let userModel = {
-      id: token[Object.keys(token).filter((t) => t.endsWith('nameidentifier'))[0]],
+      id: token[
+        Object.keys(token).filter((t) => t.endsWith('nameidentifier'))[0]
+      ],
       email: token.email,
       userName: token.userName,
       userType: token.UserType,
       roles: this.getUserRolesWithJWT(),
     };
 
-    return userModel;
+    return userModel as TokenUserDto;
   }
 }
