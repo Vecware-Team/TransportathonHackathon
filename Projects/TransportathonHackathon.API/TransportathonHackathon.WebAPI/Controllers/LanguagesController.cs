@@ -1,4 +1,4 @@
-﻿using MediatR;
+﻿using Core.API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Languages.Commands.Create;
 using TransportathonHackathon.Application.Features.Languages.Commands.Delete;
@@ -11,55 +11,48 @@ namespace TransportathonHackathon.WebAPI.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]
-    public class LanguagesController : ControllerBase
+    public class LanguagesController : BaseController
     {
-        private readonly IMediator _mediator;
-
-        public LanguagesController(IMediator mediator)
-        {
-            _mediator = mediator;
-        }
-
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] CreateLanguageCommand command)
         {
 
-            CreatedLanguageResponse response = await _mediator.Send(command);
+            CreatedLanguageResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
         [HttpDelete]
         public async Task<IActionResult> Delete([FromBody] DeleteLanguageCommand command)
         {
-            DeletedLanguageResponse response = await _mediator.Send(command);
+            DeletedLanguageResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] UpdateLanguageCommand command)
         {
-            UpdatedLanguageResponse response = await _mediator.Send(command);
+            UpdatedLanguageResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("{Code}")]
         public async Task<IActionResult> GetByCode([FromRoute] GetByCodeLanguageQuery command)
         {
-            GetByCodeLanguageResponse response = await _mediator.Send(command);
+            GetByCodeLanguageResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet("{Id}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdLanguageQuery command)
         {
-            GetByIdLanguageResponse response = await _mediator.Send(command);
+            GetByIdLanguageResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
         [HttpGet]
         public async Task<IActionResult> GetList([FromQuery] GetListLanguageQuery command)
         {
-            List<GetListLanguageResponse> response = await _mediator.Send(command);
+            List<GetListLanguageResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
     }
