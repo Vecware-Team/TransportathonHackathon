@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Repositories;
@@ -21,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Queries.GetByEm
         {
             Company? company = await _companyRepository.GetAsync(e => e.AppUser.Email == request.Email, include: e => e.Include(e => e.AppUser));
             if (company is null)
-                throw new Exception();
+                throw new NotFoundException("Company not found");
 
             GetByEmailCompanyResponse response = _mapper.Map<GetByEmailCompanyResponse>(company);
             return response;

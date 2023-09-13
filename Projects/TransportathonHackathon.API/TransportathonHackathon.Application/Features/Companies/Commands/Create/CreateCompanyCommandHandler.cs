@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using TransportathonHackathon.Application.Extensions;
@@ -40,7 +41,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Commands.Create
             }, request.Password);
 
             if (!result.Succeeded)
-                throw new Exception();
+                throw new BusinessException();
 
             CreatedCompanyResponse response = _mapper.Map<CreatedCompanyResponse>(company);
             return response;

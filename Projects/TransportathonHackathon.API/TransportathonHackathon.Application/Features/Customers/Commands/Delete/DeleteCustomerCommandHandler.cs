@@ -5,6 +5,7 @@ using TransportathonHackathon.Domain.Entities.Identity;
 using TransportathonHackathon.Domain.Entities;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 
 namespace TransportathonHackathon.Application.Features.Customers.Commands.Delete
 {
@@ -25,7 +26,7 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Delete
         {
             Customer? customer = await _customerRepository.GetAsync(e => e.AppUserId == request.AppUserId, include: e => e.Include(e => e.AppUser));
             if (customer is null)
-                throw new Exception();
+                throw new NotFoundException("Customer not found");
 
             AppUser user = new AppUser()
             {

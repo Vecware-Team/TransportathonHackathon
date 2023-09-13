@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Repositories;
@@ -21,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Customers.Queries.GetById
         {
             Customer? customer = await _customerRepository.GetAsync(e => e.AppUserId == request.AppUserId, include: e => e.Include(e => e.AppUser));
             if (customer is null)
-                throw new Exception();
+                throw new NotFoundException("Customer not found");
 
             GetByIdCustomerResponse response = _mapper.Map<GetByIdCustomerResponse>(customer);
             return response;

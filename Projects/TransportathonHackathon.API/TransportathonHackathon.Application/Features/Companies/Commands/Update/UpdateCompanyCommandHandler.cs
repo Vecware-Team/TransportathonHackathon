@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Extensions;
@@ -33,7 +34,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Commands.Update
             );
 
             if (company is null)
-                throw new Exception();
+                throw new NotFoundException("Company not found");
 
             company.CompanyName = companyToUpdate.CompanyName;
             company.AppUser.UpdatedDate = DateTime.UtcNow;

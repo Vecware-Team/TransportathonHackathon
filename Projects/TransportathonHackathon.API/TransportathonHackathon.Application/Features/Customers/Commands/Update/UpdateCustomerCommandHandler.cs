@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Extensions;
@@ -33,7 +34,7 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Update
             );
 
             if (customer is null)
-                throw new Exception();
+                throw new NotFoundException("Customer not found");
 
             customer.FirstName = customerToUpdate.FirstName;
             customer.LastName = customerToUpdate.LastName;
