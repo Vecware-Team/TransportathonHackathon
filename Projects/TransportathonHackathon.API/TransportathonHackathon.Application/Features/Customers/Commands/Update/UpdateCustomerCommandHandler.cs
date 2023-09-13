@@ -1,6 +1,9 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Extensions;
+using TransportathonHackathon.Application.Features.Customers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 
@@ -10,15 +13,18 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Update
     {
         private readonly ICustomerRepository _customerRepository;
         private readonly IMapper _mapper;
+        private readonly CustomerBusinessRules _rules;
 
-        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper)
+        public UpdateCustomerCommandHandler(ICustomerRepository customerRepository, IMapper mapper, CustomerBusinessRules rules)
         {
             _customerRepository = customerRepository;
             _mapper = mapper;
+            _rules = rules;
         }
 
         public async Task<UpdatedCustomerResponse> Handle(UpdateCustomerCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CheckIfUserEmailorUserNameDuplicatedWhenInserting(request.Email, request.UserName);
             Customer customerToUpdate = _mapper.Map<Customer>(request);
 
             Customer? customer = await _customerRepository.GetAsync(
@@ -28,7 +34,7 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Update
             );
 
             if (customer is null)
-                throw new Exception();
+                throw new NotFoundException("Customer not found");
 
             customer.FirstName = customerToUpdate.FirstName;
             customer.LastName = customerToUpdate.LastName;

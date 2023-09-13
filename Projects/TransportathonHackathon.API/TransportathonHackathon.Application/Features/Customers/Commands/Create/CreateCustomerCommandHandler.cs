@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using TransportathonHackathon.Application.Extensions;
+using TransportathonHackathon.Application.Features.Customers.Rules;
 using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
 
@@ -10,15 +12,18 @@ namespace TransportathonHackathon.Application.Features.Customers.Commands.Create
     {
         private readonly IMapper _mapper;
         private readonly UserManager<AppUser> _userManager;
+        private readonly CustomerBusinessRules _rules;
 
-        public CreateCustomerCommandHandler(IMapper mapper, UserManager<AppUser> userManager)
+        public CreateCustomerCommandHandler(IMapper mapper, UserManager<AppUser> userManager, CustomerBusinessRules rules)
         {
             _mapper = mapper;
             _userManager = userManager;
+            _rules = rules;
         }
 
         public async Task<CreatedCustomerResponse> Handle(CreateCustomerCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CheckIfUserEmailorUserNameDuplicatedWhenInserting(request.Email, request.UserName);
             Customer customer = _mapper.Map<Customer>(request);
 
             IdentityResult result = await _userManager.CreateAsync(new AppUser()

@@ -4,6 +4,7 @@ using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Extensions;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
@@ -14,10 +15,9 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
     public class CreateDriverCommandHandler : IRequestHandler<CreateDriverCommand, CreatedDriverResponse>, ITransactionalRequest
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly DriverBusinessRules _rules;
         private readonly IDriverRepository _driverRepository;
         private readonly IMapper _mapper;
-
+        private readonly DriverBusinessRules _rules;
 
         public CreateDriverCommandHandler(UserManager<AppUser> userManager, DriverBusinessRules rules, IMapper mapper, IDriverRepository driverRepository)
         {
@@ -29,6 +29,7 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.CreateDr
 
         public async Task<CreatedDriverResponse> Handle(CreateDriverCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CheckIfUserEmailorUserNameDuplicatedWhenInserting(request.Email, request.UserName);
             Driver driver = _mapper.Map<Driver>(request);
 
             IdentityResult result = await _userManager.CreateAsync(new AppUser()

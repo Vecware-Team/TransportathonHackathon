@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -25,7 +26,7 @@ namespace TransportathonHackathon.Application.Features.Companies.Commands.Delete
         {
             Company? company = await _companyRepository.GetAsync(e => e.AppUserId == request.AppUserId, include: e => e.Include(e => e.AppUser));
             if (company is null)
-                throw new Exception();
+                throw new NotFoundException("Company not found");
 
             AppUser user = new AppUser()
             {

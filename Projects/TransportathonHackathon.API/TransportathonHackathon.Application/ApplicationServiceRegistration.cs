@@ -3,9 +3,10 @@ using Core.Application.Pipelines.Caching;
 using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
+using Core.Application.Rules;
+using Core.CrossCuttingConcerns.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
-using TransportathonHackathon.Application.Features.Drivers.Rules;
 
 namespace TransportathonHackathon.Application
 {
@@ -26,7 +27,7 @@ namespace TransportathonHackathon.Application
                 configuration.AddOpenBehavior(typeof(CacheRemovingBehavior<,>));
             });
 
-            services.AddScoped<DriverBusinessRules>();
+            services.AddSubClassesOfType(Assembly.GetExecutingAssembly(), typeof(BaseBusinessRules));
 
             return services;
         }

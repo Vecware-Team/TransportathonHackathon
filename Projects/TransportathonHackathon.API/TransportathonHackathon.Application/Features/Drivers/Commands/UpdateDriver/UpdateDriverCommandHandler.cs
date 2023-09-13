@@ -2,6 +2,7 @@
 using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Extensions;
 using TransportathonHackathon.Application.Features.Drivers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
@@ -12,17 +13,18 @@ namespace TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDr
     {
         private readonly IDriverRepository _driverRepository;
         private readonly IMapper _mapper;
-        private readonly DriverBusinessRules _driverBusinessRules;
+        private readonly DriverBusinessRules _rules;
 
-        public UpdateDriverCommandHandler(IDriverRepository driverRepository, IMapper mapper, DriverBusinessRules driverBusinessRules)
+        public UpdateDriverCommandHandler(IDriverRepository driverRepository, IMapper mapper, DriverBusinessRules rules)
         {
             _driverRepository = driverRepository;
             _mapper = mapper;
-            _driverBusinessRules = driverBusinessRules;
+            _rules = rules;
         }
 
         public async Task<UpdatedDriverResponse> Handle(UpdateDriverCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CheckIfUserEmailorUserNameDuplicatedWhenInserting(request.Email, request.UserName);
             Driver? driver = await _driverRepository.GetAsync(
                 e => e.EmployeeId == request.EmployeeId,
                 include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser),
