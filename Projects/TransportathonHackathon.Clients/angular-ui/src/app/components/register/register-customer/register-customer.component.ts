@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+import { ErrorSeperator } from 'src/app/core/errors/services/error-seperator';
 import { CreateCustomerRequest } from 'src/app/models/request-models/customers/createCustomerRequest';
 import { AuthService } from 'src/app/services/auth.service';
+import { TokenService } from 'src/app/services/token.service';
 
 @Component({
   selector: 'app-register-customer',
@@ -17,7 +19,8 @@ export class RegisterCustomerComponent implements OnInit {
     private authService: AuthService,
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
-    private translateService: TranslateService
+    private translateService: TranslateService,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {
@@ -38,14 +41,13 @@ export class RegisterCustomerComponent implements OnInit {
     if (!this.registerForm.valid) {
       this.toastrService.error('My form invalid', 'Form Error');
     }
-    console.log(this.registerForm.value);
 
     let registerModel: CreateCustomerRequest = Object.assign(
       {},
       this.registerForm.value
     );
-    console.log(registerModel);
     this.authService.registerAsCustomer(registerModel).subscribe((response) => {
+      this.tokenService.setToken(response.token);
       this.toastrService.success(
         'Successfully registered',
         this.translateService.instant('successful')

@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { ToastrModule } from 'ngx-toastr';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslationService } from './services/translation.service';
-import { HttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient } from '@angular/common/http';
 import { NaviComponent } from './components/navi/navi.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AdminComponent } from './components/admin/admin.component';
@@ -35,6 +35,7 @@ import { RegisterCarrierComponent } from './components/register/register-carrier
 import { RegisterCompanyComponent } from './components/register/register-company/register-company.component';
 import { RegisterCustomerComponent } from './components/register/register-customer/register-customer.component';
 import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
+import { ErrorInterceptor } from './interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,7 @@ import { RegisterDriverComponent } from './components/register/register-driver/r
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({ positionClass: 'toast-bottom-right', }),
+    ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     FontAwesomeModule,
     ReactiveFormsModule,
     NgbModule,
@@ -78,7 +79,13 @@ import { RegisterDriverComponent } from './components/register/register-driver/r
       },
     }),
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

@@ -8,7 +8,16 @@ import { environment } from 'src/environments/environment';
 import { UsersComponent } from './users/users.component';
 import { TranslatesComponent } from './translates/translates.component';
 import { LanguagesComponent } from './languages/languages.component';
-import { faClipboardList, faCogs, faGlobe, faImages, faLandmark, faLanguage, faTachometerAlt, faUsersCog } from '@fortawesome/free-solid-svg-icons';
+import {
+  faClipboardList,
+  faCogs,
+  faGlobe,
+  faImages,
+  faLandmark,
+  faLanguage,
+  faTachometerAlt,
+  faUsersCog,
+} from '@fortawesome/free-solid-svg-icons';
 import { CustomersComponent } from './customers/customers.component';
 
 @Component({
@@ -25,7 +34,7 @@ export class AdminComponent implements OnInit {
   faGauge = faTachometerAlt;
   faLandmark = faLandmark;
   faGlobe = faGlobe;
-  
+
   projectName = environment.projectName;
   currentMainPage: string = '';
   currentComponent: any;
@@ -73,7 +82,7 @@ export class AdminComponent implements OnInit {
   }
 
   getUserInfo(): AppUser {
-    return this.tokenService.getUserWithJWT();
+    return this.tokenService.getUserWithJWT() as AppUser;
   }
 
   signOut() {
