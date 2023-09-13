@@ -22,6 +22,7 @@ import { CompanyService } from 'src/app/services/company.service';
 import { AppUser } from 'src/app/models/domain-models/appUser';
 import { GetByIdCompanyResponse } from 'src/app/models/response-models/companies/getByIdCompanyResponse';
 import { EmployeesComponent } from './employees/employees.component';
+import { TransportRequestsComponent } from './transport-requests/transport-requests.component';
 
 @Component({
   selector: 'app-company-management-panel',
@@ -53,7 +54,7 @@ export class CompanyManagementPanelComponent {
   }
 
   getCompany() {
-    let id = (this.tokenService.getUserWithJWT() as AppUser).id;
+    let id = this.tokenService.getUserWithJWT()!.id;
     this.companyService.getById(id).subscribe((response) => {
       this.company = response;
     });
@@ -100,9 +101,9 @@ export class CompanyManagementPanelComponent {
         case 'manage-employees':
           this.currentComponent = EmployeesComponent;
           break;
-        // case 'manage-transport-requests':
-        //   this.currentComponent = ;
-        //   break;
+        case 'manage-transport-requests':
+          this.currentComponent = TransportRequestsComponent;
+          break;
         default:
           this.currentComponent = EmployeesComponent;
           break;

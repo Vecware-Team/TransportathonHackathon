@@ -37,6 +37,14 @@ const routes: Routes = [
     component: CompanyDetailsComponent,
   },
   {
+    path: 'customer/details/:customerId',
+    component: CustomerDetailsComponent,
+  },
+  {
+    path: 'company/panel',
+    component: CompanyManagementPanelComponent,
+  },
+  {
     path: 'company/panel/:currentPage',
     component: CompanyManagementPanelComponent,
   },
@@ -70,11 +78,6 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    component: AdminComponent,
-    canActivate: [adminGuard, loginGuard],
-  },
-  {
-    path: 'admin/:currentPage',
     component: AdminComponent,
     canActivate: [adminGuard, loginGuard],
   },
