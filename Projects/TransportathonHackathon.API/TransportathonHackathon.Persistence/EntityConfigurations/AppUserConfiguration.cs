@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
 
 namespace TransportathonHackathon.Persistence.EntityConfigurations
@@ -14,6 +13,8 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.HasOne(e => e.Customer);
 
             builder.HasOne(e => e.Employee);
+
+            builder.HasMany(e => e.Messages);
         }
     }
 }

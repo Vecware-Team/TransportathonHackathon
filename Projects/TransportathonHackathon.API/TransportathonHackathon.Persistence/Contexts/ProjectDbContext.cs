@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
-using System.Reflection.Emit;
 using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
 
@@ -10,10 +8,7 @@ namespace TransportathonHackathon.Persistence.Contexts
 {
     public class ProjectDbContext : IdentityDbContext<AppUser, AppRole, Guid, AppUserClaim, AppUserRole, AppUserLogin, AppRoleClaim, AppUserToken>
     {
-        public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options)
-        {
-
-        }
+        public ProjectDbContext(DbContextOptions<ProjectDbContext> options) : base(options) { }
 
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Company> Companies { get; set; }
@@ -29,7 +24,7 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Truck> Trucks { get; set; }
         public DbSet<PickupTruck> PickupTrucks { get; set; }
         public DbSet<Comment> Comments { get; set; }
-
+        public DbSet<Message> Messages { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

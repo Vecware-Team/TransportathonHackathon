@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TransportathonHackathon.Application;
+using TransportathonHackathon.Infrastructure.SignalR;
 using TransportathonHackathon.Persistence;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,6 +28,8 @@ builder.Services.AddExceptionHandlers(ServiceLifetime.Scoped);
 builder.Services.AddDistributedMemoryCache();
 
 builder.Services.AddHttpContextAccessor();
+
+builder.Services.AddSignalR();
 
 builder.Services.AddControllers();
 
@@ -96,4 +99,6 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+
+app.MapHub<MessageHub>("/messages");
 app.Run();
