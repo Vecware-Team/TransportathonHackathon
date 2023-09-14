@@ -1,1 +1,61 @@
-<p>vehicles works!</p>
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Çalışanlar</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getList();">
+                </fa-icon>
+            </button>
+        </div>
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('car-add')">
+            Add Car
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('truck-add')">
+            Add Truck
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('pickuptruck-add')">
+            Add Pickup Truck
+        </button>
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Brand</th>
+            <th scope="col">Size</th>
+            <th scope="col">Model Year</th>
+            <th scope="col">atWork</th>
+            <th scope="col">Type</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+        <tr *ngFor="let vehicle of vehicles; let i = index;">
+            <th scope="row">{{i + 1}}</th>
+            <th>{{vehicle.driver}}</th>
+            <td>{{vehicle.companyId}}</td>
+            <td>{{vehicle.id}}</td>
+            <td>{{vehicle.id}}</td>
+            <td>{{getVehicleType(vehicle)}}</td>
+
+            <td class="text-end">
+                <button class="btn btn-outline-primary shadow-none me-2"
+                    (click)="openModal(getVehicleType(vehicle) + '-' + 'update', vehicle)">
+                    <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>
+                </button>
+                <button class="btn btn-outline-danger shadow-none"
+                    (click)="openModal(getVehicleType(vehicle) + '-' + 'delete', vehicle)">
+                    <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>

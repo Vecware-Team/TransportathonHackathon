@@ -33,6 +33,18 @@
             </a>
           </li>
           <li>
+            <a *ngIf="tokenUser.userType === 'Driver'" class="dropdown-item"
+              routerLink="/driver/details/{{tokenUser.id}}">
+              {{"profile" |translate}}
+            </a>
+          </li>
+          <li>
+            <a *ngIf="tokenUser.userType === 'Carrier'" class="dropdown-item"
+              routerLink="/carrier/details/{{tokenUser.id}}">
+              {{"profile" |translate}}
+            </a>
+          </li>
+          <li>
             <a *ngIf="tokenUser.userType === 'Customer'" class="dropdown-item"
               routerLink="/customer/details/{{tokenUser.id}}">
               {{"profile" |translate}}

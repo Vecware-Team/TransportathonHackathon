@@ -1,1 +1,48 @@
-<p>pickup-truck-add works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Pickup Truck Ekle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="pickupTruckAddForm" form>
+        <div class="mb-3">
+            <div class="form-floating">
+                <select class="form-select" formControlName="driverId" id="driverId">
+                    <option *ngFor="let driver of drivers" [value]="driver.employeeId">
+                        {{driver.firstName}} {{driver.lastName}}
+                    </option>
+                </select>
+                <label for="driverId">Sürücünüzü Seçin</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="brand" class="form-control" id="brand" placeholder="Pickup truck brand">
+                <label for="brand">Brand</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="model" class="form-control" id="model" placeholder="Pickup truck model">
+                <label for="model">Model</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="modelYear" class="form-control" id="modelYear"
+                    placeholder="Pickup truck model year">
+                <label for="modelYear">Model Year</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="size" class="form-control" id="size"
+                    placeholder="Pickup truck size">
+                <label for="size">Size</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+    <button type="button" class="btn btn-primary" (click)="add()">Ekle</button>
+</div>
