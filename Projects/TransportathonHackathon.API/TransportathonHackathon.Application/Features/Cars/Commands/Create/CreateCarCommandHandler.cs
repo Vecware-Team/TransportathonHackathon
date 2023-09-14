@@ -26,6 +26,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Commands.Create
             {
                 CompanyId = request.CompanyId,
                 DriverId = request.DriverId,
+                Brand = request.Brand,
+                Model = request.Model,
+                ModelYear = request.ModelYear,
                 CreatedDate = DateTime.UtcNow,
                 Car = car,
             });

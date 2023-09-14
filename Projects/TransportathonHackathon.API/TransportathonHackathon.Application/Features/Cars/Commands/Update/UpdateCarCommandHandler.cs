@@ -30,9 +30,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Commands.Update
             car.Vehicle.CompanyId = request.CompanyId;
             car.Vehicle.DriverId = request.DriverId;
             car.Vehicle.UpdatedDate = DateTime.UtcNow;
-            car.Brand = request.Brand;
-            car.Model = request.Model;
-            car.ModelYear = request.ModelYear;
+            car.Vehicle.Brand = request.Brand;
+            car.Vehicle.Model = request.Model;
+            car.Vehicle.ModelYear = request.ModelYear;
             car.UpdatedDate = DateTime.Now;
 
             await _carRepository.SaveChangesAsync();

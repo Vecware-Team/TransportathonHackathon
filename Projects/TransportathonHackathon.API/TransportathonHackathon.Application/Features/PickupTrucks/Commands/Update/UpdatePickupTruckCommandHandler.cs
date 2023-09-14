@@ -30,9 +30,9 @@ namespace TransportathonHackathon.Application.Features.PickupTrucks.Commands.Upd
             pickupTruck.Vehicle.CompanyId = request.CompanyId;
             pickupTruck.Vehicle.DriverId = request.DriverId;
             pickupTruck.Vehicle.UpdatedDate = DateTime.UtcNow;
-            pickupTruck.Brand = request.Brand;
-            pickupTruck.Model = request.Model;
-            pickupTruck.ModelYear = request.ModelYear;
+            pickupTruck.Vehicle.Brand = request.Brand;
+            pickupTruck.Vehicle.Model = request.Model;
+            pickupTruck.Vehicle.ModelYear = request.ModelYear;
             pickupTruck.Size = request.Size;
             pickupTruck.UpdatedDate = DateTime.Now;
 

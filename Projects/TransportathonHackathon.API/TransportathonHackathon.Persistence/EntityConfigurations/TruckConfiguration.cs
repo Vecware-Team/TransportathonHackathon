@@ -10,9 +10,6 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
         {
             builder.ToTable("Trucks").HasKey(e => e.VehicleId);
             builder.Property(e => e.VehicleId).HasColumnName("VehicleId").IsRequired();
-            builder.Property(e => e.Brand).HasColumnName("Brand").IsRequired();
-            builder.Property(e => e.Model).HasColumnName("Model").IsRequired();
-            builder.Property(e => e.ModelYear).HasColumnName("ModelYear").IsRequired();
             builder.Property(e => e.Size).HasColumnName("Size").IsRequired();
 
             builder.Ignore(e => e.CreatedDate);

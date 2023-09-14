@@ -17,6 +17,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Profiles
             CreateMap<Car, CreatedCarResponse>()
                 .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
                 .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
+                .ForMember(destinationMember: e => e.Brand, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Brand))
+                .ForMember(destinationMember: e => e.Model, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Model))
+                .ForMember(destinationMember: e => e.ModelYear, memberOptions: opt => opt.MapFrom(e => e.Vehicle.ModelYear))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap(); ;
@@ -24,6 +27,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Profiles
             CreateMap<Car, DeletedCarResponse>()
                 .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
                 .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
+                .ForMember(destinationMember: e => e.Brand, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Brand))
+                .ForMember(destinationMember: e => e.Model, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Model))
+                .ForMember(destinationMember: e => e.ModelYear, memberOptions: opt => opt.MapFrom(e => e.Vehicle.ModelYear))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap(); ;
@@ -32,6 +38,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Profiles
             CreateMap<Car, UpdatedCarResponse>()
                 .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
                 .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
+                .ForMember(destinationMember: e => e.Brand, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Brand))
+                .ForMember(destinationMember: e => e.Model, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Model))
+                .ForMember(destinationMember: e => e.ModelYear, memberOptions: opt => opt.MapFrom(e => e.Vehicle.ModelYear))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();
@@ -39,6 +48,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Profiles
             CreateMap<Car, GetByIdCarResponse>()
                 .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
                 .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
+                .ForMember(destinationMember: e => e.Brand, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Brand))
+                .ForMember(destinationMember: e => e.Model, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Model))
+                .ForMember(destinationMember: e => e.ModelYear, memberOptions: opt => opt.MapFrom(e => e.Vehicle.ModelYear))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();
@@ -46,6 +58,9 @@ namespace TransportathonHackathon.Application.Features.Cars.Profiles
             CreateMap<Car, GetListCarResponse>()
                 .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.CompanyId))
                 .ForMember(destinationMember: e => e.DriverId, memberOptions: opt => opt.MapFrom(e => e.Vehicle.DriverId))
+                .ForMember(destinationMember: e => e.Brand, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Brand))
+                .ForMember(destinationMember: e => e.Model, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Model))
+                .ForMember(destinationMember: e => e.ModelYear, memberOptions: opt => opt.MapFrom(e => e.Vehicle.ModelYear))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Company.CompanyName))
                 .ForMember(destinationMember: e => e.DriverName, memberOptions: opt => opt.MapFrom(e => e.Vehicle.Driver.Employee.FirstName))
                 .ReverseMap();

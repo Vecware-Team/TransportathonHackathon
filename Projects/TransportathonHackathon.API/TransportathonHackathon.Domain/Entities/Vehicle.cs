@@ -6,6 +6,9 @@ namespace TransportathonHackathon.Domain.Entities
     {
         public Guid CompanyId { get; set; }
         public Guid DriverId { get; set; }
+        public string Brand { get; set; }
+        public string Model { get; set; }
+        public int ModelYear { get; set; }
 
         public virtual Company Company { get; set; }
         public virtual Driver? Driver { get; set; }
