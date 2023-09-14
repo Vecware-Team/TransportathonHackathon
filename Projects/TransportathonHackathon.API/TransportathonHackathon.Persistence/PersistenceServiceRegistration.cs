@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TransportathonHackathon.Application.Repositories;
+using TransportathonHackathon.Application.Services;
 using TransportathonHackathon.Domain.Entities.Identity;
 using TransportathonHackathon.Persistence.Contexts;
 using TransportathonHackathon.Persistence.Repositories;
+using TransportathonHackathon.Persistence.Services;
 
 namespace TransportathonHackathon.Persistence
 {
@@ -33,6 +35,9 @@ namespace TransportathonHackathon.Persistence
             services.AddScoped<ITruckRepository, TruckRepository>();
             services.AddScoped<IPickupTruckRepository, PickupTruckRepository>();
             services.AddScoped<ICommentRepository, CommentRepository>();
+            services.AddScoped<IMessageRepository, MessageRepository>();
+
+            services.AddScoped<IMessageService, MessageService>();
 
             return services;
         }

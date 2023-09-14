@@ -57,6 +57,8 @@ import { HireCarrierComponent } from './components/company-management/employees/
 import { HireDriverComponent } from './components/company-management/employees/hire-driver/hire-driver.component';
 import { HireOutDriverComponent } from './components/company-management/employees/hire-out-driver/hire-out-driver.component';
 import { HireOutCarrierComponent } from './components/company-management/employees/hire-out-carrier/hire-out-carrier.component';
+import { httpInterceptorProviders } from './interceptors/http-request.interceptor';
+import { ChatComponent } from './components/chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -101,6 +103,7 @@ import { HireOutCarrierComponent } from './components/company-management/employe
     HireDriverComponent,
     HireOutDriverComponent,
     HireOutCarrierComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,8 +127,8 @@ import { HireOutCarrierComponent } from './components/company-management/employe
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
       multi: true,
-    },
+    }, httpInterceptorProviders
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }

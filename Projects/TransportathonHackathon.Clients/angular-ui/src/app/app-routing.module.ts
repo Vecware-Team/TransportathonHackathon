@@ -14,6 +14,7 @@ import { CompanyListComponent } from './components/company-list/company-list.com
 import { LoginComponent } from './components/login/login.component';
 import { CompanyManagementPanelComponent } from './components/company-management/company-management-panel.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
+import { ChatComponent } from './components/chat/chat.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -47,6 +48,14 @@ const routes: Routes = [
   {
     path: 'company/panel/:currentPage',
     component: CompanyManagementPanelComponent,
+  },
+  {
+    path: 'chat/:companyId',
+    component: ChatComponent,
+  },
+  {
+    path: 'chat',
+    component: ChatComponent,
   },
   {
     path: 'login',
@@ -92,4 +101,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

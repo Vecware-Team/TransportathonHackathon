@@ -30,6 +30,21 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             AppUser? user = await _userManager.GetUserAsync(Context.User);
             if (user is null)
                 throw new UnauthorizedException();
+            /*
+              SignalRClient? client =  clients.SingleOrDefault(c => c.UserId == user.Id.ToString());
+            if (client is not null)
+            {
+                clients.Remove(client);
+                client.ConnectionId = Context.ConnectionId;
+                clients.Add(client);
+            }
+            else
+            {
+                client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
+                clients.Add(client);
+                await Clients.All.UserJoined(client);
+            }
+             */
 
             SignalRClient client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
             clients.Add(client);
@@ -46,7 +61,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             if (user is null)
                 throw new UnauthorizedException();
 
-            SignalRClient? client = clients.SingleOrDefault(c => c.UserId == user.Id.ToString());
+            SignalRClient? client = clients.SingleOrDefault(c => c.ConnectionId == Context.ConnectionId.ToString());
 
             if (client is not null)
             {

@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col-3">
+        <div style="border: 1px solid black;padding: 10px;">
+            <button>
+                <li *ngFor="let user of users" routerLink="/chat/{{user.userId}}">{{user.userName}}</li>
+            </button>
+        </div>
+    </div>
+
+    <div class="col-9" *ngIf="receiverId != null">
+        <div style="border: 1px solid black;padding: 10px; height: 600px;overflow-y: scroll;overflow-x:hidden"
+            *ngIf="userId != null">
+            <h4 class="text-center">Mesajlaşma</h4>
+
+            <div class="row" *ngFor="let message of messages">
+                <div style="width: 300px;margin-bottom: 10px;float: left;" class="col-6"
+                    *ngIf="message.senderId != userId">
+                    <span
+                        style="background-color: aquamarine;border-radius: 20px; padding: 5px;float: left; margin-bottom: 10px;">
+                        {{ message.messageText }}
+                    </span>
+                </div>
+
+                <div class="col-6"></div>
+                <div style="width: 300px;margin-bottom: 10px;float: right;" class="col-6"
+                    *ngIf="message.senderId == userId">
+                    <span
+                        style="background-color: aquamarine;border-radius: 20px; padding: 5px;float: right; margin-bottom: 10px;">
+                        {{ message.messageText }}
+                    </span>
+                </div>
+            </div>
+            <div style="text-align: center;">
+                <input type="text" (change)="change($event)" [value]="message">
+                <input type="button" (click)="send()" value="Gönder">
+            </div>
+        </div>
+    </div>
+</div>

@@ -12,8 +12,8 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230912094344_Mig_4")]
-    partial class Mig_4
+    [Migration("20230914131512_Mig_1")]
+    partial class Mig_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -31,20 +31,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("VehicleId");
 
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Brand");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Model");
-
-                    b.Property<int>("ModelYear")
-                        .HasColumnType("int")
-                        .HasColumnName("ModelYear");
-
                     b.HasKey("VehicleId");
 
                     b.ToTable("Cars", (string)null);
@@ -59,6 +45,39 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasKey("EmployeeId");
 
                     b.ToTable("Carriers", (string)null);
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Comment", b =>
+                {
+                    b.Property<Guid>("TransportRequestId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TransportRequestId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Description");
+
+                    b.Property<int>("Point")
+                        .HasColumnType("int")
+                        .HasColumnName("Point");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Title");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TransportRequestId");
+
+                    b.ToTable("Comments", (string)null);
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
@@ -433,25 +452,62 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.ToTable("Languages", (string)null);
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Message", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("Id");
+
+                    b.Property<Guid?>("AppUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsRead")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsRead");
+
+                    b.Property<string>("MessageText")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("MessageText");
+
+                    b.Property<Guid>("ReceiverId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("ReceiverId");
+
+                    b.Property<DateTime>("SendDate")
+                        .HasColumnType("datetime2")
+                        .HasColumnName("SendDate");
+
+                    b.Property<Guid>("SenderId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("SenderId");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId");
+
+                    b.HasIndex("ReceiverId");
+
+                    b.HasIndex("SenderId");
+
+                    b.ToTable("Messages", (string)null);
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PickupTruck", b =>
                 {
                     b.Property<Guid>("VehicleId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("VehicleId");
-
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Brand");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Model");
-
-                    b.Property<int>("ModelYear")
-                        .HasColumnType("int")
-                        .HasColumnName("ModelYear");
 
                     b.Property<int>("Size")
                         .HasColumnType("int")
@@ -535,9 +591,9 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("FinishDate");
 
-                    b.Property<bool>("IsOfficce")
+                    b.Property<bool>("IsOffice")
                         .HasColumnType("bit")
-                        .HasColumnName("IsOfficce");
+                        .HasColumnName("IsOffice");
 
                     b.Property<string>("PlaceSize")
                         .IsRequired()
@@ -566,20 +622,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("VehicleId");
 
-                    b.Property<string>("Brand")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Brand");
-
-                    b.Property<string>("Model")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)")
-                        .HasColumnName("Model");
-
-                    b.Property<int>("ModelYear")
-                        .HasColumnType("int")
-                        .HasColumnName("ModelYear");
-
                     b.Property<int>("Size")
                         .HasColumnType("int")
                         .HasColumnName("Size");
@@ -596,6 +638,11 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
+                    b.Property<string>("Brand")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Brand");
+
                     b.Property<Guid>("CompanyId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("CompanyId");
@@ -609,6 +656,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<Guid>("DriverId")
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("DriverId");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("Model");
+
+                    b.Property<int>("ModelYear")
+                        .HasColumnType("int")
+                        .HasColumnName("ModelYear");
 
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -642,6 +698,17 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Comment", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.TransportRequest", "TransportRequest")
+                        .WithOne("Comment")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.Comment", "TransportRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransportRequest");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Company", b =>
@@ -758,6 +825,29 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Message", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", null)
+                        .WithMany("Messages")
+                        .HasForeignKey("AppUserId");
+
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "Receiver")
+                        .WithMany()
+                        .HasForeignKey("ReceiverId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Identity.AppUser", "Sender")
+                        .WithMany()
+                        .HasForeignKey("SenderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Receiver");
+
+                    b.Navigation("Sender");
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PickupTruck", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Vehicle", "Vehicle")
@@ -864,11 +954,18 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Navigation("Customer");
 
                     b.Navigation("Employee");
+
+                    b.Navigation("Messages");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Language", b =>
                 {
                     b.Navigation("Translates");
+                });
+
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.TransportRequest", b =>
+                {
+                    b.Navigation("Comment");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Vehicle", b =>

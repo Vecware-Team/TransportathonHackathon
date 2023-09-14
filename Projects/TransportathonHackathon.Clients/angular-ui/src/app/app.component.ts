@@ -9,9 +9,8 @@ import { TranslateService } from '@ngx-translate/core';
 export class AppComponent {
   title = 'angular-ui';
 
-
-  constructor(private translate:TranslateService) {
+  constructor(private translate: TranslateService,) {
     translate.setDefaultLang('tr-TR');
-    translate.use('tr-TR');   
+    translate.use('tr-TR');
   }
 }
