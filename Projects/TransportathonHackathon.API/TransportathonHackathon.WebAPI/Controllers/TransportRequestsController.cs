@@ -49,7 +49,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
+        [HttpGet("{CompanyId}")]
         public async Task<IActionResult> GetListByCompanyId([FromRoute] GetByCompanyIdTransportRequestQuery query)
         {
             IList<GetByCompanyIdTransportRequestResponse> response = await Mediator.Send(query);
