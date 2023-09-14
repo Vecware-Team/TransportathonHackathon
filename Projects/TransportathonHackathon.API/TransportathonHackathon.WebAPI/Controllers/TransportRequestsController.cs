@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Create;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Delete;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Update;
+using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetList;
 
@@ -45,6 +46,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] GetListTransportRequestQuery command)
         {
             IPaginate<GetListTransportRequestResponse> response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetListByCompanyId([FromRoute] GetByCompanyIdTransportRequestQuery query)
+        {
+            IList<GetByCompanyIdTransportRequestResponse> response = await Mediator.Send(query);
             return Ok(response);
         }
     }
