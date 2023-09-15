@@ -103,7 +103,7 @@
 
   - Extension metodlar ile eskisinden daha güçlü, temiz ve sürdürülebilir.
 
-  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir sınıfa bağımlı değil. Sistemi her şeyden güçlü yapan Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
+  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir sınıfa bağımlı değil. Sistemi her şeyden güçlü yapan, Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
 
   - Constructor ve ServiceTool aracılığıyla yapılan DependencyInjection (bağımlılık enjeksiyonu) sistemdeki bağımlılığı minimuma indirirken sürdürülebilirliği maksimum düzeye çıkarmaktadır.
 
