@@ -7,7 +7,6 @@ export interface GetByCompanyIdTransportRequestResponse {
   countryTo: string;
   cityFrom: string;
   cityTo: string;
-  isOfficce: boolean;
   placeSize: string;
   createdDate: Date;
   updatedDate: Date;

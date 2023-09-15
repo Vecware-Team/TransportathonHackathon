@@ -8,6 +8,8 @@ import { ApproveTransportRequestResponse } from '../models/response-models/trans
 import { ApproveTransportRequestRequest } from '../models/request-models/transport-requests/approveTransportRequestRequest';
 import { GetByCustomerIdTransportRequestRequest } from '../models/request-models/transport-requests/getByCustomerIdTransportRequestRequest';
 import { GetByCustomerIdTransportRequestResponse } from '../models/response-models/transport-requests/getByCustomerIdTransportRequestResponse';
+import { CreateTransportRequestRequest } from '../models/request-models/transport-requests/createTransportRequestRequest';
+import { CreatedTransportRequestResponse } from '../models/response-models/transport-requests/createdTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -15,6 +17,15 @@ import { GetByCustomerIdTransportRequestResponse } from '../models/response-mode
 export class TransportRequestService {
   apiUrl = environment.apiUrl + 'transportRequests/';
   constructor(private httpClient: HttpClient) {}
+
+  create(
+    request: CreateTransportRequestRequest
+  ): Observable<CreatedTransportRequestResponse> {
+    return this.httpClient.post<CreatedTransportRequestResponse>(
+      this.apiUrl + 'create',
+      request
+    );
+  }
 
   getListByCompanyId(
     request: GetByCompanyIdTransportRequestRequest

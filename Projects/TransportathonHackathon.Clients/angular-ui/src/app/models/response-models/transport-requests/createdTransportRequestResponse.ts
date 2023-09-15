@@ -7,7 +7,6 @@ export interface CreatedTransportRequestResponse {
   countryTo: string;
   cityFrom: string;
   cityTo: string;
-  isOfficce: boolean;
   placeSize: string;
   createdDate: Date;
   startDate: Date;

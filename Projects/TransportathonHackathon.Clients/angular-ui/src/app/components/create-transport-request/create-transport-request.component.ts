@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
+import { PaymentObject } from 'src/app/models/request-models/payment/paymentObject';
+import { CreateTransportRequestRequest } from 'src/app/models/request-models/transport-requests/createTransportRequestRequest';
 import { TokenService } from 'src/app/services/token.service';
 import { TransportRequestService } from 'src/app/services/transport-request.service';
 
@@ -10,30 +15,64 @@ import { TransportRequestService } from 'src/app/services/transport-request.serv
 })
 export class CreateTransportRequestComponent implements OnInit {
   checkoutForm: FormGroup;
+  paymentForm: FormGroup;
+  companyId: string;
+  customer: TokenUserDto;
 
   constructor(
     private transportRequestService: TransportRequestService,
     private formBuilder: FormBuilder,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private toastrService: ToastrService,
+    private activatedRote: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.getUserToken();
     this.createCheckoutForm();
+    this.subscribeRoute();
+  }
+
+  getUserToken() {
+    this.customer = this.tokenService.getUserWithJWT()!;
+  }
+
+  subscribeRoute() {
+    this.activatedRote.params.subscribe((param) => {
+      this.companyId = param['companyId'];
+    });
   }
 
   createCheckoutForm() {
     this.checkoutForm = this.formBuilder.group({
       placeSize: ['', Validators.required],
       startDate: ['', Validators.required],
-      country: ['', Validators.required],
-      city: ['', Validators.required],
-      fullName: ['', Validators.required],
-      cardNumber: ['', Validators.required],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
-      cvv: ['', Validators.required],
+      countryFrom: ['', Validators.required],
+      cityFrom: ['', Validators.required],
+      countryTo: ['', Validators.required],
+      cityTo: ['', Validators.required],
+      // fullName: ['', Validators.required],
+      // cardNumber: ['', Validators.required],
+      // month: ['', Validators.required],
+      // year: ['', Validators.required],
+      // cvv: ['', Validators.required],
     });
   }
 
-  createTransportRequest() {}
+  createTransportRequest() {
+    if (!this.checkoutForm.valid) {
+      this.toastrService.error('Transport form is invalid', 'Form error');
+    }
+
+    let requestModel: CreateTransportRequestRequest = Object.assign(
+      {},
+      this.checkoutForm.value
+    );
+    requestModel.companyId = this.companyId;
+    requestModel.customerId = this.customer.id;
+    
+    this.transportRequestService.create(requestModel).subscribe((response) => {
+      this.toastrService.success('Request sent', 'Successful');
+    });
+  }
 }

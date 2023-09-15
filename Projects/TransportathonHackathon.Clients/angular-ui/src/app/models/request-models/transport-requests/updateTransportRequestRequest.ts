@@ -6,7 +6,6 @@ export interface UpdateTransportRequestRequest {
   countryTo: string;
   cityFrom: string;
   cityTo: string;
-  isOfficce: boolean;
   placeSize: string;
   startDate: Date;
   finishDate: Date | null;

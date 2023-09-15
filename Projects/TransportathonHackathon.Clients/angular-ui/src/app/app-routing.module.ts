@@ -37,7 +37,7 @@ const routes: Routes = [
     component: Chat2Component,
   },
   {
-    path: 'transport-requests/create',
+    path: 'transport-requests/create/:companyId',
     component: CreateTransportRequestComponent,
   },
   {
