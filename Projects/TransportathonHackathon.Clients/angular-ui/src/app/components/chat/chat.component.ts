@@ -8,9 +8,9 @@ import {
   ViewChildren,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HubConnection } from '@microsoft/signalr';
-import { GetByUserResponse } from 'src/app/models/response-models/messages/GetByUserResponse';
+import { GetByUserResponse } from 'src/app/models/response-models/messages/getByUserResponse';
 import { GetByReceiverAndSenderResponse } from 'src/app/models/response-models/messages/getByReceiverAndSenderResponse';
 import { MessageService } from 'src/app/services/message.service';
 import { SignalrService } from 'src/app/services/signalr.service';
@@ -36,33 +36,35 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   getData: boolean = true;
 
   @ViewChild('scrollMe') myScrollContainer: ElementRef;
-  @ViewChildren('item') itemElements: QueryList<any>;
 
   constructor(
     private tokenService: TokenService,
     private messageService: MessageService,
     private signalRService: SignalrService,
     private activatedRoute: ActivatedRoute,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private router: Router
   ) {}
 
   async ngOnInit() {
+    this.index = 0;
     this.createMessageForm();
     this.userId = this.tokenService.getUserWithJWT()?.id;
     await this.getConnection();
-    this.getMessages(this.index, 20);
+    this.messages = [];
+    this.activatedRoute.params.subscribe({
+      next: (params) => {
+        this.receiverId = params['receiverId'];
+        this.getMessages(0, 20);
+      },
+    });
     this.getUsers();
   }
 
   ngAfterViewChecked() {
     this.scrollToBottom();
-
-    this.itemElements.changes.subscribe((_) => this.onItemElementsChanged());
   }
 
-  private onItemElementsChanged(): void {
-    this.scrollToBottom();
-  }
   createMessageForm() {
     this.messageForm = this.formBuilder.group({
       message: ['', [Validators.required, Validators.minLength(1)]],
@@ -142,28 +144,34 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   getMessages(index: number, size: number) {
     if (!this.getData) return;
     this.getData = false;
-    this.activatedRoute.params.subscribe({
-      next: (params) => {
-        this.receiverId = params['companyId'];
 
-        if (this.receiverId != null)
-          this.messageService
-            .getByReceiverAndSender(this.receiverId, this.userId!, index, size)
-            .subscribe({
-              next: (data) => {
-                if (this.messages == null) this.messages = [];
-                data.items.forEach((e) => {
-                  this.messages.push(e);
-                });
-
-                this.hasNext = data.hasNext;
-                if (this.hasNext) this.index = data.index;
-                this.getData = true;
-              },
-              error: (error) => {},
+    if (this.receiverId != null) {
+      this.messageService
+        .getByReceiverAndSender(this.receiverId, this.userId!, index, size)
+        .subscribe({
+          next: (data) => {
+            if (this.messages == null || index == 0) this.messages = [];
+            data.items.forEach((e) => {
+              this.messages.push(e);
             });
-      },
-    });
+
+            this.hasNext = data.hasNext;
+            if (this.hasNext) this.index = data.index;
+            this.getData = true;
+
+            console.log(this.index);
+
+            console.log(this.messages);
+            console.log(data.items);
+
+            if (index == 0) {
+              this.disableScrollDown = false;
+              this.scrollToBottom();
+            }
+          },
+          error: (error) => {},
+        });
+    }
   }
 
   async send() {
@@ -196,5 +204,18 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         this.getMessages(this.index + 1, this.size);
       }
     }
+  }
+
+  async changePage(userId: string) {
+    this.index = 0;
+    this.hasNext = false;
+    this.messages = [];
+    await this.router.navigateByUrl('/chat/' + userId);
+    this.activatedRoute.params.subscribe({
+      next: (params) => {
+        this.receiverId = params['receiverId'];
+        this.getMessages(0, 20);
+      },
+    });
   }
 }

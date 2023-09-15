@@ -17,7 +17,6 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { ChatComponent } from './components/chat/chat.component';
 import { companyGuard } from './guards/company.guard';
 import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
-import { Chat2Component } from './components/chat2/chat2.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
 import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
@@ -75,7 +74,7 @@ const routes: Routes = [
     canActivate: [companyGuard, loginGuard],
   },
   {
-    path: 'chat/:companyId',
+    path: 'chat/:receiverId',
     component: ChatComponent,
   },
   {

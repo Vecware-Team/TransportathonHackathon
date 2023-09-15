@@ -25,8 +25,7 @@
             <div
               class="chat_list"
               *ngFor="let user of users"
-              (click)="disableScrollDown = false; scrollToBottom()"
-              routerLink="/chat/{{ user.userId }}"
+              (click)="changePage(user.userId)"
             >
               <div class="chat_people">
                 <div class="chat_img">
@@ -60,7 +59,7 @@
             #msg_history
             #scrollMe
           >
-            <div *ngFor="let message of messages.reverse()" #item>
+            <div *ngFor="let message of messages.reverse()">
               <!-- InComing  -->
               <div class="incoming_msg" *ngIf="message.senderId != userId">
                 <div class="incoming_msg_img">
