@@ -62,6 +62,7 @@ export class CreateTransportRequestComponent implements OnInit {
       cityFrom: ['', Validators.required],
       countryTo: ['', Validators.required],
       cityTo: ['', Validators.required],
+      transportTypeId: ['', Validators.required],
       // fullName: ['', Validators.required],
       // cardNumber: ['', Validators.required],
       // month: ['', Validators.required],
