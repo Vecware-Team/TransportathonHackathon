@@ -5,6 +5,7 @@ using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Dele
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Pay;
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Update;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCompanyId;
+using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCustomerId;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetList;
 using TransportathonHackathon.Domain.Entities;
@@ -32,6 +33,9 @@ namespace TransportathonHackathon.Application.Features.PaymentRequests.Profiles
             
             CreateMap<PaymentRequest, GetByCompanyIdPaymentRequestResponse>().ReverseMap();
             CreateMap<Paginate<PaymentRequest>, Paginate<GetByCompanyIdPaymentRequestResponse>>().ReverseMap();
+
+            CreateMap<PaymentRequest, GetByCustomerIdPaymentRequestResponse>().ReverseMap();
+            CreateMap<Paginate<PaymentRequest>, Paginate<GetByCustomerIdPaymentRequestResponse>>().ReverseMap();
         }
     }
 }

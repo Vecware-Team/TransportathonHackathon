@@ -25,6 +25,7 @@
             <div
               class="chat_list"
               *ngFor="let user of users"
+              (click)="disableScrollDown = false; scrollToBottom()"
               routerLink="/chat/{{ user.userId }}"
             >
               <div class="chat_people">
@@ -49,9 +50,17 @@
           </div>
         </div>
         <!-- -->
-        <div class="mesgs" *ngIf="receiverId != null && userId != null">
-          <div class="msg_history">
-            <div *ngFor="let message of messages">
+        <div
+          class="mesgs"
+          *ngIf="receiverId != null && userId != null && messages != null"
+        >
+          <div
+            class="msg_history"
+            (scroll)="onScroll($event)"
+            #msg_history
+            #scrollMe
+          >
+            <div *ngFor="let message of messages.reverse()" #item>
               <!-- InComing  -->
               <div class="incoming_msg" *ngIf="message.senderId != userId">
                 <div class="incoming_msg_img">
@@ -80,14 +89,16 @@
               <!--  -->
             </div>
           </div>
-          <div class="type_msg">
+          <div class="type_msg" [formGroup]="messageForm">
             <div class="input_msg_write">
               <input
                 type="text"
                 class="write_msg"
                 placeholder="Type a message"
+                formControlName="message"
+                (keydown.enter)="keyPress($event)"
               />
-              <button class="msg_send_btn" type="button">
+              <button class="msg_send_btn" type="button" (click)="send()">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
             </div>

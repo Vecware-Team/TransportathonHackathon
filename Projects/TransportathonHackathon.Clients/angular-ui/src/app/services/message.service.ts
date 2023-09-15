@@ -7,17 +7,33 @@ import { environment } from 'src/environments/environment';
 import { GetByUserResponse } from '../models/response-models/messages/GetByUserResponse';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class MessageService {
+  constructor(private httpClient: HttpClient) {}
 
-  constructor(private httpClient: HttpClient) { }
-
-  getByReceiverAndSender(receiver: string, sender: string): Observable<Paginate<GetByReceiverAndSenderResponse>> {
-    return this.httpClient.get<Paginate<GetByReceiverAndSenderResponse>>(environment.apiUrl + "messages/getbysenderandreceiver?receiverId=" + receiver + "&senderId=" + sender);
+  getByReceiverAndSender(
+    receiver: string,
+    sender: string,
+    index: number = 0,
+    size: number = 20
+  ): Observable<Paginate<GetByReceiverAndSenderResponse>> {
+    return this.httpClient.get<Paginate<GetByReceiverAndSenderResponse>>(
+      environment.apiUrl +
+        'messages/getbysenderandreceiver?receiverId=' +
+        receiver +
+        '&senderId=' +
+        sender +
+        '&PageRequest.Index=' +
+        index +
+        '&PageRequest.Size=' +
+        size
+    );
   }
 
   getByUser(userId: string): Observable<GetByUserResponse[]> {
-    return this.httpClient.get<GetByUserResponse[]>(environment.apiUrl + "messages/getbyuser?userId=" + userId);
+    return this.httpClient.get<GetByUserResponse[]>(
+      environment.apiUrl + 'messages/getbyuser?userId=' + userId
+    );
   }
 }

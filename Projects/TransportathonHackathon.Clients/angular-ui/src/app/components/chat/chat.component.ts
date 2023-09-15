@@ -1,4 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  AfterViewChecked,
+  Component,
+  ElementRef,
+  OnInit,
+  QueryList,
+  ViewChild,
+  ViewChildren,
+} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HubConnection } from '@microsoft/signalr';
 import { GetByUserResponse } from 'src/app/models/response-models/messages/GetByUserResponse';
@@ -13,26 +22,59 @@ import { environment } from 'src/environments/environment';
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.css'],
 })
-export class ChatComponent implements OnInit {
+export class ChatComponent implements OnInit, AfterViewChecked {
   messages: GetByReceiverAndSenderResponse[];
   userId: string | undefined;
-  message: string = '';
   connection: HubConnection;
   receiverId: string;
   users: GetByUserResponse[];
+  disableScrollDown: boolean = false;
+  index: number = 0;
+  messageForm: FormGroup;
+
+  @ViewChild('scrollMe') myScrollContainer: ElementRef;
+  @ViewChildren('item') itemElements: QueryList<any>;
 
   constructor(
     private tokenService: TokenService,
     private messageService: MessageService,
     private signalRService: SignalrService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private formBuilder: FormBuilder
   ) {}
 
   async ngOnInit() {
+    this.createMessageForm();
     this.userId = this.tokenService.getUserWithJWT()?.id;
     await this.getConnection();
-    this.getMessages();
+    this.getMessages(this.index, 20);
     this.getUsers();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+
+    this.itemElements.changes.subscribe((_) => this.onItemElementsChanged());
+  }
+
+  private onItemElementsChanged(): void {
+    this.scrollToBottom();
+  }
+  createMessageForm() {
+    this.messageForm = this.formBuilder.group({
+      message: ['', Validators.required],
+    });
+  }
+
+  scrollToBottom(): void {
+    if (this.disableScrollDown) {
+      return;
+    }
+    try {
+      this.myScrollContainer.nativeElement.scrollTop =
+        this.myScrollContainer.nativeElement.scrollHeight;
+      console.log(this.myScrollContainer.nativeElement.scrollHeight);
+    } catch (err) {}
   }
 
   async getConnection() {
@@ -55,7 +97,7 @@ export class ChatComponent implements OnInit {
       this.getUsers();
       console.log('RECEIVED MESSAGE');
 
-      this.messages.push({
+      this.messages.splice(0, 0, {
         id: '',
         isRead: false,
         messageText: data,
@@ -66,6 +108,9 @@ export class ChatComponent implements OnInit {
         sendDate: new Date(),
       });
     });
+    this.disableScrollDown = false;
+
+    this.scrollToBottom();
   }
 
   getUsers() {
@@ -76,17 +121,23 @@ export class ChatComponent implements OnInit {
     });
   }
 
-  getMessages() {
+  getMessages(index: number, size: number) {
     this.activatedRoute.params.subscribe({
       next: (params) => {
         this.receiverId = params['companyId'];
 
         if (this.receiverId != null)
           this.messageService
-            .getByReceiverAndSender(this.receiverId, this.userId!)
+            .getByReceiverAndSender(this.receiverId, this.userId!, index, size)
             .subscribe({
               next: (data) => {
-                this.messages = data.items.reverse();
+                this.index += 1;
+                if (this.messages == null) this.messages = [];
+                console.log(index);
+
+                data.items.forEach((e) => {
+                  this.messages.push(e);
+                });
               },
               error: (error) => {
                 console.log(error);
@@ -97,21 +148,45 @@ export class ChatComponent implements OnInit {
   }
 
   async send() {
-    await this.connection.invoke('SendMessage', this.receiverId, this.message);
-    this.messages.push({
+    let messageFormValue = Object.assign({}, this.messageForm.value);
+    let message = messageFormValue.message;
+    console.log(message);
+
+    if (message == '') return;
+
+    await this.connection.invoke('SendMessage', this.receiverId, message);
+    this.messages.splice(0, 0, {
       id: '',
       isRead: false,
-      messageText: this.message,
+      messageText: message,
       receiverId: this.receiverId,
       senderId: this.userId!,
       receiverUserName: '',
       senderUserName: '',
       sendDate: new Date(),
     });
-    this.message = '';
+    this.messageForm.reset();
+
+    this.disableScrollDown = false;
+    this.scrollToBottom();
   }
 
-  change(event: any) {
-    this.message = event.target.value;
+  keyPress(event: any) {
+    this.send();
+  }
+
+  onScroll(event: any) {
+    let element = this.myScrollContainer.nativeElement;
+    let atBottom =
+      element.scrollHeight - element.scrollTop === element.clientHeight;
+    if (this.disableScrollDown && atBottom) {
+      this.disableScrollDown = false;
+    } else {
+      this.disableScrollDown = true;
+    }
+    if (event.target.scrollTop <= 100) {
+      setTimeout(() => this.getMessages(this.index, 20), 2000);
+      console.log('Mesaj getirildi');
+    }
   }
 }

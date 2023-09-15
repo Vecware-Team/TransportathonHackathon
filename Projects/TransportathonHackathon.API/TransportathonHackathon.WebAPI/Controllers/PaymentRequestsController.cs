@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Dele
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Pay;
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Update;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCompanyId;
+using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCustomerId;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetList;
 
@@ -54,6 +55,14 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetByCompanyId([FromRoute] GetByCompanyIdPaymentRequestQuery command)
         {
             IPaginate<GetByCompanyIdPaymentRequestResponse> response = await Mediator.Send(command);
+            return Ok(response);
+        }
+        
+
+        [HttpGet("{CustomerId}")]
+        public async Task<IActionResult> GetByCustomerId([FromRoute] GetByCustomerIdPaymentRequestQuery command)
+        {
+            IPaginate<GetByCustomerIdPaymentRequestResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
 
