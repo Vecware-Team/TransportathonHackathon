@@ -19,6 +19,7 @@ namespace TransportathonHackathon.Persistence.Contexts
         public DbSet<Translate> Translates { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<TransportRequest> TransportRequests { get; set; }
+        public DbSet<TransportType> TransportTypes { get; set; }
         public DbSet<Vehicle> Vehicles { get; set; }
         public DbSet<Car> Cars { get; set; }
         public DbSet<Truck> Trucks { get; set; }

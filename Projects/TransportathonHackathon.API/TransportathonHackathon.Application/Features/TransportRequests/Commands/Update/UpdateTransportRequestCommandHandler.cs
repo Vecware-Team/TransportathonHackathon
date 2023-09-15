@@ -20,17 +20,20 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
 
         public async Task<UpdatedTransportRequestResponse> Handle(UpdateTransportRequestCommand request, CancellationToken cancellationToken)
         {
-            TransportRequest? transportRequest = await _transportRequestRepository.GetAsync(e => e.Id == request.Id, include: e => e.Include(e => e.Company).Include(e => e.Customer));
+            TransportRequest? transportRequest = await _transportRequestRepository.GetAsync(
+                e => e.Id == request.Id, 
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType)
+            );
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");
 
             transportRequest.CompanyId = request.CompanyId;
             transportRequest.CustomerId = request.CustomerId;
+            transportRequest.TransportTypeId = request.TransportTypeId;
             transportRequest.CountryFrom = request.CountryFrom;
             transportRequest.CountryTo = request.CountryTo;
             transportRequest.CityFrom = request.CityFrom;
             transportRequest.CityTo = request.CityTo;
-            transportRequest.IsOffice = request.IsOfficce;
             transportRequest.PlaceSize = request.PlaceSize;
             transportRequest.ApprovedByCompany = false;
             transportRequest.StartDate = request.StartDate;

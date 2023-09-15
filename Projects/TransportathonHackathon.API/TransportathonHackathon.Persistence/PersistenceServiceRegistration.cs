@@ -30,6 +30,7 @@ namespace TransportathonHackathon.Persistence
             services.AddScoped<ILanguageRepository, LanguageRepository>();
             services.AddScoped<ITranslateRepository, TranslateRepository>();
             services.AddScoped<ITransportRequestRepository, TransportRequestRepository>();
+            services.AddScoped<ITransportTypeRepository, TransportTypeRepository>();
             services.AddScoped<IVehicleRepository, VehicleRepository>();
             services.AddScoped<ICarRepository, CarRepository>();
             services.AddScoped<ITruckRepository, TruckRepository>();

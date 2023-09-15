@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
         {
             TransportRequest? transportRequest = await _transportRequestRepository.GetAsync(
                 e => e.Id == request.Id,
-                include: e => e.Include(e => e.Company).Include(e => e.Customer)
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType)
             );
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");

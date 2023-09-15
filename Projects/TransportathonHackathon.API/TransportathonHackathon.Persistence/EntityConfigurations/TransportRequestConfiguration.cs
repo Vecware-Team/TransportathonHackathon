@@ -13,17 +13,18 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Property(e => e.Id).HasColumnName("Id").IsRequired();
             builder.Property(e => e.CustomerId).HasColumnName("CustomerId").IsRequired();
             builder.Property(e => e.CompanyId).HasColumnName("CompanyId").IsRequired();
+            builder.Property(e => e.TransportTypeId).HasColumnName("TransportTypeId").IsRequired();
             builder.Property(e => e.CountryFrom).HasColumnName("CountryFrom").IsRequired();
             builder.Property(e => e.CountryTo).HasColumnName("CountryTo").IsRequired();
             builder.Property(e => e.CityFrom).HasColumnName("CityFrom").IsRequired();
             builder.Property(e => e.CityTo).HasColumnName("CityTo").IsRequired();
-            builder.Property(e => e.IsOffice).HasColumnName("IsOffice").IsRequired();
             builder.Property(e => e.PlaceSize).HasColumnName("PlaceSize").IsRequired();
             builder.Property(e => e.StartDate).HasColumnName("StartDate").IsRequired();
             builder.Property(e => e.FinishDate).HasColumnName("FinishDate");
 
             builder.HasOne(e => e.Customer);
             builder.HasOne(e => e.Company);
+            builder.HasOne(e => e.TransportType);
             builder.HasOne(e => e.Comment);
         }
     }

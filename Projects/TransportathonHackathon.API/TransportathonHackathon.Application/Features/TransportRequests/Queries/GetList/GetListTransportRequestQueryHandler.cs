@@ -20,7 +20,11 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
 
         public async Task<Paginate<GetListTransportRequestResponse>> Handle(GetListTransportRequestQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<TransportRequest> transportRequests = await _transportRequestRepository.GetListPagedAsync(include: e => e.Include(e=>e.Company).Include(e=>e.Customer));
+            IPaginate<TransportRequest> transportRequests = await _transportRequestRepository.GetListPagedAsync(
+                index: request.PageRequest.Index,
+                size: request.PageRequest.Size,
+                include: e => e.Include(e=>e.Company).Include(e=>e.Customer).Include(e => e.TransportType)
+            );
 
             Paginate<GetListTransportRequestResponse> response = _mapper.Map<Paginate<GetListTransportRequestResponse>>(transportRequests);
             return response;

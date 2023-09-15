@@ -21,7 +21,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
         {
             IList<TransportRequest> transportRequest = await _transportRequestRepository.GetListAsync(
                 e => e.CompanyId == request.CompanyId,
-                include: e => e.Include(e => e.Company).Include(e => e.Customer)
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType)
             );
 
             List<GetByCompanyIdTransportRequestResponse> response = _mapper.Map<List<GetByCompanyIdTransportRequestResponse>>(transportRequest.ToList());

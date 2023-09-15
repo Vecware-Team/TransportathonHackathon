@@ -6,11 +6,11 @@ namespace TransportathonHackathon.Domain.Entities
     {
         public Guid CustomerId { get; set; }
         public Guid CompanyId { get; set; }
+        public Guid TransportTypeId { get; set; }
         public string CountryFrom { get; set; }
         public string CountryTo { get; set; }
         public string CityFrom { get; set; }
         public string CityTo { get; set; }
-        public bool IsOffice { get; set; }
         public string PlaceSize { get; set; }
         public bool ApprovedByCompany { get; set; }
         public DateTime StartDate { get; set; }
@@ -18,6 +18,7 @@ namespace TransportathonHackathon.Domain.Entities
 
         public virtual Customer Customer { get; set; }
         public virtual Company Company { get; set; }
+        public virtual TransportType TransportType { get; set; }
         public virtual Comment? Comment { get; set; }
     }
 }
