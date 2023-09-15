@@ -49,6 +49,13 @@ export class TransportRequestListComponent implements OnInit {
     );
   }
 
+  getApprovedText(isApproved: boolean) {
+    if (isApproved) {
+      return 'Approved';
+    }
+    return 'Waiting for approve';
+  }
+
   getIsPaidText(isPaid: boolean) {
     if (isPaid) {
       return 'Is paid';
