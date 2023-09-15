@@ -62,7 +62,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
   createMessageForm() {
     this.messageForm = this.formBuilder.group({
-      message: ['', Validators.required],
+      message: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -152,7 +152,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     let message = messageFormValue.message;
     console.log(message);
 
-    if (message == '') return;
+    if (!this.messageForm.valid) return;
 
     await this.connection.invoke('SendMessage', this.receiverId, message);
     this.messages.splice(0, 0, {
