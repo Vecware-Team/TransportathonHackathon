@@ -3,7 +3,9 @@ using Core.Persistence.Pagination;
 using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Create;
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Delete;
+using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Pay;
 using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Update;
+using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetList;
 
@@ -34,10 +36,24 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> Pay([FromBody] PayPaymentRequestCommand command)
+        {
+            PaidPaymentRequestResponse response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
         [HttpGet("{TransportRequestId}")]
         public async Task<IActionResult> GetById([FromRoute] GetByIdPaymentRequestQuery command)
         {
             GetByIdPaymentRequestResponse response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet("{CompanyId}")]
+        public async Task<IActionResult> GetByCompanyId([FromRoute] GetByCompanyIdPaymentRequestQuery command)
+        {
+            IPaginate<GetByCompanyIdPaymentRequestResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
 
