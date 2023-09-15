@@ -89,9 +89,10 @@ namespace TransportathonHackathon.Infrastructure.SignalR
                 IsRead = false,
             };
 
-            SignalRClient receiverClient = clients.SingleOrDefault(c => c.UserId == receiverUser.Id.ToString());
-            if (receiverClient is not null)
-                await Clients.Client(receiverClient.ConnectionId).ReceiveMessage(message);
+            List<SignalRClient> receiverClients = clients.Where(c => c.UserId == receiverUser.Id.ToString()).ToList();
+            if (receiverClients is not null && receiverClients?.Count > 0)
+                foreach (SignalRClient client in receiverClients)
+                    await Clients.Client(client.ConnectionId).ReceiveMessage(message);
 
             await _messageService.SaveMessage(sendingMessage);
         }

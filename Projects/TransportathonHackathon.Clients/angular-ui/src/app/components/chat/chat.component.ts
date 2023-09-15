@@ -46,6 +46,7 @@ export class ChatComponent implements OnInit {
     })
 
     this.connection.on("ReceiveMessage", data => {
+      this.getUsers();
       console.log("RECEIVED MESSAGE");
 
       this.messages.push({ id: "", isRead: false, messageText: data, receiverId: this.userId!, senderId: this.receiverId, receiverUserName: "", senderUserName: "", sendDate: new Date() });
