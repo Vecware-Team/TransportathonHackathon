@@ -8,6 +8,9 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TransportathonHackathon.Application;
+using TransportathonHackathon.Application.Services;
+using TransportathonHackathon.Infrastructure.DriverLicenseVerify;
+using TransportathonHackathon.Infrastructure.DriverLicenseVerify.FakeDriverLicenseVerifier;
 using TransportathonHackathon.Infrastructure.Payment;
 using TransportathonHackathon.Infrastructure.Payment.FakePaymentService;
 using TransportathonHackathon.Infrastructure.SignalR;
@@ -26,6 +29,7 @@ builder.Services.RegisterLogger(ServiceLifetime.Scoped, typeof(FileLogger), type
 builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();
 
 builder.Services.AddScoped<IPaymentService, FakePaymentService>();
+builder.Services.AddScoped<IDriverLicenseVerifierService, FakeDriverLicenseVerifierService>();
 
 builder.Services.AddExceptionHandlers(ServiceLifetime.Scoped);
 

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TransportathonHackathon.Infrastructure.Payment;
+using TransportathonHackathon.Application.Requests;
+using TransportathonHackathon.Application.Services;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -15,9 +16,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Payment([FromBody] PaymentObject paymentObject)
+        public async Task<IActionResult> Payment([FromBody] PaymentRequest paymentRequest)
         {
-            return Ok(await _paymentService.Payment(paymentObject));
+            bool result = await _paymentService.Payment(paymentRequest);
+            if (result)
+                return Ok(result);
+
+            return BadRequest(result);
         }
     }
 }
