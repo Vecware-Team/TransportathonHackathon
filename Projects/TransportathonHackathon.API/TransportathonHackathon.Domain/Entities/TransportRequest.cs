@@ -13,6 +13,7 @@ namespace TransportathonHackathon.Domain.Entities
         public string CityTo { get; set; }
         public string PlaceSize { get; set; }
         public bool ApprovedByCompany { get; set; }
+        public bool IsFinished { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
 

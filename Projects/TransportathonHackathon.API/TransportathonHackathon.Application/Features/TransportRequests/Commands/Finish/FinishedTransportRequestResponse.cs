@@ -1,6 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Update
+﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Finish
 {
-    public class UpdatedTransportRequestResponse
+    public class FinishedTransportRequestResponse
     {
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }
@@ -21,4 +21,5 @@
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
     }
+
 }
