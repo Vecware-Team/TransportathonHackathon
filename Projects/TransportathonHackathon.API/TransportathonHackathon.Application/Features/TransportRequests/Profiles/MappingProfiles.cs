@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Core.Persistence.Pagination;
+using TransportathonHackathon.Application.Features.TransportRequests.Commands.Approve;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Create;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Delete;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Update;
@@ -30,6 +31,12 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Profile
 
             CreateMap<TransportRequest, UpdateTransportRequestCommand>().ReverseMap();
             CreateMap<TransportRequest, UpdatedTransportRequestResponse>()
+                .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
+                .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
+                .ForMember(destinationMember: e => e.CustomerLastName, memberOptions: opt => opt.MapFrom(e => e.Customer.LastName))
+                .ReverseMap(); 
+
+            CreateMap<TransportRequest, ApproveTransportRequestResponse>()
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
                 .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
                 .ForMember(destinationMember: e => e.CustomerLastName, memberOptions: opt => opt.MapFrom(e => e.Customer.LastName))
