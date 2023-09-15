@@ -11,6 +11,7 @@ export interface CreatedTransportRequestResponse {
   cityTo: string;
   placeSize: string;
   createdDate: Date;
+  approverByCompany: boolean;
   startDate: Date;
   finishDate: Date | null;
 }

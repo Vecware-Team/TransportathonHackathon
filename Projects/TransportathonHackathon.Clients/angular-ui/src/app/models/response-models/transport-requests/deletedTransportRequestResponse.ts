@@ -10,6 +10,7 @@ export interface DeletedTransportRequestResponse {
   cityFrom: string;
   cityTo: string;
   placeSize: string;
+  approverByCompany: boolean;
   createdDate: Date;
   startDate: Date;
   finishDate: Date | null;
