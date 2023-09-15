@@ -8,6 +8,8 @@ import { DeletePaymentRequestRequest } from '../models/request-models/payment-re
 import { DeletedPaymentRequestResponse } from '../models/response-models/payment-request/deletedPaymentRequestResponse';
 import { UpdatePaymentRequestRequest } from '../models/request-models/payment-request/updatePaymentRequestRequest';
 import { UpdatedPaymentRequestResponse } from '../models/response-models/payment-request/updatedPaymentRequestResponse';
+import { PayPaymentRequestRequest } from '../models/request-models/payment-request/payPaymentRequestRequest';
+import { PaidPaymentRequestResponse } from '../models/response-models/payment-request/paidPaymentRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +41,15 @@ export class PaymentRequestService {
   ): Observable<DeletedPaymentRequestResponse> {
     return this.httpClient.delete<DeletedPaymentRequestResponse>(
       this.apiUrl + 'delete?Id=' + paymentRequestModel.transportRequestId
+    );
+  }
+
+  pay(
+    paymentRequestModel: PayPaymentRequestRequest
+  ): Observable<PaidPaymentRequestResponse> {
+    return this.httpClient.post<PaidPaymentRequestResponse>(
+      this.apiUrl + 'pay',
+      paymentRequestModel
     );
   }
 }

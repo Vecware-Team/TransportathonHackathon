@@ -19,6 +19,7 @@ import { companyGuard } from './guards/company.guard';
 import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
 import { Chat2Component } from './components/chat2/chat2.component';
 import { HomeComponent } from './components/home/home.component';
+import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'my-chat',
     component: Chat2Component,
+  },
+  {
+    path: 'transport-requests',
+    component: TransportRequestListComponent,
   },
   {
     path: 'transport-requests/create/:companyId',

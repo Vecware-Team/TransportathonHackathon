@@ -3,5 +3,5 @@ export interface PaidPaymentRequestResponse {
   isPaid: boolean;
   price: number;
   createdDate: Date;
-  updatedDate: DataViewConstructor;
+  updatedDate: Date;
 }

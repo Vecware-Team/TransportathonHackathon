@@ -68,6 +68,8 @@ import { TransportTypeCreateComponent } from './components/admin/transport-types
 import { TransportTypeDeleteComponent } from './components/admin/transport-types/transport-type-delete/transport-type-delete.component';
 import { TransportTypeUpdateComponent } from './components/admin/transport-types/transport-type-update/transport-type-update.component';
 import { HomeComponent } from './components/home/home.component';
+import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
+import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
 
 @NgModule({
   declarations: [
@@ -122,6 +124,8 @@ import { HomeComponent } from './components/home/home.component';
     TransportTypeDeleteComponent,
     TransportTypeUpdateComponent,
     HomeComponent,
+    TransportRequestListComponent,
+    PaymentRequestListComponent,
   ],
   imports: [
     BrowserModule,
