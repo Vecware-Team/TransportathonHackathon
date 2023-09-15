@@ -33,7 +33,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
             await _transportRequestRepository.SaveChangesAsync();
 
             ApproveTransportRequestResponse response = _mapper.Map<ApproveTransportRequestResponse>(transportRequest);
-            throw new NotImplementedException();
+            return response;
         }
     }
 }

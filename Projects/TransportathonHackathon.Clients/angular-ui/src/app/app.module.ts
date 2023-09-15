@@ -71,6 +71,7 @@ import { TransportRequestListComponent } from './components/transport-request-li
 import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
 import { PayTransportRequestComponent } from './components/transport-request-list/pay-transport-request/pay-transport-request.component';
 import { CloseTransportRequestComponent } from './components/transport-request-list/close-transport-request/close-transport-request.component';
+import { TransportRequestInfoComponent } from './components/company-management/transport-requests/transport-request-info/transport-request-info.component';
 
 @NgModule({
   declarations: [
@@ -128,6 +129,7 @@ import { CloseTransportRequestComponent } from './components/transport-request-l
     PaymentRequestListComponent,
     PayTransportRequestComponent,
     CloseTransportRequestComponent,
+    TransportRequestInfoComponent,
   ],
   imports: [
     BrowserModule,

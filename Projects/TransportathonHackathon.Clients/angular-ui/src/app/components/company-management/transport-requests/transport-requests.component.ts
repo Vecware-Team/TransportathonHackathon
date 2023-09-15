@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   faCircleCheck,
   faCircleXmark,
+  faClock,
   faRedoAlt,
 } from '@fortawesome/free-solid-svg-icons';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
@@ -15,6 +16,7 @@ import { ApproveTransportRequestComponent } from './approve-transport-request/ap
 import { RejectTransportRequestComponent } from './reject-transport-request/reject-transport-request.component';
 import { PaymentRequestService } from 'src/app/services/payment-request.service';
 import { GetByIdPaymentRequestResponse } from 'src/app/models/response-models/payment-request/getByIdPaymentRequestResponse';
+import { TransportRequestInfoComponent } from './transport-request-info/transport-request-info.component';
 
 @Component({
   selector: 'app-transport-requests',
@@ -25,6 +27,7 @@ export class TransportRequestsComponent implements OnInit {
   faRedoAlt = faRedoAlt;
   faCircleCheck = faCircleCheck;
   faCircleXMark = faCircleXmark;
+  faClock = faClock;
   dataLoaded = false;
   transportRequests: GetByCompanyIdTransportRequestResponse[];
   company: GetByIdCompanyResponse;
@@ -47,6 +50,16 @@ export class TransportRequestsComponent implements OnInit {
       this.company = response;
       this.getList();
     });
+  }
+
+  openTransportRequestInfoModal(
+    transportRequest: GetByCompanyIdTransportRequestResponse
+  ) {
+    var modalReferance = this.modalService.open(TransportRequestInfoComponent, {
+      size: 'm',
+      modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.componentInstance.transportRequest = transportRequest;
   }
 
   openApproveRequestModal(

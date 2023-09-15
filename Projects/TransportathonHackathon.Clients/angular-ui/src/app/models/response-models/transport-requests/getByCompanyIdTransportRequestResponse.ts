@@ -4,6 +4,7 @@ export interface GetByCompanyIdTransportRequestResponse {
   customerLastName: string;
   transportTypeId: string;
   transportType: string;
+  isPaid: boolean;
   companyName: string;
   countryFrom: string;
   countryTo: string;
@@ -15,4 +16,3 @@ export interface GetByCompanyIdTransportRequestResponse {
   startDate: Date;
   finishDate: Date | null;
 }
-
