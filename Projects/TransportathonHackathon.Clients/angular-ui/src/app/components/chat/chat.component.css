@@ -152,7 +152,7 @@
     float: right;
     width: 46%;
   }
-  .input_msg_write input {
+  .input_msg_write textarea {
     background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
     border: medium none;
     color: #4c4c4c;

@@ -31,7 +31,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             AppUser? user = await _userManager.GetUserAsync(Context.User);
             if (user is null)
                 throw new UnauthorizedException();
-            
+
             SignalRClient client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
             clients.Add(client);
 
@@ -69,7 +69,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             if (receiverUser.Id == senderUser.Id)
                 throw new BusinessException("Users was same");
 
-            if (message.IsNullOrEmpty())
+            if (message.IsNullOrEmpty() || message.All(e => e == ' ') || message.All(e => e == '\n') || message.All(e => e == ' ' || e == '\n'))
                 return;
 
             Message sendingMessage = new()
@@ -85,6 +85,11 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             if (receiverClients is not null && receiverClients?.Count > 0)
                 foreach (SignalRClient client in receiverClients)
                     await Clients.Client(client.ConnectionId).ReceiveMessage(message);
+
+            List<SignalRClient> senderClients = clients.Where(c => c.UserId == senderUser.Id.ToString()).ToList(); 
+            if (senderClients is not null && senderClients?.Count > 0)
+                foreach (SignalRClient client in senderClients)
+                    await Clients.Client(client.ConnectionId).MessageSended(message);
 
             await _messageService.SaveMessage(sendingMessage);
         }

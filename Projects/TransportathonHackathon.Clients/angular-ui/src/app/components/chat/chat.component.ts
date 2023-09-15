@@ -109,10 +109,26 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         senderUserName: '',
         sendDate: new Date(),
       });
-    });
-    this.disableScrollDown = false;
 
-    this.scrollToBottom();
+      this.disableScrollDown = false;
+      this.scrollToBottom();
+    });
+
+    this.connection.on('MessageSended', (data) => {
+      this.messages.splice(0, 0, {
+        id: '',
+        isRead: false,
+        messageText: data,
+        receiverId: this.receiverId,
+        senderId: this.userId!,
+        receiverUserName: '',
+        senderUserName: '',
+        sendDate: new Date(),
+      });
+
+      this.disableScrollDown = false;
+      this.scrollToBottom();
+    });
   }
 
   getUsers() {
@@ -156,20 +172,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     if (!this.messageForm.valid) return;
 
     await this.connection.invoke('SendMessage', this.receiverId, message);
-    this.messages.splice(0, 0, {
-      id: '',
-      isRead: false,
-      messageText: message,
-      receiverId: this.receiverId,
-      senderId: this.userId!,
-      receiverUserName: '',
-      senderUserName: '',
-      sendDate: new Date(),
-    });
     this.messageForm.reset();
-
-    this.disableScrollDown = false;
-    this.scrollToBottom();
   }
 
   keyPress(event: any) {
