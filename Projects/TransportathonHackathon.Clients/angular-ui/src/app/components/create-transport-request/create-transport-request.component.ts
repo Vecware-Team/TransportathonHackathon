@@ -5,8 +5,10 @@ import { ToastrService } from 'ngx-toastr';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { PaymentObject } from 'src/app/models/request-models/payment/paymentObject';
 import { CreateTransportRequestRequest } from 'src/app/models/request-models/transport-requests/createTransportRequestRequest';
+import { GetListTransportTypeResponse } from 'src/app/models/response-models/transport-types/getListTransportTypeResponse';
 import { TokenService } from 'src/app/services/token.service';
 import { TransportRequestService } from 'src/app/services/transport-request.service';
+import { TransportTypeService } from 'src/app/services/transport-type.service';
 
 @Component({
   selector: 'app-create-transport-request',
@@ -18,19 +20,28 @@ export class CreateTransportRequestComponent implements OnInit {
   paymentForm: FormGroup;
   companyId: string;
   customer: TokenUserDto;
+  transportTypes: GetListTransportTypeResponse[];
 
   constructor(
     private transportRequestService: TransportRequestService,
     private formBuilder: FormBuilder,
     private tokenService: TokenService,
     private toastrService: ToastrService,
-    private activatedRote: ActivatedRoute
+    private activatedRote: ActivatedRoute,
+    private transportTypeService: TransportTypeService
   ) {}
 
   ngOnInit(): void {
+    this.getTransportTypeList();
     this.getUserToken();
     this.createCheckoutForm();
     this.subscribeRoute();
+  }
+
+  getTransportTypeList() {
+    this.transportTypeService.getList().subscribe((response) => {
+      this.transportTypes = response;
+    });
   }
 
   getUserToken() {
@@ -70,7 +81,7 @@ export class CreateTransportRequestComponent implements OnInit {
     );
     requestModel.companyId = this.companyId;
     requestModel.customerId = this.customer.id;
-    
+
     this.transportRequestService.create(requestModel).subscribe((response) => {
       this.toastrService.success('Request sent', 'Successful');
     });

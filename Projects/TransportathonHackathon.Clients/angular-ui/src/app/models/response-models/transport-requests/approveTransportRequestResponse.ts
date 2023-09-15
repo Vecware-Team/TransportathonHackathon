@@ -1,6 +1,8 @@
 export interface ApproveTransportRequestResponse {
   id: string;
   customerFirstName: string;
+  transportTypeId: string;
+  transportType: string;
   customerLastName: string;
   companyName: string;
   countryFrom: string;
