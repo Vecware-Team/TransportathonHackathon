@@ -5,7 +5,7 @@ namespace TransportathonHackathon.Infrastructure.Payment.FakePaymentService
 {
     public class FakePaymentService : IPaymentService
     {
-        public async Task<bool> Payment(PaymentRequest paymentObject)
+        public async Task<bool> Payment(PaymentRequest paymentRequest)
         {
             return true;
         }
