@@ -1,5 +1,6 @@
 .container {
   margin-top: 5%;
+  min-height: 95vh;
 }
 
 .card-select {

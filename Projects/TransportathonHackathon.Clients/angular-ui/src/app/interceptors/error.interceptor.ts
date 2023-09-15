@@ -22,7 +22,9 @@ export class ErrorInterceptor implements HttpInterceptor {
       catchError((error) => {
         let exceptionError: BaseError = error.error;
         this.errorSeperator.handleErrors(error.error);
-        return throwError('errorMsg');
+        return throwError(() => {
+          exceptionError.detail;
+        });
       })
     );
   }

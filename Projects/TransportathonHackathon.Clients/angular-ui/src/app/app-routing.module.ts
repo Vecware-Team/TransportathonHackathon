@@ -15,6 +15,7 @@ import { LoginComponent } from './components/login/login.component';
 import { CompanyManagementPanelComponent } from './components/company-management/company-management-panel.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { ChatComponent } from './components/chat/chat.component';
+import { companyGuard } from './guards/company.guard';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -44,10 +45,12 @@ const routes: Routes = [
   {
     path: 'company/panel',
     component: CompanyManagementPanelComponent,
+    canActivate: [companyGuard, loginGuard],
   },
   {
     path: 'company/panel/:currentPage',
     component: CompanyManagementPanelComponent,
+    canActivate: [companyGuard, loginGuard],
   },
   {
     path: 'chat/:companyId',
@@ -78,14 +81,6 @@ const routes: Routes = [
     component: RegisterCompanyComponent,
   },
   {
-    path: 'register/carrier',
-    component: RegisterCarrierComponent,
-  },
-  {
-    path: 'register/driver',
-    component: RegisterDriverComponent,
-  },
-  {
     path: 'admin',
     component: AdminComponent,
     canActivate: [adminGuard, loginGuard],
@@ -101,4 +96,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes, routerOptions)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
