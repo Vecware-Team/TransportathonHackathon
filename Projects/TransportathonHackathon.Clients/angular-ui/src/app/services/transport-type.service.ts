@@ -39,14 +39,8 @@ export class TransportTypeService {
   delete(
     transportTypeModel: DeleteTransportTypeRequest
   ): Observable<DeletedTransportTypeResponse> {
-    let httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
-      body: transportTypeModel,
-    };
-
     return this.httpClient.delete<DeletedTransportTypeResponse>(
-      this.apiUrl + 'delete',
-      httpOptions
+      this.apiUrl + 'delete?Id=' + transportTypeModel.id
     );
   }
 
