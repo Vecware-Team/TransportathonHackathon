@@ -24,8 +24,8 @@ namespace TransportathonHackathon.Application.Features.Messages.Queries.GetByRec
                 e => (e.ReceiverId == request.ReceiverId && e.SenderId == request.SenderId) || (e.ReceiverId == request.SenderId && e.SenderId == request.ReceiverId) ,
                 include: e => e.Include(e => e.Receiver).Include(e => e.Sender),
                 orderBy: e => e.OrderByDescending(e => e.SendDate),
-                index: 0,
-                size: 1000
+                index: request.PageRequest.Index,
+                size: request.PageRequest.Size
             );
 
             Paginate<GetByReceiverAndSenderMessageResponse> response = _mapper.Map<Paginate<GetByReceiverAndSenderMessageResponse>>(messages);

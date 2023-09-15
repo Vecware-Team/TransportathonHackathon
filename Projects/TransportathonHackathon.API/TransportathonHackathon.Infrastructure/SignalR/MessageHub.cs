@@ -1,6 +1,7 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.SignalR;
+using Microsoft.IdentityModel.Tokens;
 using TransportathonHackathon.Application.Services;
 using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
@@ -30,22 +31,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             AppUser? user = await _userManager.GetUserAsync(Context.User);
             if (user is null)
                 throw new UnauthorizedException();
-            /*
-              SignalRClient? client =  clients.SingleOrDefault(c => c.UserId == user.Id.ToString());
-            if (client is not null)
-            {
-                clients.Remove(client);
-                client.ConnectionId = Context.ConnectionId;
-                clients.Add(client);
-            }
-            else
-            {
-                client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
-                clients.Add(client);
-                await Clients.All.UserJoined(client);
-            }
-             */
-
+            
             SignalRClient client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
             clients.Add(client);
 
@@ -79,6 +65,12 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             AppUser? senderUser = await _userManager.GetUserAsync(Context.User);
             if (receiverUser is null || senderUser is null)
                 throw new Exception();
+
+            if (receiverUser.Id == senderUser.Id)
+                throw new BusinessException("Users was same");
+
+            if (message.IsNullOrEmpty())
+                return;
 
             Message sendingMessage = new()
             {
