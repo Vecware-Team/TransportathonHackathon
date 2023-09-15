@@ -1,6 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Delete
+﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Approve
 {
-    public class DeletedTransportRequestResponse
+    public class ApproveTransportRequestResponse
     {
         public Guid Id { get; set; }
         public string CustomerFirstName { get; set; }
@@ -14,6 +14,7 @@
         public string PlaceSize { get; set; }
         public bool ApprovedByCompany { get; set; }
         public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
     }

@@ -10,6 +10,7 @@
         public string CountryTo { get; set; }
         public string CityFrom { get; set; }
         public string CityTo { get; set; }
+        public bool ApprovedByCompany { get; set; }
         public bool IsOfficce { get; set; }
         public string PlaceSize { get; set; }
         public DateTime CreatedDate { get; set; }
