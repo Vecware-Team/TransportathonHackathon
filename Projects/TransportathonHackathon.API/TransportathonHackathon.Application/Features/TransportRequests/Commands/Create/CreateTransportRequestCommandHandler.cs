@@ -20,13 +20,14 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public async Task<CreatedTransportRequestResponse> Handle(CreateTransportRequestCommand request, CancellationToken cancellationToken)
         {
             TransportRequest transportRequest = _mapper.Map<TransportRequest>(request);
-            transportRequest.ApprovedByCompany = false;
+            transportRequest.ApprovedByCompany = null;
             await _transportRequestRepository.AddAsync(transportRequest);
 
             transportRequest = await _transportRequestRepository.GetAsync(
                 e => e.Id == transportRequest.Id, 
                 include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest)
             );
+
             CreatedTransportRequestResponse response = _mapper.Map<CreatedTransportRequestResponse>(transportRequest);
             return response;
         }

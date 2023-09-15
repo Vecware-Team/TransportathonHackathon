@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Core.Persistence.Pagination;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Approve;
+using TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Create;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Delete;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Finish;
@@ -52,6 +53,14 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Profile
                 .ReverseMap();
             
             CreateMap<TransportRequest, FinishedTransportRequestResponse>()
+                .ForMember(destinationMember: e => e.TransportType, memberOptions: opt => opt.MapFrom(e => e.TransportType.Type))
+                .ForMember(destinationMember: e => e.IsPaid, memberOptions: opt => opt.MapFrom(e => e.PaymentRequest.IsPaid))
+                .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
+                .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
+                .ForMember(destinationMember: e => e.CustomerLastName, memberOptions: opt => opt.MapFrom(e => e.Customer.LastName))
+                .ReverseMap();
+
+            CreateMap<TransportRequest, ApproveAndPayTransportRequestResponse>()
                 .ForMember(destinationMember: e => e.TransportType, memberOptions: opt => opt.MapFrom(e => e.TransportType.Type))
                 .ForMember(destinationMember: e => e.IsPaid, memberOptions: opt => opt.MapFrom(e => e.PaymentRequest.IsPaid))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
