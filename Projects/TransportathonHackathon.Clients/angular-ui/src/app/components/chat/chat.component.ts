@@ -30,7 +30,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   users: GetByUserResponse[];
   disableScrollDown: boolean = false;
   index: number = 0;
+  size: number = 20;
   messageForm: FormGroup;
+  hasNext: boolean;
+  getData: boolean = true;
 
   @ViewChild('scrollMe') myScrollContainer: ElementRef;
   @ViewChildren('item') itemElements: QueryList<any>;
@@ -62,7 +65,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
   createMessageForm() {
     this.messageForm = this.formBuilder.group({
-      message: ['', Validators.required],
+      message: ['', [Validators.required, Validators.minLength(1)]],
     });
   }
 
@@ -73,7 +76,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     try {
       this.myScrollContainer.nativeElement.scrollTop =
         this.myScrollContainer.nativeElement.scrollHeight;
-      console.log(this.myScrollContainer.nativeElement.scrollHeight);
     } catch (err) {}
   }
 
@@ -107,10 +109,26 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         senderUserName: '',
         sendDate: new Date(),
       });
-    });
-    this.disableScrollDown = false;
 
-    this.scrollToBottom();
+      this.disableScrollDown = false;
+      this.scrollToBottom();
+    });
+
+    this.connection.on('MessageSended', (data) => {
+      this.messages.splice(0, 0, {
+        id: '',
+        isRead: false,
+        messageText: data,
+        receiverId: this.receiverId,
+        senderId: this.userId!,
+        receiverUserName: '',
+        senderUserName: '',
+        sendDate: new Date(),
+      });
+
+      this.disableScrollDown = false;
+      this.scrollToBottom();
+    });
   }
 
   getUsers() {
@@ -122,6 +140,8 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   getMessages(index: number, size: number) {
+    if (!this.getData) return;
+    this.getData = false;
     this.activatedRoute.params.subscribe({
       next: (params) => {
         this.receiverId = params['companyId'];
@@ -131,17 +151,16 @@ export class ChatComponent implements OnInit, AfterViewChecked {
             .getByReceiverAndSender(this.receiverId, this.userId!, index, size)
             .subscribe({
               next: (data) => {
-                this.index += 1;
                 if (this.messages == null) this.messages = [];
-                console.log(index);
-
                 data.items.forEach((e) => {
                   this.messages.push(e);
                 });
+
+                this.hasNext = data.hasNext;
+                if (this.hasNext) this.index = data.index;
+                this.getData = true;
               },
-              error: (error) => {
-                console.log(error);
-              },
+              error: (error) => {},
             });
       },
     });
@@ -150,25 +169,10 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   async send() {
     let messageFormValue = Object.assign({}, this.messageForm.value);
     let message = messageFormValue.message;
-    console.log(message);
-
-    if (message == '') return;
+    if (!this.messageForm.valid) return;
 
     await this.connection.invoke('SendMessage', this.receiverId, message);
-    this.messages.splice(0, 0, {
-      id: '',
-      isRead: false,
-      messageText: message,
-      receiverId: this.receiverId,
-      senderId: this.userId!,
-      receiverUserName: '',
-      senderUserName: '',
-      sendDate: new Date(),
-    });
     this.messageForm.reset();
-
-    this.disableScrollDown = false;
-    this.scrollToBottom();
   }
 
   keyPress(event: any) {
@@ -184,9 +188,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     } else {
       this.disableScrollDown = true;
     }
-    if (event.target.scrollTop <= 100) {
-      setTimeout(() => this.getMessages(this.index, 20), 2000);
-      console.log('Mesaj getirildi');
+    if (event.target.scrollTop <= 100 && this.hasNext) {
+      if (
+        this.messages.length * this.index >= this.size * this.index &&
+        this.getData
+      ) {
+        this.getMessages(this.index + 1, this.size);
+      }
     }
   }
 }

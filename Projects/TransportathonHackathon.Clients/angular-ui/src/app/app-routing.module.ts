@@ -36,10 +36,6 @@ const routes: Routes = [
     component: HomeComponent,
   },
   {
-    path: 'my-chat',
-    component: Chat2Component,
-  },
-  {
     path: 'transport-requests',
     component: TransportRequestListComponent,
   },

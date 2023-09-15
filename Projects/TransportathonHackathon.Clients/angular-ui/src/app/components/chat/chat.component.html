@@ -70,7 +70,10 @@
                   />
                 </div>
                 <div class="received_msg">
-                  <div class="received_withd_msg">
+                  <div
+                    class="received_withd_msg"
+                    style="white-space: pre-line; word-wrap: break-word"
+                  >
                     <p>{{ message.messageText }}</p>
                     <span class="time_date">
                       {{ message.sendDate | date }}</span
@@ -81,7 +84,10 @@
               <!--  -->
               <!-- OutGoing -->
               <div class="outgoing_msg" *ngIf="message.senderId == userId">
-                <div class="sent_msg">
+                <div
+                  class="sent_msg"
+                  style="white-space: pre-line; word-wrap: break-word"
+                >
                   <p>{{ message.messageText }}</p>
                   <span class="time_date">{{ message.sendDate | date }}</span>
                 </div>
@@ -91,13 +97,13 @@
           </div>
           <div class="type_msg" [formGroup]="messageForm">
             <div class="input_msg_write">
-              <input
+              <textarea
                 type="text"
                 class="write_msg"
                 placeholder="Type a message"
                 formControlName="message"
                 (keydown.enter)="keyPress($event)"
-              />
+              ></textarea>
               <button class="msg_send_btn" type="button" (click)="send()">
                 <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
               </button>
