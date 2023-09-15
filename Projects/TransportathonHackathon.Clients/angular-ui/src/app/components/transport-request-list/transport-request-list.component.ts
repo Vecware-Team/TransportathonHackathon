@@ -11,6 +11,7 @@ import { PayTransportRequestComponent } from './pay-transport-request/pay-transp
 import { Router } from '@angular/router';
 import { CloseTransportRequestComponent } from './close-transport-request/close-transport-request.component';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
+import { FinishTransportRequestComponent } from './finish-transport-request/finish-transport-request.component';
 
 @Component({
   selector: 'app-transport-request-list',
@@ -61,6 +62,17 @@ export class TransportRequestListComponent implements OnInit {
       return 'Is paid';
     }
     return 'Is waiting';
+  }
+
+  finish(transportRequest: GetByCustomerIdTransportRequestResponse) {
+    var modalReferance = this.modalService.open(
+      FinishTransportRequestComponent,
+      {
+        size: 'm',
+        modalDialogClass: 'modal-dialog-centered',
+      }
+    );
+    modalReferance.componentInstance.transportRequest = transportRequest;
   }
 
   pay(transportRequest: GetByCustomerIdTransportRequestResponse) {

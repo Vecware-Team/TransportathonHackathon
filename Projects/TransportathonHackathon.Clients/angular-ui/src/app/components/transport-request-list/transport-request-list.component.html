@@ -92,7 +92,7 @@
 
                                 <!-- if paid -->
                                 <a *ngIf="getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
-                                    class="btn btn-success me-2">
+                                    class="btn btn-success me-2" (click)="finish(transportRequest)">
                                     <fa-icon [icon]="faCheck" class="me-2"></fa-icon>
                                     Mark as job finished
                                 </a>

@@ -12,6 +12,8 @@ import { CreateTransportRequestRequest } from '../models/request-models/transpor
 import { CreatedTransportRequestResponse } from '../models/response-models/transport-requests/createdTransportRequestResponse';
 import { GetByIdTransportRequestRequest } from '../models/request-models/transport-requests/getByIdTransportRequestRequest';
 import { GetByIdTransportRequestResponse } from '../models/response-models/transport-requests/getByIdTransportRequestResponse';
+import { FinishTransportRequestRequest } from '../models/request-models/transport-requests/finishTransportRequestRequest';
+import { FinishedTransportRequestResponse } from '../models/response-models/transport-requests/finishedTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -58,6 +60,15 @@ export class TransportRequestService {
   ): Observable<ApproveTransportRequestResponse> {
     return this.httpClient.post<ApproveTransportRequestResponse>(
       this.apiUrl + 'approve',
+      request
+    );
+  }
+
+  finishTransportRequest(
+    request: FinishTransportRequestRequest
+  ): Observable<FinishedTransportRequestResponse> {
+    return this.httpClient.post<FinishedTransportRequestResponse>(
+      this.apiUrl + 'finish',
       request
     );
   }
