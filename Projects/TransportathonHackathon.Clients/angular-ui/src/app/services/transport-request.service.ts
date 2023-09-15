@@ -10,6 +10,8 @@ import { GetByCustomerIdTransportRequestRequest } from '../models/request-models
 import { GetByCustomerIdTransportRequestResponse } from '../models/response-models/transport-requests/getByCustomerIdTransportRequestResponse';
 import { CreateTransportRequestRequest } from '../models/request-models/transport-requests/createTransportRequestRequest';
 import { CreatedTransportRequestResponse } from '../models/response-models/transport-requests/createdTransportRequestResponse';
+import { GetByIdTransportRequestRequest } from '../models/request-models/transport-requests/getByIdTransportRequestRequest';
+import { GetByIdTransportRequestResponse } from '../models/response-models/transport-requests/getByIdTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -40,6 +42,14 @@ export class TransportRequestService {
   ): Observable<GetByCustomerIdTransportRequestResponse[]> {
     return this.httpClient.get<GetByCustomerIdTransportRequestResponse[]>(
       this.apiUrl + 'getListByCustomerId/' + request.customerId
+    );
+  }
+
+  getById(
+    request: GetByIdTransportRequestRequest
+  ): Observable<GetByIdTransportRequestResponse> {
+    return this.httpClient.get<GetByIdTransportRequestResponse>(
+      this.apiUrl + 'getById/' + request.id
     );
   }
 

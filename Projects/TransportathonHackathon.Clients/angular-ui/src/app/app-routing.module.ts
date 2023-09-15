@@ -21,6 +21,7 @@ import { Chat2Component } from './components/chat2/chat2.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
 import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
+import { PayTransportRequestComponent } from './components/transport-request-list/pay-transport-request/pay-transport-request.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -38,6 +39,10 @@ const routes: Routes = [
   {
     path: 'transport-requests',
     component: TransportRequestListComponent,
+  },
+  {
+    path: 'transport-requests/payment/:transportRequestId',
+    component: PayTransportRequestComponent,
   },
   {
     path: 'payment-requests',

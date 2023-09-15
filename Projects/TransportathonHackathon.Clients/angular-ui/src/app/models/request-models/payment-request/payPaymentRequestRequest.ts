@@ -1,4 +1,4 @@
-import { PaymentRequest } from '../../domain-models/paymentRequest';
+import { PaymentRequest } from '../pay-models/paymentModel';
 
 export interface PayPaymentRequestRequest {
   transportRequestId: string;

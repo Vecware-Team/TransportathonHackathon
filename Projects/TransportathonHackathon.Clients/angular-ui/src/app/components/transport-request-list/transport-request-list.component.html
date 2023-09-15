@@ -31,26 +31,60 @@
                     <div *ngFor="let transportRequest of transportRequests" class="col">
                         <div class="card w-100 mb-3">
                             <div class="card-body">
-                                <h5 class="card-title">
-                                    {{transportRequest.companyName}}
-                                    <span class="badge bg-primary rounded-pill">{{transportRequest.transportType}}</span>
-                                </h5>
-                                <p class="card-text">
-                                    {{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}
-                                    <br>
-                                    {{"Nakliyat tipi: " + transportRequest.transportType}}
-                                </p>
-                                <p class="card-text">
-                                    {{transportRequest.countryFrom + ", " + transportRequest.cityFrom
-                                    + " -> " +
-                                    transportRequest.countryTo + ", " + transportRequest.cityTo}}
-                                </p>
-                                <p class="card-text">{{"Start date: "}}{{transportRequest.startDate | date}}</p>
-                                <a class="btn btn-primary me-2">
-                                    Pay
+                                <div class="transport-request info">
+                                    <h5 class="card-title">
+                                        {{transportRequest.companyName}}
+                                        <span
+                                            class="badge bg-primary rounded-pill">{{transportRequest.transportType}}</span>
+                                    </h5>
+                                    <p class="card-text">
+                                        {{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}
+                                        <br>
+                                        {{"Nakliyat tipi: " + transportRequest.transportType}}
+                                    </p>
+                                    <p class="card-text">
+                                        {{transportRequest.countryFrom + ", " + transportRequest.cityFrom
+                                        + " -> " +
+                                        transportRequest.countryTo + ", " + transportRequest.cityTo}}
+                                    </p>
+                                    <p class="card-text">
+                                        {{"Start date: "}}
+                                        <span class="fw-semibold">{{transportRequest.startDate | date}}</span>
+                                    </p>
+                                </div>
+
+                                <hr>
+
+                                <div class="payment-request-info mb-3">
+                                    <div *ngIf="getPaymentRequestByTransportRequest(transportRequest)">
+                                        <h6 class="card-title">
+                                            {{"Payment Request Info"}}
+                                            <span class="badge bg-secondary rounded-pill">
+                                                {{getPaymentRequestByTransportRequest(transportRequest)!.price + " TL"}}
+                                            </span>
+                                        </h6>
+                                        <p class="card-text">
+                                            {{"Price: " + getPaymentRequestByTransportRequest(transportRequest)!.price +
+                                            " TL"}}
+                                        </p>
+                                        <p class="card-text">
+                                            {{"Transport acceptance date: "}}<span
+                                                class="fw-semibold">{{getPaymentRequestByTransportRequest(transportRequest)!.createdDate
+                                                | date}}</span>
+                                        </p>
+                                    </div>
+                                    <div *ngIf="!getPaymentRequestByTransportRequest(transportRequest)">
+                                        <h5 class="card-title text-muted">
+                                            {{"Payment request has not been sent yet."}}
+                                        </h5>
+                                    </div>
+                                </div>
+
+                                <a (click)="pay(transportRequest)" class="btn btn-primary me-2">
+                                    Pay and start transportation
                                 </a>
-                                <a class="btn btn-secondary me-2">
-                                    Reject
+                                <a (click)="reject(transportRequest)" class="btn btn-secondary me-2">
+                                    Reject and close this transport request
                                 </a>
                             </div>
                         </div>
