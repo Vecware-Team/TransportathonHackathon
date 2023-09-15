@@ -17,6 +17,7 @@ import { CustomerDetailsComponent } from './components/customer-details/customer
 import { ChatComponent } from './components/chat/chat.component';
 import { companyGuard } from './guards/company.guard';
 import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
+import { Chat2Component } from './components/chat2/chat2.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -30,6 +31,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: AdminComponent,
+  },
+  {
+    path: 'my-chat',
+    component: Chat2Component,
   },
   {
     path: 'transport-requests/create',
