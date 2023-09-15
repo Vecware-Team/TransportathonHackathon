@@ -31,7 +31,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 throw new BusinessException("You must pay first");
             
             transportRequest.IsFinished = true;
-
+            transportRequest.FinishDate = DateTime.UtcNow;
             await _transportRequestRepository.SaveChangesAsync();
 
             FinishedTransportRequestResponse response = _mapper.Map<FinishedTransportRequestResponse>(transportRequest);
