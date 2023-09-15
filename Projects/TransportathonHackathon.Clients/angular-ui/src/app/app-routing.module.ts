@@ -18,6 +18,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { companyGuard } from './guards/company.guard';
 import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
 import { Chat2Component } from './components/chat2/chat2.component';
+import { HomeComponent } from './components/home/home.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -30,7 +31,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    component: AdminComponent,
+    component: HomeComponent,
   },
   {
     path: 'my-chat',
@@ -93,7 +94,6 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [adminGuard, loginGuard],
   },
   {
     path: 'admin/:currentPage',

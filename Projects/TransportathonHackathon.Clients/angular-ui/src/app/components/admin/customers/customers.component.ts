@@ -36,8 +36,6 @@ export class CustomersComponent implements OnInit {
       .getList({ index: this.index, size: this.size })
       .subscribe((response) => {
         this.customers = response;
-        console.log(this.customers);
-
         this.dataLoaded = true;
       });
   }

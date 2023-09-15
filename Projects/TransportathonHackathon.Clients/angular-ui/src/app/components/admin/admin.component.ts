@@ -11,6 +11,7 @@ import { LanguagesComponent } from './languages/languages.component';
 import {
   faClipboardList,
   faCogs,
+  faCouch,
   faGlobe,
   faImages,
   faLandmark,
@@ -19,6 +20,7 @@ import {
   faUsersCog,
 } from '@fortawesome/free-solid-svg-icons';
 import { CustomersComponent } from './customers/customers.component';
+import { TransportTypesComponent } from './transport-types/transport-types.component';
 
 @Component({
   selector: 'app-admin',
@@ -34,6 +36,7 @@ export class AdminComponent implements OnInit {
   faGauge = faTachometerAlt;
   faLandmark = faLandmark;
   faGlobe = faGlobe;
+  faCouch = faCouch;
 
   projectName = environment.projectName;
   currentMainPage: string = '';
@@ -100,6 +103,9 @@ export class AdminComponent implements OnInit {
           break;
         case 'manage-languages':
           this.currentComponent = LanguagesComponent;
+          break;
+        case 'manage-transport-types':
+          this.currentComponent = TransportTypesComponent;
           break;
         default:
           this.currentComponent = CustomersComponent;
