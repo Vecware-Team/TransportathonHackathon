@@ -58,12 +58,23 @@
                 <h4 class="mb-3">Ödeme bilgileri ve adres</h4>
                 <form [formGroup]="checkoutForm" novalidate>
                     <div class="row g-3">
-                        <div class="col-12">
+
+                        <div class="col-6">
                             <label for="placeSize" class="form-label">Alan bilgisi</label>
-                            <input formControlName="placeSize" type="text" class="form-control" id="placeSize" placeholder="" value="" required>
+                            <input formControlName="placeSize" type="text" class="form-control" id="placeSize"
+                                placeholder="" value="" required>
                             <div class="invalid-feedback">
                                 Place size name is required.
                             </div>
+                        </div>
+
+                        <div class="col-6">
+                            <label for="transportTypeId" class="form-label">Nakliyat tipi</label>
+                            <select class="form-select" formControlName="transportTypeId" id="transportTypeId">
+                                <option *ngFor="let transportType of transportTypes" [value]="transportType.id">
+                                    {{transportType.type}}
+                                </option>
+                            </select>
                         </div>
 
                         <div class="col-12">
@@ -192,7 +203,8 @@
 
                     <hr class="my-4">
 
-                    <button class="w-100 btn btn-primary btn-lg" type="submit" (click)="createTransportRequest()">Nakliyat talebini gönder</button>
+                    <button class="w-100 btn btn-primary btn-lg" type="submit"
+                        (click)="createTransportRequest()">Nakliyat talebini gönder</button>
                 </form>
             </div>
 
