@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { CreatePaymentRequestRequest } from 'src/app/models/request-models/payment-request/createPaymentRequestRequest';
 import { GetByCompanyIdTransportRequestResponse } from 'src/app/models/response-models/transport-requests/getByCompanyIdTransportRequestResponse';
+import { PaymentRequestService } from 'src/app/services/payment-request.service';
 import { TransportRequestService } from 'src/app/services/transport-request.service';
 
 @Component({
@@ -11,14 +14,19 @@ import { TransportRequestService } from 'src/app/services/transport-request.serv
 })
 export class ApproveTransportRequestComponent implements OnInit {
   transportRequest: GetByCompanyIdTransportRequestResponse;
+  paymentRequestAddForm: FormGroup;
 
   constructor(
     private transportRequestService: TransportRequestService,
     private activeModal: NgbActiveModal,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private paymentRequestService: PaymentRequestService,
+    private formBuilder: FormBuilder
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.createPaymentRequestAddForm();
+  }
 
   close() {
     this.activeModal.close('Add Modal Closed');
@@ -26,6 +34,28 @@ export class ApproveTransportRequestComponent implements OnInit {
 
   dismiss() {
     this.activeModal.dismiss('Add Modal Dismissed');
+  }
+
+  createPaymentRequestAddForm() {
+    this.paymentRequestAddForm = this.formBuilder.group({
+      price: ['', Validators.required],
+    });
+  }
+
+  sendPaymentRequest() {
+    if (!this.paymentRequestAddForm.valid) {
+      this.toastrService.error('Price is null', 'Form error');
+    }
+
+    let request: CreatePaymentRequestRequest = Object.assign(
+      {},
+      this.paymentRequestAddForm.value
+    );
+    request.transportRequestId = this.transportRequest.id;
+
+    this.paymentRequestService.create(request).subscribe((response) => {
+      this.toastrService.success('Pay request sent', 'Successful');
+    });
   }
 
   approve() {

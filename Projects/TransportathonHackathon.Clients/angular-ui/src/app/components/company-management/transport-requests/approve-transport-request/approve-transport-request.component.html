@@ -3,6 +3,14 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
+    <form [formGroup]="paymentRequestAddForm" form>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="price" class="form-control" id="price" placeholder="Price of transportation">
+                <label for="price">Transport Price</label>
+            </div>
+        </div>
+    </form>
     <div class="alert alert-secondary" role="alert">
         <h5>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</h5>
         <h6>
@@ -13,5 +21,5 @@
 </div>
 <div class="modal-footer">
     <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-success" (click)="approve()">Kabul et ve ödeme talebi gönder</button>
+    <button type="button" class="btn btn-success" (click)="sendPaymentRequest()">Kabul et ve ödeme talebi gönder</button>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Paginate } from 'src/app/core/models/pagination/paginate';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { GetByCustomerIdPaymentRequestResponse } from 'src/app/models/response-models/payment-request/getByCustomerIdPaymentRequestResponse';
 import { PaymentRequestService } from 'src/app/services/payment-request.service';
@@ -10,7 +11,7 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./payment-request-list.component.css'],
 })
 export class PaymentRequestListComponent implements OnInit {
-  paymentRequests: GetByCustomerIdPaymentRequestResponse[];
+  paymentRequests: Paginate<GetByCustomerIdPaymentRequestResponse>;
   customer: TokenUserDto;
 
   constructor(

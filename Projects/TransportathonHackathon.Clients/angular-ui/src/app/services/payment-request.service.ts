@@ -12,6 +12,7 @@ import { PayPaymentRequestRequest } from '../models/request-models/payment-reque
 import { PaidPaymentRequestResponse } from '../models/response-models/payment-request/paidPaymentRequestResponse';
 import { GetByCustomerIdPaymentRequestRequest } from '../models/request-models/payment-request/getByCustomerIdPaymentRequestRequest';
 import { GetByCustomerIdPaymentRequestResponse } from '../models/response-models/payment-request/getByCustomerIdPaymentRequestResponse';
+import { Paginate } from '../core/models/pagination/paginate';
 
 @Injectable({
   providedIn: 'root',
@@ -57,8 +58,8 @@ export class PaymentRequestService {
 
   getListByCustomerId(
     request: GetByCustomerIdPaymentRequestRequest
-  ): Observable<GetByCustomerIdPaymentRequestResponse[]> {
-    return this.httpClient.get<GetByCustomerIdPaymentRequestResponse[]>(
+  ): Observable<Paginate<GetByCustomerIdPaymentRequestResponse>> {
+    return this.httpClient.get<Paginate<GetByCustomerIdPaymentRequestResponse>>(
       this.apiUrl + 'getByCustomerId/' + request.customerId
     );
   }

@@ -14,11 +14,11 @@
             <div class="col-3">
                 <div class="mb-3">
                     <!-- <form [formGroup]="filterForm" (ngSubmit)="search()" (keyup.enter)="search()"> -->
-                    <div class="mb-1 d-flex">
+                    <!-- <div class="mb-1 d-flex">
                         <input class="form-control me-1" type="search" placeholder="Ara" aria-label="Search"
                             formControlName="filterText" />
                         <button class="btn btn-outline-app" type="submit">Search</button>
-                    </div>
+                    </div> -->
                     <!-- </form> -->
                 </div>
                 <hr>
@@ -28,18 +28,19 @@
             <!-- Companies Data -->
             <div class="col-9">
                 <div class="row row-cols-1 row-cols-md-1 g-2">
-                    <div *ngFor="let paymentRequest of paymentRequests" class="col">
+                    <div *ngFor="let paymentRequest of paymentRequests.items" class="col">
                         <div class="card w-100 mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">
                                     {{customer.userName}}
-                                    <span class="badge bg-primary rounded-pill">{{paymentRequest.price}}</span>
+                                    <span class="badge bg-primary rounded-pill">{{paymentRequest.price + " TL"}}</span>
                                 </h5>
                                 <p class="card-text">
-                                    {{"Price" + paymentRequest.price}}
+                                    {{"Price: " + paymentRequest.price + " TL"}}
                                 </p>
-                                <p class="card-text">{{"Transport acceptance date: "}}{{paymentRequest.createdDate |
-                                    date}}</p>
+                                <p class="card-text">
+                                    {{"Transport acceptance date: "}}{{paymentRequest.createdDate | date}}
+                                </p>
                                 <a class="btn btn-primary me-2">
                                     Pay
                                 </a>
