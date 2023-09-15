@@ -8,6 +8,8 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System.Text;
 using TransportathonHackathon.Application;
+using TransportathonHackathon.Infrastructure.Payment;
+using TransportathonHackathon.Infrastructure.Payment.FakePaymentService;
 using TransportathonHackathon.Infrastructure.SignalR;
 using TransportathonHackathon.Persistence;
 
@@ -22,6 +24,8 @@ builder.Services.AddApplicationServices();
 
 builder.Services.RegisterLogger(ServiceLifetime.Scoped, typeof(FileLogger), typeof(MsSqlLogger));
 builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();
+
+builder.Services.AddScoped<IPaymentService, FakePaymentService>();
 
 builder.Services.AddExceptionHandlers(ServiceLifetime.Scoped);
 

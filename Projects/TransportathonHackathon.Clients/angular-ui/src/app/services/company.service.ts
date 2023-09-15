@@ -40,7 +40,7 @@ export class CompanyService {
   ): Observable<Paginate<GetListDynamicCompanyResponse>> {
     return this.httpClient.post<Paginate<GetListDynamicCompanyResponse>>(
       this.apiUrl +
-        'getList?PageRequest.Size=' +
+        'getlistdynamic?PageRequest.Size=' +
         pageRequest.size +
         '&PageRequest.Index=' +
         pageRequest.index,

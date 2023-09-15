@@ -23,7 +23,7 @@ namespace TransportathonHackathon.Application.Features.Messages.Queries.GetByRec
             IPaginate<Message> messages = await _messageRepository.GetListPagedAsync(
                 e => (e.ReceiverId == request.ReceiverId && e.SenderId == request.SenderId) || (e.ReceiverId == request.SenderId && e.SenderId == request.ReceiverId) ,
                 include: e => e.Include(e => e.Receiver).Include(e => e.Sender),
-                orderBy: e => e.OrderBy(e => e.SendDate),
+                orderBy: e => e.OrderByDescending(e => e.SendDate),
                 index: 0,
                 size: 1000
             );

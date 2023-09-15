@@ -45,7 +45,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet("GetByEmail")]
+        [HttpGet]
         public async Task<IActionResult> GetByEmail([FromQuery] GetByEmailCompanyQuery command)
         {
             GetByEmailCompanyResponse response = await Mediator.Send(command);
