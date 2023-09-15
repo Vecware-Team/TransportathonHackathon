@@ -10,7 +10,6 @@ using System.Text;
 using TransportathonHackathon.Application;
 using TransportathonHackathon.Application.Services;
 using TransportathonHackathon.Infrastructure.DriverLicenseVerifiers.FakeDriverLicenseVerifier;
-using TransportathonHackathon.Infrastructure.Payment;
 using TransportathonHackathon.Infrastructure.Payment.FakePaymentService;
 using TransportathonHackathon.Infrastructure.SignalR;
 using TransportathonHackathon.Persistence;

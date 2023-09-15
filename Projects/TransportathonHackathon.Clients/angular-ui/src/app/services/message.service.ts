@@ -4,7 +4,7 @@ import { Paginate } from '../core/models/pagination/paginate';
 import { GetByReceiverAndSenderResponse } from '../models/response-models/messages/getByReceiverAndSenderResponse';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
-import { GetByUserResponse } from '../models/response-models/messages/GetByUserResponse';
+import { GetByUserResponse } from '../models/response-models/messages/getByUserResponse';
 
 @Injectable({
   providedIn: 'root',
