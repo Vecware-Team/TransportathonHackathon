@@ -13,6 +13,8 @@ import { TokenService } from 'src/app/services/token.service';
 import { TransportRequestService } from 'src/app/services/transport-request.service';
 import { ApproveTransportRequestComponent } from './approve-transport-request/approve-transport-request.component';
 import { RejectTransportRequestComponent } from './reject-transport-request/reject-transport-request.component';
+import { PaymentRequestService } from 'src/app/services/payment-request.service';
+import { GetByIdPaymentRequestResponse } from 'src/app/models/response-models/payment-request/getByIdPaymentRequestResponse';
 
 @Component({
   selector: 'app-transport-requests',
@@ -31,7 +33,8 @@ export class TransportRequestsComponent implements OnInit {
     private transportRequestService: TransportRequestService,
     private companyService: CompanyService,
     private modalService: NgbModal,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private paymentRequestService: PaymentRequestService
   ) {}
 
   ngOnInit(): void {
@@ -70,6 +73,13 @@ export class TransportRequestsComponent implements OnInit {
       }
     );
     modalReferance.componentInstance.transportRequest = transportRequest;
+  }
+
+  getIsPaidText(isPaid: boolean) {
+    if (isPaid) {
+      return 'Is paid';
+    }
+    return 'Is waiting';
   }
 
   getList() {
