@@ -59,6 +59,9 @@ import { HireOutDriverComponent } from './components/company-management/employee
 import { HireOutCarrierComponent } from './components/company-management/employees/hire-out-carrier/hire-out-carrier.component';
 import { httpInterceptorProviders } from './interceptors/http-request.interceptor';
 import { ChatComponent } from './components/chat/chat.component';
+import { Chat2Component } from './components/chat2/chat2.component';
+import { ApproveTransportRequestComponent } from './components/company-management/transport-requests/approve-transport-request/approve-transport-request.component';
+import { RejectTransportRequestComponent } from './components/company-management/transport-requests/reject-transport-request/reject-transport-request.component';
 
 @NgModule({
   declarations: [
@@ -104,6 +107,9 @@ import { ChatComponent } from './components/chat/chat.component';
     HireOutDriverComponent,
     HireOutCarrierComponent,
     ChatComponent,
+    Chat2Component,
+    ApproveTransportRequestComponent,
+    RejectTransportRequestComponent,
   ],
   imports: [
     BrowserModule,

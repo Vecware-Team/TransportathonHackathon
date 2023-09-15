@@ -1,4 +1,4 @@
-export interface GetByCompanyIdTransportRequestResponse {
+export interface GetByCustomerIdTransportRequestResponse {
   id: string;
   customerFirstName: string;
   customerLastName: string;
@@ -14,4 +14,3 @@ export interface GetByCompanyIdTransportRequestResponse {
   startDate: Date;
   finishDate: Date | null;
 }
-

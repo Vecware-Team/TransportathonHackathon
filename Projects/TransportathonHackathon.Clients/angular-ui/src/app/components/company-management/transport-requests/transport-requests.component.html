@@ -1,1 +1,64 @@
-<p>transport-requests works!</p>
+<div
+    class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
+    <h1 class="h2">Nakliyat Talepleri</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <div class="btn-group me-2">
+            <button class="btn shadow-none me-2">
+                <fa-icon [icon]="faRedoAlt" size="1x" class="fa fa-icon-refresh" (click)="getList();">
+                </fa-icon>
+            </button>
+        </div>
+        <!-- <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('car-add')">
+            Add Car
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('truck-add')">
+            Add Truck
+        </button>
+        <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('pickuptruck-add')">
+            Add Pickup Truck
+        </button> -->
+    </div>
+</div>
+
+<table class="table table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Customer Name</th>
+            <th scope="col">From</th>
+            <th scope="col">To</th>
+            <th scope="col">isOfficce</th>
+            <th scope="col">PlaceSize</th>
+            <th scope="col">Start</th>
+            <th scope="col">Finish</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody *ngIf="dataLoaded" class="table-group-divider">
+        <tr *ngFor="let transportRequest of transportRequests; let i = index;">
+            <th scope="row">{{i + 1}}</th>
+            <th>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</th>
+            <td>{{transportRequest.countryFrom + " - " + transportRequest.cityFrom}}</td>
+            <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
+            <td>{{transportRequest.isOfficce}}</td>
+            <td>{{transportRequest.placeSize}}</td>
+            <td>{{transportRequest.startDate}}</td>
+            <td>{{transportRequest.finishDate}}</td>
+
+            <td class="text-end">
+                <button class="btn btn-outline-primary shadow-none me-2"
+                    (click)="openApproveRequestModal(transportRequest)">
+                    <fa-icon [icon]="faCircleCheck" size="1x" class="fa fa-faCircleCheck"></fa-icon>
+                </button>
+                <button class="btn btn-outline-danger shadow-none" (click)="openRejectRequestModal(transportRequest)">
+                    <fa-icon [icon]="faCircleXMark" size="1x" class="fa fa-faCircleXmark"></fa-icon>
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<div *ngIf="!dataLoaded" class="d-flex justify-content-center">
+    <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
