@@ -55,5 +55,5 @@ namespace TransportathonHackathon.WebAPI.Controllers
             IPaginate<GetListCarrierResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
-    }
+    }   
 }

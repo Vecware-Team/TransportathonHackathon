@@ -20,5 +20,6 @@ namespace TransportathonHackathon.Domain.Entities
         public virtual Company Company { get; set; }
         public virtual TransportType TransportType { get; set; }
         public virtual Comment? Comment { get; set; }
+        public virtual PaymentRequest? PaymentRequest { get; set; }
     }
 }
