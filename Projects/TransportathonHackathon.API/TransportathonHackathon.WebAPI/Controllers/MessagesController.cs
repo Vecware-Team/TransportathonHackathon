@@ -16,6 +16,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             IPaginate<GetByReceiverAndSenderMessageResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
+
         [HttpGet]
         public async Task<IActionResult> GetByUser([FromQuery] GetByUserQuery command)
         {

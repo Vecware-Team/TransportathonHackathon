@@ -30,7 +30,7 @@ namespace Core.Persistence.Repositories
             Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>>? orderBy = null,
             Func<IQueryable<TEntity>, IIncludableQueryable<TEntity, object>>? include = null,
             int index = 0,
-            int size = 10,
+            int size = 10, 
             bool withDeleted = false,
             bool enableTracking = true,
             CancellationToken cancellationToken = default
@@ -71,9 +71,9 @@ namespace Core.Persistence.Repositories
 
         Task<ICollection<TEntity>> UpdateRangeAsync(ICollection<TEntity> entities);
 
-        Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false);
+        Task<TEntity> DeleteAsync(TEntity entity, bool permanent = true);
 
-        Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = false);
+        Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = true);
         Task<int> SaveChangesAsync();
     }
 }

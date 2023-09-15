@@ -65,9 +65,9 @@ namespace Core.Persistence.Repositories
 
         ICollection<TEntity> UpdateRange(ICollection<TEntity> entities);
 
-        TEntity Delete(TEntity entity, bool permanent = false);
+        TEntity Delete(TEntity entity, bool permanent = true);
 
-        ICollection<TEntity> DeleteRange(ICollection<TEntity> entities, bool permanent = false);
+        ICollection<TEntity> DeleteRange(ICollection<TEntity> entities, bool permanent = true);
         int SaveChanges();
     }
 }

@@ -212,7 +212,7 @@ namespace Core.Persistence.Repositories
             return entities;
         }
 
-        public async Task<TEntity> DeleteAsync(TEntity entity, bool permanent = false)
+        public async Task<TEntity> DeleteAsync(TEntity entity, bool permanent = true)
         {
             if (!permanent)
             {
@@ -231,7 +231,7 @@ namespace Core.Persistence.Repositories
             return entity;
         }
 
-        public async Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = false)
+        public async Task<ICollection<TEntity>> DeleteRangeAsync(ICollection<TEntity> entities, bool permanent = true)
         {
             if (!permanent)
             {
@@ -437,7 +437,7 @@ namespace Core.Persistence.Repositories
             return entities;
         }
 
-        public TEntity Delete(TEntity entity, bool permanent = false)
+        public TEntity Delete(TEntity entity, bool permanent = true)
         {
             if (!permanent)
             {
@@ -456,7 +456,7 @@ namespace Core.Persistence.Repositories
             return entity;
         }
 
-        public ICollection<TEntity> DeleteRange(ICollection<TEntity> entities, bool permanent = false)
+        public ICollection<TEntity> DeleteRange(ICollection<TEntity> entities, bool permanent = true)
         {
             if (!permanent)
             {
