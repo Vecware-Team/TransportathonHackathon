@@ -23,7 +23,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
             IPaginate<TransportRequest> transportRequests = await _transportRequestRepository.GetListPagedAsync(
                 index: request.PageRequest.Index,
                 size: request.PageRequest.Size,
-                include: e => e.Include(e=>e.Company).Include(e=>e.Customer).Include(e => e.TransportType)
+                include: e => e.Include(e=>e.Company).Include(e=>e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest)
             );
 
             Paginate<GetListTransportRequestResponse> response = _mapper.Map<Paginate<GetListTransportRequestResponse>>(transportRequests);

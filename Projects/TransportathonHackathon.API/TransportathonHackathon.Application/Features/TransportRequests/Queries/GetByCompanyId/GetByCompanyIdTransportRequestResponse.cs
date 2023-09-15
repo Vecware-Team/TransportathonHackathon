@@ -5,6 +5,7 @@
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }
         public string TransportType { get; set; }
+        public bool IsPaid { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
         public string CompanyName { get; set; }
