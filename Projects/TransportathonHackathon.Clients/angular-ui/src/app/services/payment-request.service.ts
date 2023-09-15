@@ -10,6 +10,8 @@ import { UpdatePaymentRequestRequest } from '../models/request-models/payment-re
 import { UpdatedPaymentRequestResponse } from '../models/response-models/payment-request/updatedPaymentRequestResponse';
 import { PayPaymentRequestRequest } from '../models/request-models/payment-request/payPaymentRequestRequest';
 import { PaidPaymentRequestResponse } from '../models/response-models/payment-request/paidPaymentRequestResponse';
+import { GetByCustomerIdPaymentRequestRequest } from '../models/request-models/payment-request/getByCustomerIdPaymentRequestRequest';
+import { GetByCustomerIdPaymentRequestResponse } from '../models/response-models/payment-request/getByCustomerIdPaymentRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -50,6 +52,14 @@ export class PaymentRequestService {
     return this.httpClient.post<PaidPaymentRequestResponse>(
       this.apiUrl + 'pay',
       paymentRequestModel
+    );
+  }
+
+  getListByCustomerId(
+    request: GetByCustomerIdPaymentRequestRequest
+  ): Observable<GetByCustomerIdPaymentRequestResponse[]> {
+    return this.httpClient.get<GetByCustomerIdPaymentRequestResponse[]>(
+      this.apiUrl + 'getByCustomerId/' + request.customerId
     );
   }
 }

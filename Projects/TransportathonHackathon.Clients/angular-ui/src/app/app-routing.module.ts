@@ -20,6 +20,7 @@ import { CreateTransportRequestComponent } from './components/create-transport-r
 import { Chat2Component } from './components/chat2/chat2.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
+import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'transport-requests',
     component: TransportRequestListComponent,
+  },
+  {
+    path: 'payment-requests',
+    component: PaymentRequestListComponent,
   },
   {
     path: 'transport-requests/create/:companyId',
@@ -99,12 +104,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
-    canActivate: [ loginGuard],
+    canActivate: [loginGuard],
   },
   {
     path: 'admin/:currentPage',
     component: AdminComponent,
-    canActivate: [ loginGuard],
+    canActivate: [loginGuard],
   },
 ];
 

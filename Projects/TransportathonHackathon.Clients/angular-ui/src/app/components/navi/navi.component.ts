@@ -10,7 +10,7 @@ import { TokenService } from 'src/app/services/token.service';
   styleUrls: ['./navi.component.css'],
 })
 export class NaviComponent implements OnInit {
-  tokenUser: TokenUserDto;
+  tokenUser: TokenUserDto | null;
   projectName = 'Transportathon';
   constructor(private router: Router, private tokenService: TokenService) {}
 
