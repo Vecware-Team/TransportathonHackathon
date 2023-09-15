@@ -94,11 +94,12 @@ const routes: Routes = [
   {
     path: 'admin',
     component: AdminComponent,
+    canActivate: [ loginGuard],
   },
   {
     path: 'admin/:currentPage',
     component: AdminComponent,
-    canActivate: [adminGuard, loginGuard],
+    canActivate: [ loginGuard],
   },
 ];
 

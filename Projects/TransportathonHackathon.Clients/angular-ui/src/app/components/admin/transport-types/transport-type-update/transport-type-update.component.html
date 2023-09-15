@@ -1,1 +1,18 @@
-<p>transport-type-update works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">Güncelle</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <form [formGroup]="transportTypeUpdateForm" form>
+        <div class="mb-3">
+            <div class="form-floating mb-3">
+                <input type="text" formControlName="type" class="form-control" id="type" placeholder="Transport type">
+                <label for="type">Transport Type</label>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
+    <button type="button" class="btn btn-primary" (click)="update()">Güncelle</button>
+</div>

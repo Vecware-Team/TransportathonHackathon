@@ -8,6 +8,7 @@ export const adminGuard: CanActivateFn = (route, state) => {
   let routerService = inject(RouterService);
 
   let user = tokenService.getUserWithJWT();
+  let userRoles = tokenService.getUserRolesWithJWT();
   if (
     user != null &&
     user?.id != null &&
@@ -15,6 +16,14 @@ export const adminGuard: CanActivateFn = (route, state) => {
     user?.userType == 'Admin'
   )
     return true;
+
+  if (
+    user != null &&
+    user?.id != null &&
+    user?.email != null &&
+    userRoles?.includes('admin')
+  ) {
+  }
 
   routerService.homeRoute();
   return false;
