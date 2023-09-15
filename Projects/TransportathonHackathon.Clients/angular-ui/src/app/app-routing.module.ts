@@ -16,6 +16,7 @@ import { CompanyManagementPanelComponent } from './components/company-management
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
 import { ChatComponent } from './components/chat/chat.component';
 import { companyGuard } from './guards/company.guard';
+import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -29,6 +30,10 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: AdminComponent,
+  },
+  {
+    path: 'transport-requests/create',
+    component: CreateTransportRequestComponent,
   },
   {
     path: 'companies',

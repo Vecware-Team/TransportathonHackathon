@@ -56,12 +56,9 @@ export class PickupTruckUpdateComponent {
   createPickupTruckUpdateForm() {
     this.pickupTruckUpdateForm = this.formBuilder.group({
       driverId: [this.objectToModify.driverId, Validators.required],
-      brand: [this.objectToModify.pickupTruck?.brand, Validators.required],
-      model: [this.objectToModify.pickupTruck?.model, Validators.required],
-      modelYear: [
-        this.objectToModify.pickupTruck?.modelYear,
-        Validators.required,
-      ],
+      brand: [this.objectToModify.brand, Validators.required],
+      model: [this.objectToModify.model, Validators.required],
+      modelYear: [this.objectToModify.modelYear, Validators.required],
       size: [this.objectToModify.pickupTruck?.size, Validators.required],
     });
   }

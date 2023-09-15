@@ -25,9 +25,8 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Brand</th>
-            <th scope="col">Size</th>
+            <th scope="col">Model</th>
             <th scope="col">Model Year</th>
-            <th scope="col">atWork</th>
             <th scope="col">Type</th>
             <th></th>
         </tr>
@@ -35,10 +34,9 @@
     <tbody *ngIf="dataLoaded" class="table-group-divider">
         <tr *ngFor="let vehicle of vehicles; let i = index;">
             <th scope="row">{{i + 1}}</th>
-            <th>{{vehicle.driver}}</th>
-            <td>{{vehicle.companyId}}</td>
-            <td>{{vehicle.id}}</td>
-            <td>{{vehicle.id}}</td>
+            <th>{{vehicle.brand}}</th>
+            <td>{{vehicle.model}}</td>
+            <td>{{vehicle.modelYear}}</td>
             <td>{{getVehicleType(vehicle)}}</td>
 
             <td class="text-end">

@@ -62,6 +62,7 @@ import { ChatComponent } from './components/chat/chat.component';
 import { Chat2Component } from './components/chat2/chat2.component';
 import { ApproveTransportRequestComponent } from './components/company-management/transport-requests/approve-transport-request/approve-transport-request.component';
 import { RejectTransportRequestComponent } from './components/company-management/transport-requests/reject-transport-request/reject-transport-request.component';
+import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
 
 @NgModule({
   declarations: [
@@ -110,6 +111,7 @@ import { RejectTransportRequestComponent } from './components/company-management
     Chat2Component,
     ApproveTransportRequestComponent,
     RejectTransportRequestComponent,
+    CreateTransportRequestComponent,
   ],
   imports: [
     BrowserModule,

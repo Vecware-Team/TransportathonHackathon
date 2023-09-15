@@ -56,9 +56,9 @@ export class CarUpdateComponent {
   createCarUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
       driverId: [this.objectToModify.driverId, Validators.required],
-      brand: [this.objectToModify.car?.brand, Validators.required],
-      model: [this.objectToModify.car?.model, Validators.required],
-      modelYear: [this.objectToModify.car?.modelYear, Validators.required],
+      brand: [this.objectToModify.brand, Validators.required],
+      model: [this.objectToModify.model, Validators.required],
+      modelYear: [this.objectToModify.modelYear, Validators.required],
     });
   }
 
