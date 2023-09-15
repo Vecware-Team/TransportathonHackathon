@@ -1,6 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetList
+﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay
 {
-    public class GetListTransportRequestResponse
+    public class ApproveAndPayTransportRequestResponse
     {
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }
