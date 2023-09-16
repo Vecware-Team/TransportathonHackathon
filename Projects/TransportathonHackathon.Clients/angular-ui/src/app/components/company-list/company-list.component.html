@@ -44,15 +44,36 @@
                         </div>
                     </div>
 
+                    <div *ngIf="dataLoaded" class="p-body d-flex justify-content-center">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <li class="page-item">
+                                    <a [class.disabled]="companies.hasPrevious" class="page-link" aria-label="Previous"
+                                        (click)="companies.hasPrevious && updateRoute(pageIndex - 1)">
+                                        <span aria-hidden="true">&laquo;</span>
+                                    </a>
+                                </li>
+                                <li *ngFor="let pageNumber of getPageCount()" class="page-item">
+                                    <a class="page-link" (click)="updateRoute(pageNumber)">
+                                        {{pageNumber + 1}}
+                                    </a>
+                                </li>
+                                <li class="page-item">
+                                    <a [class.disabled]="companies.hasNext" class="page-link" aria-label="Next">
+                                        <span aria-hidden="true"
+                                            (click)="companies.hasPrevious && updateRoute(pageIndex + 1)">&raquo;</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
                 </div>
             </div>
         </div>
 
 
 
-        <div class="p-body">
 
-        </div>
 
 
     </div>

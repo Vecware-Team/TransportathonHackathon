@@ -16,6 +16,8 @@ import { FinishTransportRequestRequest } from '../models/request-models/transpor
 import { FinishedTransportRequestResponse } from '../models/response-models/transport-requests/finishedTransportRequestResponse';
 import { ApproveAndPayTransportRequestRequest } from '../models/request-models/transport-requests/approveAndPayTransportRequestRequest';
 import { ApproveAndPayTransportRequestResponse } from '../models/response-models/transport-requests/approveAndPayTransportRequestResponse';
+import { GetByCompanyAndCustomerTransportRequestRequest } from '../models/request-models/transport-requests/getByCompanyAndCustomerTransportRequestRequest';
+import { GetByCompanyAndCustomerTransportRequestResponse } from '../models/response-models/transport-requests/getByCompanyAndCustomerTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -46,6 +48,20 @@ export class TransportRequestService {
   ): Observable<GetByCustomerIdTransportRequestResponse[]> {
     return this.httpClient.get<GetByCustomerIdTransportRequestResponse[]>(
       this.apiUrl + 'getListByCustomerId/' + request.customerId
+    );
+  }
+
+  getListByCompanyAndCustomerId(
+    request: GetByCompanyAndCustomerTransportRequestRequest
+  ): Observable<GetByCompanyAndCustomerTransportRequestResponse[]> {
+    return this.httpClient.get<
+      GetByCompanyAndCustomerTransportRequestResponse[]
+    >(
+      this.apiUrl +
+        'getListByCompanyIdAndCustomerId/' +
+        request.companyId +
+        '/' +
+        request.customerId
     );
   }
 

@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { CreateCommentRequest } from 'src/app/models/request-models/comments/createCommentRequest';
 import { GetByIdCompanyResponse } from 'src/app/models/response-models/companies/getByIdCompanyResponse';
+import { GetByCompanyAndCustomerTransportRequestResponse } from 'src/app/models/response-models/transport-requests/getByCompanyAndCustomerTransportRequestResponse';
 import { GetByCustomerIdTransportRequestResponse } from 'src/app/models/response-models/transport-requests/getByCustomerIdTransportRequestResponse';
 import { CommentService } from 'src/app/services/comment.service';
 import { CommentStoreService } from 'src/app/services/store-services/comment-store.service';
@@ -16,9 +17,10 @@ import { TransportRequestService } from 'src/app/services/transport-request.serv
   styleUrls: ['./create-comment.component.css'],
 })
 export class CreateCommentComponent implements OnInit {
+  @Input() company: GetByIdCompanyResponse;
   createCommentForm: FormGroup;
   appUser: TokenUserDto;
-  transportRequests: GetByCustomerIdTransportRequestResponse[];
+  transportRequests: GetByCompanyAndCustomerTransportRequestResponse[];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -27,6 +29,7 @@ export class CreateCommentComponent implements OnInit {
     private toastrService: ToastrService,
     private transportRequestService: TransportRequestService
   ) {}
+  
   ngOnInit(): void {
     this.getAppUser();
     this.createCreateCommentForm();
@@ -35,7 +38,10 @@ export class CreateCommentComponent implements OnInit {
 
   getTransportRequests() {
     this.transportRequestService
-      .getListByCustomerId({ customerId: this.appUser.id })
+      .getListByCompanyAndCustomerId({
+        companyId: this.company.appUserId,
+        customerId: this.appUser.id,
+      })
       .subscribe((response) => {
         this.transportRequests = response;
       });
