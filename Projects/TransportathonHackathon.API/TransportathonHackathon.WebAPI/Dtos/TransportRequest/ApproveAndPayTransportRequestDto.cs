@@ -3,6 +3,7 @@
     public class ApproveAndPayTransportRequestDto
     {
         public Guid Id { get; set; }
+        public Guid VehicleId { get; set; }
         public bool IsApproved { get; set; }
         public decimal Price { get; set; }
     }

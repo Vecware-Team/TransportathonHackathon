@@ -9,6 +9,7 @@ using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetBy
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetByCustomerId;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.PaymentRequests.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.PaymentRequests;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -17,30 +18,30 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class PaymentRequestsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreatePaymentRequestCommand command)
+        public async Task<IActionResult> Create([FromBody] CreatePaymentRequestDto command)
         {
-            CreatedPaymentRequestResponse response = await Mediator.Send(command);
+            CreatedPaymentRequestResponse response = await Mediator.Send(Mapper.Map<CreatePaymentRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeletePaymentRequestCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeletePaymentRequestDto command)
         {
-            DeletedPaymentRequestResponse response = await Mediator.Send(command);
+            DeletedPaymentRequestResponse response = await Mediator.Send(Mapper.Map<DeletePaymentRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdatePaymentRequestCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdatePaymentRequestDto command)
         {
-            UpdatedPaymentRequestResponse response = await Mediator.Send(command);
+            UpdatedPaymentRequestResponse response = await Mediator.Send(Mapper.Map<UpdatePaymentRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Pay([FromBody] PayPaymentRequestCommand command)
+        public async Task<IActionResult> Pay([FromBody] PayPaymentRequestDto command)
         {
-            PaidPaymentRequestResponse response = await Mediator.Send(command);
+            PaidPaymentRequestResponse response = await Mediator.Send(Mapper.Map<PayPaymentRequestCommand>(command));
             return Ok(response);
         }
 
@@ -57,7 +58,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             IPaginate<GetByCompanyIdPaymentRequestResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
-        
+
 
         [HttpGet("{CustomerId}")]
         public async Task<IActionResult> GetByCustomerId([FromRoute] GetByCustomerIdPaymentRequestQuery command)

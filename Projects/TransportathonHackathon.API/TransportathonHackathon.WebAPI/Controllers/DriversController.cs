@@ -7,6 +7,7 @@ using TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDriver
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Drivers.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Driver;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -15,23 +16,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class DriversController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateDriverCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateDriverDto command)
         {
-            CreatedDriverResponse result = await Mediator.Send(command);
+            CreatedDriverResponse result = await Mediator.Send(Mapper.Map<CreateDriverCommand>(command));
             return Ok(result);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteDriverCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteDriverDto command)
         {
-            DeletedDriverResponse result = await Mediator.Send(command);
+            DeletedDriverResponse result = await Mediator.Send(Mapper.Map<DeleteDriverCommand>(command));
             return Ok(result);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateDriverCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateDriverDto command)
         {
-            UpdatedDriverResponse result = await Mediator.Send(command);
+            UpdatedDriverResponse result = await Mediator.Send(Mapper.Map<UpdateDriverCommand>(command));
             return Ok(result);
         }
 

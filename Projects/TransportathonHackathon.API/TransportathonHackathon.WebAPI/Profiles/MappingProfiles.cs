@@ -1,7 +1,17 @@
 ﻿using AutoMapper;
+using TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver;
+using TransportathonHackathon.Application.Features.Drivers.Commands.DeleteDriver;
+using TransportathonHackathon.Application.Features.Drivers.Commands.UpdateDriver;
 using TransportathonHackathon.Application.Features.Languages.Commands.Create;
 using TransportathonHackathon.Application.Features.Languages.Commands.Delete;
 using TransportathonHackathon.Application.Features.Languages.Commands.Update;
+using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Create;
+using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Delete;
+using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Pay;
+using TransportathonHackathon.Application.Features.PaymentRequests.Commands.Update;
+using TransportathonHackathon.Application.Features.PickupTrucks.Commands.Create;
+using TransportathonHackathon.Application.Features.PickupTrucks.Commands.Delete;
+using TransportathonHackathon.Application.Features.PickupTrucks.Commands.Update;
 using TransportathonHackathon.Application.Features.Translates.Commands.Create;
 using TransportathonHackathon.Application.Features.Translates.Commands.Delete;
 using TransportathonHackathon.Application.Features.Translates.Commands.Update;
@@ -18,7 +28,10 @@ using TransportathonHackathon.Application.Features.TransportTypes.Commands.Updat
 using TransportathonHackathon.Application.Features.Trucks.Commands.Create;
 using TransportathonHackathon.Application.Features.Trucks.Commands.Delete;
 using TransportathonHackathon.Application.Features.Trucks.Commands.Update;
+using TransportathonHackathon.WebAPI.Dtos.Driver;
 using TransportathonHackathon.WebAPI.Dtos.Language;
+using TransportathonHackathon.WebAPI.Dtos.PaymentRequests;
+using TransportathonHackathon.WebAPI.Dtos.PickupTruck;
 using TransportathonHackathon.WebAPI.Dtos.Translate;
 using TransportathonHackathon.WebAPI.Dtos.TransportRequest;
 using TransportathonHackathon.WebAPI.Dtos.TransportType;
@@ -45,6 +58,19 @@ namespace TransportathonHackathon.WebAPI.Profiles
             CreateMap<CreateTruckDto, CreateTruckCommand>();
             CreateMap<DeleteTruckDto, DeleteTruckCommand>();
             CreateMap<UpdateTruckDto, UpdateTruckCommand>();
+
+            CreateMap<CreatePickupTruckDto, CreatePickupTruckCommand>();
+            CreateMap<DeletePickupTruckDto, DeletePickupTruckCommand>();
+            CreateMap<UpdatePickupTruckDto, UpdatePickupTruckCommand>();
+
+            CreateMap<CreatePaymentRequestDto, CreatePaymentRequestCommand>();
+            CreateMap<DeletePaymentRequestDto, DeletePaymentRequestCommand>();
+            CreateMap<UpdatePaymentRequestDto, UpdatePaymentRequestCommand>();
+            CreateMap<PayPaymentRequestDto, PayPaymentRequestCommand>();
+
+            CreateMap<CreateDriverDto, CreateDriverCommand>();
+            CreateMap<DeleteDriverDto, DeleteDriverCommand>();
+            CreateMap<UpdateDriverDto, UpdateDriverCommand>();
 
             CreateMap<CreateTransportRequestDto, CreateTransportRequestCommand>();
             CreateMap<DeleteTransportRequestDto, DeleteTransportRequestCommand>();
