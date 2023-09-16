@@ -118,9 +118,9 @@ ServiceTool.SetSetviceProvider(app.Services);
 
 app.UseCors(builder => builder.WithOrigins(app.Configuration.GetSection("AllowedHosts").Get<string[]>()).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
-app.UseMiddleware<AddDefaultUserMiddleware>();
-
 app.ConfigureCustomExceptionMiddleware();
+
+app.UseMiddleware<AddDefaultUserMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {
@@ -134,7 +134,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
 
 app.MapHub<MessageHub>("/messages");
 app.Run();
