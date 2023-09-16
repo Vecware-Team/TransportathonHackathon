@@ -30,6 +30,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
                 if (e.Vehicle is not null)
                 {
                     e.Vehicle.TransportRequest = null;
+                    e.Vehicle.Company.TransportRequests = null;
                     e.Vehicle.Company = null;
                 }
             });

@@ -14,7 +14,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class CarsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCarCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCarCommand command) 
         {
             CreatedCarResponse response = await Mediator.Send(command);
             return Ok(response);
