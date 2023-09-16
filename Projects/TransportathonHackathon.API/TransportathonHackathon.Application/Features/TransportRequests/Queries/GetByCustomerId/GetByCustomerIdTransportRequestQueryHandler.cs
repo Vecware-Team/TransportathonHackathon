@@ -19,12 +19,16 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
 
         public async Task<List<GetByCustomerIdTransportRequestResponse>> Handle(GetByCustomerIdTransportRequestQuery request, CancellationToken cancellationToken)
         {
-            IList<TransportRequest> transportRequest = await _transportRequestRepository.GetListAsync(
+            IList<TransportRequest> transportRequests = await _transportRequestRepository.GetListAsync(
                 e => e.CustomerId == request.CustomerId,
                 include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest)
             );
 
-            List<GetByCustomerIdTransportRequestResponse> response = _mapper.Map<List<GetByCustomerIdTransportRequestResponse>>(transportRequest.ToList());
+            transportRequests.ToList().ForEach(e =>
+            {
+                if (e.PaymentRequest != null) e.PaymentRequest.TransportRequest = null;
+            });
+            List<GetByCustomerIdTransportRequestResponse> response = _mapper.Map<List<GetByCustomerIdTransportRequestResponse>>(transportRequests.ToList());
             return response;
         }
     }

@@ -1,4 +1,6 @@
-﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCompanyId
+﻿using TransportathonHackathon.Domain.Entities;
+
+namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCompanyId
 {
     public class GetByCompanyIdTransportRequestResponse
     {
@@ -16,6 +18,7 @@
         public string PlaceSize { get; set; }
         public bool? ApprovedByCompany { get; set; }
         public bool IsFinished { get; set; }
+        public PaymentRequest PaymentRequest { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DateTime StartDate { get; set; }
