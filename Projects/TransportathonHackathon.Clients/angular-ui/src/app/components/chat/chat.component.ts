@@ -16,6 +16,7 @@ import { MessageService } from 'src/app/services/message.service';
 import { SignalrService } from 'src/app/services/signalr.service';
 import { TokenService } from 'src/app/services/token.service';
 import { environment } from 'src/environments/environment';
+import { Message } from 'src/app/models/domain-models/message';
 
 @Component({
   selector: 'app-chat',
@@ -85,48 +86,38 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     this.connection = await this.signalRService.startConnection(
       environment.baseUrl + 'messages'
     );
-    this.connection.on('UserJoined', (data) => {
-      console.log('USER JOINED');
 
-      console.log(data);
-    });
-
-    this.connection.on('Clients', (data) => {
-      console.log('CLIENTS');
-
-      console.log(data);
-    });
-
-    this.connection.on('ReceiveMessage', (data) => {
+    this.connection.on('ReceiveMessage', (data: Message) => {
       this.getUsers();
-      console.log('RECEIVED MESSAGE');
+
+      if (data.senderId != this.receiverId) return;
 
       this.messages.splice(0, 0, {
-        id: '',
-        isRead: false,
-        messageText: data,
-        receiverId: this.userId!,
-        senderId: this.receiverId,
-        receiverUserName: '',
-        senderUserName: '',
-        sendDate: new Date(),
+        id: data.id,
+        isRead: data.isRead,
+        messageText: data.messageText,
+        receiverId: data.receiverId,
+        senderId: data.senderId,
+        receiverUserName: data.receiver.userName,
+        senderUserName: data.sender.userName,
+        sendDate: data.sendDate,
       });
 
       this.disableScrollDown = false;
       this.scrollToBottom();
     });
 
-    this.connection.on('MessageSended', (data) => {
+    this.connection.on('MessageSended', (data: Message) => {
       this.getUsers();
       this.messages.splice(0, 0, {
-        id: '',
-        isRead: false,
-        messageText: data,
-        receiverId: this.receiverId,
-        senderId: this.userId!,
+        id: data.id,
+        isRead: data.isRead,
+        messageText: data.messageText,
+        receiverId: data.receiverId,
+        senderId: data.senderId,
         receiverUserName: '',
         senderUserName: '',
-        sendDate: new Date(),
+        sendDate: data.sendDate,
       });
 
       this.disableScrollDown = false;
@@ -159,11 +150,6 @@ export class ChatComponent implements OnInit, AfterViewChecked {
             this.hasNext = data.hasNext;
             if (this.hasNext) this.index = data.index;
             this.getData = true;
-
-            console.log(this.index);
-
-            console.log(this.messages);
-            console.log(data.items);
 
             if (index == 0) {
               this.disableScrollDown = false;

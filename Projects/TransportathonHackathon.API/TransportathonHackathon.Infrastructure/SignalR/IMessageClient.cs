@@ -1,9 +1,11 @@
-﻿namespace TransportathonHackathon.Infrastructure.SignalR
+﻿using TransportathonHackathon.Domain.Entities;
+
+namespace TransportathonHackathon.Infrastructure.SignalR
 {
     public interface IMessageClient
     {
-        Task ReceiveMessage(string message);
-        Task MessageSended(string message);
+        Task ReceiveMessage(Message message);
+        Task MessageSended(Message message);
         Task Clients(List<SignalRClient> clients);
         Task UserJoined(SignalRClient client);
         Task UserLeaved(SignalRClient client);
