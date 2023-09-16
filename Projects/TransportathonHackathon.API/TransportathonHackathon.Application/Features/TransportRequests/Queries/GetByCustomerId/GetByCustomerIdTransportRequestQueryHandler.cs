@@ -30,6 +30,13 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
                 if (e.Vehicle is not null)
                 {
                     e.Vehicle.TransportRequest = null;
+                    e.Vehicle.Company.TransportRequests?.ToList().ForEach(c =>
+                    {
+                        c.Vehicle = null;
+                        c.Customer = null;
+                        c.Company = null;
+                        c.Comment = null;
+                    });
                     e.Vehicle.Company.TransportRequests = null;
                     e.Vehicle.Company = null;
                 }
