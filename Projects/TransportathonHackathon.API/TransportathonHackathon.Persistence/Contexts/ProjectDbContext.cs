@@ -33,6 +33,8 @@ namespace TransportathonHackathon.Persistence.Contexts
             base.OnModelCreating(builder);
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+            // DatabaseInitializerHelper.Initialize(builder);
         }
     }
 }

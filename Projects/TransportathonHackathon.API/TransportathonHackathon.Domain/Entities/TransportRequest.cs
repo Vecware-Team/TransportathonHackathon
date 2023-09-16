@@ -7,6 +7,7 @@ namespace TransportathonHackathon.Domain.Entities
         public Guid CustomerId { get; set; }
         public Guid CompanyId { get; set; }
         public Guid TransportTypeId { get; set; }
+        public Guid? VehicleId { get; set; }
         public string CountryFrom { get; set; }
         public string CountryTo { get; set; }
         public string CityFrom { get; set; }
@@ -20,6 +21,7 @@ namespace TransportathonHackathon.Domain.Entities
         public virtual Customer Customer { get; set; }
         public virtual Company Company { get; set; }
         public virtual TransportType TransportType { get; set; }
+        public virtual Vehicle? Vehicle { get; set; }
         public virtual Comment? Comment { get; set; }
         public virtual PaymentRequest? PaymentRequest { get; set; }
     }

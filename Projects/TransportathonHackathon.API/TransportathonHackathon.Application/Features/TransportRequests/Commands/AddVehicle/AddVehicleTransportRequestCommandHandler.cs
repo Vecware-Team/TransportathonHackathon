@@ -5,20 +5,20 @@ using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 
-namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetById
+namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.AddVehicle
 {
-    public class GetByIdTransportRequestQueryHandler : IRequestHandler<GetByIdTransportRequestQuery, GetByIdTransportRequestResponse>
+    public class AddVehicleTransportRequestCommandHandler : IRequestHandler<AddVehicleTransportRequestCommand, AddVehicleTransportRequestResponse>
     {
         private readonly ITransportRequestRepository _transportRequestRepository;
         private readonly IMapper _mapper;
 
-        public GetByIdTransportRequestQueryHandler(ITransportRequestRepository transportRequestRepository, IMapper mapper)
+        public AddVehicleTransportRequestCommandHandler(ITransportRequestRepository transportRequestRepository, IMapper mapper)
         {
             _transportRequestRepository = transportRequestRepository;
             _mapper = mapper;
         }
 
-        public async Task<GetByIdTransportRequestResponse> Handle(GetByIdTransportRequestQuery request, CancellationToken cancellationToken)
+        public async Task<AddVehicleTransportRequestResponse> Handle(AddVehicleTransportRequestCommand request, CancellationToken cancellationToken)
         {
             TransportRequest? transportRequest = await _transportRequestRepository.GetAsync(
                 e => e.Id == request.Id,
@@ -27,12 +27,17 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");
 
+            transportRequest.VehicleId = request.VehicleId;
+            transportRequest = await _transportRequestRepository.GetAsync(
+                e => e.Id == request.Id,
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest).Include(e => e.Vehicle)
+            );
+
             if (transportRequest.Vehicle is not null)
                 transportRequest.Vehicle.TransportRequest = null;
 
-            GetByIdTransportRequestResponse response = _mapper.Map<GetByIdTransportRequestResponse>(transportRequest);
+            AddVehicleTransportRequestResponse response = _mapper.Map<AddVehicleTransportRequestResponse>(transportRequest);
             return response;
         }
     }
-
 }

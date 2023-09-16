@@ -1,8 +1,8 @@
 ﻿using TransportathonHackathon.Domain.Entities;
 
-namespace TransportathonHackathon.Application.Features.TransportRequests.Queries.GetById
+namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.AddVehicle
 {
-    public class GetByIdTransportRequestResponse
+    public class AddVehicleTransportRequestResponse
     {
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }

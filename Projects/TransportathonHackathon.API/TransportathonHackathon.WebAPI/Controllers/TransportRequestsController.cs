@@ -1,6 +1,7 @@
 ﻿using Core.API.Controllers;
 using Core.Persistence.Pagination;
 using Microsoft.AspNetCore.Mvc;
+using TransportathonHackathon.Application.Features.TransportRequests.Commands.AddVehicle;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Approve;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Create;
@@ -59,6 +60,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> Finish([FromBody] FinishTransportRequestCommand command)
         {
             FinishedTransportRequestResponse response = await Mediator.Send(command);
+            return Ok(response);
+        }
+        
+        [HttpPost]
+        public async Task<IActionResult> AddVehicleToTransportRequest([FromBody] AddVehicleTransportRequestCommand command)
+        {
+            AddVehicleTransportRequestResponse response = await Mediator.Send(command);
             return Ok(response);
         }
 
