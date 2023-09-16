@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.Companies.Commands.Create
 {
-    public class CreateCompanyCommand : IRequest<CreatedCompanyResponse>
+    public class CreateCompanyCommand : IRequest<CreatedCompanyResponse>, ITransactionalRequest
     {
         public string Email { get; set; }
         public string UserName { get; set; }

@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
-    public class CreateCarrierCommand : IRequest<CreatedCarrierResponse>
+    public class CreateCarrierCommand : IRequest<CreatedCarrierResponse>, ITransactionalRequest
     {
         public string Email { get; set; }
         public string UserName { get; set; }

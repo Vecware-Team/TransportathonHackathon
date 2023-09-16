@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Create
 {
-    public class CreateDriverLicenseCommand : IRequest<CreatedDriverLicenseResponse>
+    public class CreateDriverLicenseCommand : IRequest<CreatedDriverLicenseResponse>, ITransactionalRequest
     {
         public Guid DriverId { get; set; }
         public string FirstName { get; set; }

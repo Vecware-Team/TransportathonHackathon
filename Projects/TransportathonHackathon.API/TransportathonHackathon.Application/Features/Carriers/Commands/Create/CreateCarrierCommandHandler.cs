@@ -3,11 +3,11 @@ using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Extensions;
 using TransportathonHackathon.Application.Features.Carriers.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 using TransportathonHackathon.Domain.Entities.Identity;
-using TransportathonHackathon.Application.Extensions;
 
 namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
@@ -49,10 +49,10 @@ namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
             }, request.Password);
 
             if (!result.Succeeded)
-                throw new BusinessException(result.Errors.Select(e => e.Description).ToString());
+                throw new BusinessException(result.ToString());
 
             AppUser appuser = await _userManager.FindByEmailAsync(request.Email);
-            carrier = await _carrierRepository.GetAsync(e => e.EmployeeId == appuser.Id, include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e=>e.Employee.AppUser));
+            carrier = await _carrierRepository.GetAsync(e => e.EmployeeId == appuser.Id, include: e => e.Include(e => e.Employee).Include(e => e.Employee.Company).Include(e => e.Employee.AppUser));
 
             CreatedCarrierResponse response = _mapper.Map<CreatedCarrierResponse>(carrier);
             return response;

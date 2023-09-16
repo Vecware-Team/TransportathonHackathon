@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.Languages.Commands.Update;
 using TransportathonHackathon.Application.Features.Languages.Queries.GetByCode;
 using TransportathonHackathon.Application.Features.Languages.Queries.GetById;
 using TransportathonHackathon.Application.Features.Languages.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Language;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -14,24 +15,24 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class LanguagesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateLanguageCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateLanguageDto command)
         {
 
-            CreatedLanguageResponse response = await Mediator.Send(command);
+            CreatedLanguageResponse response = await Mediator.Send(Mapper.Map<CreateLanguageCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromBody] DeleteLanguageCommand command)
+        public async Task<IActionResult> Delete([FromBody] DeleteLanguageDto command)
         {
-            DeletedLanguageResponse response = await Mediator.Send(command);
+            DeletedLanguageResponse response = await Mediator.Send(Mapper.Map<DeleteLanguageCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateLanguageCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateLanguageDto command)
         {
-            UpdatedLanguageResponse response = await Mediator.Send(command);
+            UpdatedLanguageResponse response = await Mediator.Send(Mapper.Map<UpdateLanguageCommand>(command));
             return Ok(response);
         }
 
@@ -50,9 +51,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetList([FromQuery] GetListLanguageQuery command)
+        public async Task<IActionResult> GetList()
         {
-            List<GetListLanguageResponse> response = await Mediator.Send(command);
+            List<GetListLanguageResponse> response = await Mediator.Send(new GetListLanguageQuery());
             return Ok(response);
         }
     }

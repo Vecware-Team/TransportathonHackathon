@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.DriverLicenses.Commands.Update
 {
-    public class UpdateDriverLicenseCommand : IRequest<UpdatedDriverLicenseResponse>
+    public class UpdateDriverLicenseCommand : IRequest<UpdatedDriverLicenseResponse>, ITransactionalRequest
     {
         public Guid DriverId { get; set; }
         public string FirstName { get; set; }
