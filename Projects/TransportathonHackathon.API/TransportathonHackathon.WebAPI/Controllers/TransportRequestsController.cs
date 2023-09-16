@@ -7,6 +7,7 @@ using TransportathonHackathon.Application.Features.TransportRequests.Commands.Cr
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Delete;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Finish;
 using TransportathonHackathon.Application.Features.TransportRequests.Commands.Update;
+using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCompanyAndCustomer;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCustomerId;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetById;
@@ -86,6 +87,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetListByCustomerId([FromRoute] GetByCustomerIdTransportRequestQuery query)
         {
             IList<GetByCustomerIdTransportRequestResponse> response = await Mediator.Send(query);
+            return Ok(response);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> GetListByCompanyIdAndCustomerId([FromQuery] GetByCompanyAndCustomerTransportRequestQuery query)
+        {
+            IList<GetByCompanyAndCustomerTransportRequestResponse> response = await Mediator.Send(query);
             return Ok(response);
         }
     }
