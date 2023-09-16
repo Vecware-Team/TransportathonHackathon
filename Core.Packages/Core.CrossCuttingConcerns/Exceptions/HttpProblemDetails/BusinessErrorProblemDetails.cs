@@ -6,18 +6,22 @@ namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails
     {
         public BusinessErrorProblemDetails() : base(StatusCodes.Status400BadRequest)
         {
+            Type = "Business";
         }
 
         public BusinessErrorProblemDetails(string detail) : base(detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Business";
         }
 
         public BusinessErrorProblemDetails(string title, string detail) : base(title, detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Business";
         }
 
         public BusinessErrorProblemDetails(string title, string detail, string type) : base(title, detail, type, StatusCodes.Status400BadRequest)
         {
+            Type = "Business";
         }
     }
 }

@@ -1,5 +1,6 @@
 export interface BaseError {
   title: string;
-  statusCode: number;
+  type: string;
+  status: number;
   detail: string;
 }

@@ -14,36 +14,51 @@ export class ErrorSeperator {
   constructor(private toastrService: ToastrService) {}
 
   handleErrors(error: BaseError) {
-    if (error.statusCode === 400 && error.title === 'BusinessException') {
+    if (error.status === 400 && error.type == 'Business') {
       this.handleBusinessError(error);
-    } else if (
-      error.statusCode === 400 &&
-      error.title === 'ValidationException'
-    ) {
+    } else if (error.status === 400 && error.type == 'Validation') {
       let validationError = error as ValidationError;
       this.handleValidationError(validationError);
-    } else if (error.statusCode === 401) {
+    } else if (error.status === 401 && error.type == 'Unauthorized') {
       this.handleUnauthorizedError(error);
-    } else if (error.statusCode === 403) {
+    } else if (error.status === 403 && error.type == 'Authorization') {
       this.handleAuthorizationDeniedError(error);
-    } else if (error.statusCode === 404) {
+    } else if (error.status === 404 && error.type == 'NotFound') {
       this.handleNotFoundError(error);
     } else {
       this.handleBaseError(error);
     }
   }
 
-  handleValidationError(error: ValidationError) {}
+  handleValidationError(error: ValidationError) {
+    console.log(error);
 
-  handleUnauthorizedError(error: UnauthorizedError) {}
+    console.log(error.Errors);
 
-  handleAuthorizationDeniedError(error: AuthorizationDeniedError) {}
+    error.Errors?.forEach((e) => {
+      e?.Errors?.forEach((c) => {
+        this.toastrService.error(c, e.property!);
+      });
+    });
+  }
 
-  handleBusinessError(error: BusinessError) {}
+  handleUnauthorizedError(error: UnauthorizedError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
-  handleNotFoundError(error: NotFoundError) {}
+  handleAuthorizationDeniedError(error: AuthorizationDeniedError) {
+    this.toastrService.error(error.detail, error.title);
+  }
+
+  handleBusinessError(error: BusinessError) {
+    this.toastrService.error(error.detail, error.title);
+  }
+
+  handleNotFoundError(error: NotFoundError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
   handleBaseError(error: BaseError) {
-    this.toastrService.error(error.detail, error.title);
+    // this.toastrService.error(error.detail, error.title);
   }
 }

@@ -65,6 +65,12 @@ export class TransportRequestListComponent implements OnInit {
         modalDialogClass: 'modal-dialog-centered',
       }
     );
+
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.transportRequest = transportRequest;
   }
 
@@ -82,6 +88,12 @@ export class TransportRequestListComponent implements OnInit {
         modalDialogClass: 'modal-dialog-centered',
       }
     );
+
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.transportRequest = transportRequest;
   }
 

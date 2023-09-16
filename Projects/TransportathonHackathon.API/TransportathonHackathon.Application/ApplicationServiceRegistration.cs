@@ -5,6 +5,7 @@ using Core.Application.Pipelines.Transaction;
 using Core.Application.Pipelines.Validation;
 using Core.Application.Rules;
 using Core.CrossCuttingConcerns.Extensions;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -15,6 +16,9 @@ namespace TransportathonHackathon.Application
         public static IServiceCollection AddApplicationServices(this IServiceCollection services, Assembly assembly)
         {
             services.AddAutoMapper(Assembly.GetExecutingAssembly(), assembly);
+
+            services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+
             services.AddMediatR(configuration =>
             {
                 configuration.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
