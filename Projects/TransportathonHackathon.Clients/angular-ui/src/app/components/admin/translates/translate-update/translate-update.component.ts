@@ -73,6 +73,7 @@ export class TranslateUpdateComponent {
         response.key + ' updated',
         this.translateService.instant('successful')
       );
+      this.close();
     });
   }
 }

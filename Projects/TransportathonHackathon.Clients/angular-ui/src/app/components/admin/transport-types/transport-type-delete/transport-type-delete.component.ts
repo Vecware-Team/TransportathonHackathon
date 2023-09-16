@@ -49,6 +49,7 @@ export class TransportTypeDeleteComponent {
           response.type + ' deleted',
           this.translate.instant('successful')
         );
+        this.close();
       });
   }
 }

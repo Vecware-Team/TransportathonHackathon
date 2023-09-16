@@ -56,6 +56,7 @@ export class TransportTypeCreateComponent {
         response.type + ' added',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

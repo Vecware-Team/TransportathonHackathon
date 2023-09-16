@@ -47,6 +47,7 @@ export class LanguageDeleteComponent {
         response.globallyName + ' deleted',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

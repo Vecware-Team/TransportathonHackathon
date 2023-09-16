@@ -50,6 +50,7 @@ export class PickupTruckDeleteComponent {
         response.brand + ' ' + response.model + ' deleted',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

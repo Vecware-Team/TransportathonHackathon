@@ -34,25 +34,6 @@ export class CompanyListComponent implements OnInit {
     this.appUser = this.tokenService.getUserWithJWT()!;
   }
 
-  // getFilter(): DynamicQuery {
-  //   let query: DynamicQuery = {
-  //     sort: null,
-  //     filter: null,
-  //   };
-
-  //   if (this.filter.companyNameFilter) {
-  //     query.filter = {
-  //       field: 'companyName',
-  //       value: this.filter.companyNameFilter!,
-  //       operator: 'eq',
-  //       logic: null,
-  //       filters:null
-  //     };
-  //   }
-
-  //   return query;
-  // }
-
   getCompanies() {
     this.companyService
       .getList({ size: this.pageSize, index: this.pageIndex })

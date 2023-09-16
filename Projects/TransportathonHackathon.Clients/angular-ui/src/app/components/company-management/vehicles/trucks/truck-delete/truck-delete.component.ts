@@ -48,6 +48,7 @@ export class TruckDeleteComponent {
         response.brand + ' ' + response.model + ' deleted',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

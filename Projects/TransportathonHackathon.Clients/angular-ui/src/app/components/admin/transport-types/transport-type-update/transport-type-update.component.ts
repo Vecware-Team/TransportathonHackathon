@@ -61,6 +61,7 @@ export class TransportTypeUpdateComponent {
           response.type + ' updated',
           this.translate.instant('successful')
         );
+        this.close();
       });
   }
 }

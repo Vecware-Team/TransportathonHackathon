@@ -44,6 +44,7 @@ export class CloseTransportRequestComponent {
       })
       .subscribe((response) => {
         this.toastrService.success('Successfully rejected', 'Successful');
+        this.close();
       });
   }
 }

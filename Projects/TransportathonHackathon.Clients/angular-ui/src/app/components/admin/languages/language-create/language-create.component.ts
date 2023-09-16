@@ -58,6 +58,7 @@ export class LanguageCreateComponent {
         response.globallyName + ' added',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

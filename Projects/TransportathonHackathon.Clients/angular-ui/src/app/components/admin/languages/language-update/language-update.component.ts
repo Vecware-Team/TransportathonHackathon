@@ -61,6 +61,7 @@ export class LanguageUpdateComponent {
         response.globallyName + ' updated',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

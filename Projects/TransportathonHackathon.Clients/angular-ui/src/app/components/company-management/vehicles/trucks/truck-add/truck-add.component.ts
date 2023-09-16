@@ -78,6 +78,7 @@ export class TruckAddComponent {
         response.brand + ' ' + response.model + ' added',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

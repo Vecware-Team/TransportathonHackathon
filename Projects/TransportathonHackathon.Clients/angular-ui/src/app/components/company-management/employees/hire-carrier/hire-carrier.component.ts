@@ -70,6 +70,7 @@ export class HireCarrierComponent {
         'Successfully registered',
         this.translateService.instant('successful')
       );
+      this.close();
     });
   }
 }

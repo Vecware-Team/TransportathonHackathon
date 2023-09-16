@@ -48,6 +48,7 @@ export class CarDeleteComponent {
         response.brand + ' ' + response.model + ' deleted',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

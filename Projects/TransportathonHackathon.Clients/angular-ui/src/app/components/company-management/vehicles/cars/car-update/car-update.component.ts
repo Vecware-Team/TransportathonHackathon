@@ -80,6 +80,7 @@ export class CarUpdateComponent {
         response.brand + ' - ' + response.model + ' updated',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

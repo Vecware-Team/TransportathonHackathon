@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { PayPaymentRequestRequest } from 'src/app/models/request-models/payment-request/payPaymentRequestRequest';
@@ -25,7 +25,8 @@ export class PayTransportRequestComponent implements OnInit {
     private paymentRequestService: PaymentRequestService,
     private formBuilder: FormBuilder,
     private activatedRoute: ActivatedRoute,
-    private toastrService: ToastrService
+    private toastrService: ToastrService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -85,8 +86,11 @@ export class PayTransportRequestComponent implements OnInit {
     paymentRequestRequest.paymentRequest.price = this.paymentRequest.price;
     paymentRequestRequest.transportRequestId = this.transportRequest.id;
 
-    this.paymentRequestService.pay(paymentRequestRequest).subscribe(response=>{
-      this.toastrService.success("Successfully paid", "Successful")
-    })
+    this.paymentRequestService
+      .pay(paymentRequestRequest)
+      .subscribe((response) => {
+        this.toastrService.success('Successfully paid', 'Successful');
+        this.router.navigate(['/transport-requests']);
+      });
   }
 }

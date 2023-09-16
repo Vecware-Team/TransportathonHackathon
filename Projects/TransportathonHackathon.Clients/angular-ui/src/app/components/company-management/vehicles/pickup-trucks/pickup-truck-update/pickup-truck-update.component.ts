@@ -81,6 +81,7 @@ export class PickupTruckUpdateComponent {
         response.brand + ' - ' + response.model + ' updated',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

@@ -72,6 +72,7 @@ export class TranslateCreateComponent {
         response.key + ' added',
         this.translate.instant('successful')
       );
+      this.close();
     });
   }
 }

@@ -60,6 +60,7 @@ export class ApproveTransportRequestComponent implements OnInit {
       })
       .subscribe((response) => {
         this.toastrService.success('Approved', 'Successful');
+        this.close();
       });
   }
 }

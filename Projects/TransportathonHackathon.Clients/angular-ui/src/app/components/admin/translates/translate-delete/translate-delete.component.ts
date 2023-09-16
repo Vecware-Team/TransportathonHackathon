@@ -48,6 +48,7 @@ export class TranslateDeleteComponent {
         response.key + ' deleted',
         this.translateService.instant('successful')
       );
+      this.close();
     });
   }
 }

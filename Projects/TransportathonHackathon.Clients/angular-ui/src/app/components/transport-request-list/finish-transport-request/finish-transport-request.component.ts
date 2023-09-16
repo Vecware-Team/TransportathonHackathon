@@ -43,6 +43,7 @@ export class FinishTransportRequestComponent {
       })
       .subscribe((response) => {
         this.toastrService.success('Successfully finished', 'Successful');
+        this.close();
       });
   }
 }

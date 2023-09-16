@@ -36,6 +36,7 @@ export class RejectTransportRequestComponent implements OnInit {
       })
       .subscribe((response) => {
         this.toastrService.success('Rejected', 'Successful');
+        this.close();
       });
   }
 }
