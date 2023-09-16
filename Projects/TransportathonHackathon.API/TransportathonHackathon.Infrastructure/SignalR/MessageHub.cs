@@ -21,11 +21,6 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             _messageService = messageService;
         }
 
-        public async Task SendMessageAsync(string message)
-        {
-            await Clients.All.ReceiveMessage(message);
-        }
-
         public override async Task OnConnectedAsync()
         {
             AppUser? user = await _userManager.GetUserAsync(Context.User);
@@ -34,11 +29,6 @@ namespace TransportathonHackathon.Infrastructure.SignalR
 
             SignalRClient client = new() { ConnectionId = Context.ConnectionId, UserId = user.Id.ToString() };
             clients.Add(client);
-
-            await Clients.All.UserJoined(client);
-
-            // Kaldırılacak
-            await Clients.All.Clients(clients);
         }
 
         public override async Task OnDisconnectedAsync(Exception? exception)
@@ -50,13 +40,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             SignalRClient? client = clients.SingleOrDefault(c => c.ConnectionId == Context.ConnectionId.ToString());
 
             if (client is not null)
-            {
                 clients.Remove(client);
-                await Clients.All.UserLeaved(client);
-            }
-
-            // Kaldırılacak
-            await Clients.All.Clients(clients);
         }
 
         public async Task SendMessage(Guid receiverId, string message)
@@ -79,17 +63,21 @@ namespace TransportathonHackathon.Infrastructure.SignalR
                 MessageText = message,
                 SendDate = DateTime.UtcNow,
                 IsRead = false,
+                Sender = senderUser,
+                Receiver = receiverUser,
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow,
             };
 
             List<SignalRClient> receiverClients = clients.Where(c => c.UserId == receiverUser.Id.ToString()).ToList();
             if (receiverClients is not null && receiverClients?.Count > 0)
                 foreach (SignalRClient client in receiverClients)
-                    await Clients.Client(client.ConnectionId).ReceiveMessage(message);
+                    await Clients.Client(client.ConnectionId).ReceiveMessage(sendingMessage);
 
             List<SignalRClient> senderClients = clients.Where(c => c.UserId == senderUser.Id.ToString()).ToList(); 
             if (senderClients is not null && senderClients?.Count > 0)
                 foreach (SignalRClient client in senderClients)
-                    await Clients.Client(client.ConnectionId).MessageSended(message);
+                    await Clients.Client(client.ConnectionId).MessageSended(sendingMessage);
 
             await _messageService.SaveMessage(sendingMessage);
         }

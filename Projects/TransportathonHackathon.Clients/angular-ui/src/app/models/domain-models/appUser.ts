@@ -6,9 +6,6 @@ export interface AppUser extends Entity<string> {
   email: string | null;
   normalizedEmail: string | null;
   emailConfirmed: boolean;
-  passwordHash: string | null;
-  securityStamp: string | null;
-  concurrencyStamp: string | null;
   phoneNumber: string | null;
   phoneNumberConfirmed: boolean;
   twoFactorEnabled: boolean;
