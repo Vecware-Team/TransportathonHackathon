@@ -1,9 +1,11 @@
-﻿using Core.Application.Pipelines.Transaction;
+﻿using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Transaction;
 using MediatR;
+using System.Security.Claims;
 
 namespace TransportathonHackathon.Application.Features.Trucks.Commands.Create
 {
-    public class CreateTruckCommand : IRequest<CreatedTruckResponse>, ITransactionalRequest
+    public class CreateTruckCommand : IRequest<CreatedTruckResponse>, ITransactionalRequest, ISecuredRequest
     {
         public Guid CompanyId { get; set; }
         public Guid DriverId { get; set; }
@@ -11,5 +13,8 @@ namespace TransportathonHackathon.Application.Features.Trucks.Commands.Create
         public string Model { get; set; }
         public int ModelYear { get; set; }
         public int Size { get; set; }
+
+        public string[] Roles => new string[] { };
+        public Claim[] Claims => new Claim[] { new Claim("UserType", "Company") };
     }
 }

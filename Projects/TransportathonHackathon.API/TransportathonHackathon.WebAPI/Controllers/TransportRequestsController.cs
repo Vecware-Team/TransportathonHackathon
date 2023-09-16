@@ -22,30 +22,30 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class TransportRequestsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTransportRequestCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTransportRequestDto command)
         {
-            CreatedTransportRequestResponse response = await Mediator.Send(command);
+            CreatedTransportRequestResponse response = await Mediator.Send(Mapper.Map<CreateTransportRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteTransportRequestCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTransportRequestDto command)
         {
-            DeletedTransportRequestResponse response = await Mediator.Send(command);
+            DeletedTransportRequestResponse response = await Mediator.Send(Mapper.Map<DeleteTransportRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateTransportRequestCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateTransportRequestDto command)
         {
-            UpdatedTransportRequestResponse response = await Mediator.Send(command);
+            UpdatedTransportRequestResponse response = await Mediator.Send(Mapper.Map<UpdateTransportRequestCommand>(command));
             return Ok(response);
         }
 
         [HttpPost]
-        public async Task<IActionResult> Approve([FromBody] ApproveTransportRequestCommand command)
+        public async Task<IActionResult> Approve([FromBody] ApproveTransportRequestDto command)
         {
-            ApproveTransportRequestResponse response = await Mediator.Send(command);
+            ApproveTransportRequestResponse response = await Mediator.Send(Mapper.Map<ApproveTransportRequestCommand>(command));
             return Ok(response);
         }
 
@@ -58,9 +58,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Finish([FromBody] FinishTransportRequestCommand command)
+        public async Task<IActionResult> Finish([FromBody] FinishTransportRequestDto command)
         {
-            FinishedTransportRequestResponse response = await Mediator.Send(command);
+            FinishedTransportRequestResponse response = await Mediator.Send(Mapper.Map<FinishTransportRequestCommand>(command));
             return Ok(response);
         }
 

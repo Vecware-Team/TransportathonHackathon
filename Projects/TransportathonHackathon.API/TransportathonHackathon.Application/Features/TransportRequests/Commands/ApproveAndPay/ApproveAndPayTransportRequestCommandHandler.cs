@@ -40,6 +40,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 return _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);
             }
 
+            transportRequest.VehicleId = request.VehicleId;
             transportRequest.PaymentRequest = new PaymentRequest()
             {
                 TransportRequestId = transportRequest.Id,
@@ -49,6 +50,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 UpdatedDate = DateTime.UtcNow,
             };
             await _transportRequestRepository.SaveChangesAsync();
+
             if (transportRequest.Vehicle is not null)
                 transportRequest.Vehicle.TransportRequest = null;
 

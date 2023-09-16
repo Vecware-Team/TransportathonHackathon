@@ -8,6 +8,7 @@ using TransportathonHackathon.Application.Features.Translates.Queries.GetByKey;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetByLanguageCode;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetByLanguageCodeAsString;
 using TransportathonHackathon.Application.Features.Translates.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Translate;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -16,23 +17,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class TranslatesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTranslateCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTranslateDto command)
         {
-            CreatedTranslateResponse response = await Mediator.Send(command);
+            CreatedTranslateResponse response = await Mediator.Send(Mapper.Map<CreateTranslateCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteTranslateCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTranslateDto command)
         {
-            DeletedTranslateResponse response = await Mediator.Send(command);
+            DeletedTranslateResponse response = await Mediator.Send(Mapper.Map<DeleteTranslateCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateTranslateCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateTranslateDto command)
         {
-            UpdatedTranslateResponse response = await Mediator.Send(command);
+            UpdatedTranslateResponse response = await Mediator.Send(Mapper.Map<UpdateTranslateCommand>(command));
             return Ok(response);
         }
 

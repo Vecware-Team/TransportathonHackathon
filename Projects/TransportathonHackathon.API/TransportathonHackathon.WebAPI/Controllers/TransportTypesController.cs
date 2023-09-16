@@ -5,6 +5,7 @@ using TransportathonHackathon.Application.Features.TransportTypes.Commands.Delet
 using TransportathonHackathon.Application.Features.TransportTypes.Commands.Update;
 using TransportathonHackathon.Application.Features.TransportTypes.Queries.GetById;
 using TransportathonHackathon.Application.Features.TransportTypes.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.TransportType;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -13,23 +14,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class TransportTypesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTransportTypeCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTransportTypeDto command)
         {
-            CreatedTransportTypeResponse response = await Mediator.Send(command);
+            CreatedTransportTypeResponse response = await Mediator.Send(Mapper.Map<CreateTransportTypeCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteTransportTypeCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTransportTypeDto command)
         {
-            DeletedTransportTypeResponse response = await Mediator.Send(command);
+            DeletedTransportTypeResponse response = await Mediator.Send(Mapper.Map<DeleteTransportTypeCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateTransportTypeCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateTransportTypeDto command)
         {
-            UpdatedTransportTypeResponse response = await Mediator.Send(command);
+            UpdatedTransportTypeResponse response = await Mediator.Send(Mapper.Map<UpdateTransportTypeCommand>(command));
             return Ok(response);
         }
 

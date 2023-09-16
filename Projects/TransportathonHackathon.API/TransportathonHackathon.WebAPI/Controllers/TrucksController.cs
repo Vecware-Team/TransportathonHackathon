@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.Trucks.Commands.Delete;
 using TransportathonHackathon.Application.Features.Trucks.Commands.Update;
 using TransportathonHackathon.Application.Features.Trucks.Queries.GetById;
 using TransportathonHackathon.Application.Features.Trucks.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Truck;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -14,23 +15,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class TrucksController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateTruckCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateTruckDto command)
         {
-            CreatedTruckResponse response = await Mediator.Send(command);
+            CreatedTruckResponse response = await Mediator.Send(Mapper.Map<CreateTruckCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteTruckCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteTruckDto command)
         {
-            DeletedTruckResponse response = await Mediator.Send(command);
+            DeletedTruckResponse response = await Mediator.Send(Mapper.Map<DeleteTruckCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateTruckCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateTruckDto command)
         {
-            UpdatedTruckResponse response = await Mediator.Send(command);
+            UpdatedTruckResponse response = await Mediator.Send(Mapper.Map<UpdateTruckCommand>(command));
             return Ok(response);
         }
 
