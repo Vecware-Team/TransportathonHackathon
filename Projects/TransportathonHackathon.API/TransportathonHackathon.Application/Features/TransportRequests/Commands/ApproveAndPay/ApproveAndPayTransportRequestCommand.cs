@@ -7,6 +7,6 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
     {
         public Guid Id { get; set; }
         public bool IsApproved { get; set; }
-        public Requests.PaymentRequest PaymentRequest { get; set; }
+        public decimal Price { get; set; }
     }
 }

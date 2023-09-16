@@ -3,7 +3,6 @@ using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
 using TransportathonHackathon.Application.Repositories;
-using TransportathonHackathon.Application.Services;
 using TransportathonHackathon.Domain.Entities;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay
@@ -11,13 +10,11 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
     public class ApproveAndPayTransportRequestCommandHandler : IRequestHandler<ApproveAndPayTransportRequestCommand, ApproveAndPayTransportRequestResponse>
     {
         private readonly ITransportRequestRepository _transportRequestRepository;
-        private readonly IPaymentService _paymentService;
         private readonly IMapper _mapper;
 
-        public ApproveAndPayTransportRequestCommandHandler(ITransportRequestRepository transportRequestRepository, IPaymentService paymentService, IMapper mapper)
+        public ApproveAndPayTransportRequestCommandHandler(ITransportRequestRepository transportRequestRepository, IMapper mapper)
         {
             _transportRequestRepository = transportRequestRepository;
-            _paymentService = paymentService;
             _mapper = mapper;
         }
 
@@ -41,12 +38,14 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 return _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);
             }
 
-            request.PaymentRequest.Price = transportRequest.PaymentRequest.Price;
-            if (!await _paymentService.Payment(request.PaymentRequest))
-                throw new BusinessException("Payment failed");
-
-            transportRequest.PaymentRequest.IsPaid = true;
-
+            transportRequest.PaymentRequest = new PaymentRequest()
+            {
+                TransportRequestId = transportRequest.Id,
+                Price = request.Price,
+                IsPaid = false,
+                CreatedDate = DateTime.UtcNow,
+                UpdatedDate = DateTime.UtcNow,
+            };
             await _transportRequestRepository.SaveChangesAsync();
 
             ApproveAndPayTransportRequestResponse response = _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);

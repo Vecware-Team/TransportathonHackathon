@@ -10,7 +10,6 @@ namespace TransportathonHackathon.Application.Features.Vehicles.Queries.GetByCom
         public string Brand { get; set; }
         public string Model { get; set; }
         public int ModelYear { get; set; }
-
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }
