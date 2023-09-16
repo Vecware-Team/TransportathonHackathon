@@ -14,6 +14,8 @@ export class ErrorSeperator {
   constructor(private toastrService: ToastrService) {}
 
   handleErrors(error: BaseError) {
+    console.log(error);
+
     if (error.statusCode === 400 && error.title === 'BusinessException') {
       this.handleBusinessError(error);
     } else if (
@@ -33,17 +35,31 @@ export class ErrorSeperator {
     }
   }
 
-  handleValidationError(error: ValidationError) {}
+  handleValidationError(error: ValidationError) {
+    error.errors.forEach((e) => {
+      e.errors?.forEach((c) => {
+        this.toastrService.error(c, e.property!);
+      });
+    });
+  }
 
-  handleUnauthorizedError(error: UnauthorizedError) {}
+  handleUnauthorizedError(error: UnauthorizedError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
-  handleAuthorizationDeniedError(error: AuthorizationDeniedError) {}
+  handleAuthorizationDeniedError(error: AuthorizationDeniedError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
-  handleBusinessError(error: BusinessError) {}
+  handleBusinessError(error: BusinessError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
-  handleNotFoundError(error: NotFoundError) {}
+  handleNotFoundError(error: NotFoundError) {
+    this.toastrService.error(error.detail, error.title);
+  }
 
   handleBaseError(error: BaseError) {
-    this.toastrService.error(error.detail, error.title);
+    // this.toastrService.error(error.detail, error.title);
   }
 }
