@@ -6,6 +6,7 @@ using Core.Security.Jwt;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+using System.Reflection;
 using System.Text;
 using TransportathonHackathon.Application;
 using TransportathonHackathon.Application.Services;
@@ -21,7 +22,7 @@ builder.Host.UseDefaultServiceProvider(options => { });
 // Add services to the container.
 
 builder.Services.AddPersistenceServices(builder.Configuration, builder.Environment.IsDevelopment());
-builder.Services.AddApplicationServices();
+builder.Services.AddApplicationServices(Assembly.GetExecutingAssembly());
 
 builder.Services.RegisterLogger(ServiceLifetime.Scoped, typeof(FileLogger), typeof(MsSqlLogger));
 builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();

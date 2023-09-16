@@ -1,10 +1,9 @@
-﻿using MediatR;
-using TransportathonHackathon.Application.Features.Companies.Commands.Create;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.Customers.Commands.Create
 {
-    public class CreateCustomerCommand : IRequest<CreatedCustomerResponse>
+    public class CreateCustomerCommand : IRequest<CreatedCustomerResponse>, ITransactionalRequest
     {
         public string Email { get; set; }
         public string UserName { get; set; }

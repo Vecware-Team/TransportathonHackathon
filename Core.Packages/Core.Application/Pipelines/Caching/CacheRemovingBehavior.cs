@@ -26,7 +26,7 @@ namespace Core.Application.Pipelines.Caching
                 byte[]? cachedGroup = await _cache.GetAsync(request.CacheGroupKey, cancellationToken);
                 if (cachedGroup != null)
                 {
-                    HashSet<string> keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup!));
+                    HashSet<string> keysInGroup = JsonSerializer.Deserialize<HashSet<string>>(Encoding.Default.GetString(cachedGroup))!;
 
                     foreach (string key in keysInGroup)
                     {

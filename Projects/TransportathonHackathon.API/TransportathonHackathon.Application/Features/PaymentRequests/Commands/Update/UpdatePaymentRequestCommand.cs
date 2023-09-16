@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.PaymentRequests.Commands.Update
 {
-    public class UpdatePaymentRequestCommand : IRequest<UpdatedPaymentRequestResponse>
+    public class UpdatePaymentRequestCommand : IRequest<UpdatedPaymentRequestResponse>, ITransactionalRequest
     {
         public Guid TransportRequestId { get; set; }
         public bool IsPaid { get; set; }

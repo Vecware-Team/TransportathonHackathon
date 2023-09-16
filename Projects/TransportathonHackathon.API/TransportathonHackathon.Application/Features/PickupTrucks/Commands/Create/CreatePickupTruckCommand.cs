@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.PickupTrucks.Commands.Create
 {
-    public class CreatePickupTruckCommand : IRequest<CreatedPickupTruckResponse>
+    public class CreatePickupTruckCommand : IRequest<CreatedPickupTruckResponse>, ITransactionalRequest
     {
         public Guid CompanyId { get; set; }
         public Guid DriverId { get; set; }

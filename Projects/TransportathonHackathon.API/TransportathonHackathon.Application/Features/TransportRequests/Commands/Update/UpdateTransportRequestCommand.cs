@@ -1,8 +1,9 @@
-﻿using MediatR;
+﻿using Core.Application.Pipelines.Transaction;
+using MediatR;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Update
 {
-    public class UpdateTransportRequestCommand : IRequest<UpdatedTransportRequestResponse>
+    public class UpdateTransportRequestCommand : IRequest<UpdatedTransportRequestResponse>, ITransactionalRequest
     {
         public Guid Id { get; set; }
         public Guid CustomerId { get; set; }
