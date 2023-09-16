@@ -46,7 +46,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             ApproveTransportRequestResponse response = await Mediator.Send(command);
             return Ok(response);
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> ApproveAndPay([FromBody] ApproveAndPayTransportRequestCommand command)
@@ -54,7 +54,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
             ApproveAndPayTransportRequestResponse response = await Mediator.Send(command);
             return Ok(response);
         }
-        
+
         [HttpPost]
         public async Task<IActionResult> Finish([FromBody] FinishTransportRequestCommand command)
         {
@@ -90,8 +90,8 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet]
-        public async Task<IActionResult> GetListByCompanyIdAndCustomerId([FromQuery] GetByCompanyAndCustomerTransportRequestQuery query)
+        [HttpGet("{CompanyId}/{CustomerId}")]
+        public async Task<IActionResult> GetListByCompanyIdAndCustomerId([FromRoute] GetByCompanyAndCustomerTransportRequestQuery query)
         {
             IList<GetByCompanyAndCustomerTransportRequestResponse> response = await Mediator.Send(query);
             return Ok(response);
