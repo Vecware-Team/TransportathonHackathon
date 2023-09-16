@@ -3,6 +3,7 @@ using Core.Security.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 
 namespace Core.Application.Pipelines.Authorization
 {
@@ -18,8 +19,12 @@ namespace Core.Application.Pipelines.Authorization
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             List<string>? roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+            Claim? claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserType");
 
             if (roleClaims.Count <= 0 || roleClaims == null) throw new UnauthorizedException("Unauthorized user");
+
+            if (roleClaims.Contains("Admin") && claim?.Value == "Admin")
+                return await next();
 
             bool isNotMatchedARoleClaimWithRequestRoles = roleClaims.FirstOrDefault(roleClaim => request.Roles.Any(role => role == roleClaim)).IsNullOrEmpty();
             if (isNotMatchedARoleClaimWithRequestRoles) throw new AuthorizationDeniedException("You are not authorized.");
