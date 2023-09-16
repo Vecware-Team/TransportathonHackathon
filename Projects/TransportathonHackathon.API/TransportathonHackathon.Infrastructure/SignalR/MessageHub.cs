@@ -61,12 +61,12 @@ namespace TransportathonHackathon.Infrastructure.SignalR
                 SenderId = senderUser.Id,
                 ReceiverId = receiverUser.Id,
                 MessageText = message,
-                SendDate = DateTime.UtcNow,
+                SendDate = DateTime.Now,
                 IsRead = false,
                 Sender = senderUser,
                 Receiver = receiverUser,
-                CreatedDate = DateTime.UtcNow,
-                UpdatedDate = DateTime.UtcNow,
+                CreatedDate = DateTime.Now,
+                UpdatedDate = DateTime.Now,
             };
 
             List<SignalRClient> receiverClients = clients.Where(c => c.UserId == receiverUser.Id.ToString()).ToList();
