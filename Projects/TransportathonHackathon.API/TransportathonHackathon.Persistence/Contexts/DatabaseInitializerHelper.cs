@@ -16,14 +16,14 @@ namespace TransportathonHackathon.Persistence.Contexts
         private static void AddAdminUser(ModelBuilder builder)
         {
             Guid ADMIN_ID = Guid.NewGuid();
-            string ROLE_ID = Guid.NewGuid().ToString();
+            Guid ROLE_ID = Guid.NewGuid();
 
-            builder.Entity<IdentityRole>().HasData(new IdentityRole
+            builder.Entity<AppRole>().HasData(new AppRole
             {
                 Name = "Admin",
                 NormalizedName = "ADMIN",
                 Id = ROLE_ID,
-                ConcurrencyStamp = ROLE_ID
+                ConcurrencyStamp = Guid.NewGuid().ToString()
             });
 
             var appUser = new AppUser
@@ -37,6 +37,7 @@ namespace TransportathonHackathon.Persistence.Contexts
                 PhoneNumberConfirmed = true,
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
+                ConcurrencyStamp = Guid.NewGuid().ToString()
             };
 
             PasswordHasher<AppUser> passwordHasher = new PasswordHasher<AppUser>();
@@ -46,7 +47,7 @@ namespace TransportathonHackathon.Persistence.Contexts
 
             builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
             {
-                RoleId = ROLE_ID,
+                RoleId = ROLE_ID.ToString(),
                 UserId = ADMIN_ID.ToString()
             });
         }

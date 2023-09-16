@@ -19,6 +19,7 @@ namespace Core.Application.Pipelines.Authorization
         public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
         {
             List<string>? roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+            List<Claim>? claims = _httpContextAccessor.HttpContext.User.Claims?.ToList();
             Claim? claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserType");
 
             if (roleClaims.Count <= 0 || roleClaims == null) throw new UnauthorizedException("Unauthorized user");
@@ -27,7 +28,9 @@ namespace Core.Application.Pipelines.Authorization
                 return await next();
 
             bool isNotMatchedARoleClaimWithRequestRoles = roleClaims.FirstOrDefault(roleClaim => request.Roles.Any(role => role == roleClaim)).IsNullOrEmpty();
-            if (isNotMatchedARoleClaimWithRequestRoles) throw new AuthorizationDeniedException("You are not authorized.");
+            bool isNotMatchedAClaimWithRequestClaims = claims.FirstOrDefault(claim => request.Claims.Any(c => c.Type == claim.Type && c.Value == claim.Value)) == null;
+
+            if (isNotMatchedAClaimWithRequestClaims && isNotMatchedARoleClaimWithRequestRoles) throw new AuthorizationDeniedException("You are not authorized.");
 
             TResponse response = await next();
             return response;

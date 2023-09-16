@@ -6,6 +6,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
     {
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }
+        public Guid? VehicleId { get; set; }
         public string TransportType { get; set; }
         public bool IsPaid { get; set; }
         public string CustomerFirstName { get; set; }
@@ -20,6 +21,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
         public bool? ApprovedByCompany { get; set; }
         public bool IsFinished { get; set; }
         public PaymentRequest PaymentRequest { get; set; }
+        public Vehicle? Vehicle { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DateTime StartDate { get; set; }

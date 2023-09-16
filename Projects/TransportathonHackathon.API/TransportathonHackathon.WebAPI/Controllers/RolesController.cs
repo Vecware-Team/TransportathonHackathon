@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Domain.Entities.Identity;
@@ -6,6 +6,7 @@ using TransportathonHackathon.WebAPI.Dtos.Identity;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
+    [Authorize(Roles = "Admin")]
     [Route("api/[controller]/[action]")]
     [ApiController]
     public class RolesController : ControllerBase
@@ -21,8 +22,8 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> Create([FromBody] string roleName)
         {
             AppRole role = new AppRole() { Name = roleName };
-           IdentityResult result =  await _roleManager.CreateAsync(role);
-            if(!result.Succeeded)
+            IdentityResult result = await _roleManager.CreateAsync(role);
+            if (!result.Succeeded)
                 return BadRequest(result);
 
             return Ok(role);
@@ -55,7 +56,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
 
             return Ok(role);
         }
-        
+
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] RoleUpdateDto roleUpdateDto)
         {
