@@ -17,12 +17,10 @@
     <Compile Remove="Features\Drivers\Validators\**" />
     <Compile Remove="Features\Languages\Dtos\**" />
     <Compile Remove="Features\Languages\Models\**" />
-    <Compile Remove="Features\Languages\Rules\**" />
     <Compile Remove="Features\Languages\Validators\**" />
     <Compile Remove="Features\Translates\Dtos\**" />
     <Compile Remove="Features\Translates\MappingProfiles\**" />
     <Compile Remove="Features\Translates\Models\**" />
-    <Compile Remove="Features\Translates\Rules\**" />
     <Compile Remove="Features\Translates\Validators\**" />
     <EmbeddedResource Remove="Features\DriverLicenses\Dtos\**" />
     <EmbeddedResource Remove="Features\DriverLicenses\Models\**" />
@@ -34,12 +32,10 @@
     <EmbeddedResource Remove="Features\Drivers\Validators\**" />
     <EmbeddedResource Remove="Features\Languages\Dtos\**" />
     <EmbeddedResource Remove="Features\Languages\Models\**" />
-    <EmbeddedResource Remove="Features\Languages\Rules\**" />
     <EmbeddedResource Remove="Features\Languages\Validators\**" />
     <EmbeddedResource Remove="Features\Translates\Dtos\**" />
     <EmbeddedResource Remove="Features\Translates\MappingProfiles\**" />
     <EmbeddedResource Remove="Features\Translates\Models\**" />
-    <EmbeddedResource Remove="Features\Translates\Rules\**" />
     <EmbeddedResource Remove="Features\Translates\Validators\**" />
     <None Remove="Features\DriverLicenses\Dtos\**" />
     <None Remove="Features\DriverLicenses\Models\**" />
@@ -51,12 +47,10 @@
     <None Remove="Features\Drivers\Validators\**" />
     <None Remove="Features\Languages\Dtos\**" />
     <None Remove="Features\Languages\Models\**" />
-    <None Remove="Features\Languages\Rules\**" />
     <None Remove="Features\Languages\Validators\**" />
     <None Remove="Features\Translates\Dtos\**" />
     <None Remove="Features\Translates\MappingProfiles\**" />
     <None Remove="Features\Translates\Models\**" />
-    <None Remove="Features\Translates\Rules\**" />
     <None Remove="Features\Translates\Validators\**" />
   </ItemGroup>
 
