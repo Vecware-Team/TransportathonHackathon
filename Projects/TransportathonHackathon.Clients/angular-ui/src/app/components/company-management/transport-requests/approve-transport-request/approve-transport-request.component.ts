@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { PaymentRequest } from 'src/app/models/domain-models/paymentRequest';
 import { CreatePaymentRequestRequest } from 'src/app/models/request-models/payment-request/createPaymentRequestRequest';
 import { GetByCompanyIdTransportRequestResponse } from 'src/app/models/response-models/transport-requests/getByCompanyIdTransportRequestResponse';
 import { PaymentRequestService } from 'src/app/services/payment-request.service';
@@ -42,27 +43,20 @@ export class ApproveTransportRequestComponent implements OnInit {
     });
   }
 
-  sendPaymentRequest() {
+  approve() {
     if (!this.paymentRequestAddForm.valid) {
       this.toastrService.error('Price is null', 'Form error');
     }
 
-    let request: CreatePaymentRequestRequest = Object.assign(
+    let paymentRequest: PaymentRequest = Object.assign(
       {},
       this.paymentRequestAddForm.value
     );
-    request.transportRequestId = this.transportRequest.id;
-
-    this.paymentRequestService.create(request).subscribe((response) => {
-      this.toastrService.success('Pay request sent', 'Successful');
-    });
-  }
-
-  approve() {
     this.transportRequestService
-      .approveTransportRequest({
+      .approveAndPayTransportRequest({
         id: this.transportRequest.id,
         isApproved: true,
+        price: paymentRequest.price,
       })
       .subscribe((response) => {
         this.toastrService.success('Approved', 'Successful');

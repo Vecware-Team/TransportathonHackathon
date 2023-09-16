@@ -14,6 +14,8 @@ import { GetByIdTransportRequestRequest } from '../models/request-models/transpo
 import { GetByIdTransportRequestResponse } from '../models/response-models/transport-requests/getByIdTransportRequestResponse';
 import { FinishTransportRequestRequest } from '../models/request-models/transport-requests/finishTransportRequestRequest';
 import { FinishedTransportRequestResponse } from '../models/response-models/transport-requests/finishedTransportRequestResponse';
+import { ApproveAndPayTransportRequestRequest } from '../models/request-models/transport-requests/approveAndPayTransportRequestRequest';
+import { ApproveAndPayTransportRequestResponse } from '../models/response-models/transport-requests/approveAndPayTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -60,6 +62,15 @@ export class TransportRequestService {
   ): Observable<ApproveTransportRequestResponse> {
     return this.httpClient.post<ApproveTransportRequestResponse>(
       this.apiUrl + 'approve',
+      request
+    );
+  }
+
+  approveAndPayTransportRequest(
+    request: ApproveAndPayTransportRequestRequest
+  ): Observable<ApproveAndPayTransportRequestResponse> {
+    return this.httpClient.post<ApproveAndPayTransportRequestResponse>(
+      this.apiUrl + 'approveAndPay',
       request
     );
   }

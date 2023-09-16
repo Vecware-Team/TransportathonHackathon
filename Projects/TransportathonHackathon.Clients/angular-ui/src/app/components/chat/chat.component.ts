@@ -17,6 +17,7 @@ import { SignalrService } from 'src/app/services/signalr.service';
 import { TokenService } from 'src/app/services/token.service';
 import { environment } from 'src/environments/environment';
 import { Message } from 'src/app/models/domain-models/message';
+import { faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-chat',
@@ -24,6 +25,7 @@ import { Message } from 'src/app/models/domain-models/message';
   styleUrls: ['./chat.component.css'],
 })
 export class ChatComponent implements OnInit, AfterViewChecked {
+  faPaperPlane = faPaperPlane;
   messages: GetByReceiverAndSenderResponse[];
   userId: string | undefined;
   connection: HubConnection;

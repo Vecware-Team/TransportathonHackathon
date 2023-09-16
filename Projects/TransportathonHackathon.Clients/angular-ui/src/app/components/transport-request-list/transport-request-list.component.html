@@ -51,7 +51,7 @@
                                         <span class="fw-semibold">{{transportRequest.startDate | date}}</span>
                                     </p>
                                 </div>
-                                
+
                                 <div *ngIf="!transportRequest.paymentRequest">
                                     <h5 class="card-title text-muted">
                                         {{"Payment request has not been sent yet from " +
@@ -69,7 +69,7 @@
                                             </span>
                                         </h6>
                                         <p class="card-text">
-                                            {{"Price: " + transportRequest.paymentRequest?.price +
+                                            {{"Price: " + transportRequest.paymentRequest.price +
                                             " TL"}}
                                         </p>
                                         <p class="card-text">
@@ -91,17 +91,17 @@
                                 </div>
                                 <div *ngIf="!transportRequest.isFinished">
                                     <!-- if not paid -->
-                                    <a *ngIf="!transportRequest.isPaid" (click)="pay(transportRequest)"
-                                        class="btn btn-primary me-2">
+                                    <a *ngIf="!transportRequest.isPaid && transportRequest.approvedByCompany"
+                                        (click)="pay(transportRequest)" class="btn btn-primary me-2">
                                         Pay and start transportation
                                     </a>
-                                    <a *ngIf="!transportRequest.isPaid" (click)="reject(transportRequest)"
-                                        class="btn btn-secondary me-2">
+                                    <a *ngIf="(transportRequest.approvedByCompany == true || transportRequest.approvedByCompany==null) && !transportRequest.isPaid"
+                                        (click)="reject(transportRequest)" class="btn btn-secondary me-2">
                                         Reject and close this transport request
                                     </a>
 
                                     <!-- if paid -->
-                                    <a *ngIf="transportRequest.isPaid" class="btn btn-success me-2"
+                                    <a *ngIf="transportRequest.isPaid " class="btn btn-success me-2"
                                         (click)="finish(transportRequest)">
                                         <fa-icon [icon]="faCheck" class="me-2"></fa-icon>
                                         Mark as job finished

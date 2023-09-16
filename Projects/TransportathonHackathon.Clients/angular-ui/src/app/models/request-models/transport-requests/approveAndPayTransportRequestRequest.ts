@@ -1,7 +1,7 @@
-import { PaymentRequest } from '../pay-models/paymentModel';
+import { PaymentRequest } from '../../domain-models/paymentRequest';
 
-export interface ApproveAndPayTransportRequestCommand {
+export interface ApproveAndPayTransportRequestRequest {
   id: string;
   isApproved: boolean;
-  paymentRequest: PaymentRequest;
+  price: number;
 }
