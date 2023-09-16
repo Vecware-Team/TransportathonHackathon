@@ -4,5 +4,7 @@
     {
         public Guid UserId { get; set; }
         public string UserName { get; set; }
+        public string LastMessage { get; set; }
+        public DateTime SendDate { get; set; }
     }
 }

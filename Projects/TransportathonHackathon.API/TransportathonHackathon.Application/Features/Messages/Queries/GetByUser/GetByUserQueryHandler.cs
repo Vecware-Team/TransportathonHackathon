@@ -21,7 +21,8 @@ namespace TransportathonHackathon.Application.Features.Messages.Queries.GetByUse
         {
             IList<Message> messages = await _messageRepository.GetListAsync(
                 e => e.SenderId == request.UserId || e.ReceiverId == request.UserId,
-                include: e => e.Include(e => e.Sender).Include(e => e.Receiver)
+                include: e => e.Include(e => e.Sender).Include(e => e.Receiver),
+                orderBy: e => e.OrderByDescending(e => e.SendDate)
             );
 
             List<GetByUserResponse> response = new();
@@ -34,6 +35,8 @@ namespace TransportathonHackathon.Application.Features.Messages.Queries.GetByUse
                     {
                         UserId = request.UserId == e.SenderId ? e.ReceiverId : e.SenderId,
                         UserName = request.UserId == e.SenderId ? e.Receiver.UserName : e.Sender.UserName,
+                        LastMessage = e.MessageText,
+                        SendDate = e.SendDate
                     });
                 }
             });
