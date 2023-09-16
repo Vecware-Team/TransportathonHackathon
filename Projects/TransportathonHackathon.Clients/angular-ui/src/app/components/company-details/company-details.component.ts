@@ -19,10 +19,11 @@ export class CompanyDetailsComponent implements OnInit {
   faMessage = faMessage;
   faStar = faStar;
   company: GetByIdCompanyResponse;
-  
+
   constructor(
     private companyService: CompanyService,
-    private activatedRoute: ActivatedRoute,private tokenService:TokenService
+    private activatedRoute: ActivatedRoute,
+    private tokenService: TokenService
   ) {}
 
   ngOnInit(): void {

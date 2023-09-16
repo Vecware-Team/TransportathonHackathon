@@ -35,7 +35,6 @@ export class CreateCommentComponent implements OnInit {
 
   createCreateCommentForm() {
     this.createCommentForm = this.formBuilder.group({
-      title: ['', Validators.required],
       description: ['', Validators.required],
       rating: ['', Validators.required],
     });
@@ -52,6 +51,7 @@ export class CreateCommentComponent implements OnInit {
         this.createCommentForm.value
       );
       createCommentRequest.point = +this.createCommentForm.get('rating')?.value;
+      createCommentRequest.title = this.appUser.userName;
       createCommentRequest.transportRequestId = response;
 
       this.commentService.create(createCommentRequest).subscribe((res) => {

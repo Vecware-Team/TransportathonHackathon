@@ -8,6 +8,8 @@ import { UpdatedCommentResponse } from '../models/response-models/comments/updat
 import { UpdateCommentRequest } from '../models/request-models/comments/updateCommentRequest';
 import { DeletedCommentResponse } from '../models/response-models/comments/deletedCommentResponse';
 import { DeleteCommentRequest } from '../models/request-models/comments/deleteCommentRequest';
+import { GetListCommentRequest } from '../models/request-models/comments/getListCommentRequest';
+import { GetListCommentResponse } from '../models/response-models/comments/getListCommentResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -39,6 +41,12 @@ export class CommentService {
   ): Observable<DeletedCommentResponse> {
     return this.httpClient.delete<DeletedCommentResponse>(
       this.apiUrl + 'delete?Id=' + commentModel.transportRequestId
+    );
+  }
+
+  getList(): Observable<GetListCommentResponse[]> {
+    return this.httpClient.get<GetListCommentResponse[]>(
+      this.apiUrl + 'getlist'
     );
   }
 }
