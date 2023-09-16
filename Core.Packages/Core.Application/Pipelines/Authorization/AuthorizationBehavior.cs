@@ -22,8 +22,6 @@ namespace Core.Application.Pipelines.Authorization
             List<Claim>? claims = _httpContextAccessor.HttpContext.User.Claims?.ToList();
             Claim? claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserType");
 
-            if (roleClaims.Count <= 0 || roleClaims == null) throw new UnauthorizedException("Unauthorized user");
-
             if (roleClaims.Contains("Admin") && claim?.Value == "Admin")
                 return await next();
 

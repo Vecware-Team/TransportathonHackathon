@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         {
             TransportRequest? transportRequest = await _transportRequestRepository.GetAsync(
                 e => e.Id == request.Id,
-                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest)
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest).Include(e => e.Vehicle)
             );
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");
@@ -35,6 +35,8 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 transportRequest.IsFinished = true;
                 transportRequest.FinishDate = DateTime.UtcNow;
                 await _transportRequestRepository.SaveChangesAsync();
+                if (transportRequest.Vehicle is not null)
+                    transportRequest.Vehicle.TransportRequest = null;
                 return _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);
             }
 
@@ -47,6 +49,8 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 UpdatedDate = DateTime.UtcNow,
             };
             await _transportRequestRepository.SaveChangesAsync();
+            if (transportRequest.Vehicle is not null)
+                transportRequest.Vehicle.TransportRequest = null;
 
             ApproveAndPayTransportRequestResponse response = _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);
             return response;

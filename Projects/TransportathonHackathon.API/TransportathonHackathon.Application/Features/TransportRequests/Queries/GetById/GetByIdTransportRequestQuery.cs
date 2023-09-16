@@ -6,5 +6,4 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
     {
         public Guid Id { get; set; }
     }
-
 }

@@ -1,11 +1,6 @@
-﻿using Core.Application.Pipelines.Authorization;
-using Core.Application.Pipelines.Transaction;
-using MediatR;
-using System.Security.Claims;
-
-namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Update
+﻿namespace TransportathonHackathon.WebAPI.Dtos.TransportRequest
 {
-    public class UpdateTransportRequestCommand : IRequest<UpdatedTransportRequestResponse>, ITransactionalRequest, ISecuredRequest
+    public class UpdateTransportRequestDto
     {
         public Guid Id { get; set; }
         public Guid CustomerId { get; set; }
@@ -18,8 +13,5 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public string PlaceSize { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
-
-        public string[] Roles => new string[] { "Admin" };
-        public Claim[] Claims => new Claim[] { };
     }
 }

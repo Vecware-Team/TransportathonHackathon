@@ -13,6 +13,7 @@ using TransportathonHackathon.Application.Features.TransportRequests.Queries.Get
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetByCustomerId;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetById;
 using TransportathonHackathon.Application.Features.TransportRequests.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.TransportRequest;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -50,9 +51,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
 
 
         [HttpPost]
-        public async Task<IActionResult> ApproveAndPay([FromBody] ApproveAndPayTransportRequestCommand command)
+        public async Task<IActionResult> ApproveAndPay([FromBody] ApproveAndPayTransportRequestDto command)
         {
-            ApproveAndPayTransportRequestResponse response = await Mediator.Send(command);
+            ApproveAndPayTransportRequestResponse response = await Mediator.Send(Mapper.Map<ApproveAndPayTransportRequestCommand>(command));
             return Ok(response);
         }
 
@@ -62,11 +63,11 @@ namespace TransportathonHackathon.WebAPI.Controllers
             FinishedTransportRequestResponse response = await Mediator.Send(command);
             return Ok(response);
         }
-        
+
         [HttpPost]
-        public async Task<IActionResult> AddVehicleToTransportRequest([FromBody] AddVehicleTransportRequestCommand command)
+        public async Task<IActionResult> AddVehicleToTransportRequest([FromBody] AddVehicleTransportRequestDto command)
         {
-            AddVehicleTransportRequestResponse response = await Mediator.Send(command);
+            AddVehicleTransportRequestResponse response = await Mediator.Send(Mapper.Map<AddVehicleTransportRequestCommand>(command));
             return Ok(response);
         }
 

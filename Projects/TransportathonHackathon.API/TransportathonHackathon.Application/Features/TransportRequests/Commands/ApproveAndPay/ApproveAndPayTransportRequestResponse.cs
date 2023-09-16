@@ -1,9 +1,12 @@
-﻿namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay
+﻿using TransportathonHackathon.Domain.Entities;
+
+namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.ApproveAndPay
 {
     public class ApproveAndPayTransportRequestResponse
     {
         public Guid Id { get; set; }
         public Guid TransportTypeId { get; set; }
+        public Guid VehicleId { get; set; }
         public string TransportType { get; set; }
         public bool IsPaid { get; set; }
         public string CustomerFirstName { get; set; }
@@ -16,6 +19,7 @@
         public string PlaceSize { get; set; }
         public bool ApprovedByCompany { get; set; }
         public bool IsFinished { get; set; }
+        public Vehicle? Vehicle { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public DateTime StartDate { get; set; }

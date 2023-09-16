@@ -1,9 +1,11 @@
-﻿using Core.Application.Pipelines.Transaction;
+﻿using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Transaction;
 using MediatR;
+using System.Security.Claims;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Create
 {
-    public class CreateTransportRequestCommand : IRequest<CreatedTransportRequestResponse>, ITransactionalRequest
+    public class CreateTransportRequestCommand : IRequest<CreatedTransportRequestResponse>, ITransactionalRequest, ISecuredRequest
     {
         public Guid CustomerId { get; set; }
         public Guid CompanyId { get; set; }
@@ -15,5 +17,8 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public string PlaceSize { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime? FinishDate { get; set; }
+
+        public string[] Roles => new string[] { };
+        public Claim[] Claims => new Claim[] { new Claim("UserType", "Customer") };
     }
 }
