@@ -49,8 +49,8 @@ namespace TransportathonHackathon.WebAPI.Controllers
             return Ok(response);
         }
 
-        [HttpGet("{CompanyId}")]
-        public async Task<IActionResult> GetList([FromQuery] GetByCompanyIdCommentQuery command)
+        [HttpGet]
+        public async Task<IActionResult> GetByCompanyId([FromQuery] GetByCompanyIdCommentQuery command)
         {
             IPaginate<GetByCompanyIdCommentResponse> response = await Mediator.Send(command);
             return Ok(response);
