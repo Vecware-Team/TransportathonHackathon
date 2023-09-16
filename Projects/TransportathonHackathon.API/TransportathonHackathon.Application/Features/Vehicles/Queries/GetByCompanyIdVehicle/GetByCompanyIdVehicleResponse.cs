@@ -10,10 +10,7 @@ namespace TransportathonHackathon.Application.Features.Vehicles.Queries.GetByCom
         public string Brand { get; set; }
         public string Model { get; set; }
         public int ModelYear { get; set; }
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
         public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public DateTime? DeletedDate { get; set; }

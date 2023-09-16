@@ -28,6 +28,11 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
                 throw new NotFoundException("Transport request not found");
 
             transportRequest.ApprovedByCompany = request.IsApproved;
+            if (!request.IsApproved)
+            {
+                transportRequest.IsFinished = true;
+                transportRequest.FinishDate = DateTime.UtcNow;
+            }
             transportRequest.UpdatedDate = DateTime.UtcNow;
 
             await _transportRequestRepository.SaveChangesAsync();

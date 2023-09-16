@@ -33,9 +33,13 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
             transportRequest.ApprovedByCompany = request.IsApproved;
             transportRequest.UpdatedDate = DateTime.UtcNow;
 
-            await _transportRequestRepository.SaveChangesAsync();
             if (!request.IsApproved)
+            {
+                transportRequest.IsFinished = true;
+                transportRequest.FinishDate = DateTime.UtcNow;
+                await _transportRequestRepository.SaveChangesAsync();
                 return _mapper.Map<ApproveAndPayTransportRequestResponse>(transportRequest);
+            }
 
             request.PaymentRequest.Price = transportRequest.PaymentRequest.Price;
             if (!await _paymentService.Payment(request.PaymentRequest))
