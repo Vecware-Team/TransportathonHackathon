@@ -74,6 +74,9 @@ import { CloseTransportRequestComponent } from './components/transport-request-l
 import { TransportRequestInfoComponent } from './components/company-management/transport-requests/transport-request-info/transport-request-info.component';
 import { FinishTransportRequestComponent } from './components/transport-request-list/finish-transport-request/finish-transport-request.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
+import { UpdateCommentComponent } from './components/company-details/update-comment/update-comment.component';
+import { DeleteCommentComponent } from './components/company-details/delete-comment/delete-comment.component';
+import { CreateCommentComponent } from './components/company-details/create-comment/create-comment.component';
 
 @NgModule({
   declarations: [
@@ -134,6 +137,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
     TransportRequestInfoComponent,
     FinishTransportRequestComponent,
     AboutUsComponent,
+    CreateCommentComponent,
+    UpdateCommentComponent,
+    DeleteCommentComponent,
   ],
   imports: [
     BrowserModule,
