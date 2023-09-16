@@ -27,6 +27,12 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
             transportRequests.ToList().ForEach(e =>
             {
                 if (e.PaymentRequest != null) e.PaymentRequest.TransportRequest = null;
+                if (e.Vehicle is not null)
+                {
+                    e.Vehicle.TransportRequest = null;
+                    e.Vehicle.Company.TransportRequests = null;
+                    e.Vehicle.Company = null;
+                }
             });
 
             List<GetByCompanyAndCustomerTransportRequestResponse> response = _mapper.Map<List<GetByCompanyAndCustomerTransportRequestResponse>>(transportRequests.ToList());

@@ -28,8 +28,11 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
                 throw new NotFoundException("Transport request not found");
 
             if (transportRequest.Vehicle is not null)
+            {
                 transportRequest.Vehicle.TransportRequest = null;
-
+                transportRequest.Vehicle.Company.TransportRequests = null;
+                transportRequest.Vehicle.Company = null;
+            }
             GetByIdTransportRequestResponse response = _mapper.Map<GetByIdTransportRequestResponse>(transportRequest);
             return response;
         }
