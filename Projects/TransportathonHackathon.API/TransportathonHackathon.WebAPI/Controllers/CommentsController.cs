@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Application.Features.Comments.Commands.Create;
 using TransportathonHackathon.Application.Features.Comments.Commands.Delete;
 using TransportathonHackathon.Application.Features.Comments.Commands.Update;
+using TransportathonHackathon.Application.Features.Comments.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Comments.Queries.GetById;
 using TransportathonHackathon.Application.Features.Comments.Queries.GetList;
 
@@ -45,6 +46,13 @@ namespace TransportathonHackathon.WebAPI.Controllers
         public async Task<IActionResult> GetList([FromQuery] GetListCommentQuery command)
         {
             IPaginate<GetListCommentResponse> response = await Mediator.Send(command);
+            return Ok(response);
+        }
+
+        [HttpGet("{CompanyId}")]
+        public async Task<IActionResult> GetList([FromQuery] GetByCompanyIdCommentQuery command)
+        {
+            IPaginate<GetByCompanyIdCommentResponse> response = await Mediator.Send(command);
             return Ok(response);
         }
     }
