@@ -31,10 +31,6 @@ export class ErrorSeperator {
   }
 
   handleValidationError(error: ValidationError) {
-    console.log(error);
-
-    console.log(error.Errors);
-
     error.Errors?.forEach((e) => {
       e?.Errors?.forEach((c) => {
         this.toastrService.error(c, e.property!);

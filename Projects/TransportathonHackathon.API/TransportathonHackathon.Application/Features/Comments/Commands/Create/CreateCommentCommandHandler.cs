@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Features.Comments.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 
@@ -10,15 +11,19 @@ namespace TransportathonHackathon.Application.Features.Comments.Commands.Create
     {
         private readonly ICommentRepository _commentRepository;
         private readonly IMapper _mapper;
+        private readonly CommentBusinessRules _rules;
 
-        public CreateCommentCommandHandler(ICommentRepository commentRepository, IMapper mapper)
+        public CreateCommentCommandHandler(ICommentRepository commentRepository, IMapper mapper, CommentBusinessRules rules)
         {
             _commentRepository = commentRepository;
             _mapper = mapper;
+            _rules = rules;
         }
 
         public async Task<CreatedCommentResponse> Handle(CreateCommentCommand request, CancellationToken cancellationToken)
         {
+            await _rules.CommentIdCannotBeDuplicatedWhenInserting(request.TransportRequestId);
+
             Comment comment = _mapper.Map<Comment>(request);
             await _commentRepository.AddAsync(comment);
 

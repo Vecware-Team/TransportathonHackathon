@@ -65,15 +65,16 @@ export class PayTransportRequestComponent implements OnInit {
     this.paymentForm = this.formBuilder.group({
       fullName: ['', Validators.required],
       cardNumber: ['', Validators.required],
-      month: ['', Validators.required],
-      year: ['', Validators.required],
-      cvv: ['', Validators.required],
+      month: [null, Validators.required],
+      year: [null, Validators.required],
+      cVV: [null, Validators.required],
     });
   }
 
   pay() {
     if (!this.paymentForm.valid) {
       this.toastrService.error('Form is invalid', 'Form error');
+      return;
     }
 
     let paymentRequestRequest: PayPaymentRequestRequest =

@@ -74,6 +74,7 @@ export class CreateTransportRequestComponent implements OnInit {
   createTransportRequest() {
     if (!this.checkoutForm.valid) {
       this.toastrService.error('Transport form is invalid', 'Form error');
+      return;
     }
 
     let requestModel: CreateTransportRequestRequest = Object.assign(
@@ -85,6 +86,7 @@ export class CreateTransportRequestComponent implements OnInit {
 
     this.transportRequestService.create(requestModel).subscribe((response) => {
       this.toastrService.success('Request sent', 'Successful');
+      this.checkoutForm.reset();
     });
   }
 }

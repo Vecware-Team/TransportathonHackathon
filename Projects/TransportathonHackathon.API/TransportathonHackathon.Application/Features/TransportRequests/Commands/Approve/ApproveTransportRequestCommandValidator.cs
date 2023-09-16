@@ -7,7 +7,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public ApproveTransportRequestCommandValidator()
         {
             RuleFor(e => e.Id).NotNull().NotEmpty();
-            RuleFor(e => e.IsApproved).NotNull().NotEmpty();
+            RuleFor(e => e.IsApproved).NotNull();
         }
     }
 }

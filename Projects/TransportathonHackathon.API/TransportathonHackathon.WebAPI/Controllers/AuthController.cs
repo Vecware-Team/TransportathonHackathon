@@ -8,7 +8,7 @@ using TransportathonHackathon.Application.Features.Companies.Commands.Create;
 using TransportathonHackathon.Application.Features.Customers.Commands.Create;
 using TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver;
 using TransportathonHackathon.Domain.Entities.Identity;
-using TransportathonHackathon.WebAPI.Dtos;
+using TransportathonHackathon.WebAPI.Dtos.Identity;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {

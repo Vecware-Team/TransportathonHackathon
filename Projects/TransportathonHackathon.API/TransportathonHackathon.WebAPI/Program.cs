@@ -15,7 +15,6 @@ using TransportathonHackathon.Infrastructure.DriverLicenseVerifiers.FakeDriverLi
 using TransportathonHackathon.Infrastructure.Payment.FakePaymentService;
 using TransportathonHackathon.Infrastructure.SignalR;
 using TransportathonHackathon.Persistence;
-using TransportathonHackathon.WebAPI.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -119,8 +118,6 @@ ServiceTool.SetSetviceProvider(app.Services);
 app.UseCors(builder => builder.WithOrigins(app.Configuration.GetSection("AllowedHosts").Get<string[]>()).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.ConfigureCustomExceptionMiddleware();
-
-app.UseMiddleware<AddDefaultUserMiddleware>();
 
 if (app.Environment.IsDevelopment())
 {

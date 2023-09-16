@@ -29,7 +29,7 @@ export class CreateCommentComponent implements OnInit {
     private toastrService: ToastrService,
     private transportRequestService: TransportRequestService
   ) {}
-  
+
   ngOnInit(): void {
     this.getAppUser();
     this.createCreateCommentForm();
@@ -61,7 +61,7 @@ export class CreateCommentComponent implements OnInit {
 
   createComment() {
     if (
-      !this.createCommentForm.valid &&
+      !this.createCommentForm.valid ||
       this.createCommentForm.get('rating')?.value === null
     ) {
       this.toastrService.error('Comment form invalid', 'Form error');
@@ -76,6 +76,8 @@ export class CreateCommentComponent implements OnInit {
 
     this.commentService.create(createCommentRequest).subscribe((res) => {
       this.toastrService.success('Commented', 'Successful');
+      this.createCommentForm.reset();
+      this.getTransportRequests();
     });
   }
 }

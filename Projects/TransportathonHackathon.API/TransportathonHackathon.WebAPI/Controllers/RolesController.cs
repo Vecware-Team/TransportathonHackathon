@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using TransportathonHackathon.Domain.Entities.Identity;
-using TransportathonHackathon.WebAPI.Dtos;
+using TransportathonHackathon.WebAPI.Dtos.Identity;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
