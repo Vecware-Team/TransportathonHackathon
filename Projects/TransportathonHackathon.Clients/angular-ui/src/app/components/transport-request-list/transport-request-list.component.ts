@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 import { CloseTransportRequestComponent } from './close-transport-request/close-transport-request.component';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FinishTransportRequestComponent } from './finish-transport-request/finish-transport-request.component';
+import { CommentStoreService } from 'src/app/services/store-services/comment-store.service';
 
 @Component({
   selector: 'app-transport-request-list',
@@ -28,7 +29,8 @@ export class TransportRequestListComponent implements OnInit {
     private tokenService: TokenService,
     private paymentRequestService: PaymentRequestService,
     private router: Router,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private commentStoreService: CommentStoreService
   ) {}
 
   ngOnInit(): void {
@@ -82,6 +84,13 @@ export class TransportRequestListComponent implements OnInit {
       }
     );
     modalReferance.componentInstance.transportRequest = transportRequest;
+  }
+
+  comment(transportRequest: GetByCustomerIdTransportRequestResponse) {
+    this.commentStoreService.createCommentEvent(transportRequest.id);
+    this.router.navigate([
+      '/companies/company/details/' + transportRequest.companyId,
+    ]);
   }
 
   getList() {

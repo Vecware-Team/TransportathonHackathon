@@ -1,1 +1,12 @@
-<p>create-comment works!</p>
+<form [formGroup]="createCommentForm">
+    <div class="row g-3 mb-3 align-items-center">
+        <div class="col">
+            <textarea formControlName="comment" type="text" id="comment" class="form-control"
+                aria-describedby="passwordHelpInline" placeholder="Ne düşünüyorsun?"></textarea>
+        </div>
+    </div>
+    <div class="clearfix">
+        <ngx-star-rating class="float-start" formControlName="rating" [id]="'rating'"></ngx-star-rating>
+        <button type="button" class="btn btn-warning float-end">Submit</button>
+    </div>
+</form>

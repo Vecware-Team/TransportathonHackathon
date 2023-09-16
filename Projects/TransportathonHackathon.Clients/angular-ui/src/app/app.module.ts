@@ -77,6 +77,8 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { UpdateCommentComponent } from './components/company-details/update-comment/update-comment.component';
 import { DeleteCommentComponent } from './components/company-details/delete-comment/delete-comment.component';
 import { CreateCommentComponent } from './components/company-details/create-comment/create-comment.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
+import { CommentsComponent } from './components/company-details/comments/comments.component';
 
 @NgModule({
   declarations: [
@@ -140,6 +142,7 @@ import { CreateCommentComponent } from './components/company-details/create-comm
     CreateCommentComponent,
     UpdateCommentComponent,
     DeleteCommentComponent,
+    CommentsComponent,
   ],
   imports: [
     BrowserModule,
@@ -149,6 +152,7 @@ import { CreateCommentComponent } from './components/company-details/create-comm
     ToastrModule.forRoot({ positionClass: 'toast-bottom-right' }),
     FontAwesomeModule,
     ReactiveFormsModule,
+    NgxStarRatingModule, 
     NgbModule,
     TranslateModule.forRoot({
       loader: {

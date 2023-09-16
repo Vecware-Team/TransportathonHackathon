@@ -46,7 +46,7 @@ builder.Services.AddCors();
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
-    Core.Security.Jwt.TokenOptions tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<TokenOptions>();
+    Core.Security.Jwt.TokenOptions tokenOptions = builder.Configuration.GetSection("TokenOptions").Get<Core.Security.Jwt.TokenOptions>();
     options.TokenValidationParameters = new TokenValidationParameters
     {
         ValidateIssuer = true,

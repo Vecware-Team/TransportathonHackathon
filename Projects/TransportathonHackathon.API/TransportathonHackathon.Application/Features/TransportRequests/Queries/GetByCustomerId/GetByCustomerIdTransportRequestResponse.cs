@@ -10,6 +10,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
         public bool IsPaid { get; set; }
         public string CustomerFirstName { get; set; }
         public string CustomerLastName { get; set; }
+        public Guid CompanyId { get; set; }
         public string CompanyName { get; set; }
         public string CountryFrom { get; set; }
         public string CountryTo { get; set; }

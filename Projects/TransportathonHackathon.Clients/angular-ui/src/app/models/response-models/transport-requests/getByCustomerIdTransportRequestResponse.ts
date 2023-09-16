@@ -1,4 +1,4 @@
-import { PaymentRequest } from "../../domain-models/paymentRequest";
+import { PaymentRequest } from '../../domain-models/paymentRequest';
 
 export interface GetByCustomerIdTransportRequestResponse {
   id: string;
@@ -6,6 +6,7 @@ export interface GetByCustomerIdTransportRequestResponse {
   customerLastName: string;
   transportTypeId: string;
   transportType: string;
+  companyId: string;
   companyName: string;
   countryFrom: string;
   countryTo: string;

@@ -51,7 +51,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Profile
                 .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
                 .ForMember(destinationMember: e => e.CustomerLastName, memberOptions: opt => opt.MapFrom(e => e.Customer.LastName))
                 .ReverseMap();
-            
+
             CreateMap<TransportRequest, FinishedTransportRequestResponse>()
                 .ForMember(destinationMember: e => e.TransportType, memberOptions: opt => opt.MapFrom(e => e.TransportType.Type))
                 .ForMember(destinationMember: e => e.IsPaid, memberOptions: opt => opt.MapFrom(e => e.PaymentRequest.IsPaid))
@@ -89,6 +89,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Profile
                 .ForMember(destinationMember: e => e.TransportType, memberOptions: opt => opt.MapFrom(e => e.TransportType.Type))
                 .ForMember(destinationMember: e => e.IsPaid, memberOptions: opt => opt.MapFrom(e => e.PaymentRequest.IsPaid))
                 .ForMember(destinationMember: e => e.CompanyName, memberOptions: opt => opt.MapFrom(e => e.Company.CompanyName))
+                .ForMember(destinationMember: e => e.CompanyId, memberOptions: opt => opt.MapFrom(e => e.Company.AppUserId))
                 .ForMember(destinationMember: e => e.CustomerFirstName, memberOptions: opt => opt.MapFrom(e => e.Customer.FirstName))
                 .ForMember(destinationMember: e => e.CustomerLastName, memberOptions: opt => opt.MapFrom(e => e.Customer.LastName))
                 .ReverseMap();

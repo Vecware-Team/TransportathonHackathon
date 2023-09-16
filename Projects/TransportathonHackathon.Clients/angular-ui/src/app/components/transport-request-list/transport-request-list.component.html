@@ -87,7 +87,10 @@
                                 </div>
 
                                 <div *ngIf="transportRequest.isFinished" class="">
-                                    <strong class="text-success">This job is finished</strong>
+                                    <strong class="text-success me-2">This job is finished</strong>
+                                    <a (click)="comment(transportRequest)" class="btn btn-warning">
+                                        Comment
+                                    </a>
                                 </div>
                                 <div *ngIf="!transportRequest.isFinished">
                                     <!-- if not paid -->
