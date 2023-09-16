@@ -7,5 +7,4 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
     {
         public Guid Id { get; set; }
     }
-
 }

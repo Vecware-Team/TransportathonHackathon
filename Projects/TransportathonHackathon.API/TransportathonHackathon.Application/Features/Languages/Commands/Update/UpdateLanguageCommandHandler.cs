@@ -2,6 +2,7 @@
 using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
+using TransportathonHackathon.Application.Features.Languages.Rules;
 using TransportathonHackathon.Application.Repositories;
 using TransportathonHackathon.Domain.Entities;
 
@@ -11,15 +12,19 @@ namespace TransportathonHackathon.Application.Features.Languages.Commands.Update
     {
         private readonly ILanguageRepository _languageRepository;
         private readonly IMapper _mapper;
+        private readonly LanguageBusinessRules _rules;
 
-        public UpdateLanguageCommandHandler(ILanguageRepository languageRepository, IMapper mapper)
+        public UpdateLanguageCommandHandler(ILanguageRepository languageRepository, IMapper mapper, LanguageBusinessRules rules)
         {
             _languageRepository = languageRepository;
             _mapper = mapper;
+            _rules = rules;
         }
 
         public async Task<UpdatedLanguageResponse> Handle(UpdateLanguageCommand request, CancellationToken cancellationToken)
         {
+            await _rules.LanguageNameAndCodeCannotBeDuplicatedWhenInsertingOrUpdating(request.GloballyName, request.Code);
+
             Language languageToUpdate = _mapper.Map<Language>(request);
 
             Language? language = await _languageRepository.GetAsync(
