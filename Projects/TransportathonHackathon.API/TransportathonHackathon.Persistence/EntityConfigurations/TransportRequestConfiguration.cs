@@ -14,6 +14,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Property(e => e.CustomerId).HasColumnName("CustomerId").IsRequired();
             builder.Property(e => e.CompanyId).HasColumnName("CompanyId").IsRequired();
             builder.Property(e => e.TransportTypeId).HasColumnName("TransportTypeId").IsRequired();
+            builder.Property(e => e.VehicleId).HasColumnName("VehicleId").IsRequired(false);
             builder.Property(e => e.CountryFrom).HasColumnName("CountryFrom").IsRequired();
             builder.Property(e => e.CountryTo).HasColumnName("CountryTo").IsRequired();
             builder.Property(e => e.CityFrom).HasColumnName("CityFrom").IsRequired();
@@ -28,6 +29,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.HasOne(e => e.Company);
             builder.HasOne(e => e.TransportType);
             builder.HasOne(e => e.Comment);
+            builder.HasOne(e => e.Vehicle).WithOne(e => e.TransportRequest).IsRequired(false);
             builder.HasOne(e => e.PaymentRequest);
         }
     }

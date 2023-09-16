@@ -14,6 +14,7 @@ namespace TransportathonHackathon.Domain.Entities
         public virtual Driver? Driver { get; set; }
         public virtual Car? Car { get; set; }
         public virtual Truck? Truck { get; set; }
-        public virtual PickupTruck? PickupTruck{ get; set; }
+        public virtual PickupTruck? PickupTruck { get; set; }
+        public virtual TransportRequest? TransportRequest { get; set; }
     }
 }
