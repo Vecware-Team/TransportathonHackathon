@@ -1,18 +1,30 @@
+<<<<<<< Updated upstream
 import { Component } from '@angular/core';
+=======
+import { Component, OnInit } from '@angular/core';
+>>>>>>> Stashed changes
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
+<<<<<<< Updated upstream
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { CreateDriverRequest } from 'src/app/models/request-models/drivers/createDriverRequest';
 import { AuthService } from 'src/app/services/auth.service';
 import { TokenService } from 'src/app/services/token.service';
+=======
+import { CreateDriverRequest } from 'src/app/models/request-models/drivers/createDriverRequest';
+import { GetByIdCompanyResponse } from 'src/app/models/response-models/companies/getByIdCompanyResponse';
+import { AuthService } from 'src/app/services/auth.service';
+import { DriverService } from 'src/app/services/driver.service';
+>>>>>>> Stashed changes
 
 @Component({
   selector: 'app-hire-driver',
   templateUrl: './hire-driver.component.html',
   styleUrls: ['./hire-driver.component.css'],
 })
+<<<<<<< Updated upstream
 export class HireDriverComponent {
   hireDriverForm: FormGroup;
   company: TokenUserDto;
@@ -32,6 +44,22 @@ export class HireDriverComponent {
 
   getCompany() {
     this.company = this.tokenService.getUserWithJWT()!;
+=======
+export class HireDriverComponent implements OnInit {
+  hireDriverForm: FormGroup;
+  company: GetByIdCompanyResponse;
+
+  constructor(
+    private authService: AuthService,
+    private formBuilder: FormBuilder,
+    private activeModal: NgbActiveModal,
+    private toastrService: ToastrService,
+    private translateService: TranslateService
+  ) {}
+
+  ngOnInit(): void {
+    this.createHireDriverForm();
+>>>>>>> Stashed changes
   }
 
   createHireDriverForm() {
@@ -62,7 +90,11 @@ export class HireDriverComponent {
       {},
       this.hireDriverForm.value
     );
+<<<<<<< Updated upstream
     registerModel.companyId = this.company.id;
+=======
+    registerModel.companyId = this.company.appUserId;
+>>>>>>> Stashed changes
 
     this.authService.registerAsDriver(registerModel).subscribe((response) => {
       this.toastrService.success(

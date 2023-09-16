@@ -8,6 +8,10 @@ import { PickupTruck } from './pickupTruck';
 export interface Vehicle extends Entity<string> {
   companyId: string;
   driverId: string;
+  brand: string;
+  model: string;
+  modelYear: number;
+  
   company: Company;
   driver: Driver | null;
   car: Car | null;

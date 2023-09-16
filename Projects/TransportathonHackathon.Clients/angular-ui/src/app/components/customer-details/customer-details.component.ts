@@ -10,7 +10,7 @@ import { CustomerService } from 'src/app/services/customer.service';
 })
 export class CustomerDetailsComponent implements OnInit {
   customer: GetByIdCustomerResponse;
-
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private customerService: CustomerService
