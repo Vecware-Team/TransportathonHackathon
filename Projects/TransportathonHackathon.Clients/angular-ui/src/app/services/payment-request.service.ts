@@ -15,6 +15,8 @@ import { GetByCustomerIdPaymentRequestResponse } from '../models/response-models
 import { Paginate } from '../core/models/pagination/paginate';
 import { GetByIdPaymentRequestRequest } from '../models/request-models/payment-request/getByIdPaymentRequestRequest';
 import { GetByIdPaymentRequestResponse } from '../models/response-models/payment-request/getByIdPaymentRequestResponse';
+import { ApproveAndPayTransportRequestRequest } from '../models/request-models/transport-requests/approveAndPayTransportRequestRequest';
+import { ApproveAndPayTransportRequestResponse } from '../models/response-models/transport-requests/approveAndPayTransportRequestResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -53,6 +55,15 @@ export class PaymentRequestService {
     paymentRequestModel: PayPaymentRequestRequest
   ): Observable<PaidPaymentRequestResponse> {
     return this.httpClient.post<PaidPaymentRequestResponse>(
+      this.apiUrl + 'pay',
+      paymentRequestModel
+    );
+  }
+
+  approveAndPay(
+    paymentRequestModel: ApproveAndPayTransportRequestRequest
+  ): Observable<ApproveAndPayTransportRequestResponse> {
+    return this.httpClient.post<ApproveAndPayTransportRequestResponse>(
       this.apiUrl + 'pay',
       paymentRequestModel
     );
