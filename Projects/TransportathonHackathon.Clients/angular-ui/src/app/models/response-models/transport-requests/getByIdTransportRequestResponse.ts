@@ -9,6 +9,7 @@ export interface GetByIdTransportRequestResponse {
   countryTo: string;
   cityFrom: string;
   cityTo: string;
+  isFinished: boolean;
   placeSize: string;
   createdDate: Date;
   updatedDate: Date;

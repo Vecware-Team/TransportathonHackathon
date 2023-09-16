@@ -10,6 +10,7 @@ export interface UpdatedTransportRequestResponse {
   cityFrom: string;
   cityTo: string;
   isOfficce: boolean;
+  isFinished: boolean;
   placeSize: string;
   createdDate: Date;
   updatedDate: Date;

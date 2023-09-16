@@ -1,17 +1,17 @@
-export interface GetByCompanyIdTransportRequestResponse {
+export interface ApproveAndPayTransportRequestResponse {
   id: string;
-  customerFirstName: string;
-  customerLastName: string;
   transportTypeId: string;
   transportType: string;
   isPaid: boolean;
+  customerFirstName: string;
+  customerLastName: string;
   companyName: string;
   countryFrom: string;
   countryTo: string;
   cityFrom: string;
   cityTo: string;
   placeSize: string;
-  approverByCompany: boolean;
+  approvedByCompany: boolean;
   isFinished: boolean;
   createdDate: Date;
   updatedDate: Date;
