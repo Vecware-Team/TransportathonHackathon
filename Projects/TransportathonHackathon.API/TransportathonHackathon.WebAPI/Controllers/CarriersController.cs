@@ -7,6 +7,7 @@ using TransportathonHackathon.Application.Features.Carriers.Commands.Update;
 using TransportathonHackathon.Application.Features.Carriers.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Carriers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Carriers.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Carrier;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -15,23 +16,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class CarriersController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCarrierCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCarrierDto command)
         {
-            CreatedCarrierResponse response = await Mediator.Send(command);
+            CreatedCarrierResponse response = await Mediator.Send(Mapper.Map<CreateCarrierCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCarrierCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCarrierDto command)
         {
-            DeletedCarrierResponse response = await Mediator.Send(command);
+            DeletedCarrierResponse response = await Mediator.Send(Mapper.Map<DeleteCarrierCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCarrierCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateCarrierDto command)
         {
-            UpdatedCarrierResponse response = await Mediator.Send(command);
+            UpdatedCarrierResponse response = await Mediator.Send(Mapper.Map<UpdateCarrierCommand>(command));
             return Ok(response);
         }
 

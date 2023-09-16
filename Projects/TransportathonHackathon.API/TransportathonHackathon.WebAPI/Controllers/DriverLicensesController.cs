@@ -14,7 +14,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class DriverLicensesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateDriverLicenseCommand command) 
+        public async Task<IActionResult> Create([FromBody] CreateDriverLicenseCommand command)  
         {
             CreatedDriverLicenseResponse result = await Mediator.Send(command);
             return Ok(result);

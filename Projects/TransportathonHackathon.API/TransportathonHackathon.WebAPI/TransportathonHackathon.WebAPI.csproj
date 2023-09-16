@@ -36,7 +36,6 @@
     <Folder Include="Dtos\Company\" />
     <Folder Include="Dtos\Customer\" />
     <Folder Include="Dtos\Comment\" />
-    <Folder Include="Dtos\Carrier\" />
   </ItemGroup>
 
 </Project>

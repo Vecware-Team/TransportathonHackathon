@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using TransportathonHackathon.Application.Features.Carriers.Commands.Create;
+using TransportathonHackathon.Application.Features.Carriers.Commands.Delete;
+using TransportathonHackathon.Application.Features.Carriers.Commands.Update;
 using TransportathonHackathon.Application.Features.Cars.Commands.Create;
 using TransportathonHackathon.Application.Features.Cars.Commands.Delete;
 using TransportathonHackathon.Application.Features.Cars.Commands.Update;
@@ -32,6 +35,7 @@ using TransportathonHackathon.Application.Features.Trucks.Commands.Create;
 using TransportathonHackathon.Application.Features.Trucks.Commands.Delete;
 using TransportathonHackathon.Application.Features.Trucks.Commands.Update;
 using TransportathonHackathon.WebAPI.Dtos.Car;
+using TransportathonHackathon.WebAPI.Dtos.Carrier;
 using TransportathonHackathon.WebAPI.Dtos.Driver;
 using TransportathonHackathon.WebAPI.Dtos.Language;
 using TransportathonHackathon.WebAPI.Dtos.PaymentRequests;
@@ -79,6 +83,10 @@ namespace TransportathonHackathon.WebAPI.Profiles
             CreateMap<CreateCarDto, CreateCarCommand>();
             CreateMap<DeleteCarDto, DeleteCarCommand>();
             CreateMap<UpdateCarDto, UpdateCarCommand>();
+
+            CreateMap<CreateCarrierDto, CreateCarrierCommand>();
+            CreateMap<DeleteCarrierDto, DeleteCarrierCommand>();
+            CreateMap<UpdateCarrierDto, UpdateCarrierCommand>();
 
             CreateMap<CreateTransportRequestDto, CreateTransportRequestCommand>();
             CreateMap<DeleteTransportRequestDto, DeleteTransportRequestCommand>();
