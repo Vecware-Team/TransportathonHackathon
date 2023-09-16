@@ -76,7 +76,6 @@
     <Folder Include="Features\Comments\Rules\" />
     <Folder Include="Features\Messages\Queries\GetList\" />
     <Folder Include="Features\Messages\Queries\GetById\" />
-    <Folder Include="Features\Translates\Commands\" />
   </ItemGroup>
 
 </Project>
