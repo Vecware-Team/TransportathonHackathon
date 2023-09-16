@@ -1,3 +1,5 @@
+import { PaymentRequest } from "../../request-models/pay-models/paymentModel";
+
 export interface GetByCompanyIdTransportRequestResponse {
   id: string;
   customerFirstName: string;
@@ -12,6 +14,7 @@ export interface GetByCompanyIdTransportRequestResponse {
   cityTo: string;
   placeSize: string;
   approvedByCompany: boolean;
+  paymentRequest: PaymentRequest;
   isFinished: boolean;
   createdDate: Date;
   updatedDate: Date;

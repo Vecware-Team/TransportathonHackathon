@@ -3,20 +3,22 @@
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
+    
+    <div class="alert alert-secondary" role="alert">
+        <h5>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</h5>
+        <h6>
+            {{"From "+transportRequest.countryFrom + " to " +transportRequest.countryTo}}
+        </h6>
+    </div>
+
     <form [formGroup]="paymentRequestAddForm" form>
         <div class="mb-3">
             <div class="form-floating mb-3">
-                <input type="text" formControlName="price" class="form-control" id="price" placeholder="Price of transportation">
+                <input type="number" formControlName="price" class="form-control" id="price" placeholder="Price of transportation">
                 <label for="price">Transport Price</label>
             </div>
         </div>
     </form>
-    <div class="alert alert-secondary" role="alert">
-        <h5>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</h5>
-        <h6>
-            {{"From "+transportRequest.countryFrom + "To " +transportRequest.countryTo}}
-        </h6>
-    </div>
     <p>Bu nakliyatı kabul etmek istediğinize emin misiniz? Eğer kabul ederseniz ödeme talebi müşteriye iletiecektir.</p>
 </div>
 <div class="modal-footer">

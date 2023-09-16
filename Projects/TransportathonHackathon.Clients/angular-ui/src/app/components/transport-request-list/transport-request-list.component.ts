@@ -22,7 +22,6 @@ export class TransportRequestListComponent implements OnInit {
   faCheck = faCheck;
   transportRequests: GetByCustomerIdTransportRequestResponse[];
   customer: TokenUserDto;
-  paymentRequests: Paginate<GetByCustomerIdPaymentRequestResponse>;
 
   constructor(
     private transportRequestService: TransportRequestService,
@@ -35,19 +34,10 @@ export class TransportRequestListComponent implements OnInit {
   ngOnInit(): void {
     this.getCustomer();
     this.getList();
-    this.getPaymentRequestList();
   }
 
   getCustomer() {
     this.customer = this.tokenService.getUserWithJWT()!;
-  }
-
-  getPaymentRequestByTransportRequest(
-    transportRequest: GetByCustomerIdTransportRequestResponse
-  ): GetByCustomerIdPaymentRequestResponse | undefined {
-    return this.paymentRequests.items.find(
-      (p) => p.transportRequestId === transportRequest.id
-    );
   }
 
   getApprovedText(isApproved: boolean | null) {
@@ -99,14 +89,6 @@ export class TransportRequestListComponent implements OnInit {
       .getListByCustomerId({ customerId: this.customer.id })
       .subscribe((response) => {
         this.transportRequests = response;
-      });
-  }
-
-  getPaymentRequestList() {
-    this.paymentRequestService
-      .getListByCustomerId({ customerId: this.customer.id })
-      .subscribe((response) => {
-        this.paymentRequests = response;
       });
   }
 }

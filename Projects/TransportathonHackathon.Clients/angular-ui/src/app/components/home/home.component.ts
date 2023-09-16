@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { GetListCompanyResponse } from 'src/app/models/response-models/companies/getListCompanyResponse';
 import { CompanyService } from 'src/app/services/company.service';
 import { ScrollService } from 'src/app/services/scroll.service';
@@ -12,11 +13,16 @@ export class HomeComponent implements OnInit {
   companies: GetListCompanyResponse[];
   constructor(
     private scrollService: ScrollService,
-    private companyService: CompanyService
+    private companyService: CompanyService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.getList();
+  }
+
+  navigate(url: string) {
+    this.router.navigate([url]);
   }
 
   getList() {

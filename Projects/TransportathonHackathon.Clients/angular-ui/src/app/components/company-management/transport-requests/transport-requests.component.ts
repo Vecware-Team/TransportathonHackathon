@@ -52,6 +52,24 @@ export class TransportRequestsComponent implements OnInit {
     });
   }
 
+  getApproveStatus(approve: any): string {
+    if (approve == null) {
+      return 'Waiting';
+    } else if (approve == true) {
+      return 'Approved';
+    } else {
+      return 'Rejected';
+    }
+  }
+
+  getFinishStatus(isFinished: boolean): string {
+    if (isFinished) {
+      return 'Finished';
+    } else {
+      return 'Continues';
+    }
+  }
+
   openTransportRequestInfoModal(
     transportRequest: GetByCompanyIdTransportRequestResponse
   ) {

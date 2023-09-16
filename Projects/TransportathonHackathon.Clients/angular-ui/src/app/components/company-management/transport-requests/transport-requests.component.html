@@ -43,21 +43,24 @@
             <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
             <td>{{transportRequest.placeSize}}</td>
             <td>{{transportRequest.startDate}}</td>
-            <td>{{transportRequest.isFinished}}</td>
+            <td class="text-danger">{{getFinishStatus(transportRequest.isFinished)}}</td>
             <td>{{transportRequest.isPaid}}</td>
-            <td>{{transportRequest.approvedByCompany}}</td>
+            <td>{{getApproveStatus(transportRequest.approvedByCompany)}}</td>
 
 
             <td class="text-end">
-                <button *ngIf="transportRequest.approvedByCompany === null" class="btn btn-outline-success shadow-none me-2"
-                    (click)="openApproveRequestModal(transportRequest)">
+                <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
+                    (click)="openApproveRequestModal(transportRequest)"
+                    class="btn btn-outline-success shadow-none me-2">
                     <fa-icon [icon]="faCircleCheck" size="1x" class="fa fa-faCircleCheck"></fa-icon>
                 </button>
-                <button *ngIf="transportRequest.isPaid" (click)="openTransportRequestInfoModal(transportRequest)"
+                <button *ngIf="!(getApproveStatus(transportRequest.approvedByCompany) == 'Waiting')"
+                    (click)="openTransportRequestInfoModal(transportRequest)"
                     class="btn btn-outline-info shadow-none me-2">
                     <fa-icon [icon]="faClock" size="1x" class="fa fa-faClock"></fa-icon>
                 </button>
-                <button *ngIf="!transportRequest.isPaid" class="btn btn-outline-danger shadow-none" (click)="openRejectRequestModal(transportRequest)">
+                <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
+                    (click)="openRejectRequestModal(transportRequest)" class="btn btn-outline-danger shadow-none">
                     <fa-icon [icon]="faCircleXMark" size="1x" class="fa fa-faCircleXmark"></fa-icon>
                 </button>
             </td>

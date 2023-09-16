@@ -1,4 +1,4 @@
-import { SocialLink } from "../models/entities/socialLink";
+import { SocialLink } from "../models/domain-models/socialLink";
 
 
 export const socialLinks: SocialLink[] = [

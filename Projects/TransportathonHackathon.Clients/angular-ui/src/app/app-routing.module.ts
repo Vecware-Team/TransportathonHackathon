@@ -21,6 +21,7 @@ import { HomeComponent } from './components/home/home.component';
 import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
 import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
 import { PayTransportRequestComponent } from './components/transport-request-list/pay-transport-request/pay-transport-request.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -34,6 +35,14 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     component: HomeComponent,
+  },
+  {
+    path: 'home',
+    component: HomeComponent,
+  },
+  {
+    path: 'about-us',
+    component: AboutUsComponent,
   },
   {
     path: 'transport-requests',

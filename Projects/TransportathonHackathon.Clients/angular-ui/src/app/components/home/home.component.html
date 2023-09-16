@@ -24,7 +24,7 @@
         </div> -->
         <div class="container-xxl bd-gutter">
             <div class="px-4 py-5 mb-5 col-md-8 mx-auto text-center">
-                <img class="d-block mx-auto mb-3" src="assets/images/logo.webp" alt="" height="165">
+                <img class="d-block mx-auto mb-3" src="assets/images/logo.png" alt="" height="165">
                 <h1 class="display-3 fw-semibold" style="margin-bottom: 1rem; max-width: 800px;">
                     Taşımacılık Hizmeti Elinizin Altında
                 </h1>
@@ -35,10 +35,10 @@
                         kolayca hizmetlerini buradan alabilirler.
                     </p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a type="button" routerLink="/kitabeler" class="btn btn-outline-dark btn-lg px-4">
+                        <a type="button" (click)="navigate('/companies')" class="btn btn-outline-dark btn-lg px-4">
                             Hemen başla
                         </a>
-                        <a type="button" routerLink="/konya-kitabeleri/selcuklu-donemi"
+                        <a type="button" routerLink="/about-us"
                             class="btn btn-light btn-lg px-4">
                             Hakkımızda
                         </a>
@@ -136,7 +136,7 @@
 
         <div class="row featurette" style="margin-top: 5%;">
             <div class="col-md-5 order-md-2">
-                <img src="assets/images/home-h2.webp" alt="" width="500" height="500" class="img-fluid">
+                <img src="assets/images/location.jpg" alt="" width="500" height="500" class="img-fluid">
             </div>
             <div class="col-md-7 order-md-1 pe-5">
                 <h2 class="featurette-heading-2" id="0">
@@ -147,7 +147,7 @@
                     ofisinizi ve çok daha fazlasını nakliye edin. Bir şirket seçin ve başlayın.
                 </p>
                 <a type="button" class="btn btn-light btn-md px-4 me-md-2 fw-bold"
-                    routerLink="/compaines">
+                    (click)="navigate('/companies')">
                     Şirketler
                 </a>
             </div>
