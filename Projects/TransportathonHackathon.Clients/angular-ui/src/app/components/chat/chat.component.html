@@ -36,12 +36,12 @@
                 </div>
                 <div class="chat_ib">
                   <h5>
-                    {{ user.userName }}<span class="chat_date">Dec 25</span>
+                    {{ user.userName
+                    }}<span class="chat_date">{{
+                      user.sendDate | date : "dd/MM - hh.mm"
+                    }}</span>
                   </h5>
-                  <p>
-                    Test, which is a new approach to have all solutions
-                    astrology under one roof.
-                  </p>
+                  <p>{{ user.lastMessage }}</p>
                 </div>
               </div>
             </div>
@@ -75,7 +75,7 @@
                   >
                     <p>{{ message.messageText }}</p>
                     <span class="time_date">
-                      {{ message.sendDate | date }}</span
+                      {{ message.sendDate | date : "dd/MM - hh.mm" }}</span
                     >
                   </div>
                 </div>
@@ -88,7 +88,9 @@
                   style="white-space: pre-line; word-wrap: break-word"
                 >
                   <p>{{ message.messageText }}</p>
-                  <span class="time_date">{{ message.sendDate | date }}</span>
+                  <span class="time_date">{{
+                    message.sendDate | date : "dd/MM - HH.mm"
+                  }}</span>
                 </div>
               </div>
               <!--  -->

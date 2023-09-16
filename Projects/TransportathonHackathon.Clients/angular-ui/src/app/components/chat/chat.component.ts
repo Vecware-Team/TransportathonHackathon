@@ -117,6 +117,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
     });
 
     this.connection.on('MessageSended', (data) => {
+      this.getUsers();
       this.messages.splice(0, 0, {
         id: '',
         isRead: false,
