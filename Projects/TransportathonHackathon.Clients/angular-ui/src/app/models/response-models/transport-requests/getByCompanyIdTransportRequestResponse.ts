@@ -1,4 +1,5 @@
-import { PaymentRequest } from "../../domain-models/paymentRequest";
+import { PaymentRequest } from '../../domain-models/paymentRequest';
+import { Vehicle } from '../../domain-models/vehicle';
 
 export interface GetByCompanyIdTransportRequestResponse {
   id: string;
@@ -16,6 +17,7 @@ export interface GetByCompanyIdTransportRequestResponse {
   approvedByCompany: boolean;
   paymentRequest: PaymentRequest;
   isFinished: boolean;
+  vehicle: Vehicle;
   createdDate: Date;
   updatedDate: Date;
   startDate: Date;

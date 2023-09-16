@@ -19,54 +19,56 @@
         </button> -->
     </div>
 </div>
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Customer Name</th>
+                <th scope="col">From</th>
+                <th scope="col">To</th>
+                <th scope="col">PlaceSize</th>
+                <th scope="col">Start</th>
+                <th scope="col">Finish</th>
+                <th scope="col">Is paid</th>
+                <th scope="col">Is approved</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody *ngIf="dataLoaded" class="table-group-divider">
+            <tr *ngFor="let transportRequest of transportRequests; let i = index;">
+                <th scope="row">{{i + 1}}</th>
+                <th>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</th>
+                <td>{{transportRequest.countryFrom + " - " + transportRequest.cityFrom}}</td>
+                <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
+                <td>{{transportRequest.placeSize}}</td>
+                <td>{{transportRequest.startDate}}</td>
+                <td class="text-danger">{{getFinishStatus(transportRequest.isFinished)}}</td>
+                <td>{{transportRequest.isPaid}}</td>
+                <td>{{getApproveStatus(transportRequest.approvedByCompany)}}</td>
 
-<table class="table table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Customer Name</th>
-            <th scope="col">From</th>
-            <th scope="col">To</th>
-            <th scope="col">PlaceSize</th>
-            <th scope="col">Start</th>
-            <th scope="col">Finish</th>
-            <th scope="col">Is paid</th>
-            <th scope="col">Is approved</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody *ngIf="dataLoaded" class="table-group-divider">
-        <tr *ngFor="let transportRequest of transportRequests; let i = index;">
-            <th scope="row">{{i + 1}}</th>
-            <th>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</th>
-            <td>{{transportRequest.countryFrom + " - " + transportRequest.cityFrom}}</td>
-            <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
-            <td>{{transportRequest.placeSize}}</td>
-            <td>{{transportRequest.startDate}}</td>
-            <td class="text-danger">{{getFinishStatus(transportRequest.isFinished)}}</td>
-            <td>{{transportRequest.isPaid}}</td>
-            <td>{{getApproveStatus(transportRequest.approvedByCompany)}}</td>
 
+                <td class="text-end">
+                    <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
+                        (click)="openApproveRequestModal(transportRequest)"
+                        class="btn btn-outline-success shadow-none me-2">
+                        <fa-icon [icon]="faCircleCheck" size="1x" class="fa fa-faCircleCheck"></fa-icon>
+                    </button>
+                    <button *ngIf="!(getApproveStatus(transportRequest.approvedByCompany) == 'Waiting')"
+                        (click)="openTransportRequestInfoModal(transportRequest)"
+                        class="btn btn-outline-info shadow-none me-2">
+                        <fa-icon [icon]="faClock" size="1x" class="fa fa-faClock"></fa-icon>
+                    </button>
+                    <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
+                        (click)="openRejectRequestModal(transportRequest)" class="btn btn-outline-danger shadow-none">
+                        <fa-icon [icon]="faCircleXMark" size="1x" class="fa fa-faCircleXmark"></fa-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
-            <td class="text-end">
-                <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
-                    (click)="openApproveRequestModal(transportRequest)"
-                    class="btn btn-outline-success shadow-none me-2">
-                    <fa-icon [icon]="faCircleCheck" size="1x" class="fa fa-faCircleCheck"></fa-icon>
-                </button>
-                <button *ngIf="!(getApproveStatus(transportRequest.approvedByCompany) == 'Waiting')"
-                    (click)="openTransportRequestInfoModal(transportRequest)"
-                    class="btn btn-outline-info shadow-none me-2">
-                    <fa-icon [icon]="faClock" size="1x" class="fa fa-faClock"></fa-icon>
-                </button>
-                <button *ngIf="getApproveStatus(transportRequest.approvedByCompany) == 'Waiting'"
-                    (click)="openRejectRequestModal(transportRequest)" class="btn btn-outline-danger shadow-none">
-                    <fa-icon [icon]="faCircleXMark" size="1x" class="fa fa-faCircleXmark"></fa-icon>
-                </button>
-            </td>
-        </tr>
-    </tbody>
-</table>
 <div *ngIf="!dataLoaded" class="d-flex justify-content-center">
     <div class="spinner-border" role="status">
         <span class="visually-hidden">Loading...</span>

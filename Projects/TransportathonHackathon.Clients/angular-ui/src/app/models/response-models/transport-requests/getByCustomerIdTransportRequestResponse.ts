@@ -1,4 +1,5 @@
 import { PaymentRequest } from '../../domain-models/paymentRequest';
+import { Vehicle } from '../../domain-models/vehicle';
 
 export interface GetByCustomerIdTransportRequestResponse {
   id: string;
@@ -16,6 +17,7 @@ export interface GetByCustomerIdTransportRequestResponse {
   isFinished: boolean;
   isPaid: boolean;
   placeSize: string;
+  vehicle: Vehicle | null;
   paymentRequest: PaymentRequest;
   createdDate: Date;
   updatedDate: Date;

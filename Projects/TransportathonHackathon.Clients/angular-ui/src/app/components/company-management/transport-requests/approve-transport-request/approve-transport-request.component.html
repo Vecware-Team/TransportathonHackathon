@@ -18,6 +18,17 @@
                 <label for="price">Transport Price</label>
             </div>
         </div>
+
+        <div class="mb-3">
+            <div class="form-floating">
+                <select class="form-select" formControlName="vehicleId" id="vehicleId">
+                    <option *ngFor="let vehicle of vehicles" [value]="vehicle.id">
+                        {{vehicle.brand}} - {{vehicle.model}}
+                    </option>
+                </select>
+                <label for="vehicleId">Vehicle</label>
+            </div>
+        </div>
     </form>
     <p>Bu nakliyatı kabul etmek istediğinize emin misiniz? Eğer kabul ederseniz ödeme talebi müşteriye iletiecektir.</p>
 </div>

@@ -83,16 +83,16 @@
                         <hr>
                     </div>
                 </div>
-                <div class="card mb-4">
+                <div *ngIf="isSigned()" class="card mb-4">
                     <div class="card-body">
                         <app-create-comment [company]="company"></app-create-comment>
                     </div>
                 </div>
                 <div class="row">
+                    <span class="fs-3 mb-3 ps-3 lead">Comments</span>
                     <div class="col-md-12">
                         <app-comments [company]="company"></app-comments>
                     </div>
-
                 </div>
             </div>
         </div>

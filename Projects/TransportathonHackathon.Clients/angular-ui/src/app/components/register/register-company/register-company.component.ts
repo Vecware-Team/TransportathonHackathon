@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { CreateCompanyRequest } from 'src/app/models/request-models/company/createCompanyRequest';
@@ -19,7 +20,8 @@ export class RegisterCompanyComponent {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private translateService: TranslateService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -50,6 +52,9 @@ export class RegisterCompanyComponent {
         'Successfully registered',
         this.translateService.instant('successful')
       );
+      this.router.navigate([
+        'company/panel/' + this.tokenService.getUserWithJWT()?.id,
+      ]);
     });
   }
 }

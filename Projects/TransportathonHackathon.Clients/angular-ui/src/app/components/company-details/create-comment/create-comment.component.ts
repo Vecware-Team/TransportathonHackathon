@@ -78,6 +78,7 @@ export class CreateCommentComponent implements OnInit {
       this.toastrService.success('Commented', 'Successful');
       this.createCommentForm.reset();
       this.getTransportRequests();
+      location.reload();
     });
   }
 }

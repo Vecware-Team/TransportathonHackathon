@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { ToastrService } from 'ngx-toastr';
 import { ErrorSeperator } from 'src/app/core/errors/services/error-seperator';
@@ -20,7 +21,8 @@ export class RegisterCustomerComponent implements OnInit {
     private formBuilder: FormBuilder,
     private toastrService: ToastrService,
     private translateService: TranslateService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +54,9 @@ export class RegisterCustomerComponent implements OnInit {
         'Successfully registered',
         this.translateService.instant('successful')
       );
+      this.router.navigate([
+        'customer/details/' + this.tokenService.getUserWithJWT()?.id,
+      ]);
     });
   }
 }

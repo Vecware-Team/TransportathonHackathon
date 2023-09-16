@@ -11,7 +11,7 @@
         <div class="row" style="min-height: 75vh;">
 
             <!-- Filters -->
-            <div class="col-3">
+            <div class="col-lg-3 col-sm-12">
                 <div class="mb-3">
                     <!-- <form [formGroup]="filterForm" (ngSubmit)="search()" (keyup.enter)="search()"> -->
                     <div class="mb-1 d-flex">
@@ -25,7 +25,7 @@
             </div>
 
             <!-- Companies Data -->
-            <div class="col-9">
+            <div class="col-lg-9 col-sm-12">
                 <div class="row row-cols-1 row-cols-md-1 g-2">
                     <div *ngFor="let transportRequest of transportRequests" class="col">
                         <div class="card w-100 mb-3">
@@ -45,6 +45,9 @@
                                         {{transportRequest.countryFrom + ", " + transportRequest.cityFrom
                                         + " -> " +
                                         transportRequest.countryTo + ", " + transportRequest.cityTo}}
+                                    </p>
+                                    <p class="card-text">
+                                        {{'Araç: ' + transportRequest.vehicle?.brand + ' - ' + transportRequest.vehicle?.model }}
                                     </p>
                                     <p class="card-text">
                                         {{"Start date: "}}

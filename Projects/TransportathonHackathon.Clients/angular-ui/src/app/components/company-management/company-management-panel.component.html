@@ -2,14 +2,23 @@
 
     <div class="container-fluid my-gutter my-md-4 my-layout">
         <aside class="my-sidebar">
-            <div class="d-flex flex-column flex-shrink-0 p-3" style="width: 280px;">
+            <div class="offcanvas-md offcanvas-end d-flex flex-column flex-shrink-0 p-3" tabindex="-1" id="sidebarMenu" style="width: 280px;">
+
+                <!-- Offcanvas header -->
+                <div class="offcanvas-header" style="top:150px;">
+                    <h5 class="offcanvas-title" id="sidebarMenuLabel">Company name</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" data-bs-target="#sidebarMenu"
+                        aria-label="Close"></button>
+                </div>
+                <!-- Offcanvas header -->
+                
                 <a href="/" class="d-flex align-items-center mb-3 mb-md-0 link-dark text-decoration-none">
                     <fa-icon [icon]="faGauge" size="2x" class="me-2"></fa-icon>
                     <span *ngIf="company" class="fs-4">{{company.companyName}}</span>
                 </a>
                 <hr>
-                <ul class="nav my-navbar-nav nav-pills flex-column mb-auto">
-                    
+                <ul class="nav offcanvas-body my-navbar-nav nav-pills flex-column mb-auto overflow-y-auto">
+
                     <li class="nav-item">
                         <a (click)="navigate('/company/panel/manage-transport-requests', 'manage-transport-requests')"
                             class="nav-link link-dark" routerLinkActive="active"

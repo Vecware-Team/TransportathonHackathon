@@ -19,7 +19,6 @@ import { companyGuard } from './guards/company.guard';
 import { CreateTransportRequestComponent } from './components/create-transport-request/create-transport-request.component';
 import { HomeComponent } from './components/home/home.component';
 import { TransportRequestListComponent } from './components/transport-request-list/transport-request-list.component';
-import { PaymentRequestListComponent } from './components/payment-request-list/payment-request-list.component';
 import { PayTransportRequestComponent } from './components/transport-request-list/pay-transport-request/pay-transport-request.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 
@@ -47,18 +46,17 @@ const routes: Routes = [
   {
     path: 'transport-requests',
     component: TransportRequestListComponent,
+    canActivate: [loginGuard],
   },
   {
     path: 'transport-requests/payment/:transportRequestId',
     component: PayTransportRequestComponent,
-  },
-  {
-    path: 'payment-requests',
-    component: PaymentRequestListComponent,
+    canActivate: [loginGuard],
   },
   {
     path: 'transport-requests/create/:companyId',
     component: CreateTransportRequestComponent,
+    canActivate: [loginGuard],
   },
   {
     path: 'companies',
@@ -85,10 +83,12 @@ const routes: Routes = [
   {
     path: 'chat/:receiverId',
     component: ChatComponent,
+    canActivate: [loginGuard],
   },
   {
     path: 'chat',
     component: ChatComponent,
+    canActivate: [loginGuard],
   },
   {
     path: 'login',

@@ -13,6 +13,7 @@ import { CloseTransportRequestComponent } from './close-transport-request/close-
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 import { FinishTransportRequestComponent } from './finish-transport-request/finish-transport-request.component';
 import { CommentStoreService } from 'src/app/services/store-services/comment-store.service';
+import { VehicleService } from 'src/app/services/vehicle.service';
 
 @Component({
   selector: 'app-transport-request-list',

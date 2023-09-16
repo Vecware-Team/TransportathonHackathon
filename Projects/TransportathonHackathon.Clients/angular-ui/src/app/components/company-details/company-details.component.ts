@@ -26,7 +26,7 @@ export class CompanyDetailsComponent implements OnInit {
   faTruck = faTruck;
   faCar = faCar;
   faStar = faStar;
-  faUser=faUser
+  faUser = faUser;
   company: GetByIdCompanyResponse;
   vehicles: GetByCompanyIdVehicleResponse[];
   employees: GetByCompanyIdEmployeeResponse[];
@@ -44,6 +44,13 @@ export class CompanyDetailsComponent implements OnInit {
   }
   subscribeRoute() {
     this.getCompany(this.activatedRoute.snapshot.params['companyId']);
+  }
+
+  isSigned(): boolean {
+    if (this.tokenService.getToken() === null) {
+      return false;
+    }
+    return true;
   }
 
   getVehicles() {

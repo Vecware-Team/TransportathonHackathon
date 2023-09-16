@@ -1,3 +1,5 @@
+import { Vehicle } from '../../domain-models/vehicle';
+
 export interface ApproveAndPayTransportRequestResponse {
   id: string;
   transportTypeId: string;
@@ -12,6 +14,7 @@ export interface ApproveAndPayTransportRequestResponse {
   cityTo: string;
   placeSize: string;
   approvedByCompany: boolean;
+  vehicle: Vehicle;
   isFinished: boolean;
   createdDate: Date;
   updatedDate: Date;

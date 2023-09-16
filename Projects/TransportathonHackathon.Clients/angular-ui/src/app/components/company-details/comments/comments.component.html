@@ -12,6 +12,6 @@
     </li>
 </div>
 
-<div *ngIf="!dataLoaded" class="text-muted fs-4">
+<div *ngIf="!dataLoaded || comments.count === 0" class="text-muted fs-4">
     Bu şirket için hiç yorum yapılmamış
 </div>
