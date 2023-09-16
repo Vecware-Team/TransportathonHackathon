@@ -104,6 +104,11 @@ export class VehiclesComponent implements OnInit {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.company = this.company;
     if (objectToModify !== null) {
       modalReferance.componentInstance.objectToModify = objectToModify;

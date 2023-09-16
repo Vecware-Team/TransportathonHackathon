@@ -32,9 +32,14 @@ export class TranslatesComponent {
   }
 
   openCreateTranslateModal() {
-    this.modalService.open(TranslateCreateComponent, {
+    var modalReferance = this.modalService.open(TranslateCreateComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
   }
 
@@ -43,6 +48,11 @@ export class TranslatesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.translate = translate;
   }
 
@@ -50,6 +60,11 @@ export class TranslatesComponent {
     var modalReferance = this.modalService.open(TranslateDeleteComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.translate = translate;
   }
