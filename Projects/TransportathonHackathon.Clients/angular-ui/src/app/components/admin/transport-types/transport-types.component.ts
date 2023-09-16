@@ -32,12 +32,22 @@ export class TransportTypesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
   }
 
   openUpdateTransportTypeModal(transportType: GetListTransportTypeResponse) {
     var modalReferance = this.modalService.open(TransportTypeUpdateComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.transportType = transportType;
   }
@@ -46,6 +56,11 @@ export class TransportTypesComponent {
     var modalReferance = this.modalService.open(TransportTypeDeleteComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.transportType = transportType;
   }

@@ -77,6 +77,11 @@ export class TransportRequestsComponent implements OnInit {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.transportRequest = transportRequest;
   }
 
@@ -90,6 +95,11 @@ export class TransportRequestsComponent implements OnInit {
         modalDialogClass: 'modal-dialog-centered',
       }
     );
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.transportRequest = transportRequest;
   }
 
@@ -103,6 +113,11 @@ export class TransportRequestsComponent implements OnInit {
         modalDialogClass: 'modal-dialog-centered',
       }
     );
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.transportRequest = transportRequest;
   }
 

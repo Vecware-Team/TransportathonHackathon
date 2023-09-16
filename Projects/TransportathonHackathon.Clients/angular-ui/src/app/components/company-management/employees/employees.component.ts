@@ -53,6 +53,11 @@ export class EmployeesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.company = this.company;
   }
 
@@ -61,6 +66,11 @@ export class EmployeesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
     modalReferance.componentInstance.driver = employee.driver;
   }
 
@@ -68,6 +78,11 @@ export class EmployeesComponent {
     var modalReferance = this.modalService.open(HireCarrierComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.company = this.company;
   }

@@ -38,12 +38,22 @@ export class LanguagesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
   }
 
   openUpdateLanguageModal(language: GetListLanguageResponse) {
     var modalReferance = this.modalService.open(LanguageUpdateComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.language = language;
   }
@@ -52,6 +62,11 @@ export class LanguagesComponent {
     var modalReferance = this.modalService.open(LanguageDeleteComponent, {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
+    });
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
     });
     modalReferance.componentInstance.language = language;
   }
