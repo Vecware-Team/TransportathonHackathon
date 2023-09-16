@@ -25,6 +25,7 @@ builder.Services.AddPersistenceServices(builder.Configuration, builder.Environme
 builder.Services.AddApplicationServices(Assembly.GetExecutingAssembly());
 
 builder.Services.RegisterLogger(ServiceLifetime.Scoped, typeof(FileLogger), typeof(MsSqlLogger));
+
 builder.Services.AddScoped<ITokenHelper<Guid>, JwtHelper<Guid>>();
 
 builder.Services.AddScoped<IPaymentService, FakePaymentService>();
@@ -103,7 +104,7 @@ ServiceTool.SetSetviceProvider(app.Services);
 
 // Configure the HTTP request pipeline.
 
-app.UseCors(builder => builder.WithOrigins("http://localhost:4200").AllowAnyHeader().AllowAnyMethod().AllowCredentials());
+app.UseCors(builder => builder.WithOrigins(app.Configuration.GetSection("AllowedHosts").Get<string[]>()).AllowAnyHeader().AllowAnyMethod().AllowCredentials());
 
 app.ConfigureCustomExceptionMiddleware();
 
