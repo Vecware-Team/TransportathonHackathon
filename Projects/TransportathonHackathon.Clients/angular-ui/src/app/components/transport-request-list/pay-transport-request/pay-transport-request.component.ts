@@ -84,8 +84,6 @@ export class PayTransportRequestComponent implements OnInit {
     );
 
     paymentRequestRequest.paymentRequest.price = this.paymentRequest.price;
-
-    paymentRequestRequest.paymentRequest.fullName = '';
     paymentRequestRequest.transportRequestId = this.transportRequest.id;
 
     this.paymentRequestService
