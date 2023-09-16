@@ -2,9 +2,9 @@
 
 namespace TransportathonHackathon.Application.Features.TransportTypes.Commands.Update
 {
-    public class UpdateTransportTypeCommandValitor : AbstractValidator<UpdateTransportTypeCommand>
+    public class UpdateTransportTypeCommandValidator : AbstractValidator<UpdateTransportTypeCommand>
     {
-        public UpdateTransportTypeCommandValitor()
+        public UpdateTransportTypeCommandValidator()
         {
             RuleFor(e => e.Id).NotNull().NotEmpty();
             RuleFor(e => e.Type).NotNull().NotEmpty().MinimumLength(1);
