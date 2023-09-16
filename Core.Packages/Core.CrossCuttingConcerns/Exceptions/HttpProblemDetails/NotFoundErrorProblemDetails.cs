@@ -6,18 +6,22 @@ namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails
     {
         public NotFoundErrorProblemDetails() : base(StatusCodes.Status404NotFound)
         {
+            Type = "NotFound";
         }
 
         public NotFoundErrorProblemDetails(string detail) : base(detail, StatusCodes.Status404NotFound)
         {
+            Type = "NotFound";
         }
 
         public NotFoundErrorProblemDetails(string title, string detail) : base(title, detail, StatusCodes.Status404NotFound)
         {
+            Type = "NotFound";
         }
 
         public NotFoundErrorProblemDetails(string title, string detail, string type) : base(title, detail, type, StatusCodes.Status404NotFound)
         {
+            Type = "NotFound";
         }
     }
 }

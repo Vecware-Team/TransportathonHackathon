@@ -7,41 +7,49 @@ namespace Core.CrossCuttingConcerns.Exceptions.HttpProblemDetails
     {
         public ValidationErrorProblemDetails() : base(StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationErrorProblemDetails(IEnumerable<ValidationExceptionModel> errors) : base(StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = errors;
         }
 
         public ValidationErrorProblemDetails(string detail) : base(detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationErrorProblemDetails(string detail, IEnumerable<ValidationExceptionModel> errors) : base(detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = errors;
         }
 
         public ValidationErrorProblemDetails(string title, string detail) : base(title, detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationErrorProblemDetails(string title, string detail, IEnumerable<ValidationExceptionModel> errors) : base(title, detail, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = errors;
         }
 
         public ValidationErrorProblemDetails(string title, string detail, string type) : base(title, detail, type, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = Array.Empty<ValidationExceptionModel>();
         }
 
         public ValidationErrorProblemDetails(string title, string detail, string type, IEnumerable<ValidationExceptionModel> errors) : base(title, detail, type, StatusCodes.Status400BadRequest)
         {
+            Type = "Validation";
             Errors = errors;
         }
 

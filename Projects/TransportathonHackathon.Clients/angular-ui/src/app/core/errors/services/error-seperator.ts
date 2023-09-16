@@ -14,21 +14,16 @@ export class ErrorSeperator {
   constructor(private toastrService: ToastrService) {}
 
   handleErrors(error: BaseError) {
-    console.log(error);
-
-    if (error.statusCode === 400 && error.title === 'BusinessException') {
+    if (error.status === 400 && error.type == 'Business') {
       this.handleBusinessError(error);
-    } else if (
-      error.statusCode === 400 &&
-      error.title === 'ValidationException'
-    ) {
+    } else if (error.status === 400 && error.type == 'Validation') {
       let validationError = error as ValidationError;
       this.handleValidationError(validationError);
-    } else if (error.statusCode === 401) {
+    } else if (error.status === 401 && error.type == 'Unauthorized') {
       this.handleUnauthorizedError(error);
-    } else if (error.statusCode === 403) {
+    } else if (error.status === 403 && error.type == 'Authorization') {
       this.handleAuthorizationDeniedError(error);
-    } else if (error.statusCode === 404) {
+    } else if (error.status === 404 && error.type == 'NotFound') {
       this.handleNotFoundError(error);
     } else {
       this.handleBaseError(error);
@@ -36,8 +31,12 @@ export class ErrorSeperator {
   }
 
   handleValidationError(error: ValidationError) {
-    error.errors.forEach((e) => {
-      e.errors?.forEach((c) => {
+    console.log(error);
+
+    console.log(error.Errors);
+
+    error.Errors?.forEach((e) => {
+      e?.Errors?.forEach((c) => {
         this.toastrService.error(c, e.property!);
       });
     });
