@@ -25,7 +25,7 @@ import { LanguageUpdateComponent } from './components/admin/languages/language-u
 import { LanguageCreateComponent } from './components/admin/languages/language-create/language-create.component';
 import { TranslateCreateComponent } from './components/admin/translates/translate-create/translate-create.component';
 import { TranslateUpdateComponent } from './components/admin/translates/translate-update/translate-update.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
@@ -154,6 +154,7 @@ import { CommentsComponent } from './components/company-details/comments/comment
     ReactiveFormsModule,
     NgxStarRatingModule, 
     NgbModule,
+    NgbPagination,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
