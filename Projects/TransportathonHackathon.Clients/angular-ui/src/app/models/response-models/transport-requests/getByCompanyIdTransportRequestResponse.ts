@@ -11,7 +11,7 @@ export interface GetByCompanyIdTransportRequestResponse {
   cityFrom: string;
   cityTo: string;
   placeSize: string;
-  approverByCompany: boolean;
+  approvedByCompany: boolean;
   isFinished: boolean;
   createdDate: Date;
   updatedDate: Date;

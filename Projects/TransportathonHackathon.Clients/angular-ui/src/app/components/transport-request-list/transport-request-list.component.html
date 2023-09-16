@@ -1,5 +1,5 @@
 <section style="background-color: var(--app-background-color);">
-    <div class="container py-5" style="height: 95vh;">
+    <div class="container py-5" style="min-height: 95vh;">
 
         <div class="p-head mb-3">
             <h1 href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
@@ -54,7 +54,7 @@
                                 </div>
 
 
-                                <div class="payment-request-info mb-3">
+                                <div *ngIf="getPaymentRequestByTransportRequest(transportRequest)" class="payment-request-info mb-3">
                                     <div *ngIf="getPaymentRequestByTransportRequest(transportRequest)">
                                         <hr>
                                         <h6 class="card-title">
@@ -75,13 +75,13 @@
                                     </div>
                                     <div *ngIf="!getPaymentRequestByTransportRequest(transportRequest)">
                                         <h5 class="card-title text-muted">
-                                            {{"Payment request has not been sent yet."}}
+                                            {{"Payment request has not been sent yet from " + transportRequest.companyName}}
                                         </h5>
                                     </div>
                                 </div>
 
                                 <div *ngIf="transportRequest.isFinished" class="">
-                                    <strong>This job is finished</strong>
+                                    <strong class="text-success">This job is finished</strong>
                                 </div>
                                 <div *ngIf="!transportRequest.isFinished">
                                     <!-- if not paid -->
