@@ -1,6 +1,6 @@
 ﻿namespace TransportathonHackathon.WebAPI.Dtos.Identity
 {
-    public class RoleUpdateDto
+    public class UpdateRoleDto
     {
         public Guid Id { get; set; }
         public string Name { get; set; }

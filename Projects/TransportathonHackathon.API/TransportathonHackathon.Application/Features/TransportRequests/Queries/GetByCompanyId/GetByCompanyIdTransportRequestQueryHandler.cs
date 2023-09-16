@@ -21,14 +21,17 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
         {
             IList<TransportRequest> transportRequests = await _transportRequestRepository.GetListAsync(
                 e => e.CompanyId == request.CompanyId,
-                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest)
-                .Include(e=>e.Vehicle)
+                include: e => e.Include(e => e.Company).Include(e => e.Customer).Include(e => e.TransportType).Include(e => e.PaymentRequest).Include(e => e.Vehicle)
             );
 
             transportRequests.ToList().ForEach(e =>
             {
                 if (e.PaymentRequest != null) e.PaymentRequest.TransportRequest = null;
-                if (e.Vehicle is not null) e.Vehicle.TransportRequest = null;
+                if (e.Vehicle is not null)
+                {
+                    e.Vehicle.TransportRequest = null;
+                    e.Vehicle.Company = null;
+                }
             });
             List<GetByCompanyIdTransportRequestResponse> response = _mapper.Map<List<GetByCompanyIdTransportRequestResponse>>(transportRequests.ToList());
             return response;

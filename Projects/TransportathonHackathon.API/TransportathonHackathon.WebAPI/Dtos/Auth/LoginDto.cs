@@ -1,4 +1,4 @@
-﻿namespace TransportathonHackathon.WebAPI.Dtos.Identity
+﻿namespace TransportathonHackathon.WebAPI.Dtos.Auth
 {
     public class LoginDto
     {

@@ -32,4 +32,11 @@
     <ProjectReference Include="..\TransportathonHackathon.Persistence\TransportathonHackathon.Persistence.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Dtos\Company\" />
+    <Folder Include="Dtos\Customer\" />
+    <Folder Include="Dtos\Comment\" />
+    <Folder Include="Dtos\Carrier\" />
+  </ItemGroup>
+
 </Project>

@@ -58,7 +58,7 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] RoleUpdateDto roleUpdateDto)
+        public async Task<IActionResult> Update([FromBody] UpdateRoleDto roleUpdateDto)
         {
             AppRole? role = await _roleManager.FindByIdAsync(roleUpdateDto.Id.ToString());
             if (role is null)
