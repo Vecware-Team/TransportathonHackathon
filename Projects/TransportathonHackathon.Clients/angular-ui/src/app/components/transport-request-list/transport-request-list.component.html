@@ -1,5 +1,5 @@
 <section style="background-color: var(--app-background-color);">
-    <div class="container py-5" style="height: 95vh;">
+    <div class="container py-5" style="min-height: 95vh;">
 
         <div class="p-head mb-3">
             <h1 href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
@@ -54,7 +54,7 @@
                                 </div>
 
 
-                                <div class="payment-request-info mb-3">
+                                <div *ngIf="getPaymentRequestByTransportRequest(transportRequest)" class="payment-request-info mb-3">
                                     <div *ngIf="getPaymentRequestByTransportRequest(transportRequest)">
                                         <hr>
                                         <h6 class="card-title">
@@ -75,33 +75,37 @@
                                     </div>
                                     <div *ngIf="!getPaymentRequestByTransportRequest(transportRequest)">
                                         <h5 class="card-title text-muted">
-                                            {{"Payment request has not been sent yet."}}
+                                            {{"Payment request has not been sent yet from " + transportRequest.companyName}}
                                         </h5>
                                     </div>
                                 </div>
 
-                                <!-- if not paid -->
-                                <a *ngIf="!getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
-                                    (click)="pay(transportRequest)" class="btn btn-primary me-2">
-                                    Pay and start transportation
-                                </a>
-                                <a *ngIf="!getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
-                                    (click)="reject(transportRequest)" class="btn btn-secondary me-2">
-                                    Reject and close this transport request
-                                </a>
+                                <div *ngIf="transportRequest.isFinished" class="">
+                                    <strong class="text-success">This job is finished</strong>
+                                </div>
+                                <div *ngIf="!transportRequest.isFinished">
+                                    <!-- if not paid -->
+                                    <a *ngIf="!getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
+                                        (click)="pay(transportRequest)" class="btn btn-primary me-2">
+                                        Pay and start transportation
+                                    </a>
+                                    <a *ngIf="!getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
+                                        (click)="reject(transportRequest)" class="btn btn-secondary me-2">
+                                        Reject and close this transport request
+                                    </a>
 
-                                <!-- if paid -->
-                                <a *ngIf="getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
-                                    class="btn btn-success me-2" (click)="finish(transportRequest)">
-                                    <fa-icon [icon]="faCheck" class="me-2"></fa-icon>
-                                    Mark as job finished
-                                </a>
-                                <a *ngIf="getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
-                                    class="btn btn-primary disabled me-2">
-                                    Waiting for the job to be finished...
-                                </a>
+                                    <!-- if paid -->
+                                    <a *ngIf="getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
+                                        class="btn btn-success me-2" (click)="finish(transportRequest)">
+                                        <fa-icon [icon]="faCheck" class="me-2"></fa-icon>
+                                        Mark as job finished
+                                    </a>
+                                    <a *ngIf="getPaymentRequestByTransportRequest(transportRequest)!.isPaid"
+                                        class="btn btn-primary disabled me-2">
+                                        Waiting for the job to be finished...
+                                    </a>
 
-                                
+                                </div>
                             </div>
                         </div>
                     </div>

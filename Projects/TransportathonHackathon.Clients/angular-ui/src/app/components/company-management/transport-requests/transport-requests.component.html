@@ -31,6 +31,7 @@
             <th scope="col">Start</th>
             <th scope="col">Finish</th>
             <th scope="col">Is paid</th>
+            <th scope="col">Is approved</th>
             <th></th>
         </tr>
     </thead>
@@ -42,12 +43,13 @@
             <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
             <td>{{transportRequest.placeSize}}</td>
             <td>{{transportRequest.startDate}}</td>
-            <td>{{transportRequest.finishDate}}</td>
+            <td>{{transportRequest.isFinished}}</td>
             <td>{{transportRequest.isPaid}}</td>
+            <td>{{transportRequest.approvedByCompany}}</td>
 
 
             <td class="text-end">
-                <button *ngIf="!transportRequest.isPaid" class="btn btn-outline-success shadow-none me-2"
+                <button *ngIf="transportRequest.approvedByCompany === null" class="btn btn-outline-success shadow-none me-2"
                     (click)="openApproveRequestModal(transportRequest)">
                     <fa-icon [icon]="faCircleCheck" size="1x" class="fa fa-faCircleCheck"></fa-icon>
                 </button>

@@ -1,7 +1,8 @@
-export interface GetByIdTransportRequestResponse {
+export interface ApproveAndPayTransportRequestResponse {
   id: string;
   transportTypeId: string;
   transportType: string;
+  isPaid: boolean;
   customerFirstName: string;
   customerLastName: string;
   companyName: string;
@@ -9,8 +10,9 @@ export interface GetByIdTransportRequestResponse {
   countryTo: string;
   cityFrom: string;
   cityTo: string;
-  isFinished: boolean;
   placeSize: string;
+  approvedByCompany: boolean;
+  isFinished: boolean;
   createdDate: Date;
   updatedDate: Date;
   startDate: Date;
