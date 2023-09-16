@@ -2,11 +2,22 @@
     <div class="row g-3 mb-3 align-items-center">
         <div class="col">
             <textarea formControlName="description" type="text" id="description" class="form-control"
-                aria-describedby="passwordHelpInline" placeholder="Ne düşünüyorsun?"></textarea>
+                aria-describedby="description" placeholder="Ne düşünüyorsun?"></textarea>
         </div>
     </div>
     <div class="clearfix">
-        <ngx-star-rating class="float-start" formControlName="rating" [id]="'rating'"></ngx-star-rating>
+        <ngx-star-rating class="float-start" formControlName="point" id="point"></ngx-star-rating>
+
+        <div class="align-bottom">
+            <select class="form-select w-25" formControlName="transportRequestId" id="transportRequestId">
+                <option selected>Yorum yapacağınız işi seçin</option>
+                <option *ngFor="let transportRequest of transportRequests" [value]="transportRequest.id">
+                    {{transportRequest.companyName}} - {{transportRequest.countryFrom +" to "+
+                    transportRequest.countryTo}}
+                </option>
+            </select>
+        </div>
+
         <button type="button" class="btn btn-warning float-end" (click)="createComment()">Comment</button>
     </div>
 </form>

@@ -4,9 +4,11 @@ import { ToastrService } from 'ngx-toastr';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { CreateCommentRequest } from 'src/app/models/request-models/comments/createCommentRequest';
 import { GetByIdCompanyResponse } from 'src/app/models/response-models/companies/getByIdCompanyResponse';
+import { GetByCustomerIdTransportRequestResponse } from 'src/app/models/response-models/transport-requests/getByCustomerIdTransportRequestResponse';
 import { CommentService } from 'src/app/services/comment.service';
 import { CommentStoreService } from 'src/app/services/store-services/comment-store.service';
 import { TokenService } from 'src/app/services/token.service';
+import { TransportRequestService } from 'src/app/services/transport-request.service';
 
 @Component({
   selector: 'app-create-comment',
@@ -16,17 +18,27 @@ import { TokenService } from 'src/app/services/token.service';
 export class CreateCommentComponent implements OnInit {
   createCommentForm: FormGroup;
   appUser: TokenUserDto;
+  transportRequests: GetByCustomerIdTransportRequestResponse[];
 
   constructor(
     private formBuilder: FormBuilder,
     private commentService: CommentService,
     private tokenService: TokenService,
     private toastrService: ToastrService,
-    private commentStoreService: CommentStoreService
+    private transportRequestService: TransportRequestService
   ) {}
   ngOnInit(): void {
-    this.createCreateCommentForm();
     this.getAppUser();
+    this.createCreateCommentForm();
+    this.getTransportRequests();
+  }
+
+  getTransportRequests() {
+    this.transportRequestService
+      .getListByCustomerId({ customerId: this.appUser.id })
+      .subscribe((response) => {
+        this.transportRequests = response;
+      });
   }
 
   getAppUser() {
@@ -36,27 +48,28 @@ export class CreateCommentComponent implements OnInit {
   createCreateCommentForm() {
     this.createCommentForm = this.formBuilder.group({
       description: ['', Validators.required],
-      rating: ['', Validators.required],
+      point: ['', Validators.required],
+      transportRequestId: ['', Validators.required],
     });
   }
 
   createComment() {
-    this.commentStoreService.createCommentEventStore.subscribe((response) => {
-      if (!this.createCommentForm.valid) {
-        this.toastrService.error('Comment form invalid', 'Form error');
-      }
+    if (
+      !this.createCommentForm.valid &&
+      this.createCommentForm.get('rating')?.value === null
+    ) {
+      this.toastrService.error('Comment form invalid', 'Form error');
+      return;
+    }
 
-      let createCommentRequest: CreateCommentRequest = Object.assign(
-        {},
-        this.createCommentForm.value
-      );
-      createCommentRequest.point = +this.createCommentForm.get('rating')?.value;
-      createCommentRequest.title = this.appUser.userName;
-      createCommentRequest.transportRequestId = response;
+    let createCommentRequest: CreateCommentRequest = Object.assign(
+      {},
+      this.createCommentForm.value
+    );
+    createCommentRequest.title = this.appUser.userName;
 
-      this.commentService.create(createCommentRequest).subscribe((res) => {
-        this.toastrService.success('Commented', 'Successful');
-      });
+    this.commentService.create(createCommentRequest).subscribe((res) => {
+      this.toastrService.success('Commented', 'Successful');
     });
   }
 }

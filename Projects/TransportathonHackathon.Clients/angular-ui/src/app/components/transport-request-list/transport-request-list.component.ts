@@ -30,7 +30,6 @@ export class TransportRequestListComponent implements OnInit {
     private paymentRequestService: PaymentRequestService,
     private router: Router,
     private modalService: NgbModal,
-    private commentStoreService: CommentStoreService
   ) {}
 
   ngOnInit(): void {
@@ -84,13 +83,6 @@ export class TransportRequestListComponent implements OnInit {
       }
     );
     modalReferance.componentInstance.transportRequest = transportRequest;
-  }
-
-  comment(transportRequest: GetByCustomerIdTransportRequestResponse) {
-    this.commentStoreService.createCommentEvent(transportRequest.id);
-    this.router.navigate([
-      '/companies/company/details/' + transportRequest.companyId,
-    ]);
   }
 
   getList() {

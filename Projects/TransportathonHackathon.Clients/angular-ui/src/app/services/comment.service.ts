@@ -10,6 +10,9 @@ import { DeletedCommentResponse } from '../models/response-models/comments/delet
 import { DeleteCommentRequest } from '../models/request-models/comments/deleteCommentRequest';
 import { GetListCommentRequest } from '../models/request-models/comments/getListCommentRequest';
 import { GetListCommentResponse } from '../models/response-models/comments/getListCommentResponse';
+import { Paginate } from '../core/models/pagination/paginate';
+import { GetByCompanyIdCommentRequest } from '../models/request-models/comments/getByCompanyIdCommentRequest';
+import { GetByCompanyIdCommentResponse } from '../models/response-models/comments/getByCompanyIdCommentResponse';
 
 @Injectable({
   providedIn: 'root',
@@ -44,9 +47,23 @@ export class CommentService {
     );
   }
 
-  getList(): Observable<GetListCommentResponse[]> {
-    return this.httpClient.get<GetListCommentResponse[]>(
+  getList(): Observable<Paginate<GetListCommentResponse>> {
+    return this.httpClient.get<Paginate<GetListCommentResponse>>(
       this.apiUrl + 'getlist'
+    );
+  }
+
+  getListByCompanyId(
+    request: GetByCompanyIdCommentRequest
+  ): Observable<Paginate<GetByCompanyIdCommentResponse>> {
+    return this.httpClient.get<Paginate<GetByCompanyIdCommentResponse>>(
+      this.apiUrl +
+        'getByCompanyId?CompanyId=' +
+        request.companyId +
+        '&PageRequest.Size=' +
+        request.pageRequest.size +
+        '&PageRequest.Index=' +
+        request.pageRequest.index
     );
   }
 }
