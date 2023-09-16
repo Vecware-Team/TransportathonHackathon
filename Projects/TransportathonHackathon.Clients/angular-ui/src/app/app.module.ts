@@ -57,7 +57,6 @@ import { HireCarrierComponent } from './components/company-management/employees/
 import { HireDriverComponent } from './components/company-management/employees/hire-driver/hire-driver.component';
 import { HireOutDriverComponent } from './components/company-management/employees/hire-out-driver/hire-out-driver.component';
 import { HireOutCarrierComponent } from './components/company-management/employees/hire-out-carrier/hire-out-carrier.component';
-<<<<<<< Updated upstream
 import { httpInterceptorProviders } from './interceptors/http-request.interceptor';
 import { ChatComponent } from './components/chat/chat.component';
 import { ApproveTransportRequestComponent } from './components/company-management/transport-requests/approve-transport-request/approve-transport-request.component';
@@ -75,10 +74,6 @@ import { CloseTransportRequestComponent } from './components/transport-request-l
 import { TransportRequestInfoComponent } from './components/company-management/transport-requests/transport-request-info/transport-request-info.component';
 import { FinishTransportRequestComponent } from './components/transport-request-list/finish-transport-request/finish-transport-request.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-=======
-import { ApproveTransportRequestComponent } from './components/company-management/transport-requests/approve-transport-request/approve-transport-request.component';
-import { RejectTransportRequestComponent } from './components/company-management/transport-requests/reject-transport-request/reject-transport-request.component';
->>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -123,7 +118,6 @@ import { RejectTransportRequestComponent } from './components/company-management
     HireDriverComponent,
     HireOutDriverComponent,
     HireOutCarrierComponent,
-<<<<<<< Updated upstream
     ChatComponent,
     ApproveTransportRequestComponent,
     RejectTransportRequestComponent,
@@ -140,10 +134,6 @@ import { RejectTransportRequestComponent } from './components/company-management
     TransportRequestInfoComponent,
     FinishTransportRequestComponent,
     AboutUsComponent,
-=======
-    ApproveTransportRequestComponent,
-    RejectTransportRequestComponent,
->>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

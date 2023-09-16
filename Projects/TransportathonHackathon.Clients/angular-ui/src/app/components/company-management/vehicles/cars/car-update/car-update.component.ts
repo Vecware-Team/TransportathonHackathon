@@ -56,15 +56,9 @@ export class CarUpdateComponent {
   createCarUpdateForm() {
     this.carUpdateForm = this.formBuilder.group({
       driverId: [this.objectToModify.driverId, Validators.required],
-<<<<<<< Updated upstream
       brand: [this.objectToModify.brand, Validators.required],
       model: [this.objectToModify.model, Validators.required],
       modelYear: [this.objectToModify.modelYear, Validators.required],
-=======
-      brand: [this.objectToModify?.brand, Validators.required],
-      model: [this.objectToModify?.model, Validators.required],
-      modelYear: [this.objectToModify?.modelYear, Validators.required],
->>>>>>> Stashed changes
     });
   }
 

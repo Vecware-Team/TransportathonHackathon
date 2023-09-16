@@ -12,7 +12,6 @@
                 </fa-icon>
             </button>
         </div>
-<<<<<<< Updated upstream
         <!-- <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('car-add')">
             Add Car
         </button>
@@ -21,10 +20,6 @@
         </button>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('pickuptruck-add')">
             Add Pickup Truck
-=======
-        <!-- <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openCreateLanguageModal()">
-            Create
->>>>>>> Stashed changes
         </button> -->
     </div>
 </div>
@@ -36,17 +31,11 @@
             <th scope="col">Customer Name</th>
             <th scope="col">From</th>
             <th scope="col">To</th>
-<<<<<<< Updated upstream
             <th scope="col">PlaceSize</th>
             <th scope="col">Start</th>
             <th scope="col">Finish</th>
             <th scope="col">Is paid</th>
             <th scope="col">Is approved</th>
-=======
-            <th scope="col">Is Office</th>
-            <th scope="col">Place Size</th>
-            <th scope="col">Start Date</th>
->>>>>>> Stashed changes
             <th></th>
         </tr>
     </thead>
@@ -56,7 +45,6 @@
             <th>{{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}</th>
             <td>{{transportRequest.countryFrom + " - " + transportRequest.cityFrom}}</td>
             <td>{{transportRequest.countryTo + " - " + transportRequest.cityTo}}</td>
-<<<<<<< Updated upstream
             <td>{{transportRequest.placeSize}}</td>
             <td>{{transportRequest.startDate}}</td>
             <td class="text-danger">{{getFinishStatus(transportRequest.isFinished)}}</td>
@@ -79,18 +67,6 @@
                     (click)="openRejectRequestModal(transportRequest)" class="btn btn-outline-danger shadow-none">
                     <fa-icon [icon]="faCircleXMark" size="1x" class="fa fa-faCircleXmark"></fa-icon>
                 </button>
-=======
-            <td>{{transportRequest.isOfficce}}</td>
-            <td>{{transportRequest.placeSize}}</td>
-            <td>{{transportRequest.startDate}}</td>
-            <td class="text-end">
-                <!-- <button class="btn btn-outline-primary shadow-none me-2" (click)="openUpdateLanguageModal(language)">
-                    <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>
-                </button>
-                <button class="btn btn-outline-danger shadow-none" (click)="openDeleteLanguageModal(language)">
-                    <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
-                </button> -->
->>>>>>> Stashed changes
             </td>
         </tr>
     </tbody>
