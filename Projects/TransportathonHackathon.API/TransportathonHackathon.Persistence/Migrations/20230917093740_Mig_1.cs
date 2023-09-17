@@ -71,6 +71,21 @@ namespace TransportathonHackathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TransportTypes",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Type = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransportTypes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -301,42 +316,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "TransportRequests",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    CountryFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CountryTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    CityTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    IsOffice = table.Column<bool>(type: "bit", nullable: false),
-                    PlaceSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    FinishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_TransportRequests", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_TransportRequests_Companies_CompanyId",
-                        column: x => x.CompanyId,
-                        principalTable: "Companies",
-                        principalColumn: "AppUserId",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_TransportRequests_Customers_CustomerId",
-                        column: x => x.CustomerId,
-                        principalTable: "Customers",
-                        principalColumn: "AppUserId",
-                        onDelete: ReferentialAction.NoAction);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Carriers",
                 columns: table => new
                 {
@@ -367,29 +346,6 @@ namespace TransportathonHackathon.Persistence.Migrations
                         column: x => x.EmployeeId,
                         principalTable: "Employees",
                         principalColumn: "AppUserId",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Comments",
-                columns: table => new
-                {
-                    TransportRequestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Point = table.Column<int>(type: "int", nullable: false),
-                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Comments", x => x.TransportRequestId);
-                    table.ForeignKey(
-                        name: "FK_Comments_TransportRequests_TransportRequestId",
-                        column: x => x.TransportRequestId,
-                        principalTable: "TransportRequests",
-                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -485,6 +441,56 @@ namespace TransportathonHackathon.Persistence.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "TransportRequests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CustomerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    CompanyId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    TransportTypeId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    VehicleId = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
+                    CountryFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CountryTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityFrom = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    CityTo = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PlaceSize = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    ApprovedByCompany = table.Column<bool>(type: "bit", nullable: true),
+                    IsFinished = table.Column<bool>(type: "bit", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    FinishDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_TransportRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_TransportRequests_Companies_CompanyId",
+                        column: x => x.CompanyId,
+                        principalTable: "Companies",
+                        principalColumn: "AppUserId",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_TransportRequests_Customers_CustomerId",
+                        column: x => x.CustomerId,
+                        principalTable: "Customers",
+                        principalColumn: "AppUserId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_TransportRequests_TransportTypes_TransportTypeId",
+                        column: x => x.TransportTypeId,
+                        principalTable: "TransportTypes",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.NoAction);
+                    table.ForeignKey(
+                        name: "FK_TransportRequests_Vehicles_VehicleId",
+                        column: x => x.VehicleId,
+                        principalTable: "Vehicles",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Trucks",
                 columns: table => new
                 {
@@ -501,6 +507,71 @@ namespace TransportathonHackathon.Persistence.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "Comments",
+                columns: table => new
+                {
+                    TransportRequestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Title = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Point = table.Column<int>(type: "int", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Comments", x => x.TransportRequestId);
+                    table.ForeignKey(
+                        name: "FK_Comments_TransportRequests_TransportRequestId",
+                        column: x => x.TransportRequestId,
+                        principalTable: "TransportRequests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PaymentRequests",
+                columns: table => new
+                {
+                    TransportRequestId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    IsPaid = table.Column<bool>(type: "bit", nullable: false),
+                    Price = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PaymentRequests", x => x.TransportRequestId);
+                    table.ForeignKey(
+                        name: "FK_PaymentRequests_TransportRequests_TransportRequestId",
+                        column: x => x.TransportRequestId,
+                        principalTable: "TransportRequests",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "AspNetRoles",
+                columns: new[] { "Id", "ConcurrencyStamp", "Name", "NormalizedName" },
+                values: new object[] { new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98"), "5e1c0cc2-2244-4f0f-8342-610dac6212d2", "Admin", "ADMIN" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUsers",
+                columns: new[] { "Id", "AccessFailedCount", "ConcurrencyStamp", "CreatedDate", "DeletedDate", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UpdatedDate", "UserName" },
+                values: new object[] { new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1"), 0, "11b23c2e-ef6c-4170-90e6-4d5a492c112e", new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4114), null, "admin@admin.com", true, false, null, "ADMIN@ADMIN.COM", "ADMIN", "AQAAAAIAAYagAAAAEBYmdf2EozmSoW1Sm+aaCX0yfcZy9afkilOmBHHx1iYo0JU4UdGbmNCF+Ut5JHbJAA==", null, true, null, false, new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4124), "admin" });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserClaims",
+                columns: new[] { "Id", "ClaimType", "ClaimValue", "UserId" },
+                values: new object[] { 1, "UserType", "Admin", new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1") });
+
+            migrationBuilder.InsertData(
+                table: "AspNetUserRoles",
+                columns: new[] { "RoleId", "UserId" },
+                values: new object[] { new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98"), new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1") });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -577,6 +648,18 @@ namespace TransportathonHackathon.Persistence.Migrations
                 column: "CustomerId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_TransportRequests_TransportTypeId",
+                table: "TransportRequests",
+                column: "TransportTypeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_TransportRequests_VehicleId",
+                table: "TransportRequests",
+                column: "VehicleId",
+                unique: true,
+                filter: "[VehicleId] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Vehicles_CompanyId",
                 table: "Vehicles",
                 column: "CompanyId");
@@ -621,6 +704,9 @@ namespace TransportathonHackathon.Persistence.Migrations
                 name: "Messages");
 
             migrationBuilder.DropTable(
+                name: "PaymentRequests");
+
+            migrationBuilder.DropTable(
                 name: "PickupTrucks");
 
             migrationBuilder.DropTable(
@@ -639,10 +725,13 @@ namespace TransportathonHackathon.Persistence.Migrations
                 name: "Languages");
 
             migrationBuilder.DropTable(
-                name: "Vehicles");
+                name: "Customers");
 
             migrationBuilder.DropTable(
-                name: "Customers");
+                name: "TransportTypes");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
 
             migrationBuilder.DropTable(
                 name: "Drivers");

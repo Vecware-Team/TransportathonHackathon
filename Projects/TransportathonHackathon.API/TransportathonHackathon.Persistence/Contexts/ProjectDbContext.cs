@@ -34,7 +34,7 @@ namespace TransportathonHackathon.Persistence.Contexts
 
             builder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
 
-            // DatabaseInitializerHelper.Initialize(builder);
+            DatabaseInitializerHelper.Initialize(builder);
         }
     }
 }

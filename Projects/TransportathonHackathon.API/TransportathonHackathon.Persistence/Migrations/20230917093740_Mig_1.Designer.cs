@@ -12,8 +12,8 @@ using TransportathonHackathon.Persistence.Contexts;
 namespace TransportathonHackathon.Persistence.Migrations
 {
     [DbContext(typeof(ProjectDbContext))]
-    [Migration("20230915123448_Mig_3")]
-    partial class Mig_3
+    [Migration("20230917093740_Mig_1")]
+    partial class Mig_1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -237,6 +237,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98"),
+                            ConcurrencyStamp = "5e1c0cc2-2244-4f0f-8342-610dac6212d2",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppRoleClaim", b =>
@@ -336,6 +345,25 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "11b23c2e-ef6c-4170-90e6-4d5a492c112e",
+                            CreatedDate = new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4114),
+                            Email = "admin@admin.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBYmdf2EozmSoW1Sm+aaCX0yfcZy9afkilOmBHHx1iYo0JU4UdGbmNCF+Ut5JHbJAA==",
+                            PhoneNumberConfirmed = true,
+                            TwoFactorEnabled = false,
+                            UpdatedDate = new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4124),
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserClaim", b =>
@@ -360,6 +388,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "UserType",
+                            ClaimValue = "Admin",
+                            UserId = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1")
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserLogin", b =>
@@ -396,6 +433,13 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1"),
+                            RoleId = new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98")
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserToken", b =>
@@ -503,6 +547,34 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.ToTable("Messages", (string)null);
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PaymentRequest", b =>
+                {
+                    b.Property<Guid>("TransportRequestId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("TransportRequestId");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("IsPaid")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsPaid");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)")
+                        .HasColumnName("Price");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("TransportRequestId");
+
+                    b.ToTable("PaymentRequests", (string)null);
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PickupTruck", b =>
                 {
                     b.Property<Guid>("VehicleId")
@@ -553,8 +625,9 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("uniqueidentifier")
                         .HasColumnName("Id");
 
-                    b.Property<bool>("ApprovedByCompany")
-                        .HasColumnType("bit");
+                    b.Property<bool?>("ApprovedByCompany")
+                        .HasColumnType("bit")
+                        .HasColumnName("ApprovedByCompany");
 
                     b.Property<string>("CityFrom")
                         .IsRequired()
@@ -594,6 +667,10 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasColumnType("datetime2")
                         .HasColumnName("FinishDate");
 
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit")
+                        .HasColumnName("IsFinished");
+
                     b.Property<string>("PlaceSize")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)")
@@ -610,6 +687,10 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("VehicleId")
+                        .HasColumnType("uniqueidentifier")
+                        .HasColumnName("VehicleId");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CompanyId");
@@ -617,6 +698,10 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasIndex("CustomerId");
 
                     b.HasIndex("TransportTypeId");
+
+                    b.HasIndex("VehicleId")
+                        .IsUnique()
+                        .HasFilter("[VehicleId] IS NOT NULL");
 
                     b.ToTable("TransportRequests", (string)null);
                 });
@@ -879,6 +964,17 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Navigation("Sender");
                 });
 
+            modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PaymentRequest", b =>
+                {
+                    b.HasOne("TransportathonHackathon.Domain.Entities.TransportRequest", "TransportRequest")
+                        .WithOne("PaymentRequest")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.PaymentRequest", "TransportRequestId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TransportRequest");
+                });
+
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.PickupTruck", b =>
                 {
                     b.HasOne("TransportathonHackathon.Domain.Entities.Vehicle", "Vehicle")
@@ -921,11 +1017,17 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("TransportathonHackathon.Domain.Entities.Vehicle", "Vehicle")
+                        .WithOne("TransportRequest")
+                        .HasForeignKey("TransportathonHackathon.Domain.Entities.TransportRequest", "VehicleId");
+
                     b.Navigation("Company");
 
                     b.Navigation("Customer");
 
                     b.Navigation("TransportType");
+
+                    b.Navigation("Vehicle");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Truck", b =>
@@ -1005,6 +1107,8 @@ namespace TransportathonHackathon.Persistence.Migrations
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.TransportRequest", b =>
                 {
                     b.Navigation("Comment");
+
+                    b.Navigation("PaymentRequest");
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.TransportType", b =>
@@ -1017,6 +1121,8 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.Navigation("Car");
 
                     b.Navigation("PickupTruck");
+
+                    b.Navigation("TransportRequest");
 
                     b.Navigation("Truck");
                 });

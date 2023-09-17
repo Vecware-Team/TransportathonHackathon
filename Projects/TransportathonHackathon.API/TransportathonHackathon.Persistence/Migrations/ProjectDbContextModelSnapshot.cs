@@ -234,6 +234,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98"),
+                            ConcurrencyStamp = "5e1c0cc2-2244-4f0f-8342-610dac6212d2",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppRoleClaim", b =>
@@ -333,6 +342,25 @@ namespace TransportathonHackathon.Persistence.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "11b23c2e-ef6c-4170-90e6-4d5a492c112e",
+                            CreatedDate = new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4114),
+                            Email = "admin@admin.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "ADMIN@ADMIN.COM",
+                            NormalizedUserName = "ADMIN",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBYmdf2EozmSoW1Sm+aaCX0yfcZy9afkilOmBHHx1iYo0JU4UdGbmNCF+Ut5JHbJAA==",
+                            PhoneNumberConfirmed = true,
+                            TwoFactorEnabled = false,
+                            UpdatedDate = new DateTime(2023, 9, 17, 12, 37, 39, 875, DateTimeKind.Local).AddTicks(4124),
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserClaim", b =>
@@ -357,6 +385,15 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("AspNetUserClaims", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "UserType",
+                            ClaimValue = "Admin",
+                            UserId = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1")
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserLogin", b =>
@@ -393,6 +430,13 @@ namespace TransportathonHackathon.Persistence.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("a04edf5c-da95-45cf-a850-b5765280b7e1"),
+                            RoleId = new Guid("03bde9ba-7eac-46dc-b722-d61f549e4f98")
+                        });
                 });
 
             modelBuilder.Entity("TransportathonHackathon.Domain.Entities.Identity.AppUserToken", b =>

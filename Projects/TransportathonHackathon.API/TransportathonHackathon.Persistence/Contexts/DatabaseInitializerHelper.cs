@@ -10,7 +10,7 @@ namespace TransportathonHackathon.Persistence.Contexts
         public static void Initialize(ModelBuilder builder)
         {
             AddAdminUser(builder);
-            AddTranslates(builder);
+            // AddTranslates(builder);
         }
 
         private static void AddAdminUser(ModelBuilder builder)
@@ -45,10 +45,18 @@ namespace TransportathonHackathon.Persistence.Contexts
 
             builder.Entity<AppUser>().HasData(appUser);
 
-            builder.Entity<IdentityUserRole<string>>().HasData(new IdentityUserRole<string>
+            builder.Entity<AppUserClaim>().HasData(new AppUserClaim
             {
-                RoleId = ROLE_ID.ToString(),
-                UserId = ADMIN_ID.ToString()
+                Id = 1,
+                ClaimType = "UserType",
+                ClaimValue = "Admin",
+                UserId = ADMIN_ID,
+            });
+
+            builder.Entity<AppUserRole>().HasData(new AppUserRole
+            {
+                RoleId = ROLE_ID,
+                UserId = ADMIN_ID
             });
         }
         private static void AddTranslates(ModelBuilder builder)
