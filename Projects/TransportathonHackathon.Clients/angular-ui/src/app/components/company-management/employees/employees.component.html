@@ -1,6 +1,6 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
-    <h1 class="h2">Çalışanlar</h1>
+    <h1 class="h2">{{'employees' | translate}}</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <button class="btn shadow-none me-2">
@@ -9,10 +9,10 @@
             </button>
         </div>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openHireDriverModal()">
-            Hire Driver
+            {{'hireDriver' | translate}}
         </button>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openHireCarrierModal()">
-            Hire Carrier
+            {{'hireCarrier' | translate}}
         </button>
     </div>
 </div>
@@ -21,11 +21,11 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">First name</th>
-                <th scope="col">Last name</th>
-                <th scope="col">Age</th>
-                <th scope="col">atWork</th>
-                <th scope="col">Type</th>
+                <th scope="col">{{'firstName' | translate}}</th>
+                <th scope="col">{{'lastName' | translate}}</th>
+                <th scope="col">{{'age' | translate}}</th>
+                <th scope="col">{{'atWork' | translate}}</th>
+                <th scope="col">{{'type' | translate}}</th>
                 <th></th>
             </tr>
         </thead>
@@ -39,11 +39,11 @@
                 <td>{{getEmployeeType(employee)}}</td>
 
                 <td class="text-end">
-                    <button class="btn btn-outline-primary shadow-none me-2"
+                    <button *ngIf="getEmployeeType(employee) === 'Carrier'" class="btn btn-outline-primary shadow-none me-2"
                         (click)="openHireOutCarrierModal(employee)">
                         <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>
                     </button>
-                    <button class="btn btn-outline-danger shadow-none" (click)="openHireOutDriverModal(employee)">
+                    <button *ngIf="getEmployeeType(employee) === 'Driver'" class="btn btn-outline-danger shadow-none" (click)="openHireOutDriverModal(employee)">
                         <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
                     </button>
                 </td>

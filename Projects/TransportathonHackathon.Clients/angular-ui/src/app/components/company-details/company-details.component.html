@@ -8,8 +8,8 @@
             <div class="col">
                 <nav aria-label="breadcrumb" class="bg-light rounded-3 p-3 mb-4">
                     <ol class="breadcrumb mb-0">
-                        <li class="breadcrumb-item"><a routerLink="/companies">Companies</a></li>
-                        <li class="breadcrumb-item"><a>Company</a></li>
+                        <li class="breadcrumb-item"><a routerLink="/companies">{{'companies' | translate}}</a></li>
+                        <li class="breadcrumb-item"><a>{{'company' | translate}}</a></li>
                     </ol>
                 </nav>
             </div>
@@ -25,11 +25,11 @@
                         <p class="text-muted mb-1">{{company.email}}</p>
                         <button class="btn btn-warning me-2" routerLink="/chat/{{company.appUserId}}">
                             <fa-icon class="me-2" [icon]="faMessage"></fa-icon>
-                            Konuşma Başlat
+                            {{'startConversation' | translate}}
                         </button>
                         <a *ngIf="(currentUser !== null && currentUser.userType === 'Customer') || currentUser.userType === 'Admin'"
                             routerLink="/transport-requests/create/{{company.appUserId}}" class="btn btn-primary">
-                            Create Transport Request
+                            {{'createTransportRequest' | translate}}
                         </a>
 
                     </div>
@@ -41,7 +41,7 @@
                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <div>
                                     <fa-icon class="me-2" [icon]="faTruck"></fa-icon>
-                                    <span>Araç</span>
+                                    <span>{{'vehicle' | translate}}</span>
                                 </div>
                                 <p class="mb-0">{{vehicle.brand + ' - ' + vehicle.model + ' - ' + vehicle.modelYear}}
                                 </p>
@@ -56,7 +56,7 @@
                                 class="list-group-item d-flex justify-content-between align-items-center p-3">
                                 <div>
                                     <fa-icon class="me-2" [icon]="faUser"></fa-icon>
-                                    <span>Çalışan</span>
+                                    <span>{{'employee' | translate}}</span>
                                 </div>
                                 <p class="mb-0">{{employee.firstName + ' ' + employee.lastName}}</p>
                             </li>
@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Company Name</p>
+                                <p class="mb-0">{{'companyName' | translate}}</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{company.companyName}}</p>
@@ -78,7 +78,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Email</p>
+                                <p class="mb-0">{{'email' | translate}}</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{company.email}}</p>
@@ -93,7 +93,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <span class="fs-3 mb-3 ps-3 lead">Comments</span>
+                    <span class="fs-3 mb-3 ps-3 lead">{{'comments' | translate}}</span>
                     <div class="col-md-12">
                         <app-comments [company]="company"></app-comments>
                     </div>

@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Nakliyat Talebi Hakkında</h5>
+    <h5 class="modal-title">{{'aboutTransport' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
@@ -10,19 +10,18 @@
         </h6>
     </div>
     <p *ngIf="!transportRequest.isPaid">
-        Müşteri ödemeyi henüz yapmadı, nakliye bittikten sonra ödeme gerçekleşecektir.
+        {{'trIsNotPaid' | translate}}
     </p>
     <p *ngIf="!transportRequest.isFinished">
-        İş henüz bitmedi olarak görünüyor.
+        {{'trIsNotFinished' | translate}}
     </p>
     <p *ngIf="transportRequest.isFinished">
-        İş bittiğine göre bir sonrakine geçebiliriz.
+        {{'trIsFinished' | translate}}
     </p>
-    <p *ngIf="!transportRequest.isPaid">
-        Müşteri nakliyat ödemesini yapmıştır. Yapılan nakliye müşteri tarafından 'Finished' olarak
-        işaretlenecek. Kolay gelsin.
+    <p *ngIf="transportRequest.isPaid">
+        {{'trIsPaid'}}
     </p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()">Tamam</button>
+    <button type="button" class="btn btn-secondary" (click)="close()">{{'ok'}}</button>
 </div>

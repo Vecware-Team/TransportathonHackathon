@@ -31,7 +31,7 @@
             <th>{{translate.id}}</th>
             <td>{{translate.language.code}}</td>
             <td>{{translate.key}}</td>
-            <td>{{translate.value}}</td>
+            <td class="text-truncate" style="max-width: 200px;">{{translate.value}}</td>
             <td class="text-end">
                 <button class="btn btn-outline-primary shadow-none me-2" (click)="openUpdateTranslateModal(translate)">
                     <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>

@@ -1,13 +1,13 @@
 <body>
   <div class="container">
-    <h3 class="text-center">Messaging</h3>
+    <h3 class="text-center">{{'myMessages' | translate}}</h3>
     <div class="messaging">
       <div class="inbox_msg">
         <!-- -->
         <div class="inbox_people" *ngIf="users != null">
           <div class="headind_srch">
             <div class="recent_heading">
-              <h4>Recent</h4>
+              <h4>{{'recent' | translate}}</h4>
             </div>
             <div class="srch_bar">
               <div class="stylish-input-group">
@@ -40,7 +40,7 @@
             </div>
 
             <div *ngIf="users.length <= 0" class="text-center text-muted fs-5 mt-3"> 
-              Herhangi bir mesajlaşma bulunamadı.
+              {{'noMessagingFound' | translate}}
             </div>
             <!-- -->
           </div>

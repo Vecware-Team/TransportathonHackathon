@@ -30,9 +30,8 @@ export class RejectTransportRequestComponent implements OnInit {
 
   reject() {
     this.transportRequestService
-      .approveTransportRequest({
-        id: this.transportRequest.id,
-        isApproved: false,
+      .finishTransportRequest({
+        id: this.transportRequest.id
       })
       .subscribe((response) => {
         this.toastrService.success('Rejected', 'Successful');

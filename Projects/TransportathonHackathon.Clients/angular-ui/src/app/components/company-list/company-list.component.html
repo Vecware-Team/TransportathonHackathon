@@ -4,7 +4,7 @@
         <div class="p-head mb-3">
             <h1 href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
                 <img src="assets/images/logo.png" width="40" height="32" class="me-2" alt="">
-                <span class="fs-4">Transportathon Companies</span>
+                <span class="fs-4">{{'transportCompanies' | translate}}</span>
             </h1>
         </div>
 
@@ -16,7 +16,7 @@
                     <!-- <form [formGroup]="filterForm" (ngSubmit)="search()" (keyup.enter)="search()"> -->
                     <div class="mb-1 d-flex">
                         <input class="form-control me-1" type="search" placeholder="Ara" aria-label="Search" />
-                        <button class="btn btn-outline-app" type="submit">Search</button>
+                        <button class="btn btn-outline-app" type="submit">{{'search' | translate}}</button>
                     </div>
                     <!-- </form> -->
                 </div>
@@ -26,25 +26,28 @@
 
             <!-- Companies Data -->
             <div class="col-lg-9 col-sm-12">
-                <div *ngIf="companies" class="row row-cols-1 row-cols-md-1 g-2">
+                <div *ngIf="dataLoaded" class="row row-cols-1 row-cols-md-1 g-2">
                     <div *ngFor="let company of companies.items" class="col">
                         <div class="card w-100 mb-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{company.companyName}}</h5>
                                 <p class="card-text">{{company.userName}}</p>
                                 <a routerLink="company/details/{{company.appUserId}}" class="btn btn-primary me-2">
-                                    Go Company
+                                    {{'goCompany' | translate}}
                                 </a>
                                 <a *ngIf="appUser !== null && appUser.userType === 'Customer'"
                                     routerLink="/transport-requests/create/{{company.appUserId}}"
                                     class="btn btn-primary">
-                                    Create Transport Request
+                                    {{'createTransportRequest' | translate}}
                                 </a>
                             </div>
                         </div>
                     </div>
+                    <div *ngIf="companies.count <= 0" class="text-muted text-center fs-3">
+                        {{'weCannotFindAnyCompany' | translate}}
+                    </div>
 
-                    <div *ngIf="dataLoaded" class="p-body d-flex justify-content-center">
+                    <div *ngIf="dataLoaded && (companies.count > 0)" class="p-body d-flex justify-content-center">
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <li class="page-item">
