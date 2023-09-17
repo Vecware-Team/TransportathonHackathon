@@ -157,3 +157,7 @@
   - Angular Forms pek çok yerde işlevsel olarak kullanılmıştır.
 
   - Admin panel ve şirket yönetim panelini içermektedir.
+
+---
+
+### 

@@ -16,6 +16,7 @@ namespace TransportathonHackathon.Persistence.EntityConfigurations
             builder.Property(e=>e.MessageText).HasColumnName("MessageText");
             builder.Property(e=>e.SendDate).HasColumnName("SendDate");
             builder.Property(e=>e.IsRead).HasColumnName("IsRead");
+            builder.Property(e=>e.Queue).HasColumnName("Queue");
 
             builder.HasOne(e => e.Sender);
             builder.HasOne(e => e.Receiver);
