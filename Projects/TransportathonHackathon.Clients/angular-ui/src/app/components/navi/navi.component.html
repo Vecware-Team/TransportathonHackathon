@@ -95,6 +95,22 @@
         </ul>
       </li>
 
+      <hr class="d-lg-none text-white-50 w-100">
+      <li *ngIf="currentLanguage !== null" class="nav-item dropdown me-3">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+            aria-expanded="false">
+            {{currentLanguage?.globallyName}}
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li *ngFor="let language of languages">
+                <a class="dropdown-item" (click)="setLanguage(language.code!)">
+                    {{language.globallyName}}
+                </a>
+            </li>
+        </ul>
+    </li>
+
       <form *ngIf="!isLogged()" class="d-flex" role="search">
         <button class="btn btn-outline-success me-2" type="submit" routerLink="/login">{{'login' | translate}}</button>
         <button class="btn btn-outline-success" type="submit" routerLink="/register">{{'register' | translate}}</button>

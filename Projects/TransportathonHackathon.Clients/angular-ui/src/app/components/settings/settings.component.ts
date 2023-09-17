@@ -28,9 +28,13 @@ export class SettingsComponent implements OnInit {
     });
   }
 
-  onLanguageChanged(event: any) {
+  onLanguageChanged() {
     this.settingsService.setLanguageOnLocalStorage(this.languageCode);
     this.translate.use(this.languageCode);
     window.location.reload();
+  }
+
+  setLanguage(){
+    
   }
 }

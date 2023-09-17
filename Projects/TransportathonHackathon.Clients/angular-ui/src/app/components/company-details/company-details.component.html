@@ -23,14 +23,16 @@
                             alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                         <h5 class="my-3">{{company.userName}}</h5>
                         <p class="text-muted mb-1">{{company.email}}</p>
-                        <button class="btn btn-warning me-2" routerLink="/chat/{{company.appUserId}}">
-                            <fa-icon class="me-2" [icon]="faMessage"></fa-icon>
-                            {{'startConversation' | translate}}
-                        </button>
-                        <a *ngIf="(currentUser !== null && currentUser.userType === 'Customer') || currentUser.userType === 'Admin'"
-                            routerLink="/transport-requests/create/{{company.appUserId}}" class="btn btn-primary">
-                            {{'createTransportRequest' | translate}}
-                        </a>
+                        <div *ngIf="currentUser !== null">
+                            <button class="btn btn-warning me-2" routerLink="/chat/{{company.appUserId}}">
+                                <fa-icon class="me-2" [icon]="faMessage"></fa-icon>
+                                {{'startConversation' | translate}}
+                            </button>
+                            <a *ngIf="currentUser.userType === 'Customer' || currentUser.userType === 'Admin'"
+                                routerLink="/transport-requests/create/{{company.appUserId}}" class="btn btn-primary">
+                                {{'createTransportRequest' | translate}}
+                            </a>
+                        </div>
 
                     </div>
                 </div>
