@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Translates.Commands.Creat
 
         public async Task<CreatedTranslateResponse> Handle(CreateTranslateCommand request, CancellationToken cancellationToken)
         {
-            await _rules.TranslateKeyCannotBeDuplicatedForSameLanguageIdWhenInsertingOrUpdating(request.LanguageId, request.Key);
+            await _rules.TranslateKeyCannotBeDuplicatedForSameLanguageIdWhenInserting(request.LanguageId, request.Key);
             
             Translate translate = _mapper.Map<Translate>(request);
             await _translateRepository.AddAsync(translate);

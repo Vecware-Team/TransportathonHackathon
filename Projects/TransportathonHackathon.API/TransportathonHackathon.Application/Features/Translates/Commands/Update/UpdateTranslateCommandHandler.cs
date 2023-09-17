@@ -23,8 +23,6 @@ namespace TransportathonHackathon.Application.Features.Translates.Commands.Updat
 
         public async Task<UpdatedTranslateResponse> Handle(UpdateTranslateCommand request, CancellationToken cancellationToken)
         {
-            await _rules.TranslateKeyCannotBeDuplicatedForSameLanguageIdWhenInsertingOrUpdating(request.LanguageId, request.Key);
-
             Translate? translate = await _translateRepository.GetAsync(e => e.Id == request.Id, include: e => e.Include(e => e.Language));
             if (translate is null)
                 throw new NotFoundException("Translate not found");

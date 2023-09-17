@@ -14,7 +14,7 @@ namespace TransportathonHackathon.Application.Features.Translates.Rules
             _translateRepository = translateRepository;
         }
 
-        public async Task TranslateKeyCannotBeDuplicatedForSameLanguageIdWhenInsertingOrUpdating(Guid languageId, string key)
+        public async Task TranslateKeyCannotBeDuplicatedForSameLanguageIdWhenInserting(Guid languageId, string key)
         {
             Translate? translate = await _translateRepository.GetAsync(e => e.LanguageId == languageId && e.Key == key);
             if (translate is not null)

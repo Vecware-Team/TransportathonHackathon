@@ -118,11 +118,8 @@ app.UseCors(builder => builder.WithOrigins(app.Configuration.GetSection("Allowed
 
 app.ConfigureCustomExceptionMiddleware();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+app.UseSwagger();
+app.UseSwaggerUI();
 
 app.UseHttpsRedirection();
 
