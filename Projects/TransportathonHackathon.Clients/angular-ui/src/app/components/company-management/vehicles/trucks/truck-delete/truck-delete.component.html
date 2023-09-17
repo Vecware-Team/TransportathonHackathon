@@ -9,9 +9,9 @@
             {{objectToModify.model}}
         </h6>
     </div>
-    <p>Bu aracı silmek istediğinizden emin misiniz?</p>
+    <p>{{'areYouSureDeleteVehicle' | translate}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-danger" (click)="deleteTruck()">Sil</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="deleteTruck()">{{'delete' | translate}}</button>
 </div>

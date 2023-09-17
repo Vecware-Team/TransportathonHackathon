@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Pickup Truck Ekle</h5>
+    <h5 class="modal-title">{{'addPickupTruck' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
@@ -11,38 +11,38 @@
                         {{driver.firstName}} {{driver.lastName}}
                     </option>
                 </select>
-                <label for="driverId">Sürücünüzü Seçin</label>
+                <label for="driverId">{{'selectYourDriver' | translate}}</label>
             </div>
         </div>
         <div class="mb-3">
             <div class="form-floating mb-3">
                 <input type="text" formControlName="brand" class="form-control" id="brand" placeholder="Pickup truck brand">
-                <label for="brand">Brand</label>
+                <label for="brand">{{'brand' | translate}}</label>
             </div>
         </div>
         <div class="mb-3">
             <div class="form-floating mb-3">
                 <input type="text" formControlName="model" class="form-control" id="model" placeholder="Pickup truck model">
-                <label for="model">Model</label>
+                <label for="model">{{'model' | translate}}</label>
             </div>
         </div>
         <div class="mb-3">
             <div class="form-floating mb-3">
                 <input type="text" formControlName="modelYear" class="form-control" id="modelYear"
                     placeholder="Pickup truck model year">
-                <label for="modelYear">Model Year</label>
+                <label for="modelYear">{{'modelYear' | translate}}</label>
             </div>
         </div>
         <div class="mb-3">
             <div class="form-floating mb-3">
                 <input type="text" formControlName="size" class="form-control" id="size"
                     placeholder="Pickup truck size">
-                <label for="size">Size</label>
+                <label for="size">{{'size' | translate}}</label>
             </div>
         </div>
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-primary" (click)="add()">Ekle</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary" (click)="add()">{{'add' | translate}}</button>
 </div>

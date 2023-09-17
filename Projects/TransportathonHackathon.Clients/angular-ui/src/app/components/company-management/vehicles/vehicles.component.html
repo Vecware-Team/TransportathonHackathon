@@ -1,6 +1,6 @@
 <div
     class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom ps-lg-2">
-    <h1 class="h2">Araçlar</h1>
+    <h1 class="h2">{{'vehicles' | translate}}</h1>
     <div class="btn-toolbar mb-2 mb-md-0">
         <div class="btn-group me-2">
             <button class="btn shadow-none me-2">
@@ -9,13 +9,13 @@
             </button>
         </div>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('car-add')">
-            Add Car
+            {{'addCar' | translate}}
         </button>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('truck-add')">
-            Add Truck
+            {{'addTruck' | translate}}
         </button>
         <button type="button" class="btn btn-sm btn-outline-dark me-2" (click)="openModal('pickuptruck-add')">
-            Add Pickup Truck
+            {{'addPickupTruck' | translate}}
         </button>
     </div>
 </div>
@@ -24,10 +24,10 @@
         <thead class="table-dark">
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Brand</th>
-                <th scope="col">Model</th>
-                <th scope="col">Model Year</th>
-                <th scope="col">Type</th>
+                <th scope="col">{{'brand' | translate}}</th>
+                <th scope="col">{{'model' | translate}}</th>
+                <th scope="col">{{'modelYear' | translate}}</th>
+                <th scope="col">{{'type' | translate}}</th>
                 <th></th>
             </tr>
         </thead>

@@ -4,157 +4,72 @@
     <!-- Masthead -->
     <div class="masthead">
 
-        <!-- <div class="container col-xxl-8 px-4 py-5">
-            <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
-                <div class="col-sm-12 col-lg-6 img-shadow">
-                    <img src="assets/images/kitabe-2.webp" class="d-block mx-lg-auto rounded img-fluid" alt="" width="700"
-                        height="500">
-                </div>
-                <div class="col-lg-6">
-                    <h1 class="display-5 fw-bold lh-1 mb-3">Kitabeler</h1>
-                    <p class="lead">
-                        {{getTranslate("homeText")}}
-                    </p>
-                    <div class="d-grid gap-2 d-md-flex justify-content-md-start">
-                        <a type="button" routerLink="/kitabeler" class="btn btn-outline-dark btn-lg px-4">Daha
-                            Fazla</a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
+        <!-- Title 1 -->
         <div class="container-xxl bd-gutter">
             <div class="px-4 py-5 mb-5 col-md-8 mx-auto text-center">
                 <img class="d-block mx-auto mb-3" src="assets/images/logo.png" alt="" height="165">
                 <h1 class="display-3 fw-semibold" style="margin-bottom: 1rem; max-width: 800px;">
-                    Taşımacılık Hizmeti Elinizin Altında
+                    {{'homeTitle1' | translate}}
                 </h1>
                 <div class="col-lg-12 mx-auto">
                     <p class="lead mb-4" style="font-weight: 400;">
-                        Bu uygulama, bir uluslararası taşımacılık platformudur. Burada birçok yerli ve global firma
-                        müşterileriyle buluşur. Hızlı ve kolay bir şekilde nakliyat işlerini yürütebilir. Müşteriler de
-                        kolayca hizmetlerini buradan alabilirler.
+                        {{'homeTitle1Text' | translate}}
                     </p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
                         <a type="button" (click)="navigate('/companies')" class="btn btn-outline-dark btn-lg px-4">
-                            Hemen başla
+                            {{'quickStart' | translate}}
                         </a>
                         <a type="button" routerLink="/about-us"
                             class="btn btn-light btn-lg px-4">
-                            Hakkımızda
+                            {{'aboutUs' | translate}}
                         </a>
                     </div>
                 </div>
             </div>
         </div>
-
-        <!-- COUNTER -->
-
-        <!-- <div class="container-xxl bd-gutter">
-            <div class="px-4 mb-5 col-md-11 mx-auto text-center">
-                <div class="row justify-content-md-center row-cols-3">
-                    <div class="col">
-                        <h1 [countUp]="artifactCountData.artifactCount" class="display-3 fw-semibold"
-                            style="margin-bottom: 1rem; color: #997404;"></h1>
-                        <p class="d-none d-lg-block lead mb-4 fs-3" style="font-weight: 400;">
-                            Eklenen Tarihi Eserler
-                        </p>
-                        <p class="d-lg-none lead mb-4" style="font-weight: 400;">
-                            Tarihi Eserler
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <h1 [countUp]="artifactCountData.videoCount" class="display-3 fw-semibold"
-                            style="margin-bottom: 1rem; color: #997404;"></h1>
-                        <p class="d-none d-lg-block lead mb-4 fs-3" style="font-weight: 400;">
-                            Sesli Anlatım
-                        </p>
-                        <p class="d-lg-none lead mb-4" style="font-weight: 400;">
-                            Sesli Anlatım
-                        </p>
-                    </div>
-
-                    <div class="col">
-                        <h1 [countUp]="artifactCountData.visualContentCount" class="display-3 fw-semibold"
-                            style="margin-bottom: 1rem; color: #997404;"></h1>
-                        <p class="d-none d-lg-block lead mb-4 fs-3" style="font-weight: 400;">
-                            Görsel İçerik
-                        </p>
-                        <p class="d-lg-none lead mb-4" style="font-weight: 400;">
-                            Görsel İçerik
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
-        <!-- <div class="container-xxl bd-gutter">
-            <div class="px-4 mb-5 col-md-8 mx-auto text-center">
-                <fa-icon class="d-block mx-auto mb-3" size="6x" [icon]="faComments"></fa-icon>
-                <h1 class="display-6 fw-semibold" style="margin-bottom: 1rem;">Bizi Destekleyin</h1>
-                <div class="col-lg-12 mx-auto">
-                    <p class="lead mb-4" style="font-weight: 400;">
-                        Projemizdeki tarihi eserler ve kitabeler hakkında önemli görüş ve önerileriniz bizim için çok
-                        değerli. Önerilerinizi ve görüşlerinizi bizimle paylaşın ve projemize destek olun.
-                    </p>
-                    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a type="button" routerLink="/kitabeler" class="btn btn-outline-dark btn-lg px-4">
-                            Destek Ol
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-
     </div>
 
-    <!-- Overview -->
+    
     <div class="container marketing mb-5 mt-5" data-bs-spy="scroll" data-bs-target="#myCarousel" data-bs-offset="0"
         tabindex="0">
+        <!-- Title 2 -->
         <div class="row featurette" style="margin-top: 5%;">
             <div class="col-md-5 order-md-1 d-flex align-items-center">
                 <img src="assets/images/nakliyat.webp" alt="" width="500" height="500" class="img-fluid">
             </div>
             <div class="col-md-7 order-md-2">
                 <h2 class="featurette-heading-2" id="0">
-                    Nakliyat
+                    {{'homeTitle2' | translate}}
                 </h2>
                 <p class="lead text-muted">
-                    Müşterilerimiz hizmet almak istediği şirketin özelliklerini profilinden görebilir. Müşteri istediği
-                    şirketi seçtikten sonra bir nakliyat talebi oluşturur. Talep şirket tarafından onaylandığında ödeme
-                    gerçekleşir ve nakliyat başlar.
+                    {{'homeTitle2Text' | translate}}
                 </p>
-                <!-- <a type="button" class="btn btn-outline-secondary btn-md px-4 me-md-2 fw-bold"
-                    (click)="scrollTop('/konya', 'konya')">
-                    Daha Fazla
-                </a> -->
             </div>
-
         </div>
 
         <hr class="featurette-divider">
 
+        <!-- Title 3 -->
         <div class="row featurette" style="margin-top: 5%;">
             <div class="col-md-5 order-md-2">
                 <img src="assets/images/location.jpg" alt="" width="500" height="500" class="img-fluid">
             </div>
             <div class="col-md-7 order-md-1 pe-5">
                 <h2 class="featurette-heading-2" id="0">
-                    Dilediğiniz her şeyi <span class="text-body-secondary">seçeceğiniz yere nakliye edin</span>
+                    {{'homeTitle3-1' | translate}} <span class="text-body-secondary">{{'homeTitle3-2' | translate}}</span>
                 </h2>
                 <p class="lead text-muted">
-                    Bu uygulama ile size sunduğumuz en büyük rahatlığın keyfini çıkarın. Dilediğiniz eşyayı, evinizi,
-                    ofisinizi ve çok daha fazlasını nakliye edin. Bir şirket seçin ve başlayın.
+                    {{'homeTitle3Text' |translate}}
                 </p>
                 <a type="button" class="btn btn-light btn-md px-4 me-md-2 fw-bold"
                     (click)="navigate('/companies')">
-                    Şirketler
+                    {{'companies' | translate}}
                 </a>
             </div>
         </div>
     </div>
 
-    <div class="container px-4 py-5" id="featured-3">
+    <div *ngIf="companies != null && (companies.length > 0)"  class="container px-4 py-5" id="featured-3">
         <h2 class="pb-2 border-bottom">Bazı şirketler</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
             <div *ngFor="let company of companies" class="feature col">

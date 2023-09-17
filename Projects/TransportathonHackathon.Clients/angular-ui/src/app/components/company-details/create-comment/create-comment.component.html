@@ -2,7 +2,7 @@
     <div class="row g-3 mb-3 align-items-center">
         <div class="col">
             <textarea formControlName="description" type="text" id="description" class="form-control"
-                aria-describedby="description" placeholder="Ne düşünüyorsun?"></textarea>
+                aria-describedby="description" placeholder="{{'whatAreYouThinking' | translate }}"></textarea>
         </div>
     </div>
     <div class="clearfix">
@@ -10,14 +10,14 @@
 
         <div class="align-bottom">
             <select class="form-select w-25" formControlName="transportRequestId" id="transportRequestId">
-                <option selected>Yorum yapacağınız işi seçin</option>
+                <option selected>{{'selectJobToCommentOn' | translate}}</option>
                 <option *ngFor="let transportRequest of transportRequests" [value]="transportRequest.id">
-                    {{transportRequest.companyName}} - {{transportRequest.countryFrom +" to "+
+                    {{transportRequest.companyName}} - {{transportRequest.countryFrom +" -> "+
                     transportRequest.countryTo}}
                 </option>
             </select>
         </div>
 
-        <button type="button" class="btn btn-warning float-end" (click)="createComment()">Comment</button>
+        <button type="button" class="btn btn-warning float-end" (click)="createComment()">{{'doComment' | translate}}</button>
     </div>
 </form>

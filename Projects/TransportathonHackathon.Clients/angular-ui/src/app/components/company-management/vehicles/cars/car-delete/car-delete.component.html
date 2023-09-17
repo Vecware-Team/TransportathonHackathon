@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Sil</h5>
+    <h5 class="modal-title">{{'delete' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
@@ -9,9 +9,9 @@
             {{objectToModify.model}}
         </h6>
     </div>
-    <p>Bu aracı silmek istediğinizden emin misiniz?</p>
+    <p>{{'areYouSureDeleteVehicle' | translate}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-danger" (click)="deleteCar()">Sil</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="deleteCar()">{{'delete' | translate}}</button>
 </div>

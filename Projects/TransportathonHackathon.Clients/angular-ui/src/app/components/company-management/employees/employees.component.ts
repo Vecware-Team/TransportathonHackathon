@@ -71,7 +71,7 @@ export class EmployeesComponent {
         this.getList();
       },
     });
-    modalReferance.componentInstance.driver = employee.driver;
+    modalReferance.componentInstance.driver = employee;
   }
 
   openHireCarrierModal() {
@@ -92,7 +92,12 @@ export class EmployeesComponent {
       size: 'm',
       modalDialogClass: 'modal-dialog-centered',
     });
-    modalReferance.componentInstance.carrier = employee.carrier;
+    modalReferance.closed.subscribe({
+      next: () => {
+        this.getList();
+      },
+    });
+    modalReferance.componentInstance.carrier = employee;
   }
 
   getEmployeeType(employee: GetByCompanyIdEmployeeResponse): string {
