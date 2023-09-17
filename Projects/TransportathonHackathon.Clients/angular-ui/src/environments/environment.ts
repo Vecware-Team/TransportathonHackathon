@@ -1,6 +1,6 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://localhost:44382/api/',
-  baseUrl: 'https://localhost:44382/',
+  apiUrl: 'https://vecwareteam.somee.com/api/',
+  baseUrl: 'https://vecwareteam.somee.com/',
   projectName: 'Vecware Team',
 };

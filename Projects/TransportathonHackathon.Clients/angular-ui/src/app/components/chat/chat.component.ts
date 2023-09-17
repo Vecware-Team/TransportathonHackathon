@@ -65,7 +65,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
   }
 
   ngAfterViewChecked() {
-    // this.scrollToBottom();
+    this.scrollToBottom();
   }
 
   createMessageForm() {
