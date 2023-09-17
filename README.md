@@ -6,6 +6,8 @@
 
 - <b> Bu proje, BEŞİR FATİH DAĞ ve İSMAİL KAYGISIZ tarafından geliştirilmiştir.</b>
 
+- <b> Bu bir yarışma projesidir.</b>
+
 - <b> [Bu Adresten Siteye Gidebilirsiniz](https://transportathon.web.app/) </b>
 
 - <b> [Bu Adresten API ye Gidebilirsiniz](https://vecwareteam.somee.com/swagger/index.html) </b>
