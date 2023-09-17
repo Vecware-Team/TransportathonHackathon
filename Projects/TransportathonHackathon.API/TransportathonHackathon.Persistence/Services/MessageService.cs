@@ -19,6 +19,14 @@ namespace TransportathonHackathon.Persistence.Services
             return await _messageRepository.GetAsync(e => e.Id == id, include: e => e.Include(e => e.Sender).Include(e => e.Receiver));
         }
 
+        public async Task<Message?> GetLastMessage()
+        {
+            IList<Message> messages = await _messageRepository.GetListAsync(orderBy: e => e.OrderBy(e => e.Queue));
+            if (messages.Count == 0) return null;
+
+            return messages.Last();
+        }
+
         public async Task SaveMessage(Message message)
         {
             await _messageRepository.AddAsync(message);
@@ -29,5 +37,6 @@ namespace TransportathonHackathon.Persistence.Services
             message.IsRead = true;
             await _messageRepository.UpdateAsync(message);
         }
+
     }
 }

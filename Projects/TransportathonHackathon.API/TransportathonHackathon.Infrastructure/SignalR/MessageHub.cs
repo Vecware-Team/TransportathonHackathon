@@ -56,6 +56,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
             if (message.IsNullOrEmpty() || message.All(e => e == ' ') || message.All(e => e == '\n') || message.All(e => e == ' ' || e == '\n'))
                 return;
 
+            Message? lastMessage = await _messageService.GetLastMessage();
             Message sendingMessage = new()
             {
                 SenderId = senderUser.Id,
@@ -65,6 +66,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
                 IsRead = false,
                 Sender = senderUser,
                 Receiver = receiverUser,
+                Queue = lastMessage is null ? 1 : lastMessage.Queue + 1,
                 CreatedDate = DateTime.Now,
                 UpdatedDate = DateTime.Now,
             };
@@ -74,7 +76,7 @@ namespace TransportathonHackathon.Infrastructure.SignalR
                 foreach (SignalRClient client in receiverClients)
                     await Clients.Client(client.ConnectionId).ReceiveMessage(sendingMessage);
 
-            List<SignalRClient> senderClients = clients.Where(c => c.UserId == senderUser.Id.ToString()).ToList(); 
+            List<SignalRClient> senderClients = clients.Where(c => c.UserId == senderUser.Id.ToString()).ToList();
             if (senderClients is not null && senderClients?.Count > 0)
                 foreach (SignalRClient client in senderClients)
                     await Clients.Client(client.ConnectionId).MessageSended(sendingMessage);

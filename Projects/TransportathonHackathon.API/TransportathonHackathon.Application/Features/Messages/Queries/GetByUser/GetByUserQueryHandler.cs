@@ -22,7 +22,7 @@ namespace TransportathonHackathon.Application.Features.Messages.Queries.GetByUse
             IList<Message> messages = await _messageRepository.GetListAsync(
                 e => e.SenderId == request.UserId || e.ReceiverId == request.UserId,
                 include: e => e.Include(e => e.Sender).Include(e => e.Receiver),
-                orderBy: e => e.OrderByDescending(e => e.SendDate)
+                orderBy: e => e.OrderByDescending(e => e.Queue)
             );
 
             List<GetByUserResponse> response = new();
