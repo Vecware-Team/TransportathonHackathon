@@ -38,9 +38,8 @@ export class CloseTransportRequestComponent {
     }
 
     this.transportRequestService
-      .approveTransportRequest({
+      .finishTransportRequest({
         id: this.transportRequest.id,
-        isApproved: false,
       })
       .subscribe((response) => {
         this.toastrService.success('Successfully rejected', 'Successful');

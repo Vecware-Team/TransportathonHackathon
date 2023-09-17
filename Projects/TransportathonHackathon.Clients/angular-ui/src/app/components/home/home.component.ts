@@ -25,6 +25,7 @@ export class HomeComponent implements OnInit {
     this.router.navigate([url]);
   }
 
+
   getList() {
     this.companyService
       .getList({ index: 0, size: 100 })

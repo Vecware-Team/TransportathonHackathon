@@ -78,6 +78,7 @@ import { NgxStarRatingModule } from 'ngx-star-rating';
 import { CommentsComponent } from './components/company-details/comments/comments.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { SettingsComponent } from './components/settings/settings.component';
     CommentsComponent,
     ContactComponent,
     SettingsComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

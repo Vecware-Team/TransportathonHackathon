@@ -21,6 +21,7 @@ import { PayTransportRequestComponent } from './components/transport-request-lis
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 export const routerOptions: ExtraOptions = {
   onSameUrlNavigation: 'reload',
@@ -128,6 +129,8 @@ const routes: Routes = [
     component: AdminComponent,
     canActivate: [loginGuard],
   },
+  { path: '**', component: NotFoundComponent },
+
 ];
 
 @NgModule({

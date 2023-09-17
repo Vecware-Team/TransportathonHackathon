@@ -16,11 +16,10 @@
                         {{'homeTitle1Text' | translate}}
                     </p>
                     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
-                        <a type="button" (click)="navigate('/companies')" class="btn btn-outline-dark btn-lg px-4">
+                        <a type="button" (click)="navigate('/transport-requests')" class="btn btn-outline-dark btn-lg px-4">
                             {{'quickStart' | translate}}
                         </a>
-                        <a type="button" routerLink="/about-us"
-                            class="btn btn-light btn-lg px-4">
+                        <a type="button" routerLink="/about-us" class="btn btn-light btn-lg px-4">
                             {{'aboutUs' | translate}}
                         </a>
                     </div>
@@ -29,7 +28,7 @@
         </div>
     </div>
 
-    
+
     <div class="container marketing mb-5 mt-5" data-bs-spy="scroll" data-bs-target="#myCarousel" data-bs-offset="0"
         tabindex="0">
         <!-- Title 2 -->
@@ -56,23 +55,23 @@
             </div>
             <div class="col-md-7 order-md-1 pe-5">
                 <h2 class="featurette-heading-2" id="0">
-                    {{'homeTitle3-1' | translate}} <span class="text-body-secondary">{{'homeTitle3-2' | translate}}</span>
+                    {{'homeTitle3-1' | translate}} <span class="text-body-secondary">{{'homeTitle3-2' |
+                        translate}}</span>
                 </h2>
                 <p class="lead text-muted">
                     {{'homeTitle3Text' |translate}}
                 </p>
-                <a type="button" class="btn btn-light btn-md px-4 me-md-2 fw-bold"
-                    (click)="navigate('/companies')">
+                <a type="button" class="btn btn-light btn-md px-4 me-md-2 fw-bold" (click)="navigate('/companies')">
                     {{'companies' | translate}}
                 </a>
             </div>
         </div>
     </div>
 
-    <div *ngIf="companies != null && (companies.length > 0)"  class="container px-4 py-5" id="featured-3">
-        <h2 class="pb-2 border-bottom">Bazı şirketler</h2>
+    <div *ngIf="companies != null && (companies.length > 0)" class="container px-4 py-5" id="featured-3">
+        <h2 class="pb-2 border-bottom">{{'someCompaines' | translate}}</h2>
         <div class="row g-4 py-5 row-cols-1 row-cols-lg-3">
-            <div *ngFor="let company of companies" class="feature col">
+            <div *ngFor="let company of companies.slice(0, 5)" class="feature col">
                 <!-- <div
                     class="feature-icon d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-2 mb-3">
                     <svg class="bi" width="1em" height="1em">
@@ -82,7 +81,7 @@
                 <h3 class="fs-2 text-body-emphasis">{{company.companyName}}</h3>
                 <p></p>
                 <a routerLink="/companies/company/details/{{company.appUserId}}" class="icon-link">
-                    Go Company
+                    {{'goCompany' | translate}}
                 </a>
             </div>
         </div>

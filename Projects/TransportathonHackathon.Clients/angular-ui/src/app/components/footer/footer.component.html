@@ -26,11 +26,11 @@
             </div>
 
             <div class="col mb-3">
-                <h5>Links</h5>
+                <h5>{{'links' | translate}}</h5>
                 <ul class="nav flex-column list-unstyled">
                     <li class="nav-item mb-2">
-                        <a routerLink="/companies" class="link-dark link text-body-secondary">
-                            {{'companies' | translate}}
+                        <a routerLink="/home" class="link-dark link text-body-secondary">
+                            {{'home' | translate}}
                         </a>
                     </li>
                     <li class="nav-item mb-2">
@@ -44,8 +44,8 @@
                         </a>
                     </li>
                     <li class="nav-item mb-2">
-                        <a routerLink="/home" class="link-dark link text-body-secondary">
-                            {{'home' | translate}}
+                        <a routerLink="/companies" class="link-dark link text-body-secondary">
+                            {{'companies' | translate}}
                         </a>
                     </li>
                 </ul>
@@ -54,10 +54,16 @@
             <div class="col mb-3">
                 <h5>{{'creators' | translate}}</h5>
                 <ul class="nav flex-column list-unstyled">
-                    <li class="nav-item mb-2"><a routerLink="/ismail-page"
-                            class="link-dark link text-body-secondary">İsmail</a></li>
-                    <li class="nav-item mb-2"><a routerLink="/fatih-page"
-                            class="link-dark link text-body-secondary">Fatih</a></li>
+                    <li class="nav-item mb-2"><a [href]="getSocialLink('ismail-website')"
+                            class="link-dark link text-body-secondary">İsmail Website</a></li>
+                    <li class="nav-item mb-2"><a [href]="getSocialLink('ismail-github')"
+                            class="link-dark link text-body-secondary">İsmail Github</a></li>
+                    <li class="nav-item mb-2"><a [href]="getSocialLink('ismail-linkedin')"
+                            class="link-dark link text-body-secondary">İsmail Linkedin</a></li>
+                    <li class="nav-item mb-2"><a [href]="getSocialLink('fatih-github')"
+                            class="link-dark link text-body-secondary">Fatih Github</a></li>
+                    <li class="nav-item mb-2"><a [href]="getSocialLink('fatih-linkedin')"
+                            class="link-dark link text-body-secondary">Fatih Linkedin</a></li>
                 </ul>
             </div>
 
@@ -77,12 +83,12 @@
             <p>© 2023 Company, Inc. All rights reserved.</p>
             <ul class="list-unstyled d-flex">
                 <li class="me-3">
-                    <a class="text-muted" [href]="getSocialLink('ismail-linkedin')" rel=”nofollow” target=”_blank”>
+                    <a class="text-muted" [href]="getSocialLink('ismail-github')" rel=”nofollow” target=”_blank”>
                         <fa-icon [icon]="faInstagram" style="font-size: 24px;"></fa-icon>
                     </a>
                 </li>
                 <li class="me-3">
-                    <a class="text-muted" [href]="getSocialLink('fatih-linkedin')" rel=”nofollow” target=”_blank”>
+                    <a class="text-muted" [href]="getSocialLink('fatih-github')" rel=”nofollow” target=”_blank”>
                         <fa-icon [icon]="faFacebook" style="font-size: 24px;"></fa-icon>
                     </a>
                 </li>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-dark navbar-dark bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar sticky-top navbar-expand-lg bg-dark navbar-dark bg-body-tertiary" data-bs-theme="dark">
   <div class="container-fluid flex-wrap flex-md-nowrap">
     <a class="navbar-brand" routerLink="/">{{projectName}}</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
@@ -8,11 +8,14 @@
     <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
       <ul class="navbar-nav my-navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item">
-          <a class="nav-link nav-link-custom nav-link-collapse" aria-current="page" routerLink="/">{{'home' | translate}}</a>
+          <a class="nav-link nav-link-custom nav-link-collapse" aria-current="page" routerLink="/">{{'home' |
+            translate}}</a>
         </li>
         <li class="nav-item">
-          <a *ngIf="tokenUser?.userType === 'Customer'" class="nav-link nav-link-custom nav-link-collapse"
-            routerLink="/transport-requests">{{'transportRequests' | translate}}</a>
+          <a *ngIf="tokenUser?.userType === 'Customer'" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+            class="nav-link nav-link-custom nav-link-collapse" routerLink="/transport-requests">
+            {{'transportRequests' | translate}}
+          </a>
         </li>
         <li class="nav-item">
           <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/companies">{{'companies' | translate}}</a>
@@ -25,20 +28,55 @@
         </li>
       </ul>
 
+      <hr class="d-lg-none text-white-50 w-100">
+
+      <!-- SM -->
+      <li *ngIf="currentLanguage !== null" class="nav-item d-lg-none dropdown me-3">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          {{currentLanguage?.globallyName}}
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li *ngFor="let language of languages">
+            <a class="dropdown-item" (click)="setLanguage(language.code!)">
+              {{language.globallyName}}
+            </a>
+          </li>
+        </ul>
+      </li>
+      
+      <!-- LG -->
+      <li *ngIf="currentLanguage !== null" class="nav-item dropstart dropdown d-none d-lg-block me-3">
+        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          {{currentLanguage?.globallyName}}
+        </button>
+
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <li *ngFor="let language of languages">
+            <a class="dropdown-item" (click)="setLanguage(language.code!)">
+              {{language.globallyName}}
+            </a>
+          </li>
+        </ul>
+      </li>
+
       <!-- SM -->
       <li *ngIf="isLogged()" class="nav-item dropdown d-lg-none">
         <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {{tokenUser?.userName}}
         </button>
-        <ul class="dropdown-menu dropdown-menu-start dropdown-menu-dark">
+        <ul class="dropdown-menu dropdown-menu-dark">
 
           <li>
-            <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item" routerLink="/company/panel">
+            <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item nav-link-collapse"
+              routerLink="/company/panel">
               {{"companyPanel" | translate}}
             </a>
           </li>
           <li>
-            <a *ngIf="tokenUser?.userType === 'Customer'" class="dropdown-item"
+            <a *ngIf="tokenUser?.userType === 'Customer'" class="dropdown-item nav-link-collapse"
               routerLink="/customer/details/{{tokenUser?.id}}">
               {{"profile" | translate}}
             </a>
@@ -61,19 +99,20 @@
       </li>
 
       <!-- LG -->
-      <li *ngIf="isLogged()" class="nav-item dropdown d-none d-lg-block">
+      <li *ngIf="isLogged()" class="nav-item dropdown dropstart d-none d-lg-block">
         <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {{tokenUser?.userName}}
         </button>
-        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+        <ul class="dropdown-menu dropdown-menu-dark">
 
           <li>
-            <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item" routerLink="/company/panel">
+            <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item nav-link-collapse"
+              routerLink="/company/panel">
               {{"companyPanel" | translate}}
             </a>
           </li>
           <li>
-            <a *ngIf="tokenUser?.userType === 'Customer'" class="dropdown-item"
+            <a *ngIf="tokenUser?.userType === 'Customer'" class="dropdown-item nav-link-collapse"
               routerLink="/customer/details/{{tokenUser?.id}}">
               {{"profile" |translate}}
             </a>
@@ -95,25 +134,15 @@
         </ul>
       </li>
 
-      <hr class="d-lg-none text-white-50 w-100">
-      <li *ngIf="currentLanguage !== null" class="nav-item dropdown me-3">
-        <button class="btn btn-outline-light dropdown-toggle" type="button" data-bs-toggle="dropdown"
-            aria-expanded="false">
-            {{currentLanguage?.globallyName}}
-        </button>
-
-        <ul class="dropdown-menu dropdown-menu-dark">
-            <li *ngFor="let language of languages">
-                <a class="dropdown-item" (click)="setLanguage(language.code!)">
-                    {{language.globallyName}}
-                </a>
-            </li>
-        </ul>
-    </li>
-
       <form *ngIf="!isLogged()" class="d-flex" role="search">
-        <button class="btn btn-outline-success me-2" type="submit" routerLink="/login">{{'login' | translate}}</button>
-        <button class="btn btn-outline-success" type="submit" routerLink="/register">{{'register' | translate}}</button>
+        <button class="btn btn-outline-success me-2" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          type="submit" routerLink="/login">
+          {{'login' | translate}}
+        </button>
+        <button class="btn btn-outline-success" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+          type="submit" routerLink="/register">
+          {{'register' | translate}}
+        </button>
       </form>
     </div>
   </div>
