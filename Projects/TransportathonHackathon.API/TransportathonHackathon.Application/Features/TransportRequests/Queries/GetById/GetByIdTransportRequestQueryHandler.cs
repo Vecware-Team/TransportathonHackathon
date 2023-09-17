@@ -27,19 +27,7 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Queries
             if (transportRequest is null)
                 throw new NotFoundException("Transport request not found");
 
-            if (transportRequest.Vehicle is not null)
-            {
-                transportRequest.Vehicle.TransportRequest = null;
-                transportRequest.Vehicle.Company.TransportRequests?.ToList().ForEach(c =>
-                {
-                    c.Vehicle = null;
-                    c.Customer = null;
-                    c.Company = null;
-                    c.Comment = null;
-                });
-                transportRequest.Vehicle.Company.TransportRequests = null;
-                transportRequest.Vehicle.Company = null;
-            }
+            if (transportRequest!.PaymentRequest is not null) transportRequest!.PaymentRequest.TransportRequest = null;
             GetByIdTransportRequestResponse response = _mapper.Map<GetByIdTransportRequestResponse>(transportRequest);
             return response;
         }
