@@ -1,0 +1,43 @@
+<body>
+    <main class="contact w-100 m-auto px-4 py-3">
+        <div class="container d-flex h-100 p-3 mx-auto flex-column mb-5 px-4 py-5">
+            <div class="mr-auto">
+
+                <h1 class="display-5 fw-bold lh-1 mb-3">Bize Ulaşın</h1>
+                <p class="lead mb-3"> 
+                    Transportathon Hackathon ve Vecware Team hakkında görüş ve önerileriniz için bizimle iletişime geçebilirsiniz.
+                </p>
+
+                <ul class="list-unstyled pl-md-5 mb-5">
+                    <!-- <li class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+                        <a class="link-dark me-3" href="mailto: dagbfatih@hotmail.com" target="_blank" rel="nofollow">
+                            <fa-icon [icon]="faEnvolpe" style="font-size: 24px;"></fa-icon>
+                        </a>
+                        vecwareteam@gmail.com
+                    </li> -->
+                    <li class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+                        <a class="link-dark me-3" [href]="getSocialLink('ismail-linkedin')" target="_blank" rel="nofollow">
+                            <fa-icon class="" [icon]="faLinkedin" style="font-size: 24px;"></fa-icon>
+                        </a>
+                        <span class="d-none d-lg-block">{{getSocialLink('ismail-linkedin')}}</span>
+                        <span class="d-lg-none">İsmail Kaygısız</span>
+                    </li>
+                    <li class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+                        <a class="link-dark me-3" [href]="getSocialLink('fatih-linkedin')" target="_blank" rel="nofollow">
+                            <fa-icon class="" [icon]="faLinkedin" style="font-size: 24px;"></fa-icon>
+                        </a>
+                        <span class="d-none d-lg-block">{{getSocialLink('fatih-linkedin')}}</span>
+                        <span class="d-lg-none">Fatih Dağ</span>
+                    </li>
+                    <li class="bd-links-heading d-flex w-100 align-items-center fw-semibold">
+                        <a class="link-dark me-3" [href]="getSocialLink('github-proje')" target="_blank" rel="nofollow">
+                            <fa-icon class="" [icon]="faGithub" style="font-size: 24px;"></fa-icon>
+                        </a>
+                        <span class="d-none d-lg-block">{{getSocialLink('github-proje')}}</span>
+                        <span class="d-lg-none">Github</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </main>
+</body>

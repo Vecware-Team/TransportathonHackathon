@@ -9,7 +9,17 @@
             {{"From "+transportRequest.countryFrom + "To " +transportRequest.countryTo}}
         </h6>
     </div>
-    <p>Müşteri nakliyat ödemesini yapmıştır. Nakliyat tarihinde yapıldıktan sonra müşteri tarafından 'Finished' olarak
+    <p *ngIf="!transportRequest.isPaid">
+        Müşteri ödemeyi henüz yapmadı, nakliye bittikten sonra ödeme gerçekleşecektir.
+    </p>
+    <p *ngIf="!transportRequest.isFinished">
+        İş henüz bitmedi olarak görünüyor.
+    </p>
+    <p *ngIf="transportRequest.isFinished">
+        İş bittiğine göre bir sonrakine geçebiliriz.
+    </p>
+    <p *ngIf="!transportRequest.isPaid">
+        Müşteri nakliyat ödemesini yapmıştır. Yapılan nakliye müşteri tarafından 'Finished' olarak
         işaretlenecek. Kolay gelsin.
     </p>
 </div>

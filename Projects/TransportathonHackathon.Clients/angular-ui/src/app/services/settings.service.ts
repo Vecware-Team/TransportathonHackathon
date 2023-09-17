@@ -1,5 +1,4 @@
 import { Injectable } from '@angular/core';
-import { Language } from '../models/entities/language';
 import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({
@@ -16,10 +15,10 @@ export class SettingsService {
     let code = this.router.snapshot.paramMap.get('code');
 
     if (code == null) {
-      this.setLanguage(this.defaultLanguageCode);
+      this.setLanguageOnLocalStorage(this.defaultLanguageCode);
       return this.defaultLanguageCode;
     } else {
-      this.setLanguage(code);
+      this.setLanguageOnLocalStorage(code);
       return code;
     }
   }
@@ -34,7 +33,7 @@ export class SettingsService {
     }
   }
 
-  setLanguage(languageCode: string) {
+  setLanguageOnLocalStorage(languageCode: string) {
     localStorage.setItem('code', languageCode);
   }
 }

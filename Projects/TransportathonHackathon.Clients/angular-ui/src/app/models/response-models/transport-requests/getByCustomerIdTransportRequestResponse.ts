@@ -17,7 +17,9 @@ export interface GetByCustomerIdTransportRequestResponse {
   isFinished: boolean;
   isPaid: boolean;
   placeSize: string;
-  vehicle: Vehicle | null;
+  brand: string;
+  model: string;
+  modelYear: number;
   paymentRequest: PaymentRequest;
   createdDate: Date;
   updatedDate: Date;

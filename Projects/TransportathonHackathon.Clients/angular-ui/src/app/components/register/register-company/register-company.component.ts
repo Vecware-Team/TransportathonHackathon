@@ -52,9 +52,11 @@ export class RegisterCompanyComponent {
         'Successfully registered',
         this.translateService.instant('successful')
       );
-      this.router.navigate([
-        'company/panel/' + this.tokenService.getUserWithJWT()?.id,
-      ]);
+      this.router
+        .navigate(['company/panel/' + this.tokenService.getUserWithJWT()?.id])
+        .finally(() => {
+          location.reload();
+        });
     });
   }
 }

@@ -54,9 +54,13 @@ export class RegisterCustomerComponent implements OnInit {
         'Successfully registered',
         this.translateService.instant('successful')
       );
-      this.router.navigate([
-        'customer/details/' + this.tokenService.getUserWithJWT()?.id,
-      ]);
+      this.router
+        .navigate([
+          'customer/details/' + this.tokenService.getUserWithJWT()?.id,
+        ])
+        .finally(() => {
+          location.reload();
+        });
     });
   }
 }
