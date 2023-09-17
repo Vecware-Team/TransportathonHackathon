@@ -160,4 +160,72 @@
 
 ---
 
-### 
+### SİTEYE DETAYLI BAKIŞ
+
+- ### Kullanıcılar ve Sistemde Hazır Gelenler
+
+  - Sistemde test amaçlı 1 admin 2 müşteri 2 şirket 7 sürücü 7 çalışan (sürücü haricinde) ve 6 araç gelmektedir.
+
+  - Sistemde Türkçe ve İngilizce dil destekleri hazır olarak gelmektedir.
+
+  - Sistemde rol ve claim bazlı yetkilendirme sistemi bulunmaktadır ve aktif olarak kullanılmaktadır.
+
+  ***
+
+  - Kullanıcı Bilgileri
+
+  ```json
+  {
+    "Admin": {
+      "userName": "admin",
+      "email": "admin@admin.com",
+      "password": "Admin@123"
+    },
+    "Şirket 1": {
+      "userName": "company1",
+      "email": "company1@company1.com",
+      "password": "Company@123"
+    },
+    "Şirket 2": {
+      "userName": "company2",
+      "email": "company2@company2.com",
+      "password": "Company@123"
+    },
+    "Müşteri 1": {
+      "userName": "customer1",
+      "email": "company1@company1.com",
+      "password": "Customer@123"
+    },
+    "Müşteri 2": {
+      "userName": "customer2",
+      "email": "customer2@customer2.com",
+      "password": "Customer@123"
+    }
+  }
+  ```
+
+  Şirket1 kullanıcısına ait 5 sürücü 4 çalışan ve 5 araç bulunmaktadır.
+
+  Şirket2 kullanıcısına ait 2 sürücü 3 çalışan ve 1 araç bulunmaktadır.
+
+- ### İşleyiş
+
+  - Sisteme şirket olarak ya da müşteri olarak kullanıcılar kaydolabilir.
+
+    Sürücü ve çalışanları ise sadece şirketler ekleyebilir
+
+  - Müşteriler şirketlerden herhangi birini seçip doğrudan nakliyat talebi gönderebilir ya da şirketle önce iletişime geçerek bilgi alıp daha sonra nakliyat talebi gönderebilirler.
+
+  - Şirketler kullanıcılardan gelen nakliyat taleplerini değerlendirip nakliyat için araç tanımlaması yaptıktan ve fiyat talebini belirttikten sonra nakliyat taleplerini onaylayıp kullanıcıya ödeme talebi gönderebilir.
+
+  - Kullanıcılar ödeme talebi geldikten sonra ödeme yapabilir veya nakliyat talebini kapatabilirler.
+
+  - Kullanıcı ödemeyi yaptıktan sonra iş tamamlandığında nakliyat taleplerim sayfasından tamamlandı olarak işaretleyip nakliyat talebini kapatabilir.
+
+  - Nakliyat talebi bittikten sonra şirketin sayfasına girip seçtiği nakliyat talebi için yorum ekleyebilir ya da diğer kullanıcıların şirket hakkında yaptığı yorum ve değerlendirmeleri görebilir. Bu sayfadan şirket ve çalışanlar hakkında detaylı bilgi alabilir.
+
+  - Müşteriler şirketlerle doğrudan iletişime geçebilir.
+
+  - Şirketlerin kendilerine ait özel yönetim panelleri bulunmaktadır. Bu panelden çalışan ya da araç eklemesi yapabilir gelen nakliyat taleplerini görüntüleyip değerlendirebilirler.
+
+  - Admin kullanıcısının kendine özel paneli bulunmaktadır. Dil, çeviri ve nakliyat tipi ekleyebilir; Sistemdeki müşterileri görüntüleyebilir.
