@@ -234,7 +234,7 @@
 
   - Admin kullanıcısının kendine özel paneli bulunmaktadır. Dil, çeviri ve nakliyat tipi ekleyebilir; Sistemdeki müşterileri görüntüleyebilir.
 
-  - `Önemli Not` : Ödeme sayfasında CVV, Month ve Year değerleri 0 ile başlayamaz. Month değeri 2 haneli CVV 3 haneli ve Year ise 4 haneli olmak zorundadır. Değiştirmeye vaktimiz kalmadığı için böyle kaldı.
+  - `Önemli Not` : Ödeme sayfasında CVV, Month ve Year değerleri sayısal değerler olduğu için 0 ile başlayamaz.
 
   ***
 
