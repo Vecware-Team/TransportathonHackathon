@@ -6,6 +6,8 @@
 
 - <b> Bu proje, BEŞİR FATİH DAĞ ve İSMAİL KAYGISIZ tarafından geliştirilmiştir.</b>
 
+- <b> Bu proje, [TransPortathon Hackathon](https://www.techcareer.net/hackathon/trans-portathon-hackathon) yarışması için 9 günde geliştirilmiştir.</b>
+
 - <b> Bu bir yarışma projesidir.</b>
 
 - <b> [Bu Adresten Siteye Gidebilirsiniz](https://transportathon.web.app/) </b>
