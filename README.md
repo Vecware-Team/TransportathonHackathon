@@ -229,3 +229,39 @@
   - Şirketlerin kendilerine ait özel yönetim panelleri bulunmaktadır. Bu panelden çalışan ya da araç eklemesi yapabilir gelen nakliyat taleplerini görüntüleyip değerlendirebilirler.
 
   - Admin kullanıcısının kendine özel paneli bulunmaktadır. Dil, çeviri ve nakliyat tipi ekleyebilir; Sistemdeki müşterileri görüntüleyebilir.
+
+  - `Önemli Not` : Ödeme sayfasında CVV, Month ve Year değerleri 0 ile başlayamaz. Month değeri 2 haneli CVV 3 haneli ve Year ise 4 haneli olmak zorundadır. Değiştirmeye vaktimiz kalmadığı için böyle kaldı.
+
+  ***
+
+- ## SİTEDEN GÖRÜNTÜLER
+
+![HomePage](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Home_Page.png?raw=true)
+
+![Companies](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Companies_Page.png?raw=true)
+
+![TransportRequests](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Transport_Requests_Page.png?raw=true)
+
+![Messages](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Messages_Page.png?raw=true)
+
+![CompanyDetails](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Details_Page.png?raw=true)
+
+![CreateTransportRequest](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Create_Transport_Request_Page.png?raw=true)
+
+![CustomerDetails](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Customer_Profile_Page.png?raw=true)
+
+![Settings](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Settings_Page.png?raw=true)
+
+![CompanyManage1](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_1.png?raw=true)
+
+![CompanyManage2](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_2.png?raw=true)
+
+![CompanyManage3](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_3.png?raw=true)
+
+![Admin1](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_1.png?raw=true)
+
+![Admin2](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_2.png?raw=true)
+
+![Admin3](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_3.png?raw=true)
+
+![Admin4](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_4.png?raw=true)
