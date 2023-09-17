@@ -79,7 +79,7 @@
 
     - Core.Application.Pipelines.Validation/
 
-  - SignalR ile anlık haberleşmeyi sağalayabilir. Bağlı olan istemcileri anında tetikleyebilirsiniz.
+  - SignalR ile anlık haberleşmeyi sağlayabilir. Bağlı olan istemcileri anında tetikleyebilirsiniz.
 
     - TransportathonHackathon.Infrastructure.SignalR/
 
@@ -95,15 +95,15 @@
 
     - Core.Application.Pipelines.Caching/
 
-  - Sistem bir kod yapısı çalışırken hata vermesi durumunda yapılan işlemi geri alabilecek yapıya sahiptir.
+  - Sistem, bir kod yapısı çalışırken hata vermesi durumunda yapılan işlemi geri alabilecek yapıya sahiptir.
 
     - Core.Application.Pipelines.Transaction/
 
   - Pagination (sayfalama) altyapısını içermektedir ve mesajlaşma sistemi de dahil olmak üzere pek çok yerde kullanılmaktadır.
 
-  - Extension metodlar ile eskisinden daha güçlü, temiz ve sürdürülebilir.
+  - Extension metodlar ile sistem; eskisinden daha güçlü, temiz ve sürdürülebilir.
 
-  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir sınıfa bağımlı değil. Sistemi her şeyden güçlü yapan, Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
+  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir nesneye bağımlı değil. Sistemi her şeyden güçlü yapan özelliği, Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
 
   - Constructor ve ServiceTool aracılığıyla yapılan DependencyInjection (bağımlılık enjeksiyonu) sistemdeki bağımlılığı minimuma indirirken sürdürülebilirliği maksimum düzeye çıkarmaktadır.
 
@@ -193,7 +193,7 @@
     },
     "Müşteri 1": {
       "userName": "customer1",
-      "email": "company1@company1.com",
+      "email": "customer1@customer1.com",
       "password": "Customer@123"
     },
     "Müşteri 2": {
@@ -204,7 +204,7 @@
   }
   ```
 
-  Şirket1 kullanıcısına ait 5 sürücü 4 çalışan ve 5 araç bulunmaktadır.
+  Şirket1 kullanıcısına ait 5 sürücü 2 çalışan ve 5 araç bulunmaktadır.
 
   Şirket2 kullanıcısına ait 2 sürücü 3 çalışan ve 1 araç bulunmaktadır.
 
