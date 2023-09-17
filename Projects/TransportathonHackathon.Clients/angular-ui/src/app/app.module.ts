@@ -29,10 +29,8 @@ import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
-import { RegisterCarrierComponent } from './components/register/register-carrier/register-carrier.component';
 import { RegisterCompanyComponent } from './components/register/register-company/register-company.component';
 import { RegisterCustomerComponent } from './components/register/register-customer/register-customer.component';
-import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
 import { ErrorInterceptor } from './interceptors/error.interceptor';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { CustomerDetailsComponent } from './components/customer-details/customer-details.component';
@@ -101,10 +99,8 @@ import { SettingsComponent } from './components/settings/settings.component';
     TranslateUpdateComponent,
     TranslateDeleteComponent,
     RegisterComponent,
-    RegisterCarrierComponent,
     RegisterCompanyComponent,
     RegisterCustomerComponent,
-    RegisterDriverComponent,
     CompanyDetailsComponent,
     CustomerDetailsComponent,
     CompanyManagementPanelComponent,

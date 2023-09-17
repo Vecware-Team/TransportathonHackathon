@@ -7,8 +7,6 @@ import { UsersComponent } from './components/admin/users/users.component';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterCustomerComponent } from './components/register/register-customer/register-customer.component';
 import { RegisterCompanyComponent } from './components/register/register-company/register-company.component';
-import { RegisterCarrierComponent } from './components/register/register-carrier/register-carrier.component';
-import { RegisterDriverComponent } from './components/register/register-driver/register-driver.component';
 import { CompanyDetailsComponent } from './components/company-details/company-details.component';
 import { CompanyListComponent } from './components/company-list/company-list.component';
 import { LoginComponent } from './components/login/login.component';
