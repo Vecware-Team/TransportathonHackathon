@@ -2,6 +2,7 @@
 using Core.Application.Pipelines.Transaction;
 using MediatR;
 using System.Security.Claims;
+using TransportathonHackathon.Application.Constants;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.Approve
 {
@@ -11,6 +12,6 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public bool IsApproved { get; set; }
 
         public string[] Roles => new string[] { };
-        public Claim[] Claims => new Claim[] { new Claim("UserType", "Company"), new Claim("UserType", "Customer") };
+        public Claim[] Claims => new Claim[] { ProjectClaimConstants.CompanyClaim };
     }
 }

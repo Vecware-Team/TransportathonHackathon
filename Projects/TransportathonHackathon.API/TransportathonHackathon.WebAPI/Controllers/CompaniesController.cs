@@ -10,6 +10,7 @@ using TransportathonHackathon.Application.Features.Companies.Queries.GetByEmail;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetById;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetList;
 using TransportathonHackathon.Application.Features.Companies.Queries.GetListDynamic;
+using TransportathonHackathon.WebAPI.Dtos.Company;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -18,23 +19,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class CompaniesController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCompanyCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCompanyDto command)
         {
-            CreatedCompanyResponse response = await Mediator.Send(command);
+            CreatedCompanyResponse response = await Mediator.Send(Mapper.Map<CreateCompanyCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCompanyCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCompanyDto command)
         {
-            DeletedCompanyResponse response = await Mediator.Send(command);
+            DeletedCompanyResponse response = await Mediator.Send(Mapper.Map<DeleteCompanyCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCompanyCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateCompanyDto command)
         {
-            UpdatedCompanyResponse response = await Mediator.Send(command);
+            UpdatedCompanyResponse response = await Mediator.Send(Mapper.Map<UpdateCompanyCommand>(command));
             return Ok(response);
         }
 

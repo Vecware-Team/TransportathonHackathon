@@ -6,6 +6,7 @@ using TransportathonHackathon.Application.Features.Customers.Commands.Delete;
 using TransportathonHackathon.Application.Features.Customers.Commands.Update;
 using TransportathonHackathon.Application.Features.Customers.Queries.GetById;
 using TransportathonHackathon.Application.Features.Customers.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Customer;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -14,23 +15,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class CustomersController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCustomerCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCustomerDto command)
         {
-            CreatedCustomerResponse response = await Mediator.Send(command);
+            CreatedCustomerResponse response = await Mediator.Send(Mapper.Map<CreateCustomerCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCustomerCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCustomerDto command)
         {
-            DeletedCustomerResponse response = await Mediator.Send(command);
+            DeletedCustomerResponse response = await Mediator.Send(Mapper.Map<DeleteCustomerCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCustomerCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateCustomerDto command)
         {
-            UpdatedCustomerResponse response = await Mediator.Send(command);
+            UpdatedCustomerResponse response = await Mediator.Send(Mapper.Map<UpdateCustomerCommand>(command));
             return Ok(response);
         }
 

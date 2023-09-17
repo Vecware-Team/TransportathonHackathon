@@ -7,6 +7,7 @@ using TransportathonHackathon.Application.Features.Comments.Commands.Update;
 using TransportathonHackathon.Application.Features.Comments.Queries.GetByCompanyId;
 using TransportathonHackathon.Application.Features.Comments.Queries.GetById;
 using TransportathonHackathon.Application.Features.Comments.Queries.GetList;
+using TransportathonHackathon.WebAPI.Dtos.Comment;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -15,23 +16,23 @@ namespace TransportathonHackathon.WebAPI.Controllers
     public class CommentsController : BaseController
     {
         [HttpPost]
-        public async Task<IActionResult> Create([FromBody] CreateCommentCommand command)
+        public async Task<IActionResult> Create([FromBody] CreateCommentDto command)
         {
-            CreatedCommentResponse response = await Mediator.Send(command);
+            CreatedCommentResponse response = await Mediator.Send(Mapper.Map<CreateCommentCommand>(command));
             return Ok(response);
         }
 
         [HttpDelete]
-        public async Task<IActionResult> Delete([FromQuery] DeleteCommentCommand command)
+        public async Task<IActionResult> Delete([FromQuery] DeleteCommentDto command)
         {
-            DeletedCommentResponse response = await Mediator.Send(command);
+            DeletedCommentResponse response = await Mediator.Send(Mapper.Map<DeleteCommentCommand>(command));
             return Ok(response);
         }
 
         [HttpPut]
-        public async Task<IActionResult> Update([FromBody] UpdateCommentCommand command)
+        public async Task<IActionResult> Update([FromBody] UpdateCommentDto command)
         {
-            UpdatedCommentResponse response = await Mediator.Send(command);
+            UpdatedCommentResponse response = await Mediator.Send(Mapper.Map<UpdateCommentCommand>(command));
             return Ok(response);
         }
 

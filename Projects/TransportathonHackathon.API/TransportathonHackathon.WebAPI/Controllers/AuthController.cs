@@ -9,6 +9,10 @@ using TransportathonHackathon.Application.Features.Customers.Commands.Create;
 using TransportathonHackathon.Application.Features.Drivers.Commands.CreateDriver;
 using TransportathonHackathon.Domain.Entities.Identity;
 using TransportathonHackathon.WebAPI.Dtos.Auth;
+using TransportathonHackathon.WebAPI.Dtos.Carrier;
+using TransportathonHackathon.WebAPI.Dtos.Company;
+using TransportathonHackathon.WebAPI.Dtos.Customer;
+using TransportathonHackathon.WebAPI.Dtos.Driver;
 
 namespace TransportathonHackathon.WebAPI.Controllers
 {
@@ -26,9 +30,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterCompany([FromBody] CreateCompanyCommand command)
+        public async Task<IActionResult> RegisterCompany([FromBody] CreateCompanyDto command)
         {
-            CreatedCompanyResponse response = await Mediator.Send(command);
+            CreatedCompanyResponse response = await Mediator.Send(Mapper.Map<CreateCompanyCommand>(command));
             AppUser user = await _userManager.FindByIdAsync(response.AppUserId.ToString());
             bool result = await _userManager.CheckPasswordAsync(user, command.Password);
             if (!result)
@@ -41,9 +45,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterCustomer([FromBody] CreateCustomerCommand command)
+        public async Task<IActionResult> RegisterCustomer([FromBody] CreateCustomerDto command)
         {
-            CreatedCustomerResponse response = await Mediator.Send(command);
+            CreatedCustomerResponse response = await Mediator.Send(Mapper.Map<CreateCustomerCommand>(command));
             AppUser user = await _userManager.FindByIdAsync(response.AppUserId.ToString());
             bool result = await _userManager.CheckPasswordAsync(user, command.Password);
             if (!result)
@@ -55,9 +59,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterDriver([FromBody] CreateDriverCommand command)
+        public async Task<IActionResult> RegisterDriver([FromBody] CreateDriverDto command)
         {
-            CreatedDriverResponse response = await Mediator.Send(command);
+            CreatedDriverResponse response = await Mediator.Send(Mapper.Map<CreateDriverCommand>(command));
             AppUser user = await _userManager.FindByIdAsync(response.EmployeeId.ToString());
             bool result = await _userManager.CheckPasswordAsync(user, command.Password);
             if (!result)
@@ -69,9 +73,9 @@ namespace TransportathonHackathon.WebAPI.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> RegisterCarrier([FromBody] CreateCarrierCommand command)
+        public async Task<IActionResult> RegisterCarrier([FromBody] CreateCarrierDto command)
         {
-            CreatedCarrierResponse response = await Mediator.Send(command);
+            CreatedCarrierResponse response = await Mediator.Send(Mapper.Map<CreateCarrierCommand>(command));
             AppUser user = await _userManager.FindByIdAsync(response.EmployeeId.ToString());
             bool result = await _userManager.CheckPasswordAsync(user, command.Password);
             if (!result)

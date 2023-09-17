@@ -2,6 +2,7 @@
 using Core.Application.Pipelines.Transaction;
 using MediatR;
 using System.Security.Claims;
+using TransportathonHackathon.Application.Constants;
 
 namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
 {
@@ -16,6 +17,6 @@ namespace TransportathonHackathon.Application.Features.Carriers.Commands.Create
         public Guid CompanyId { get; set; }
 
         public string[] Roles => new string[] { };
-        public Claim[] Claims => new Claim[] { new Claim("UserType", "Company") };
+        public Claim[] Claims => new Claim[] { ProjectClaimConstants.CompanyClaim };
     }
 }

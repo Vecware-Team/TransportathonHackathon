@@ -1,4 +1,5 @@
-﻿using Core.Application.Pipelines.Transaction;
+﻿using Core.Application.Pipelines.Authorization;
+using Core.Application.Pipelines.Transaction;
 using MediatR;
 
 namespace TransportathonHackathon.Application.Features.Companies.Commands.Create

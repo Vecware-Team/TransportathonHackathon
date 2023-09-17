@@ -1,4 +1,5 @@
 ﻿using Core.CrossCuttingConcerns.Exceptions.ExceptionTypes;
+using Core.Security.Constants;
 using Core.Security.Extensions;
 using MediatR;
 using Microsoft.AspNetCore.Http;
@@ -24,15 +25,15 @@ namespace Core.Application.Pipelines.Authorization
             if (_httpContextAccessor.HttpContext.User.Claims.SingleOrDefault(e => e.Type == ClaimTypes.NameIdentifier) is null)
                 throw new UnauthorizedException();
 
-            List<string>? roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles();
+            List<string> roleClaims = _httpContextAccessor.HttpContext.User.ClaimRoles() ?? new List<string>();
             List<Claim>? claims = _httpContextAccessor.HttpContext.User.Claims?.ToList();
-            Claim? claim = _httpContextAccessor.HttpContext.User.Claims.FirstOrDefault(c => c.Type == "UserType");
+            Claim? claim = _httpContextAccessor.HttpContext.User.Claims?.FirstOrDefault(c => c.Type == ClaimTypeConstants.UserType);
 
-            if (roleClaims.Contains("Admin") && claim?.Value == "Admin")
+            if (roleClaims.Contains(RoleConstants.Admin) && claim?.Value == ClaimValueConstants.Admin)
                 return await next();
 
             bool isNotMatchedARoleClaimWithRequestRoles = roleClaims.FirstOrDefault(roleClaim => request.Roles.Any(role => role == roleClaim)).IsNullOrEmpty();
-            bool isNotMatchedAClaimWithRequestClaims = claims.FirstOrDefault(claim => request.Claims.Any(c => c.Type == claim.Type && c.Value == claim.Value)) == null;
+            bool isNotMatchedAClaimWithRequestClaims = claims?.FirstOrDefault(claim => request.Claims.Any(c => c.Type == claim.Type && c.Value == claim.Value)) == null;
 
             if (isNotMatchedAClaimWithRequestClaims && isNotMatchedARoleClaimWithRequestRoles) throw new AuthorizationDeniedException("You are not authorized.");
 

@@ -1,6 +1,7 @@
 ﻿using Core.Application.Pipelines.Authorization;
 using MediatR;
 using System.Security.Claims;
+using TransportathonHackathon.Application.Constants;
 
 namespace TransportathonHackathon.Application.Features.TransportRequests.Commands.AddVehicle
 {
@@ -10,6 +11,6 @@ namespace TransportathonHackathon.Application.Features.TransportRequests.Command
         public Guid VehicleId { get; set; }
 
         public string[] Roles => new string[] { };
-        public Claim[] Claims => new Claim[] { new Claim("UserType", "Company") };
+        public Claim[] Claims => new Claim[] { ProjectClaimConstants.CompanyClaim };
     }
 }

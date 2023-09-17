@@ -3,6 +3,7 @@ using Core.Application.Pipelines.Logging;
 using Core.Application.Pipelines.Transaction;
 using MediatR;
 using System.Security.Claims;
+using TransportathonHackathon.Application.Constants;
 
 namespace TransportathonHackathon.Application.Features.PaymentRequests.Commands.Pay
 {
@@ -12,6 +13,6 @@ namespace TransportathonHackathon.Application.Features.PaymentRequests.Commands.
         public Requests.PaymentRequest PaymentRequest { get; set; }
 
         public string[] Roles => new string[] { };
-        public Claim[] Claims => new Claim[] { new Claim("UserType", "Customer") };
+        public Claim[] Claims => new Claim[] { ProjectClaimConstants.CustomerClaim };
     }
 }
