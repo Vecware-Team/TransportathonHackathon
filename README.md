@@ -6,7 +6,11 @@
 
 - <b> Bu proje, BEŞİR FATİH DAĞ ve İSMAİL KAYGISIZ tarafından geliştirilmiştir.</b>
 
-- <b> [Bu Adresten Siteye Gidebilirsiniz]() </b>
+- <b> Bu bir yarışma projesidir.</b>
+
+- <b> [Bu Adresten Siteye Gidebilirsiniz](https://transportathon.web.app/) </b>
+
+- <b> [Bu Adresten API ye Gidebilirsiniz](https://vecwareteam.somee.com/swagger/index.html) </b>
 
 ---
 
@@ -79,7 +83,7 @@
 
     - Core.Application.Pipelines.Validation/
 
-  - SignalR ile anlık haberleşmeyi sağalayabilir. Bağlı olan istemcileri anında tetikleyebilirsiniz.
+  - SignalR ile anlık haberleşmeyi sağlayabilir. Bağlı olan istemcileri anında tetikleyebilirsiniz.
 
     - TransportathonHackathon.Infrastructure.SignalR/
 
@@ -95,15 +99,15 @@
 
     - Core.Application.Pipelines.Caching/
 
-  - Sistem bir kod yapısı çalışırken hata vermesi durumunda yapılan işlemi geri alabilecek yapıya sahiptir.
+  - Sistem, bir kod yapısı çalışırken hata vermesi durumunda yapılan işlemi geri alabilecek yapıya sahiptir.
 
     - Core.Application.Pipelines.Transaction/
 
   - Pagination (sayfalama) altyapısını içermektedir ve mesajlaşma sistemi de dahil olmak üzere pek çok yerde kullanılmaktadır.
 
-  - Extension metodlar ile eskisinden daha güçlü, temiz ve sürdürülebilir.
+  - Extension metodlar ile sistem; eskisinden daha güçlü, temiz ve sürdürülebilir.
 
-  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir sınıfa bağımlı değil. Sistemi her şeyden güçlü yapan, Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
+  - Sınıflar; ServiceCollection, ServiceProvider ve interfaceler sayesinde hiçbir yerde hiçbir nesneye bağımlı değil. Sistemi her şeyden güçlü yapan özelliği, Polymorphism (çok biçimlilik) yapısını neredeyse her yerde içermesidir.
 
   - Constructor ve ServiceTool aracılığıyla yapılan DependencyInjection (bağımlılık enjeksiyonu) sistemdeki bağımlılığı minimuma indirirken sürdürülebilirliği maksimum düzeye çıkarmaktadır.
 
@@ -193,7 +197,7 @@
     },
     "Müşteri 1": {
       "userName": "customer1",
-      "email": "company1@company1.com",
+      "email": "customer1@customer1.com",
       "password": "Customer@123"
     },
     "Müşteri 2": {
@@ -204,7 +208,7 @@
   }
   ```
 
-  Şirket1 kullanıcısına ait 5 sürücü 4 çalışan ve 5 araç bulunmaktadır.
+  Şirket1 kullanıcısına ait 5 sürücü 2 çalışan ve 5 araç bulunmaktadır.
 
   Şirket2 kullanıcısına ait 2 sürücü 3 çalışan ve 1 araç bulunmaktadır.
 
@@ -229,3 +233,45 @@
   - Şirketlerin kendilerine ait özel yönetim panelleri bulunmaktadır. Bu panelden çalışan ya da araç eklemesi yapabilir gelen nakliyat taleplerini görüntüleyip değerlendirebilirler.
 
   - Admin kullanıcısının kendine özel paneli bulunmaktadır. Dil, çeviri ve nakliyat tipi ekleyebilir; Sistemdeki müşterileri görüntüleyebilir.
+
+  - `Önemli Not` : Ödeme sayfasında CVV, Month ve Year değerleri sayısal değerler olduğu için 0 ile başlayamaz.
+
+  ***
+
+- ## SİTEDEN GÖRÜNTÜLER
+
+![HomePage](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Home_Page.png?raw=true)
+
+![Companies](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Companies_Page.png?raw=true)
+
+![TransportRequests](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Transport_Requests_Page.png?raw=true)
+
+![Messages](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Messages_Page.png?raw=true)
+
+![CompanyDetails](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Details_Page.png?raw=true)
+
+![CreateTransportRequest](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Create_Transport_Request_Page.png?raw=true)
+
+![CustomerDetails](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Customer_Profile_Page.png?raw=true)
+
+![Settings](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Settings_Page.png?raw=true)
+
+![CompanyManage1](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_1.png?raw=true)
+
+![CompanyManage2](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_2.png?raw=true)
+
+![CompanyManage3](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Company_Manage_Page_3.png?raw=true)
+
+![Admin1](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_1.png?raw=true)
+
+![Admin2](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_2.png?raw=true)
+
+![Admin3](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_3.png?raw=true)
+
+![Admin4](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Admin_Page_4.png?raw=true)
+
+![AboutUs](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Aboutus_Page.png?raw=true)
+
+![Contact](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Contact_Page.png?raw=true)
+
+![Swagger](https://github.com/Vecware-Team/TransportathonHackathon/blob/main/GithubImages/Swagger_Page.png?raw=true)
