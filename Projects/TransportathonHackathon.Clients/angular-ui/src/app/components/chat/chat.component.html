@@ -22,80 +22,59 @@
           </div>
           <div class="inbox_chat">
             <!-- Chat List -->
-            <div
-              class="chat_list"
-              *ngFor="let user of users"
-              (click)="changePage(user.userId)"
-            >
+            <div class="chat_list" *ngFor="let user of users" (click)="changePage(user.userId)">
               <div class="chat_people">
                 <div class="chat_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
                 </div>
                 <div class="chat_ib">
                   <h5>
                     {{ user.userName
                     }}<span class="chat_date">{{
                       user.sendDate | date : "dd/MM - HH.mm"
-                    }}</span>
+                      }}</span>
                   </h5>
                   <p>{{ user.lastMessage }}</p>
                 </div>
               </div>
             </div>
+
+            <div *ngIf="users.length <= 0" class="text-center text-muted fs-5 mt-3"> 
+              Herhangi bir mesajlaşma bulunamadı.
+            </div>
             <!-- -->
           </div>
         </div>
         <!-- -->
-        <div
-          class="mesgs"
-          *ngIf="
+        <div class="mesgs" *ngIf="
             receiverId != null &&
             userId != null &&
             messages != null &&
             users != null
-          "
-        >
-          <div
-            class="msg_history"
-            (scroll)="onScroll($event)"
-            #msg_history
-            #scrollMe
-          >
+          ">
+          <div class="msg_history" (scroll)="onScroll($event)" #msg_history #scrollMe>
             <div *ngFor="let message of messages.reverse()">
               <!-- InComing  -->
               <div class="incoming_msg" *ngIf="message.senderId != userId">
                 <div class="incoming_msg_img">
-                  <img
-                    src="https://ptetutorials.com/images/user-profile.png"
-                    alt="sunil"
-                  />
+                  <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil" />
                 </div>
                 <div class="received_msg">
-                  <div
-                    class="received_withd_msg"
-                    style="white-space: pre-line; word-wrap: break-word"
-                  >
+                  <div class="received_withd_msg" style="white-space: pre-line; word-wrap: break-word">
                     <p>{{ message.messageText }}</p>
                     <span class="time_date">
-                      {{ message.sendDate | date : "dd/MM - HH.mm" }}</span
-                    >
+                      {{ message.sendDate | date : "dd/MM - HH.mm" }}</span>
                   </div>
                 </div>
               </div>
               <!--  -->
               <!-- OutGoing -->
               <div class="outgoing_msg" *ngIf="message.senderId == userId">
-                <div
-                  class="sent_msg"
-                  style="white-space: pre-line; word-wrap: break-word"
-                >
+                <div class="sent_msg" style="white-space: pre-line; word-wrap: break-word">
                   <p>{{ message.messageText }}</p>
                   <span class="time_date">{{
                     message.sendDate | date : "dd/MM - HH.mm"
-                  }}</span>
+                    }}</span>
                 </div>
               </div>
               <!--  -->
@@ -103,14 +82,8 @@
           </div>
           <div class="type_msg" [formGroup]="messageForm">
             <div class="input_msg_write">
-              <textarea
-                type="text"
-                class="write_msg"
-                placeholder="Type a message"
-                style="resize: none"
-                formControlName="message"
-                (keydown.enter)="keyPress($event)"
-              ></textarea>
+              <textarea type="text" class="write_msg" placeholder="Type a message" style="resize: none"
+                formControlName="message" (keydown.enter)="keyPress($event)"></textarea>
               <button class="msg_send_btn" type="button" (click)="send()">
                 <fa-icon class="1x" [icon]="faPaperPlane"></fa-icon>
               </button>

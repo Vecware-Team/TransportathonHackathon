@@ -17,7 +17,9 @@ export interface GetByCompanyIdTransportRequestResponse {
   approvedByCompany: boolean;
   paymentRequest: PaymentRequest;
   isFinished: boolean;
-  vehicle: Vehicle;
+  brand: string;
+  model: string;
+  modelYear: number;
   createdDate: Date;
   updatedDate: Date;
   startDate: Date;

@@ -19,7 +19,7 @@
         <tr>
             <th scope="col">#</th>
             <th scope="col">Id</th>
-            <th scope="col">LanguageId</th>
+            <th scope="col">Code</th>
             <th scope="col">Key</th>
             <th scope="col">value</th>
             <th></th>
@@ -29,7 +29,7 @@
         <tr *ngFor="let translate of translates; let i = index;">
             <th scope="row">{{i + 1}}</th>
             <th>{{translate.id}}</th>
-            <td>{{translate.languageId}}</td>
+            <td>{{translate.language.code}}</td>
             <td>{{translate.key}}</td>
             <td>{{translate.value}}</td>
             <td class="text-end">

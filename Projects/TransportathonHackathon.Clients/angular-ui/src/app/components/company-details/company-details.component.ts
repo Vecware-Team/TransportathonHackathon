@@ -30,6 +30,7 @@ export class CompanyDetailsComponent implements OnInit {
   company: GetByIdCompanyResponse;
   vehicles: GetByCompanyIdVehicleResponse[];
   employees: GetByCompanyIdEmployeeResponse[];
+  currentUser: TokenUserDto;
 
   constructor(
     private companyService: CompanyService,
@@ -40,7 +41,12 @@ export class CompanyDetailsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.getAppUser();
     this.subscribeRoute();
+  }
+
+  getAppUser() {
+    this.currentUser = this.tokenService.getUserWithJWT()!;
   }
   subscribeRoute() {
     this.getCompany(this.activatedRoute.snapshot.params['companyId']);

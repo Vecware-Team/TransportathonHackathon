@@ -15,6 +15,9 @@ export interface GetByCompanyAndCustomerTransportRequestResponse {
   placeSize: string;
   approvedByCompany: boolean | null;
   isFinished: boolean;
+  brand: string;
+  model: string;
+  modelYear: number;
   paymentRequest: PaymentRequest;
   createdDate: Date;
   updatedDate: Date;

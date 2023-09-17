@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router, Scroll } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { delay, filter } from 'rxjs';
+import { SettingsService } from './services/settings.service';
 
 @Component({
   selector: 'app-root',
@@ -15,14 +16,19 @@ export class AppComponent implements OnInit {
   constructor(
     private translate: TranslateService,
     private router: Router,
-    private viewportScroller: ViewportScroller
+    private viewportScroller: ViewportScroller,
+    private settingsService: SettingsService
   ) {
     translate.setDefaultLang('tr-TR');
-    translate.use('tr-TR');
   }
 
   ngOnInit(): void {
     this.actvateScrollPositionRestoration();
+    this.setLanguage();
+  }
+
+  setLanguage() {
+    this.translate.use(this.settingsService.getLanguageCodeFromLocalStorage());
   }
 
   actvateScrollPositionRestoration() {

@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { Country } from 'src/app/models/country';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { PaymentObject } from 'src/app/models/request-models/payment/paymentObject';
 import { CreateTransportRequestRequest } from 'src/app/models/request-models/transport-requests/createTransportRequestRequest';
 import { GetListTransportTypeResponse } from 'src/app/models/response-models/transport-types/getListTransportTypeResponse';
+import { CountryService } from 'src/app/services/country.service';
 import { TokenService } from 'src/app/services/token.service';
 import { TransportRequestService } from 'src/app/services/transport-request.service';
 import { TransportTypeService } from 'src/app/services/transport-type.service';
@@ -21,6 +23,7 @@ export class CreateTransportRequestComponent implements OnInit {
   companyId: string;
   customer: TokenUserDto;
   transportTypes: GetListTransportTypeResponse[];
+  countries: Country[];
 
   constructor(
     private transportRequestService: TransportRequestService,
@@ -28,14 +31,22 @@ export class CreateTransportRequestComponent implements OnInit {
     private tokenService: TokenService,
     private toastrService: ToastrService,
     private activatedRote: ActivatedRoute,
-    private transportTypeService: TransportTypeService
+    private transportTypeService: TransportTypeService,
+    private countryService: CountryService
   ) {}
 
   ngOnInit(): void {
     this.getTransportTypeList();
     this.getUserToken();
+    this.getCountries();
     this.createCheckoutForm();
     this.subscribeRoute();
+  }
+
+  getCountries() {
+    this.countryService.getCountries().subscribe((response) => {
+      this.countries = response;
+    });
   }
 
   getTransportTypeList() {

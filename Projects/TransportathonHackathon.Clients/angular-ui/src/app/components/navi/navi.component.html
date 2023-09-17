@@ -14,15 +14,16 @@
           <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/transport-requests">Transportations</a>
         </li> -->
         <li class="nav-item">
-          <a *ngIf="tokenUser?.userType === 'Customer'"class="nav-link nav-link-custom nav-link-collapse" routerLink="/transport-requests">Transport Requests</a>
+          <a *ngIf="tokenUser?.userType === 'Customer'" class="nav-link nav-link-custom nav-link-collapse"
+            routerLink="/transport-requests">{{'TransportRequests' | translate}}</a>
         </li>
         <!-- <li class="nav-item">
           <a *ngIf="tokenUser?.userType === 'Customer'"class="nav-link nav-link-custom nav-link-collapse" routerLink="/payment-requests">Payment Requests</a>
         </li> -->
         <li class="nav-item">
-          <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/companies">Companies</a>
+          <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/companies">{{'Companies' | translate}}</a>
         </li>
-        <li class="nav-item">
+        <li *ngIf="tokenUser?.userType === 'Admin'" class="nav-item">
           <a class="nav-link nav-link-custom nav-link-collapse" routerLink="/admin">Admin</a>
         </li>
         <li class="nav-item">
@@ -30,11 +31,12 @@
         </li>
       </ul>
 
-      <li *ngIf="isLogged()" class="nav-item dropdown">
+      <!-- SM -->
+      <li *ngIf="isLogged()" class="nav-item dropdown d-lg-none">
         <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           {{tokenUser?.userName}}
         </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
+        <ul class="dropdown-menu dropdown-menu-start dropdown-menu-dark">
 
           <li>
             <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item" routerLink="/company/panel">
@@ -48,7 +50,42 @@
             </a>
           </li>
           <li>
-            <a class="dropdown-item">
+            <a routerLink="/settings" class="dropdown-item">
+              {{'settings' | translate}}
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="signOut()">
+              {{'signOut' | translate}}
+            </a>
+          </li>
+
+        </ul>
+      </li>
+
+      <!-- LG -->
+      <li *ngIf="isLogged()" class="nav-item dropdown d-none d-lg-block">
+        <button class="btn btn-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          {{tokenUser?.userName}}
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end dropdown-menu-dark">
+
+          <li>
+            <a *ngIf="tokenUser?.userType === 'Company'" class="dropdown-item" routerLink="/company/panel">
+              {{"companyPanel" | translate}}
+            </a>
+          </li>
+          <li>
+            <a *ngIf="tokenUser?.userType === 'Customer'" class="dropdown-item"
+              routerLink="/customer/details/{{tokenUser?.id}}">
+              {{"profile" |translate}}
+            </a>
+          </li>
+          <li>
+            <a routerLink="/settings" class="dropdown-item">
               {{'settings' | translate}}
             </a>
           </li>

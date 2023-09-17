@@ -47,7 +47,7 @@
                                         transportRequest.countryTo + ", " + transportRequest.cityTo}}
                                     </p>
                                     <p class="card-text">
-                                        {{'Araç: ' + transportRequest.vehicle?.brand + ' - ' + transportRequest.vehicle?.model }}
+                                        {{'Araç: ' + transportRequest?.brand + ' - ' + transportRequest?.model }}
                                     </p>
                                     <p class="card-text">
                                         {{"Start date: "}}
@@ -120,6 +120,11 @@
                                 </div>
                             </div>
                         </div>
+                    </div>
+
+                    <!-- None transport request -->
+                    <div *ngIf="transportRequests.length <= 0" class="text-center text-muted fs-3 col">
+                        Herhangi bir nakliyat talebi bulunamadı.
                     </div>
 
                 </div>

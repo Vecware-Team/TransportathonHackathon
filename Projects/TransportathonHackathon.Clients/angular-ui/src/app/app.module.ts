@@ -26,7 +26,7 @@ import { LanguageCreateComponent } from './components/admin/languages/language-c
 import { TranslateCreateComponent } from './components/admin/translates/translate-create/translate-create.component';
 import { TranslateUpdateComponent } from './components/admin/translates/translate-update/translate-update.component';
 import { NgbModule, NgbPagination } from '@ng-bootstrap/ng-bootstrap';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RegisterComponent } from './components/register/register.component';
 import { RegisterCarrierComponent } from './components/register/register-carrier/register-carrier.component';
@@ -78,6 +78,8 @@ import { DeleteCommentComponent } from './components/company-details/delete-comm
 import { CreateCommentComponent } from './components/company-details/create-comment/create-comment.component';
 import { NgxStarRatingModule } from 'ngx-star-rating';
 import { CommentsComponent } from './components/company-details/comments/comments.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { SettingsComponent } from './components/settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +143,8 @@ import { CommentsComponent } from './components/company-details/comments/comment
     UpdateCommentComponent,
     DeleteCommentComponent,
     CommentsComponent,
+    ContactComponent,
+    SettingsComponent,
   ],
   imports: [
     BrowserModule,
@@ -151,6 +155,7 @@ import { CommentsComponent } from './components/company-details/comments/comment
     FontAwesomeModule,
     ReactiveFormsModule,
     NgxStarRatingModule, 
+    FormsModule,
     NgbModule,
     NgbPagination,
     TranslateModule.forRoot({
