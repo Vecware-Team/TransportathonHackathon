@@ -2,26 +2,26 @@
     <main class="form-signin w-100 m-auto">
         <form [formGroup]="registerForm">
             <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Lütfen kayıt olun</h1>
+            <h1 class="h3 mb-3 fw-normal">{{'pleaseRegister' | translate}}</h1>
 
             <div class="form-floating">
                 <input type="text" formControlName="userName" class="form-control" id="userName"
                     placeholder="user Name">
-                <label for="userName">User name</label>
+                <label for="userName">{{'userName' | translate}}</label>
             </div>
             <div class="form-floating">
                 <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="John">
-                <label for="firstName">First name</label>
+                <label for="firstName">{{'firstName' | translate}}</label>
             </div>
             <div class="form-floating mb-3">
                 <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Doe">
-                <label for="lastName">Last name</label>
+                <label for="lastName">{{'lastName' | translate}}</label>
             </div>
 
             <div class="form-floating">
                 <input type="email" formControlName="email" class="form-control" id="email"
                     placeholder="name@example.com">
-                <label for="email">Email address</label>
+                <label for="email">{{'emailAddress' | translate}}</label>
             </div>
             <div class="form-floating">
                 <input type="password" formControlName="password" class=" form-control" id="password"
@@ -32,10 +32,10 @@
             <div class="form-check text-start my-3">
                 <input class="form-check-input" type="checkbox" value="remember-me" id="flexCheckDefault">
                 <label class="form-check-label" for="flexCheckDefault">
-                    Remember me
+                    {{'rememberMe' | translate}}
                 </label>
             </div>
-            <button type="button" class="btn btn-custom w-100 py-2" (click)="register()">Sign in</button>
+            <button type="button" class="btn btn-custom w-100 py-2" (click)="register()">{{'register' | translate}}</button>
             <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
         </form>
     </main>

@@ -1,24 +1,24 @@
 <div class="modal-header">
-    <h5 class="modal-title">Sürücü Ekle</h5>
+    <h5 class="modal-title">{{'hireDriver' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body form-signin">
     <form [formGroup]="hireDriverForm" form>
         <div class="form-floating">
             <input type="text" formControlName="userName" class="form-control" id="userName" placeholder="user Name">
-            <label for="userName">User name</label>
+            <label for="userName">{{'userName' | translate}}</label>
         </div>
         <div class="form-floating">
             <input type="text" formControlName="firstName" class="form-control" id="firstName" placeholder="John">
-            <label for="firstName">First name</label>
+            <label for="firstName">{{'firstName' | translate}}</label>
         </div>
         <div class="form-floating mb-3">
             <input type="text" formControlName="lastName" class="form-control" id="lastName" placeholder="Doe">
-            <label for="lastName">Last name</label>
+            <label for="lastName">{{'lastName' | translate}}</label>
         </div>
         <div class="form-floating mb-3">
             <input type="number" formControlName="age" class="form-control" id="age" placeholder="18...">
-            <label for="age">Age</label>
+            <label for="age">{{'age' | translate}}</label>
         </div>
             <input type="email" formControlName="email" class="form-control" id="email" placeholder="name@example.com">
         <div class="form-floating">
@@ -29,6 +29,6 @@
     </form>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-primary" (click)="hireDriver()">Ekle</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-primary" (click)="hireDriver()">{{'add' | translate}}</button>
 </div>

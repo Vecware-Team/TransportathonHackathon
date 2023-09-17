@@ -46,16 +46,16 @@ export class TransportRequestListComponent implements OnInit {
     if (isApproved == null) return 'Waiting for approve';
 
     if (isApproved) {
-      return 'Approved';
+      return 'approved';
     }
-    return 'Rejected';
+    return 'rejected';
   }
 
   getIsPaidText(isPaid: boolean) {
     if (isPaid) {
-      return 'Is paid';
+      return 'isPaid';
     }
-    return 'Is waiting';
+    return 'isWaiting';
   }
 
   finish(transportRequest: GetByCustomerIdTransportRequestResponse) {

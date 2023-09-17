@@ -2,10 +2,9 @@
     <main>
         <div class="py-5 text-center">
             <img class="d-block mx-auto mb-4" src="assets/images/logo.png" alt="" width="72" height="57">
-            <h2>Checkout</h2>
+            <h2>{{'createTransportRequest' | translate}}</h2>
             <p class="lead">
-                Eşyalarınızı taşıyacağınız adresi doğru girdiğinizden emin olunuz, eğer nakliyat sırasında bir sorun
-                oluşursa veya ödeme esnasında sorun yaşarsanız bizimle iletişime geçin
+                {{'checkoutSubtext' | translate}}
             </p>
         </div>
 
@@ -55,21 +54,18 @@
 
             <!-- Main Address Info -->
             <div class="col-md-12 col-lg-12">
-                <h4 class="mb-3">Ödeme bilgileri ve adres</h4>
+                <h4 class="mb-3">{{'paymentInfoAndAddress' | translate}}</h4>
                 <form [formGroup]="checkoutForm" novalidate>
                     <div class="row g-3">
 
                         <div class="col-6">
-                            <label for="placeSize" class="form-label">Alan bilgisi</label>
+                            <label for="placeSize" class="form-label">{{'placeSizeInfo' | translate}}</label>
                             <input formControlName="placeSize" type="text" class="form-control" id="placeSize"
                                 placeholder="" value="" required>
-                            <div class="invalid-feedback">
-                                Place size name is required.
-                            </div>
                         </div>
 
                         <div class="col-6">
-                            <label for="transportTypeId" class="form-label">Nakliyat tipi</label>
+                            <label for="transportTypeId" class="form-label">{{'transportType' | translate}}</label>
                             <select class="form-select" formControlName="transportTypeId" id="transportTypeId">
                                 <option *ngFor="let transportType of transportTypes" [value]="transportType.id">
                                     {{transportType.type}}
@@ -78,55 +74,49 @@
                         </div>
 
                         <div class="col-12">
-                            <label for="startDate" class="form-label">Start date</label>
+                            <label for="startDate" class="form-label">{{'startDate' | translate}}</label>
                             <input formControlName="startDate" type="date" class="form-control" id="startDate">
-                            <div class="invalid-feedback">
-                                Please enter start date.
-                            </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="countryFrom" class="form-label">Country from</label>
-                            <select formControlName="countryFrom" class="form-select" id="countryFrom" required>
+                            <label for="countryFrom" class="form-label">{{'countryFrom' | translate}}</label>
+                            <select formControlName="countryFrom" (change)="onFromCountrySelected($event)"
+                                class="form-select" id="countryFrom" required>
                                 <option value="">Choose...</option>
-                                <option value="United">United States</option>
+                                <option [value]="country.name" *ngFor="let country of countries">
+                                    {{country.name}}
+                                </option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="cityFrom" class="form-label">City from</label>
+                            <label for="cityFrom" class="form-label">{{'cityFrom' | translate}}</label>
                             <select formControlName="cityFrom" class="form-select" id="cityFrom" required>
                                 <option value="">Choose...</option>
-                                <option value="California">California</option>
+                                <option [value]="city.name" *ngFor="let city of fromCities">
+                                    {{city.name + ' - ' + city.stateCode}}
+                                </option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
                         </div>
 
                         <div class="col-md-6">
-                            <label for="countryTo" class="form-label">To country</label>
-                            <select formControlName="countryTo" class="form-select" id="countryTo" required>
+                            <label for="countryTo" class="form-label">{{'toCountry' | translate}}</label>
+                            <select formControlName="countryTo" (change)="onToCountrySelected($event)" class="form-select" id="countryTo" required>
                                 <option value="">Choose...</option>
-                                <option value="United">United States</option>
+                                <option [value]="country.name" *ngFor="let country of countries">
+                                    {{country.name}}
+                                </option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please select a valid country.
-                            </div>
                         </div>
 
                         <div class="col-md-6 mb-4">
-                            <label for="cityTo" class="form-label">To city</label>
+                            <label for="cityTo" class="form-label">{{'toCity' | translate}}</label>
                             <select formControlName="cityTo" class="form-select" id="cityTo" required>
                                 <option value="">Choose...</option>
-                                <option value="California">California</option>
+                                <option [value]="city.name" *ngFor="let city of toCities">
+                                    {{city.name + ' - ' + city.stateCode}}
+                                </option>
                             </select>
-                            <div class="invalid-feedback">
-                                Please provide a valid state.
-                            </div>
                         </div>
                     </div>
 
@@ -202,7 +192,7 @@
                     </div> -->
 
                     <button class="w-100 btn btn-primary btn-lg mb-5" type="submit"
-                        (click)="createTransportRequest()">Nakliyat talebini gönder</button>
+                        (click)="createTransportRequest()">{{'sendTransportRequest' | translate}}</button>
                 </form>
             </div>
 

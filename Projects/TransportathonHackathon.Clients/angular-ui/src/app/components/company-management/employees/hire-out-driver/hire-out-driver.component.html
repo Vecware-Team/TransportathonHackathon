@@ -1,1 +1,14 @@
-<p>hire-out-driver works!</p>
+<div class="modal-header">
+    <h5 class="modal-title">{{'delete' | translate}}</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
+</div>
+<div class="modal-body">
+    <div class="alert alert-secondary" role="alert">
+        <h5>{{driver.firstName + ' ' + driver.lastName}}</h5>
+    </div>
+    <p>{{'areYouSureDeleteEmployee' | translate}}</p>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="deleteDriver()">{{'delete' | translate}}</button>
+</div>

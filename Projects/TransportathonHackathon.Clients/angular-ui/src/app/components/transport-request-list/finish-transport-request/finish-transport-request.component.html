@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Nakliyatı bitir</h5>
+    <h5 class="modal-title">{{'finishTransportRequest' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
@@ -9,9 +9,11 @@
             {{transportRequest.countryFrom + " -> " + transportRequest.countryTo}}
         </h6>
     </div>
-    <p>Bu nakliyat işini 'bitti.' olarak işaretlemek istediğinizden emin misiniz?</p>
+    <p>{{'areYouSureMarkTransportRequestIsFinished' | translate}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-success" (click)="finishTransportRequest()">Nakliyatı bitir</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' |
+        translate}}</button>
+    <button type="button" class="btn btn-success" (click)="finishTransportRequest()">{{'finishTransport' |
+        translate}}</button>
 </div>

@@ -102,11 +102,11 @@ export class EmployeesComponent {
 
   getEmployeeType(employee: GetByCompanyIdEmployeeResponse): string {
     if (employee.carrier) {
-      return 'Carrier';
+      return 'carrier';
     } else if (employee.driver) {
-      return 'Driver';
+      return 'driver';
     } else {
-      return 'Employee';
+      return 'employee';
     }
   }
 

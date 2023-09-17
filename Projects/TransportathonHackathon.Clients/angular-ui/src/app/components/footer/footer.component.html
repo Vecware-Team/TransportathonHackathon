@@ -13,10 +13,10 @@
                         <span class="fs-5">Transportathon</span>
                     </a>
                     <li class="mb-2">
-                        Bu çalışma 2023 yılında İsmail Kaygısız ve Fatih Dağ tarafından hazırlanmıştır.
+                        {{'footerBrandText' | translate}}
                     </li>
                     <li class="mb-2">
-                        Sürüm 1.0.0
+                        {{'version' | translate}} 1.0.0
                     </li>
                 </ul>
             </div>
@@ -28,19 +28,31 @@
             <div class="col mb-3">
                 <h5>Links</h5>
                 <ul class="nav flex-column list-unstyled">
-                    <li class="nav-item mb-2"><a routerLink="/companies"
-                            class="link-dark link text-body-secondary">Companies</a></li>
-                    <li class="nav-item mb-2"><a routerLink="/about-us" class="link-dark link text-body-secondary">About
-                            us</a></li>
-                    <li class="nav-item mb-2"><a routerLink="/contact"
-                            class="link-dark link text-body-secondary">Contact</a></li>
-                    <li class="nav-item mb-2"><a routerLink="/home" class="link-dark link text-body-secondary">Home</a>
+                    <li class="nav-item mb-2">
+                        <a routerLink="/companies" class="link-dark link text-body-secondary">
+                            {{'companies' | translate}}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a routerLink="/about-us" class="link-dark link text-body-secondary">
+                            {{'aboutUs' | translate}}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a routerLink="/contact" class="link-dark link text-body-secondary">
+                            {{'contact' | translate}}
+                        </a>
+                    </li>
+                    <li class="nav-item mb-2">
+                        <a routerLink="/home" class="link-dark link text-body-secondary">
+                            {{'home' | translate}}
+                        </a>
                     </li>
                 </ul>
             </div>
 
             <div class="col mb-3">
-                <h5>Creators</h5>
+                <h5>{{'creators' | translate}}</h5>
                 <ul class="nav flex-column list-unstyled">
                     <li class="nav-item mb-2"><a routerLink="/ismail-page"
                             class="link-dark link text-body-secondary">İsmail</a></li>

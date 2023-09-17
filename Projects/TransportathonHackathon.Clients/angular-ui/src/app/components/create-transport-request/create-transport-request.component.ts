@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ICity, ICountry } from 'country-state-city';
 import { ToastrService } from 'ngx-toastr';
-import { Country } from 'src/app/models/country';
 import { TokenUserDto } from 'src/app/models/dtos/tokenUserDto';
 import { PaymentObject } from 'src/app/models/request-models/payment/paymentObject';
 import { CreateTransportRequestRequest } from 'src/app/models/request-models/transport-requests/createTransportRequestRequest';
@@ -23,7 +23,9 @@ export class CreateTransportRequestComponent implements OnInit {
   companyId: string;
   customer: TokenUserDto;
   transportTypes: GetListTransportTypeResponse[];
-  countries: Country[];
+  fromCities: ICity[];
+  countries: ICountry[];
+  toCities: ICity[];
 
   constructor(
     private transportRequestService: TransportRequestService,
@@ -44,9 +46,21 @@ export class CreateTransportRequestComponent implements OnInit {
   }
 
   getCountries() {
-    this.countryService.getCountries().subscribe((response) => {
-      this.countries = response;
-    });
+    this.countries = this.countryService.getCountries();
+  }
+
+  onFromCountrySelected(event: any) {
+    let countryCode = this.countries.find(
+      (e) => e.name == event.target.value
+    )?.isoCode!;
+    this.fromCities = this.countryService.getCitiesByCountry(countryCode)!;
+  }
+
+  onToCountrySelected(event: any) {
+    let countryCode = this.countries.find(
+      (e) => e.name == event.target.value
+    )?.isoCode!;
+    this.toCities = this.countryService.getCitiesByCountry(countryCode)!;
   }
 
   getTransportTypeList() {

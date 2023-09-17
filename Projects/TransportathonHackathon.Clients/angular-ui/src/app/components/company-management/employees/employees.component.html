@@ -36,14 +36,14 @@
                 <td>{{employee.lastName}}</td>
                 <td>{{employee.age}}</td>
                 <td>{{employee.isOnTransitNow}}</td>
-                <td>{{getEmployeeType(employee)}}</td>
+                <td>{{getEmployeeType(employee) | translate}}</td>
 
                 <td class="text-end">
-                    <button *ngIf="getEmployeeType(employee) === 'Carrier'" class="btn btn-outline-primary shadow-none me-2"
+                    <button *ngIf="getEmployeeType(employee) === 'carrier'" class="btn btn-outline-danger shadow-none"
                         (click)="openHireOutCarrierModal(employee)">
-                        <fa-icon [icon]="faEdit" size="1x" class="fa fa-edit"></fa-icon>
+                        <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
                     </button>
-                    <button *ngIf="getEmployeeType(employee) === 'Driver'" class="btn btn-outline-danger shadow-none" (click)="openHireOutDriverModal(employee)">
+                    <button *ngIf="getEmployeeType(employee) === 'driver'" class="btn btn-outline-danger shadow-none" (click)="openHireOutDriverModal(employee)">
                         <fa-icon [icon]="faTrash" size="1x" class="fa fa-trash"></fa-icon>
                     </button>
                 </td>

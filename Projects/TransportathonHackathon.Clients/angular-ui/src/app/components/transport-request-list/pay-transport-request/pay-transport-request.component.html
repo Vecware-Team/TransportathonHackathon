@@ -1,14 +1,8 @@
 <div *ngIf="transportRequest && paymentRequest" class="container">
   <main>
     <div class="py-5 text-center">
-      <img
-        class="d-block mx-auto mb-4"
-        src="assets/images/logo.png"
-        alt=""
-        width="72"
-        height="57"
-      />
-      <h2>Ödeme</h2>
+      <img class="d-block mx-auto mb-4" src="assets/images/logo.png" alt="" width="72" height="57" />
+      <h2>{{'payment' | translate}}</h2>
       <!-- <p class="lead">
                 Eşyalarınızı taşıyacağınız adresi doğru girdiğinizden emin olunuz, eğer nakliyat sırasında bir sorun
                 oluşursa veya ödeme esnasında sorun yaşarsanız bizimle iletişime geçin
@@ -19,25 +13,25 @@
       <!-- Right Payment-->
       <div class="col-md-5 col-lg-4 order-md-last">
         <h4 class="d-flex justify-content-between align-items-center mb-3">
-          <span class="text-primary">Hizmetlerin</span>
+          <span class="text-primary">{{'yourServices' | translate}}</span>
           <span class="badge bg-primary rounded-pill">{{ 1 }}</span>
         </h4>
         <ul class="list-group mb-3">
           <li class="list-group-item d-flex justify-content-between lh-sm">
             <div>
               <h6 class="my-0">
-                {{ "Company: " + transportRequest.companyName }}
+                {{ ('company' | translate) + ": " + transportRequest.companyName }}
               </h6>
-              <small class="text-body-secondary">{{
-                transportRequest.transportType
-              }}</small>
+              <small class="text-body-secondary">
+                {{transportRequest.transportType}}
+              </small>
             </div>
-            <span class="text-body-secondary">{{
-              paymentRequest.price + " TL"
-            }}</span>
+            <span class="text-body-secondary">
+              {{paymentRequest.price + " TL"}}
+            </span>
           </li>
           <li class="list-group-item d-flex justify-content-between">
-            <span>Toplam</span>
+            <span>{{'total' | translate}}</span>
             <strong>{{ paymentRequest.price + " TL" }}</strong>
           </li>
         </ul>
@@ -45,101 +39,52 @@
 
       <!-- Main Address Info -->
       <div class="col-md-7 col-lg-8">
-        <h4 class="mb-3">Ödeme bilgileri</h4>
+        <h4 class="mb-3">{{'paymentInfo' | translate}}</h4>
         <form [formGroup]="paymentForm" novalidate>
           <div class="row g-3">
             <div class="col-12">
               <div class="form-check">
-                <input
-                  id="credit"
-                  name="paymentMethod"
-                  type="radio"
-                  class="form-check-input"
-                  checked
-                  required
-                />
-                <label class="form-check-label" for="credit">Credit card</label>
+                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked required />
+                <label class="form-check-label" for="credit">{{'creditCard' | translate}}</label>
               </div>
             </div>
 
             <div class="col-6">
-              <label for="cc-name" class="form-label">Name on card</label>
-              <input
-                formControlName="fullName"
-                type="text"
-                class="form-control"
-                id="cc-name"
-                placeholder=""
-                required
-              />
-              <small class="text-body-secondary"
-                >Full name as displayed on card</small
-              >
+              <label for="cc-name" class="form-label">{{'nameOnCard' | translate}}</label>
+              <input formControlName="fullName" type="text" class="form-control" id="cc-name" placeholder="" required />
+              <small class="text-body-secondary">Full name as displayed on card</small>
               <div class="invalid-feedback">Name on card is required</div>
             </div>
 
             <div class="col-6">
-              <label for="cardNumber" class="form-label"
-                >Credit card number</label
-              >
-              <input
-                formControlName="cardNumber"
-                type="text"
-                class="form-control"
-                id="cardNumber"
-                placeholder=""
-                required
-              />
+              <label for="cardNumber" class="form-label">{{'cardNumber' | translate}}</label>
+              <input formControlName="cardNumber" type="text" class="form-control" id="cardNumber" placeholder=""
+                required />
               <div class="invalid-feedback">Credit card number is required</div>
             </div>
 
             <div class="col-md-4">
-              <label for="month" class="form-label">Month</label>
-              <input
-                formControlName="month"
-                type="number"
-                maxlength="2"
-                placeholder="MM"
-                class="form-control"
-                id="month"
-                required
-              />
+              <label for="month" class="form-label">{{'month' | translate}}</label>
+              <input formControlName="month" type="number" maxlength="2" placeholder="MM" class="form-control"
+                id="month" required />
               <div class="invalid-feedback">Month date required</div>
             </div>
             <div class="col-md-4">
-              <label for="year" class="form-label">Year</label>
-              <input
-                formControlName="year"
-                type="number"
-                maxlength="4"
-                placeholder="YYYY"
-                class="form-control"
-                id="year"
-                required
-              />
+              <label for="year" class="form-label">{{'year' | translate}}</label>
+              <input formControlName="year" type="number" maxlength="4" placeholder="YYYY" class="form-control"
+                id="year" required />
               <div class="invalid-feedback">Year date required</div>
             </div>
             <div class="col-md-4">
               <label for="cvv" class="form-label">CVV</label>
-              <input
-                formControlName="cVV"
-                type="number"
-                class="form-control"
-                id="cc-cvv"
-                placeholder="000"
-                required
-              />
+              <input formControlName="cVV" type="number" class="form-control" id="cc-cvv" placeholder="000" required />
               <div class="invalid-feedback">Security code required</div>
             </div>
           </div>
           <hr class="my-4" />
 
-          <button
-            class="w-100 btn btn-primary btn-lg"
-            type="submit"
-            (click)="pay()"
-          >
-            Ödemeyi tamamla
+          <button class="w-100 btn btn-primary btn-lg" type="submit" (click)="pay()">
+            {{'completePayment' | translate}}
           </button>
         </form>
       </div>

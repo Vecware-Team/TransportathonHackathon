@@ -2,17 +2,17 @@
     <main class="form-signin w-100 m-auto">
         <form [formGroup]="loginForm">
             <img class="mb-4" src="assets/images/logo.png" alt="" width="72" height="57">
-            <h1 class="h3 mb-3 fw-normal">Lütfen Giriş yapın</h1>
+            <h1 class="h3 mb-3 fw-normal">{{'pleaseSignIn' | translate}}</h1>
 
             <div class="form-floating">
                 <input type="emailorUserName" formControlName="emailorUserName" class="form-control" id="emailorUserName"
                     placeholder="name@example.com">
-                <label for="emailorUserName">Email or User name</label>
+                <label for="emailorUserName">{{'emailOrUsername' | translate}}</label>
             </div>
             <div class="form-floating">
                 <input type="password" formControlName="password" class=" form-control" id="password"
                     placeholder="Password">
-                <label for="password">{{"Parola"}}</label>
+                <label for="password">{{"password" | translate}}</label>
             </div>
 
             <div class="form-check text-start my-3">
@@ -21,7 +21,7 @@
                     {{"rememberMe" | translate}}
                 </label>
             </div>
-            <button type="button" class="btn btn-custom w-100 py-2" (click)="login()">Sign in</button>
+            <button type="button" class="btn btn-custom w-100 py-2" (click)="login()">{{'signIn' | translate}}</button>
             <p class="mt-5 mb-3 text-body-secondary">© 2017–2023</p>
         </form>
     </main>

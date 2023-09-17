@@ -1,5 +1,5 @@
 <div class="modal-header">
-    <h5 class="modal-title">Nakliyat talebini iptal et</h5>
+    <h5 class="modal-title">{{'cancelTransportRequest' | translate}}</h5>
     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" (click)="dismiss()"></button>
 </div>
 <div class="modal-body">
@@ -9,9 +9,9 @@
             {{transportRequest.countryFrom + " -> " + transportRequest.countryTo}}
         </h6>
     </div>
-    <p>Bu nakliyat talebini iptal etmek istediğinizden emin misiniz?</p>
+    <p>{{'areYouSureCancelTransportRequest' | translate}}</p>
 </div>
 <div class="modal-footer">
-    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">İptal</button>
-    <button type="button" class="btn btn-danger" (click)="closeTransportRequest()">Talebi iptal et</button>
+    <button type="button" class="btn btn-secondary" (click)="close()" data-bs-dismiss="modal">{{'cancel' | translate}}</button>
+    <button type="button" class="btn btn-danger" (click)="closeTransportRequest()">{{'cancelTransportRequest'}}</button>
 </div>

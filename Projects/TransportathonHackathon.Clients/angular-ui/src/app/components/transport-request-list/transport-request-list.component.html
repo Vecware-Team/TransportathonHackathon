@@ -4,7 +4,7 @@
         <div class="p-head mb-3">
             <h1 href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
                 <img src="assets/images/logo.png" width="40" height="32" class="me-2" alt="">
-                <span class="fs-4">Transport Requests</span>
+                <span class="fs-4">{{'transportRequests' | translate}}</span>
             </h1>
         </div>
 
@@ -15,8 +15,9 @@
                 <div class="mb-3">
                     <!-- <form [formGroup]="filterForm" (ngSubmit)="search()" (keyup.enter)="search()"> -->
                     <div class="mb-1 d-flex">
-                        <input class="form-control me-1" type="search" placeholder="Ara" aria-label="Search" />
-                        <button class="btn btn-outline-app" type="submit">Search</button>
+                        <input class="form-control me-1" type="search" placeholder="{{'search' | translate}}"
+                            aria-label="Search" />
+                        <button class="btn btn-outline-app" type="submit">{{'search' | translate}}</button>
                     </div>
                     <!-- </form> -->
                 </div>
@@ -33,13 +34,14 @@
                                 <div class="transport-request info">
                                     <h5 class="card-title">
                                         {{transportRequest.companyName}}
-                                        <span
-                                            class="badge bg-secondary rounded-pill">{{getApprovedText(transportRequest.approvedByCompany)}}</span>
+                                        <span class="badge bg-secondary rounded-pill">
+                                            {{getApprovedText(transportRequest.approvedByCompany) | translate}}
+                                        </span>
                                     </h5>
                                     <p class="card-text">
                                         {{transportRequest.customerFirstName + " " + transportRequest.customerLastName}}
                                         <br>
-                                        {{"Nakliyat tipi: " + transportRequest.transportType}}
+                                        {{("transportType" | translate) + ': ' + transportRequest.transportType}}
                                     </p>
                                     <p class="card-text">
                                         {{transportRequest.countryFrom + ", " + transportRequest.cityFrom
@@ -47,17 +49,18 @@
                                         transportRequest.countryTo + ", " + transportRequest.cityTo}}
                                     </p>
                                     <p class="card-text">
-                                        {{'Araç: ' + transportRequest?.brand + ' - ' + transportRequest?.model }}
+                                        {{('vehicle' | translate) + ': ' + transportRequest?.brand + ' - ' +
+                                        transportRequest?.model }}
                                     </p>
                                     <p class="card-text">
-                                        {{"Start date: "}}
+                                        {{("startDate" | translate) + ': '}}
                                         <span class="fw-semibold">{{transportRequest.startDate | date}}</span>
                                     </p>
                                 </div>
 
                                 <div *ngIf="!transportRequest.paymentRequest">
                                     <h5 class="card-title text-muted">
-                                        {{"Payment request has not been sent yet from " +
+                                        {{("paymentRequestHasNotSentYetFrom" | translate) + ': ' +
                                         transportRequest.companyName}}
                                     </h5>
                                 </div>
@@ -66,55 +69,56 @@
                                     <div *ngIf="transportRequest.paymentRequest">
                                         <hr>
                                         <h6 class="card-title">
-                                            {{"Payment Request Info"}}
+                                            {{"paymentRequestInfo" | translate}}
                                             <span class="badge bg-secondary rounded-pill">
-                                                {{getIsPaidText(transportRequest.isPaid)}}
+                                                {{getIsPaidText(transportRequest.isPaid) | translate}}
                                             </span>
                                         </h6>
                                         <p class="card-text">
-                                            {{"Price: " + transportRequest.paymentRequest.price +
+                                            {{("price" | translate) + ': ' + transportRequest.paymentRequest.price +
                                             " TL"}}
                                         </p>
                                         <p class="card-text">
-                                            {{"Transport acceptance date: "}}<span
-                                                class="fw-semibold">{{transportRequest.paymentRequest.createdDate
-                                                | date}}</span>
+                                            {{("transportRequestAcceptanceDate" | translate) + ': '}}
+                                            <span class="fw-semibold">
+                                                {{transportRequest.paymentRequest.createdDate | date}}
+                                            </span>
                                         </p>
                                     </div>
                                     <div *ngIf="!transportRequest.paymentRequest">
                                         <h5 class="card-title text-muted">
-                                            {{"Payment request has not been sent yet from " +
+                                            {{("paymentRequestHasNotSentYetFrom" | translate) + ': ' +
                                             transportRequest.companyName}}
                                         </h5>
                                     </div>
                                 </div>
 
                                 <div *ngIf="transportRequest.isFinished" class="">
-                                    <strong class="text-success me-2">This job is finished</strong>
+                                    <strong class="text-success me-2">{{'thisJobIsFinished' | translate}}</strong>
                                     <a routerLink="/companies/company/details/{{transportRequest.companyId}}"
                                         class="btn btn-warning">
-                                        Comment
+                                        {{'doComment' | translate}}
                                     </a>
                                 </div>
                                 <div *ngIf="!transportRequest.isFinished">
                                     <!-- if not paid -->
                                     <a *ngIf="!transportRequest.isPaid && transportRequest.approvedByCompany"
                                         (click)="pay(transportRequest)" class="btn btn-primary me-2">
-                                        Pay and start transportation
+                                        {{'payAndStartTransportation' | translate}}
                                     </a>
                                     <a *ngIf="(transportRequest.approvedByCompany == true || transportRequest.approvedByCompany==null) && !transportRequest.isPaid"
                                         (click)="reject(transportRequest)" class="btn btn-secondary me-2">
-                                        Reject and close this transport request
+                                        {{'rejectAndCloseThisTransportRequest' | translate}}
                                     </a>
 
                                     <!-- if paid -->
                                     <a *ngIf="transportRequest.isPaid " class="btn btn-success me-2"
                                         (click)="finish(transportRequest)">
                                         <fa-icon [icon]="faCheck" class="me-2"></fa-icon>
-                                        Mark as job finished
+                                        {{'markAsJobFinished' | translate}}
                                     </a>
                                     <a *ngIf="transportRequest.isPaid" class="btn btn-primary disabled me-2">
-                                        Waiting for the job to be finished...
+                                        {{('waitingForTheJobToBeFinished' | translate) + '...'}}
                                     </a>
 
                                 </div>
@@ -124,7 +128,7 @@
 
                     <!-- None transport request -->
                     <div *ngIf="transportRequests.length <= 0" class="text-center text-muted fs-3 col">
-                        Herhangi bir nakliyat talebi bulunamadı.
+                        {{'cannotFindAnyTransportRequest' | translate}}
                     </div>
 
                 </div>

@@ -2,7 +2,7 @@
     <div  *ngIf="customer" class="container py-5">
         <div class="p-head mb-3">
             <h1 href="/" class="d-flex align-items-center text-body-emphasis text-decoration-none">
-                <span class="fs-3">Profile</span>
+                <span class="fs-3">{{'profile' | translate}}</span>
             </h1>
         </div>
 
@@ -48,7 +48,7 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">First name</p>
+                                <p class="mb-0">{{'firstName' | translate}}</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{customer.firstName}}</p>
@@ -57,7 +57,7 @@
                         <hr>
                         <div class="row">
                             <div class="col-sm-3">
-                                <p class="mb-0">Last name</p>
+                                <p class="mb-0">{{'lastName' | translate}}</p>
                             </div>
                             <div class="col-sm-9">
                                 <p class="text-muted mb-0">{{customer.lastName}}</p>
