@@ -94,7 +94,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
       if (data.senderId != this.receiverId) return;
 
-      this.messages.splice(0, 0, {
+      this.messages.push({
         id: data.id,
         isRead: data.isRead,
         messageText: data.messageText,
@@ -111,7 +111,7 @@ export class ChatComponent implements OnInit, AfterViewChecked {
 
     this.connection.on('MessageSended', (data: Message) => {
       this.getUsers();
-      this.messages.splice(0, 0, {
+      this.messages.push({
         id: data.id,
         isRead: data.isRead,
         messageText: data.messageText,
@@ -144,10 +144,13 @@ export class ChatComponent implements OnInit, AfterViewChecked {
         .getByReceiverAndSender(this.receiverId, this.userId!, index, size)
         .subscribe({
           next: (data) => {
+            this.messages = this.messages.reverse();
             if (this.messages == null || index == 0) this.messages = [];
             data.items.forEach((e) => {
               this.messages.push(e);
             });
+
+            this.messages = this.messages.reverse();
 
             this.hasNext = data.hasNext;
             if (this.hasNext) this.index = data.index;
