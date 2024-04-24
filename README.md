@@ -29,7 +29,7 @@
 
   - [Linkedin](https://www.linkedin.com/in/fatih-da%C4%9F-b2661020b/)
   - [Github](https://github.com/Dagbfatih)
-  - [Web Site](/)
+  - [Web Site](https://my-portfolio-27873.web.app/)
   - dagbfatih@hotmail.com
 
 ---
